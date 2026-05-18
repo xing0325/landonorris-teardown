@@ -344,6 +344,36 @@ section:last-of-type{border-bottom:none}
 .d19-controls{display:flex;justify-content:space-between;gap:.5rem;margin-top:1.25rem}
 .d19-btn{flex:1;font-size:.7rem}
 
+/* ---------- category dividers + scroll-margin for anchor jumps ---------- */
+.demo{scroll-margin-top:6rem}
+.cat-divider{scroll-margin-top:6rem;display:flex;align-items:center;gap:1rem;padding:3rem 0 1.5rem;margin-top:2rem;border-top:1px solid var(--line-soft)}
+.cat-divider-key{display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--lime);color:#0a0e07;font-weight:700;font-size:.85rem;font-family:'JetBrains Mono',ui-monospace,monospace;flex-shrink:0}
+.cat-divider-name{font-size:1.4rem;font-weight:500;letter-spacing:-.005em}
+.cat-divider-tail{flex:1;height:1px;background:linear-gradient(to right,var(--line),transparent)}
+
+/* ---------- splash · category-select first screen ---------- */
+.splash{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 0 5rem;position:relative;border-bottom:1px solid var(--line-soft)}
+.splash-inner{max-width:96rem;margin:0 auto;padding:0 clamp(1.25rem,4vw,4rem);width:100%}
+.splash-eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--lime);margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
+.splash-eyebrow::before{content:"";width:2rem;height:1px;background:var(--lime)}
+.splash-title{font-size:clamp(2rem,4.5vw,3.6rem);font-weight:300;line-height:1.1;letter-spacing:-.02em;margin-bottom:1rem;max-width:50rem}
+.splash-title em{font-style:normal;color:var(--lime);font-weight:500}
+.splash-sub{color:var(--fg-dim);max-width:42rem;margin-bottom:3rem;font-size:1.05rem;line-height:1.55}
+.splash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.splash-card{position:relative;background:var(--bg-2);border:1px solid var(--line-soft);border-radius:6px;padding:1.5rem;cursor:pointer;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.75rem;transition:border-color .35s var(--cubic),transform .35s var(--cubic),background .35s}
+.splash-card:hover{border-color:var(--lime);transform:translateY(-3px);background:var(--bg-3)}
+.splash-card-head{display:flex;align-items:center;gap:.75rem;margin-bottom:.25rem}
+.splash-card-key{display:grid;place-items:center;width:2rem;height:2rem;border-radius:50%;background:var(--lime);color:#0a0e07;font-weight:700;font-size:.75rem;font-family:'JetBrains Mono',ui-monospace,monospace;flex-shrink:0}
+.splash-card-name{font-size:1.05rem;font-weight:500;letter-spacing:-.005em}
+.splash-card-meta{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--fg-mute);font-family:'JetBrains Mono',ui-monospace,monospace}
+.splash-card-meta strong{color:var(--lime);font-weight:600}
+.splash-card-list{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.5rem}
+.splash-card-list span{padding:.18rem .5rem;background:rgba(208,255,0,.08);border:1px solid var(--line-soft);border-radius:3px;color:var(--lime);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem}
+.splash-foot{margin-top:3rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.splash-foot a{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--fg-dim);border-bottom:1px solid transparent;transition:color .25s,border-color .25s;padding-bottom:.15rem}
+.splash-foot a:hover{color:var(--lime);border-color:var(--lime)}
+html{scroll-behavior:smooth}
+
 /* ---------- Mona Sans Variable (the real one OFF+BRAND uses) ---------- */
 @font-face{
   font-family:"Mona Sans";
@@ -553,8 +583,64 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
   </div>
 </section>
 
+<!-- ============== SPLASH · choose category ============== -->
+<section class="splash" data-section="选分类">
+  <div class="splash-inner">
+    <div class="splash-eyebrow reveal">选一个分类开始 · 25 demos · 8 categories</div>
+    <h2 class="splash-title reveal">先看哪一类？<em>同类的都放在一起</em>，点卡片直接跳。</h2>
+    <p class="splash-sub reveal">如果你只想学某一种动效（比如"滚动驱动"或者"微动效"），直接点对应分类——会跳到那一组的开头。也可以从头看完，从 A 类入场到 H 类媒体顺着滚下去。</p>
+    <div class="splash-grid">
+      <a class="splash-card splash-jump reveal" href="#cat-entrance" data-cat="entrance">
+        <div class="splash-card-head"><div class="splash-card-key">A</div><div class="splash-card-name">入场 &amp; 转场</div></div>
+        <div class="splash-card-meta">用户与页面的"门" · <strong>2</strong> demos</div>
+        <div class="splash-card-list"><span>01</span><span>02</span></div>
+      </a>
+      <a class="splash-card splash-jump reveal" href="#cat-scroll" data-cat="scroll">
+        <div class="splash-card-head"><div class="splash-card-key">B</div><div class="splash-card-name">滚动驱动</div></div>
+        <div class="splash-card-meta">把滚动条变成时间线 · <strong>6</strong> demos</div>
+        <div class="splash-card-list"><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span></div>
+      </a>
+      <a class="splash-card splash-jump reveal" href="#cat-nav" data-cat="nav">
+        <div class="splash-card-head"><div class="splash-card-key">C</div><div class="splash-card-name">导航 &amp; 主题</div></div>
+        <div class="splash-card-meta">section 间的色彩切换 · <strong>2</strong> demos</div>
+        <div class="splash-card-list"><span>09</span><span>10</span></div>
+      </a>
+      <a class="splash-card splash-jump reveal" href="#cat-micro" data-cat="micro">
+        <div class="splash-card-head"><div class="splash-card-key">D</div><div class="splash-card-name">微动效</div></div>
+        <div class="splash-card-meta">按钮 / 链接 / 字符的小动作 · <strong>3</strong> demos</div>
+        <div class="splash-card-list"><span>11</span><span>12</span><span>13</span></div>
+      </a>
+      <a class="splash-card splash-jump reveal" href="#cat-data" data-cat="data">
+        <div class="splash-card-head"><div class="splash-card-key">E</div><div class="splash-card-name">数据驱动</div></div>
+        <div class="splash-card-meta">CMS / 定时 / 计算 · <strong>2</strong> demos</div>
+        <div class="splash-card-list"><span>14</span><span>15</span></div>
+      </a>
+      <a class="splash-card splash-jump reveal" href="#cat-gesture" data-cat="gesture">
+        <div class="splash-card-head"><div class="splash-card-key">F</div><div class="splash-card-name">手势 &amp; 光标</div></div>
+        <div class="splash-card-meta">鼠标 / 触屏的硬件交互 · <strong>3</strong> demos</div>
+        <div class="splash-card-list"><span>16</span><span>17</span><span>18</span></div>
+      </a>
+      <a class="splash-card splash-jump reveal" href="#cat-visual" data-cat="visual">
+        <div class="splash-card-head"><div class="splash-card-key">G</div><div class="splash-card-name">视觉系统</div></div>
+        <div class="splash-card-meta">字体 / 布局 / 形状 / 容器 · <strong>5</strong> demos</div>
+        <div class="splash-card-list"><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span></div>
+      </a>
+      <a class="splash-card splash-jump reveal" href="#cat-media" data-cat="media">
+        <div class="splash-card-head"><div class="splash-card-key">H</div><div class="splash-card-name">媒体</div></div>
+        <div class="splash-card-meta">视频 / 图片相关 · <strong>2</strong> demos</div>
+        <div class="splash-card-list"><span>24</span><span>25</span></div>
+      </a>
+    </div>
+    <div class="splash-foot">
+      <a href="#stack-section">先看技术栈 ↓</a>
+      <a href="#demos-section">从 01 一直看 ↓</a>
+      <a href="#pages-section">直接看逐页拆解 ↓</a>
+    </div>
+  </div>
+</section>
+
 <!-- ============== STACK ============== -->
-<section data-section="技术栈">
+<section id="stack-section" data-section="技术栈">
   <div class="shell">
     <div class="eyebrow reveal">01 · 底牌一览</div>
     <h2 class="title-1 reveal">他们靠这 <em>9 个</em> 库 + 1 张图。</h2>
@@ -574,7 +660,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
 </section>
 
 <!-- ============== DEMOS ============== -->
-<section data-section="可玩 demo">
+<section id="demos-section" data-section="可玩 demo">
   <div class="shell">
     <div class="eyebrow reveal">02 · 25 个能动手的 demo</div>
     <h2 class="title-1 reveal">读到这里，先停下来 <em>玩一会儿</em>。</h2>
@@ -583,14 +669,20 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- category TOC -->
     <div class="cat-toc reveal">
       <div class="cat-toc-head">分类导航 · 点编号跳到对应 demo</div>
-      <div class="cat-row" data-cat="entrance"><div class="cat-name"><span class="cat-key">A</span>入场 &amp; 转场</div><div class="cat-nums"><a href="#demo1">01</a><a href="#demo11">25</a></div></div>
-      <div class="cat-row" data-cat="scroll"><div class="cat-name"><span class="cat-key">B</span>滚动驱动</div><div class="cat-nums"><a href="#demo3">03</a><a href="#demo4">04</a><a href="#demo5">05</a><a href="#demo15">14</a><a href="#demo19svg">19</a><a href="#demo24">24</a></div></div>
-      <div class="cat-row" data-cat="nav"><div class="cat-name"><span class="cat-key">C</span>导航 &amp; 主题</div><div class="cat-nums"><a href="#demo2">02</a><a href="#demo21">21</a></div></div>
-      <div class="cat-row" data-cat="micro"><div class="cat-name"><span class="cat-key">D</span>微动效</div><div class="cat-nums"><a href="#demo6">06</a><a href="#demo18">17</a><a href="#demo22">22</a></div></div>
-      <div class="cat-row" data-cat="data"><div class="cat-name"><span class="cat-key">E</span>数据驱动</div><div class="cat-nums"><a href="#demo12">11</a><a href="#demo19">18</a></div></div>
-      <div class="cat-row" data-cat="gesture"><div class="cat-name"><span class="cat-key">F</span>手势 &amp; 光标</div><div class="cat-nums"><a href="#demo8">08</a><a href="#demo9">09</a><a href="#demo17">16</a></div></div>
-      <div class="cat-row" data-cat="visual"><div class="cat-name"><span class="cat-key">G</span>视觉系统</div><div class="cat-nums"><a href="#demo7">07</a><a href="#demo13">12</a><a href="#demo14">13</a><a href="#demo16">15</a><a href="#demo20">20</a></div></div>
-      <div class="cat-row" data-cat="media"><div class="cat-name"><span class="cat-key">H</span>媒体</div><div class="cat-nums"><a href="#demo10">10</a><a href="#demo23">23</a></div></div>
+      <div class="cat-row" data-cat="entrance"><div class="cat-name"><span class="cat-key">A</span>入场 & 转场</div><div class="cat-nums"><a href="#demo1" data-go="demo1">01</a><a href="#demo11" data-go="demo11">02</a></div></div>
+      <div class="cat-row" data-cat="scroll"><div class="cat-name"><span class="cat-key">B</span>滚动驱动</div><div class="cat-nums"><a href="#demo3" data-go="demo3">03</a><a href="#demo4" data-go="demo4">04</a><a href="#demo5" data-go="demo5">05</a><a href="#demo15" data-go="demo15">06</a><a href="#demo19svg" data-go="demo19svg">07</a><a href="#demo24" data-go="demo24">08</a></div></div>
+      <div class="cat-row" data-cat="nav"><div class="cat-name"><span class="cat-key">C</span>导航 & 主题</div><div class="cat-nums"><a href="#demo2" data-go="demo2">09</a><a href="#demo21" data-go="demo21">10</a></div></div>
+      <div class="cat-row" data-cat="micro"><div class="cat-name"><span class="cat-key">D</span>微动效</div><div class="cat-nums"><a href="#demo6" data-go="demo6">11</a><a href="#demo18" data-go="demo18">12</a><a href="#demo22" data-go="demo22">13</a></div></div>
+      <div class="cat-row" data-cat="data"><div class="cat-name"><span class="cat-key">E</span>数据驱动</div><div class="cat-nums"><a href="#demo12" data-go="demo12">14</a><a href="#demo19" data-go="demo19">15</a></div></div>
+      <div class="cat-row" data-cat="gesture"><div class="cat-name"><span class="cat-key">F</span>手势 & 光标</div><div class="cat-nums"><a href="#demo8" data-go="demo8">16</a><a href="#demo9" data-go="demo9">17</a><a href="#demo17" data-go="demo17">18</a></div></div>
+      <div class="cat-row" data-cat="visual"><div class="cat-name"><span class="cat-key">G</span>视觉系统</div><div class="cat-nums"><a href="#demo7" data-go="demo7">19</a><a href="#demo13" data-go="demo13">20</a><a href="#demo14" data-go="demo14">21</a><a href="#demo16" data-go="demo16">22</a><a href="#demo20" data-go="demo20">23</a></div></div>
+      <div class="cat-row" data-cat="media"><div class="cat-name"><span class="cat-key">H</span>媒体</div><div class="cat-nums"><a href="#demo10" data-go="demo10">24</a><a href="#demo23" data-go="demo23">25</a></div></div>
+    </div>
+
+    <div class="cat-divider" data-cat="entrance" id="cat-entrance">
+      <div class="cat-divider-key">A</div>
+      <div class="cat-divider-name">入场 & 转场</div>
+      <div class="cat-divider-tail"></div>
     </div>
 
     <!-- DEMO 1 -->
@@ -615,636 +707,10 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         他的原版用 <code>gsap.set(.char, {y:'100%'})</code> 把所有字符压到行外，再 <code>.to(.char, {y:0, stagger:0.02, ease:'power3.out'})</code> 一个个抽上来。<code>clipPath: ellipse(110% 110% at 50% 0%) → ellipse(100% 0% at 50% 0%)</code> 是椭圆从满盖→收成一条线的揭示动画。整段绑 <code>scrub:true</code>，所以**速度不是动画决定的，是滚轮决定的**。
       </div>
     </div>
-
-    <!-- DEMO 2 -->
-    <div class="demo" id="demo2">
-      <div class="demo-head">
-        <div class="num">02 / 25</div>
-        <div class="name">隐形哨兵 div 切换导航主题（dark / light / lime）</div>
-        <div class="tags">ScrollTrigger.onToggle · data-nav-theme-target</div>
-      </div>
-      <div class="demo-body">
-        <div class="d2-stage" id="d2Stage">
-          <div class="d2-scroll">
-            <div class="d2-zone dark">↓ 这是深绿区，导航是浅灰</div>
-            <div class="d2-sentinel" data-label="sentinel: light" data-theme="light"></div>
-            <div class="d2-zone light">↓ 这是浅色区，导航翻成深绿</div>
-            <div class="d2-sentinel" data-label="sentinel: lime" data-theme="lime"></div>
-            <div class="d2-zone lime">↓ 这是柠檬绿区，导航整体反白</div>
-            <div class="d2-sentinel" data-label="sentinel: dark" data-theme="dark"></div>
-            <div class="d2-zone dark">↓ 回到深绿区</div>
-          </div>
-        </div>
-        <div class="d2-readout">页面顶部导航的 <span class="v" id="d2ReadOut">data-theme="dark"</span> 正在被这个滚动容器控制。在容器里滚动，看顶部 nav。</div>
-      </div>
-      <div class="demo-foot">
-        原站把哨兵做成"零高度"div：<code>&lt;div data-nav-theme-target="light"&gt;&lt;/div&gt;</code>。ScrollTrigger 监听它何时穿过视口顶部，翻 nav 的属性，CSS 用 <code>[data-nav-theme="light"] .nav-brand path { fill: ... }</code> 把样式接管。**section 怎么改都不会破，因为色不是从 section 抽的**。
-      </div>
-    </div>
-
-    <!-- DEMO 3 -->
-    <div class="demo" id="demo3">
-      <div class="demo-head">
-        <div class="num">03 / 25</div>
-        <div class="name">scrub:true · 滚轮直接拽 3D 头盔</div>
-        <div class="tags">ScrollTrigger.scrub · transform3d · 没有"自动播放"</div>
-      </div>
-      <div class="demo-body">
-        <div class="d3-stage" id="d3Stage">
-          <div class="d3-pin">
-            <div class="d3-perspective">
-              <div class="d3-helmet" id="d3Helmet">
-                <div class="face f1"><span class="lbl">helmet · front</span></div>
-                <div class="face f2"><span class="lbl">side · L</span></div>
-                <div class="face f3"><span class="lbl">rear</span></div>
-                <div class="face f4"><span class="lbl">side · R</span></div>
-                <div class="face f5"><span class="lbl">crown</span></div>
-                <div class="face f6"><span class="lbl">chin</span></div>
-              </div>
-            </div>
-            <div class="d3-progress">scroll progress · <span class="v" id="d3Pct">0%</span> · helmet.rotate <span class="v" id="d3Deg">0deg</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        往下滚 1 屏看头盔自转。这不是 setInterval、不是 CSS animation，是滚动条本身在驱动 <code>rotateY()</code>。原站用 Three.js + GLTF 真 3D，我这个 demo 用 CSS 3D 立方体演示同样的 "scroll = playhead" 设计哲学。
-      </div>
-    </div>
-
-    <!-- DEMO 4 -->
-    <div class="demo" id="demo4">
-      <div class="demo-head">
-        <div class="num">04 / 25</div>
-        <div class="name">横向 pin 滚动（on-track 页的 horizontal-pin-wrap）</div>
-        <div class="tags">ScrollTrigger.pin · translateX · 1 屏吃 3 屏</div>
-      </div>
-      <div class="demo-body" style="padding:0">
-        <div class="d4-wrap" id="d4Wrap">
-          <div class="d4-pin">
-            <div class="d4-track" id="d4Track">
-              <div class="d4-card"><div class="pill">01 · Brazil GP</div><div class="num">+2.1s</div><div><div class="t">São Paulo · Wet</div><div class="d">湿地起步，雨胎换中性胎窗口卡在第 27 圈。同段他超了 4 个人。</div></div></div>
-              <div class="d4-card"><div class="pill">02 · Vegas GP</div><div class="num">P1</div><div><div class="t">Las Vegas · Night</div><div class="d">夜战拿杆位起步守到最后一圈。冷胎温窗口比预期短 0.4 圈。</div></div></div>
-              <div class="d4-card"><div class="pill">03 · Imola</div><div class="num">+0.8s</div><div><div class="t">Imola · Wet→Dry</div><div class="d">天气变化 3 次，pit 策略走的最反直觉那条。</div></div></div>
-              <div class="d4-card"><div class="pill">04 · Monaco</div><div class="num">P3</div><div><div class="t">Monaco · Street</div><div class="d">街道赛，超不动只能等。但起步那一脚刹车是赛季最稳的一次。</div></div></div>
-              <div class="d4-card"><div class="pill">05 · Silverstone</div><div class="num">P2</div><div><div class="t">Home race</div><div class="d">主场，万人看台一起站起来。最后 5 圈胎差用尽。</div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        滚动条往下走，卡片往左走。这是 GSAP 教科书写法：<code>pin: true</code> 把容器钉在视口里，<code>scrub: true</code> 让滚轮的纵向距离变成卡片轨道的横向 <code>translateX</code>。一屏纵向 = 多屏横向，让水平内容能装进竖屏滚动。
-      </div>
-    </div>
-
-    <!-- DEMO 5 -->
-    <div class="demo" id="demo5">
-      <div class="demo-head">
-        <div class="num">05 / 25</div>
-        <div class="name">速度敏感 marquee（往下滚加速，往上滚反向）</div>
-        <div class="tags">ScrollTrigger.velocity · CSS keyframe play-state</div>
-      </div>
-      <div class="demo-body">
-        <div class="d5-stage" id="d5Stage">
-          <div class="label">scroll velocity · <span id="d5VelOut">0</span> · direction <span id="d5Dir">→</span></div>
-          <div class="d5-row" id="d5R1">
-            <span class="item">2025 WDC</span><span class="item">McLaren MCL39</span><span class="item">L4ndo N0rris</span><span class="item">From Bristol</span><span class="item">Since 2019</span><span class="item">2025 WDC</span><span class="item">McLaren MCL39</span><span class="item">L4ndo N0rris</span><span class="item">From Bristol</span><span class="item">Since 2019</span>
-          </div>
-          <div class="d5-row" id="d5R2">
-            <span class="item">Reverse Lane</span><span class="item">Pole Position</span><span class="item">P1</span><span class="item">Quattro Stagioni</span><span class="item">Lap of Honour</span><span class="item">Reverse Lane</span><span class="item">Pole Position</span><span class="item">P1</span><span class="item">Quattro Stagioni</span><span class="item">Lap of Honour</span>
-          </div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        滚得越快，文字跑得越快；反向滚动，文字反向。Off+Brand 的 <code>data-marquee-scroll-direction-target</code> + <code>data-marquee-scroll-speed</code> 就是这个机制。**让滚动行为本身变成内容的一部分**——你滚得快文字也急，相当于让用户给页面"配 BGM"。
-      </div>
-    </div>
-
-    <!-- DEMO 6 -->
-    <div class="demo" id="demo6">
-      <div class="demo-head">
-        <div class="num">06 / 25</div>
-        <div class="name">Rive 状态机的"一个文件 = 一台状态切换机"</div>
-        <div class="tags">circuits.riv · data-rive-input-track</div>
-      </div>
-      <div class="demo-body">
-        <div class="d6-stage">
-          <div class="d6-canvas">
-            <div class="d6-svg" id="d6Svg">
-              <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path id="d6Path" d="M40 100 Q40 40 100 40 T160 100 Q160 160 100 160 T40 100" stroke-dasharray="500" stroke-dashoffset="0" />
-                <circle id="d6Dot" cx="40" cy="100" r="6" fill="currentColor" stroke="none"/>
-                <text id="d6Label" x="100" y="190" text-anchor="middle" fill="currentColor" stroke="none" font-size="10" letter-spacing="3" font-family="monospace">MONTRÉAL</text>
-              </svg>
-            </div>
-          </div>
-          <div class="d6-controls">
-            <div style="font-size:.7rem;letter-spacing:.25em;color:var(--fg-mute);text-transform:uppercase;margin-bottom:.5rem">hover 切换 input "track"</div>
-            <button class="d6-btn is-active" data-track="MONTRÉAL" data-d="M40 100 Q40 40 100 40 T160 100 Q160 160 100 160 T40 100">CA · Montréal</button>
-            <button class="d6-btn" data-track="MONACO" data-d="M30 120 L60 60 Q100 30 140 60 L170 120 Q160 170 100 170 Q40 170 30 120 Z">MC · Monaco</button>
-            <button class="d6-btn" data-track="SILVERSTONE" data-d="M20 100 L50 50 L120 50 L180 80 L160 130 L100 150 L40 140 Z">UK · Silverstone</button>
-            <button class="d6-btn" data-track="SUZUKA" data-d="M40 60 L120 40 Q170 70 140 110 Q90 130 60 100 Q30 130 80 170 L150 160">JP · Suzuka</button>
-          </div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        点按钮看 SVG 路径插值。原站的 <code>data-rive-file="circuits"</code> 是 <strong>1 个</strong> Rive 文件装了全部 24 条赛道，外部只发 <code>state.track = "monaco"</code> 一句话就切。如果用 Lottie 你需要 24 个 .json 文件 + 24 次切换的过渡动画。<strong>Rive 比 Lottie 强在状态机</strong>——这是核心区别。
-      </div>
-    </div>
-
-    <!-- DEMO 7 -->
-    <div class="demo" id="demo7">
-      <div class="demo-head">
-        <div class="num">07 / 25</div>
-        <div class="name">1728 设计稿基准 · clamp 流体缩放</div>
-        <div class="tags">clamp() · CSS custom property · 设计师友好</div>
-      </div>
-      <div class="demo-body">
-        <div class="d7-stage">
-          <div class="d7-readout">
-            <div class="d7-cell"><div class="k">viewport 宽</div><div class="v" id="d7Vw">— px</div></div>
-            <div class="d7-cell"><div class="k">fluid-container</div><div class="v" id="d7Fc">— px</div></div>
-            <div class="d7-cell"><div class="k">设计基准</div><div class="v">1728</div></div>
-            <div class="d7-cell"><div class="k">当前 root fz</div><div class="v" id="d7Fz">— px</div></div>
-          </div>
-          <div class="d7-demo-text">这段字号 = (clamp(992, 100vw, 1920) / 1728) × 48px</div>
-          <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">缩放浏览器宽度，看上面四个数字怎么联动。这就是 OFF+BRAND 整站字号"会呼吸"的秘密。</p>
-        </div>
-      </div>
-      <div class="demo-foot">
-        把设计稿里的 px 直接换算成 fluid-font 倍数：<code>font-size: calc(var(--fluid-container) / var(--design-width) * 48px)</code>。**设计师在 1728 画的标题，工程师不用算移动端 28、平板 36、桌面 48**——一个公式解决。
-      </div>
-    </div>
-
-    <!-- DEMO 8 -->
-    <div class="demo" id="demo8">
-      <div class="demo-head">
-        <div class="num">08 / 25</div>
-        <div class="name">"tap to lock" · 模态手势把页面让出来</div>
-        <div class="tags">data-home-swipe-toggle · touch-action · 移动端神技</div>
-      </div>
-      <div class="demo-body">
-        <div class="d8-stage" id="d8Stage">
-          <div class="d8-toggle"><button class="btn" id="d8Btn">tap to lock</button></div>
-          <div class="d8-canvas" id="d8Canvas">
-            <div class="d8-orb" id="d8Orb"></div>
-          </div>
-          <div class="d8-hint" id="d8Hint">未锁 · 在这里滑动 = 翻页面</div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        移动端最大痛点：单指滑屏 = 滚页面，于是没法转 3D 模型。Off+Brand 给了一个开关："tap to lock"——锁住后，<code>touch-action: none</code> 把页面滚动禁了，单指拖只控这个画布。<strong>把手势模态化</strong>，工程不难，产品 IQ 极高。
-      </div>
-    </div>
-
-    <!-- DEMO 9 -->
-    <div class="demo" id="demo9">
-      <div class="demo-head">
-        <div class="num">09 / 25</div>
-        <div class="name">自定义光标 + 悬停区域 reveal（on-track 页 highlights/schedule）</div>
-        <div class="tags">data-mouse-area · data-mouse-reveal · clip-path tracking</div>
-      </div>
-      <div class="demo-body">
-        <div class="d9-stage" id="d9Stage">
-          <div class="d9-cursor" id="d9Cursor"><span>scroll</span></div>
-          <div class="d9-zone" data-mouse-area="highlights" data-cursor-text="highlights ↗">
-            <div class="d9-zone-bg"></div>
-            <div class="d9-zone-label">data-mouse-area="highlights"</div>
-            <div class="d9-zone-reveal" data-mouse-reveal>
-              <img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'><defs><linearGradient id='g' x1='0' x2='1'><stop offset='0' stop-color='%23d2ff00'/><stop offset='1' stop-color='%23a8c800'/></linearGradient></defs><rect width='400' height='240' fill='url(%23g)'/><text x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='monospace' font-size='28' fill='%23101400' letter-spacing='8'>HIGHLIGHTS</text></svg>"/>
-            </div>
-          </div>
-          <div class="d9-zone" data-mouse-area="schedule" data-cursor-text="schedule ↗">
-            <div class="d9-zone-bg" style="background:linear-gradient(135deg,#1c2218,#0a1208)"></div>
-            <div class="d9-zone-label">data-mouse-area="schedule"</div>
-            <div class="d9-zone-reveal" data-mouse-reveal>
-              <img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'><rect width='400' height='240' fill='%23101400'/><text x='50%25' y='40%25' text-anchor='middle' font-family='monospace' font-size='22' fill='%23d2ff00' letter-spacing='6'>NEXT RACE</text><text x='50%25' y='70%25' text-anchor='middle' font-family='sans-serif' font-size='42' fill='%23d2ff00'>Montréal</text></svg>"/>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        把鼠标移到上面两个色块上。光标变大变色 + 显示文案 + 色块里 reveal 一张图（用 <code>clip-path: circle(80px at cursorX cursorY)</code>跟踪）。原站的 <code>data-mouse-area / -reveal / -track</code> 三件套就是这个机制——把"鼠标位置"变成"可写入的设计变量"。
-      </div>
-    </div>
-
-    <!-- DEMO 10 -->
-    <div class="demo" id="demo10">
-      <div class="demo-head">
-        <div class="num">10 / 25</div>
-        <div class="name">hover 自动播放视频（data-video-stream + Vimeo lazy load）</div>
-        <div class="tags">data-stream-hover · IntersectionObserver · placeholder→stream</div>
-      </div>
-      <div class="demo-body">
-        <div class="d10-grid">
-          <div class="d10-card" data-stream-hover>
-            <div class="d10-placeholder">
-              <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width=".5"/><polygon points="42,32 42,68 70,50" fill="currentColor"/></svg>
-              <span class="lbl">vimeo · 824804225</span>
-            </div>
-            <div class="d10-stream" data-stream-content>
-              <div class="d10-bars"><span></span><span></span><span></span><span></span><span></span></div>
-              <div class="d10-time">▶ 00:0<span data-tsec>0</span> / 00:18</div>
-            </div>
-          </div>
-          <div class="d10-card" data-stream-hover>
-            <div class="d10-placeholder" style="background:linear-gradient(135deg,#2a3024,#0a1208)">
-              <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width=".5"/><polygon points="42,32 42,68 70,50" fill="currentColor"/></svg>
-              <span class="lbl">vimeo · 824804226</span>
-            </div>
-            <div class="d10-stream" data-stream-content>
-              <div class="d10-bars"><span></span><span></span><span></span><span></span><span></span></div>
-              <div class="d10-time">▶ 00:0<span data-tsec>0</span> / 00:32</div>
-            </div>
-          </div>
-          <div class="d10-card" data-stream-hover>
-            <div class="d10-placeholder" style="background:linear-gradient(135deg,#1c2218,#131811)">
-              <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width=".5"/><polygon points="42,32 42,68 70,50" fill="currentColor"/></svg>
-              <span class="lbl">vimeo · 824804227</span>
-            </div>
-            <div class="d10-stream" data-stream-content>
-              <div class="d10-bars"><span></span><span></span><span></span><span></span><span></span></div>
-              <div class="d10-time">▶ 00:0<span data-tsec>0</span> / 00:24</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        鼠标悬停到卡片上，placeholder 退场，"视频流"接管（这里我用 CSS 条带模拟，原站是 Vimeo iframe 用 <code>data-stream-url</code> 拉流）。Off+Brand 用 IntersectionObserver 决定何时加载视频，hover 决定何时播放——<strong>不让视频在视野外烧带宽</strong>。on-track 页底的 social 卡片墙就是这套。
-      </div>
-    </div>
-
-    <!-- DEMO 12 · flip-digit countdown -->
-    <div class="demo" id="demo12">
-      <div class="demo-head">
-        <div class="num">11 / 25</div>
-        <div class="name">倒计时翻页数字（on-track / calendar 页都用）</div>
-        <div class="tags">data-countdown-digit · yPercent flip · 每秒更新</div>
-      </div>
-      <div class="demo-body">
-        <div class="d12-stage">
-          <div class="d12-eyebrow">下一场比赛 · MONTRÉAL GP</div>
-          <div class="d12-row">
-            <div class="d12-cell"><div class="d12-num" data-countdown-digit="day"><span></span><span></span></div><div class="d12-lbl">days</div></div>
-            <div class="d12-sep">:</div>
-            <div class="d12-cell"><div class="d12-num" data-countdown-digit="hour"><span></span><span></span></div><div class="d12-lbl">hours</div></div>
-            <div class="d12-sep">:</div>
-            <div class="d12-cell"><div class="d12-num" data-countdown-digit="min"><span></span><span></span></div><div class="d12-lbl">mins</div></div>
-            <div class="d12-sep">:</div>
-            <div class="d12-cell"><div class="d12-num" data-countdown-digit="sec"><span></span><span></span></div><div class="d12-lbl">secs</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        每个数字位是一个上下两层的容器，新数字克隆到下沿、旧数字 <code>yPercent: -100</code> 滚出。<code>data-countdown-digit="day|hour|min|sec"</code> 让 JS 知道往哪个位置写。原站这个组件复用率极高——首页、on-track、calendar、partnerships 都用同一套。
-      </div>
-    </div>
-
-    <!-- DEMO 13 · oval-scroll arc text -->
-    <div class="demo" id="demo13">
-      <div class="demo-head">
-        <div class="num">12 / 25</div>
-        <div class="name">椭圆轨迹大字 · TRACK / OFFTRACK 那种弧形排版</div>
-        <div class="tags">data-oval-scroll · 字符 rotate · transform-origin 在弧心</div>
-      </div>
-      <div class="demo-body">
-        <div class="d13-stage">
-          <div class="d13-arc" id="d13Arc">
-            <div class="d13-arc-char" data-oval-scroll>O</div><div class="d13-arc-char" data-oval-scroll>F</div><div class="d13-arc-char" data-oval-scroll>F</div><div class="d13-arc-char" data-oval-scroll>T</div><div class="d13-arc-char" data-oval-scroll>R</div><div class="d13-arc-char" data-oval-scroll>A</div><div class="d13-arc-char" data-oval-scroll>C</div><div class="d13-arc-char" data-oval-scroll>K</div>
-          </div>
-          <div class="d13-controls">
-            <label>弧度 <input type="range" id="d13Curve" min="20" max="160" value="80"></label>
-            <label>半径 <input type="range" id="d13Radius" min="180" max="420" value="280"></label>
-          </div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        每个字符独立 <code>rotate()</code> + 同一个 <code>transform-origin</code>（弧心），形成一段弧。<code>[split-text]:not[data-oval-scroll]</code> 这种反选选择器在原站 CSS 里出现——告诉我们标了 <code>data-oval-scroll</code> 的会走"另一条排版路径"。拽上面两个滑块调弧度和半径，看大字怎么弯。
-      </div>
-    </div>
-
-    <!-- DEMO 14 · GSAP FLIP layout morph -->
-    <div class="demo" id="demo14">
-      <div class="demo-head">
-        <div class="num">13 / 25</div>
-        <div class="name">布局变形（FLIP）· off-track 页的 data-heroflip="pos1/pos2/pos3"</div>
-        <div class="tags">First-Last-Invert-Play · 记录前后 rect · GSAP fromTo</div>
-      </div>
-      <div class="demo-body">
-        <div class="d14-stage">
-          <div class="d14-grid" id="d14Grid" data-layout="grid">
-            <div class="d14-card" data-color="lime"><span>01</span><em>HOME</em></div>
-            <div class="d14-card" data-color="dark"><span>02</span><em>HELMET</em></div>
-            <div class="d14-card" data-color="lime"><span>03</span><em>RACE</em></div>
-            <div class="d14-card" data-color="dark"><span>04</span><em>WIN</em></div>
-            <div class="d14-card" data-color="lime"><span>05</span><em>PODIUM</em></div>
-            <div class="d14-card" data-color="dark"><span>06</span><em>CHAMPION</em></div>
-          </div>
-          <div class="d14-controls">
-            <button class="btn d14-btn is-on" data-flip="grid">grid 3×2</button>
-            <button class="btn d14-btn" data-flip="row">row · 横排</button>
-            <button class="btn d14-btn" data-flip="stack">stack · 叠</button>
-            <button class="btn d14-btn" data-flip="scatter">scatter · 散开</button>
-          </div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        点按钮看 6 张卡片"飞"到新位置。FLIP 是经典技术：<strong>F</strong>irst 记录前位置 → 应用新布局 <strong>L</strong>ast 记录后位置 → <strong>I</strong>nvert 用 transform 把卡片"反推"回前位置（视觉无变化）→ <strong>P</strong>lay 把 transform tween 到 0。所有人看到的是元素"飞过去"，但其实 DOM 早换了位置。原站的 <code>data-heroflip="pos1/pos2/pos3"</code> 让同一张图在 off-track 页不同章节"飞"过去。
-      </div>
-    </div>
-
-    <!-- DEMO 15 · scroll-driven color interpolation -->
-    <div class="demo" id="demo15">
-      <div class="demo-head">
-        <div class="num">14 / 25</div>
-        <div class="name">滚动驱动头盔色彩补间（on-track 页 data-gl-change-from/to）</div>
-        <div class="tags">scroll progress · hex 插值 · 同步 UI 文本</div>
-      </div>
-      <div class="demo-body" style="padding:0">
-        <div class="d15-stage" id="d15Stage">
-          <div class="d15-pin">
-            <div class="d15-orb" id="d15Orb"></div>
-            <div class="d15-info">
-              <div class="d15-row"><span class="d15-k">progress</span><span class="d15-v" id="d15Prog">0%</span></div>
-              <div class="d15-row"><span class="d15-k">color</span><span class="d15-v" id="d15Hex">#0a0e07</span></div>
-              <div class="d15-row"><span class="d15-k">data-gl-change-from</span><span class="d15-v">"dark-green"</span></div>
-              <div class="d15-row"><span class="d15-k">data-gl-change-to</span><span class="d15-v">"lime"</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        往下滚一屏，看圆球（"头盔"）颜色从暗绿 <code>#0a1208</code> 渐变到柠檬绿 <code>#d2ff00</code>。每帧根据 ScrollTrigger 的 progress（0→1）做 R/G/B 三通道线性插值，写回 CSS。原站把这写到 Three.js 的 uniform 里同时改 PBR 材质 baseColor，连**头盔反光的色温**也跟着变。
-      </div>
-    </div>
-
-    <!-- DEMO 16 · SVG mask container shapes -->
-    <div class="demo" id="demo16">
-      <div class="demo-head">
-        <div class="num">15 / 25</div>
-        <div class="name">SVG 异形容器 · data-helmet-item / mask-callout / mask-case</div>
-        <div class="tags">-webkit-mask-image · 不规则切角圆缺 · 不是 clip-path</div>
-      </div>
-      <div class="demo-body">
-        <div class="d16-grid">
-          <div class="d16-card" data-mask="a"><div class="d16-mask"><div class="d16-content"><span>01</span>NEXT RACE</div></div><div class="d16-tag">callout-left</div></div>
-          <div class="d16-card" data-mask="b"><div class="d16-mask"><div class="d16-content"><span>02</span>LAST LAP</div></div><div class="d16-tag">callout-right</div></div>
-          <div class="d16-card" data-mask="c"><div class="d16-mask"><div class="d16-content"><span>03</span>FASTEST</div></div><div class="d16-tag">case-left</div></div>
-          <div class="d16-card" data-mask="d"><div class="d16-mask"><div class="d16-content"><span>04</span>POINTS</div></div><div class="d16-tag">case-right</div></div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        4 张卡片用 4 个不同形状的 SVG 当容器外形——左凹缺、右凹缺、左切角、右切角。<code>-webkit-mask-image: url("...svg")</code> 把卡片"剪"成 SVG 的形状。CSS clip-path 也能做简单形状但**带凹缺/弧形组合就只能 SVG mask**。原站 off-track 页的卡片墙就是这套，对称的左右开口看上去像 HUD 仪表盘。
-      </div>
-    </div>
-
-    <!-- DEMO 17 · menu image blend-mode columns -->
-    <div class="demo" id="demo17">
-      <div class="demo-head">
-        <div class="num">16 / 25</div>
-        <div class="name">菜单图片轨道 + 鼠标穿过 blend-mode（nav-menu 神技）</div>
-        <div class="tags">data-nav-img · menu-img-blends · mix-blend-mode</div>
-      </div>
-      <div class="demo-body">
-        <div class="d17-stage" id="d17Stage">
-          <div class="d17-col" data-nav-img="1"><div class="d17-img i1"></div><div class="d17-blend"></div></div>
-          <div class="d17-col" data-nav-img="2"><div class="d17-img i2"></div><div class="d17-blend"></div></div>
-          <div class="d17-col" data-nav-img="3"><div class="d17-img i3"></div><div class="d17-blend"></div></div>
-          <div class="d17-col" data-nav-img="4"><div class="d17-img i4"></div><div class="d17-blend"></div></div>
-          <div class="d17-col" data-nav-img="5"><div class="d17-img i5"></div><div class="d17-blend"></div></div>
-        </div>
-        <p style="margin-top:1rem;font-size:.8rem;color:var(--fg-dim)">鼠标在色块间扫过，每列上盖一层 mix-blend-mode 的图层，色彩相互重叠。</p>
-      </div>
-      <div class="demo-foot">
-        nav 菜单展开时，主图轨道下盖了 3 层 <code>.menu-img-blend-1/2/3</code>，分别是 <code>mix-blend-mode: difference / multiply / screen</code>。鼠标 hover 时调每层 opacity，产生"图片之间相互染色"的效果——比单纯的滤镜更复杂、更"叠层"。
-      </div>
-    </div>
-
-    <!-- DEMO 18 · char-level hover link flip -->
-    <div class="demo" id="demo18">
-      <div class="demo-head">
-        <div class="num">17 / 25</div>
-        <div class="name">链接字符级 hover 翻页（整站每个 nav-link 都用）</div>
-        <div class="tags">data-anim="text-hover" · 上下两层字符 · stagger</div>
-      </div>
-      <div class="demo-body">
-        <div class="d18-stage">
-          <a class="d18-link" data-anim="text-hover" href="#"><span class="d18-clip"><span class="d18-row">H<span>o</span>m<span>e</span></span><span class="d18-row d18-row-2">H<span>o</span>m<span>e</span></span></span></a>
-          <a class="d18-link" data-anim="text-hover" href="#"><span class="d18-clip"><span class="d18-row">O<span>n</span>&nbsp;<span>T</span>r<span>a</span>c<span>k</span></span><span class="d18-row d18-row-2">O<span>n</span>&nbsp;<span>T</span>r<span>a</span>c<span>k</span></span></span></a>
-          <a class="d18-link" data-anim="text-hover" href="#"><span class="d18-clip"><span class="d18-row">O<span>f</span>f<span>&nbsp;</span>T<span>r</span>a<span>c</span>k</span><span class="d18-row d18-row-2">O<span>f</span>f<span>&nbsp;</span>T<span>r</span>a<span>c</span>k</span></span></a>
-          <a class="d18-link" data-anim="text-hover" href="#"><span class="d18-clip"><span class="d18-row">C<span>a</span>l<span>e</span>n<span>d</span>a<span>r</span></span><span class="d18-row d18-row-2">C<span>a</span>l<span>e</span>n<span>d</span>a<span>r</span></span></span></a>
-        </div>
-      </div>
-      <div class="demo-foot">
-        鼠标移到链接上，每个字符上滚一行高，下面藏着同一个字符的副本顶上来——看起来像"在原地翻面"。原站每个 nav link、social link、cta 按钮都套这个动作。字符级 stagger 让每个字母错峰翻面，比一整个单词一起滑出去优雅得多。
-      </div>
-    </div>
-
-    <!-- DEMO 19 · CMS-driven race calendar -->
-    <div class="demo" id="demo19">
-      <div class="demo-head">
-        <div class="num">18 / 25</div>
-        <div class="name">CMS 驱动的赛季日历 · prev/next 切换（calendar 页核心）</div>
-        <div class="tags">data-cal-list · data-cal-control · 字段填充</div>
-      </div>
-      <div class="demo-body">
-        <div class="d19-stage">
-          <div class="d19-card" id="d19Card">
-            <div class="d19-head">
-              <div class="d19-flag" id="d19Flag">🇲🇨</div>
-              <div class="d19-id" id="d19Id">04 / 24</div>
-            </div>
-            <div class="d19-name" id="d19Name" data-cal-list="circuit-name">Monaco GP</div>
-            <div class="d19-meta">
-              <div class="d19-cell"><div class="d19-k">circuit</div><div class="d19-v" id="d19Circuit" data-cal-list="circuit-id">Circuit de Monaco</div></div>
-              <div class="d19-cell"><div class="d19-k">length</div><div class="d19-v" id="d19Len" data-cal-list="circuit-lap-length">3.337 km</div></div>
-              <div class="d19-cell"><div class="d19-k">laps</div><div class="d19-v" id="d19Laps" data-cal-list="circuit-lap-amount">78</div></div>
-              <div class="d19-cell"><div class="d19-k">distance</div><div class="d19-v" id="d19Dist" data-cal-list="circuit-distance">260 km</div></div>
-            </div>
-            <div class="d19-schedule">
-              <div class="d19-srow"><span class="d19-srow-k">PRAC 1</span><span class="d19-srow-v" id="d19P1">Fri 13:30</span></div>
-              <div class="d19-srow"><span class="d19-srow-k">PRAC 2</span><span class="d19-srow-v" id="d19P2">Fri 17:00</span></div>
-              <div class="d19-srow"><span class="d19-srow-k">PRAC 3</span><span class="d19-srow-v" id="d19P3">Sat 12:30</span></div>
-              <div class="d19-srow"><span class="d19-srow-k">QUAL</span><span class="d19-srow-v" id="d19Q">Sat 16:00</span></div>
-              <div class="d19-srow d19-srow-race"><span class="d19-srow-k">RACE</span><span class="d19-srow-v" id="d19R">Sun 15:00</span></div>
-            </div>
-          </div>
-          <div class="d19-controls">
-            <button class="btn d19-btn" data-cal-control="previous-item">← prev</button>
-            <button class="btn d19-btn" data-cal-control="next-item">next →</button>
-          </div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        点 prev / next 切换 6 场比赛。每场都有赛道名、长度、圈数、距离、4 个 session 时间——这些字段在原站全部来自 Webflow CMS Collection，<code>data-cal-list="circuit-name"</code> 等属性让 JS 知道哪个 DOM 节点对应哪个字段。<strong>整张赛季日历只是一个组件，数据从 CMS 拉</strong>，赛后还能动态同步成绩到 <code>-time-result</code> 字段里。
-      </div>
-    </div>
-
-    <!-- DEMO 19 · Rive scroll scrub (SVG path draw) -->
-    <div class="demo" id="demo19svg">
-      <div class="demo-head">
-        <div class="num">19 / 25</div>
-        <div class="name">Rive 滚动 scrub · 滚动条 = 播放头</div>
-        <div class="tags">data-rive-scrolltrigger-start/-end · stroke-dashoffset · 声明式</div>
-      </div>
-      <div class="demo-body" style="padding:0">
-        <div class="d20-stage" id="d20Stage">
-          <div class="d20-pin">
-            <svg class="d20-svg" viewBox="0 0 600 320">
-              <path id="d20Path" d="M30 280 Q60 80 200 160 Q340 240 380 120 Q420 20 500 100 Q560 160 570 60" fill="none" stroke="#d2ff00" stroke-width="3" stroke-linecap="round" stroke-dasharray="900" stroke-dashoffset="900"/>
-              <circle id="d20Dot" cx="30" cy="280" r="8" fill="#d2ff00"/>
-            </svg>
-            <div class="d20-info">
-              <div class="d15-row"><span class="d15-k">progress</span><span class="d15-v" id="d20Prog">0%</span></div>
-              <div class="d15-row"><span class="d15-k">stroke-dashoffset</span><span class="d15-v" id="d20Off">900</span></div>
-              <div class="d15-row"><span class="d15-k">data-rive-scrolltrigger-start</span><span class="d15-v">"top bottom"</span></div>
-              <div class="d15-row"><span class="d15-k">data-rive-scrolltrigger-end</span><span class="d15-v">"bottom center"</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        滚到这里，曲线被滚轮拉着画出来——这就是把滚动条变成 Rive 时间线播放头的核心机制。原站只需在标签上写 <code>data-rive-scrolltrigger-start="top bottom"</code> 和 <code>data-rive-scrolltrigger-end="bottom center"</code>，运行时自动配对 ScrollTrigger 把 progress 写到 Rive state machine 的 mix input 上。<strong>零 JS、声明式</strong>。
-      </div>
-    </div>
-
-    <!-- DEMO 20 · Variable Font 双轴 -->
-    <div class="demo" id="demo20">
-      <div class="demo-head">
-        <div class="num">20 / 25</div>
-        <div class="name">Variable Font 双轴 · Mona Sans wdth + wght</div>
-        <div class="tags">font-variation-settings · 一个 woff2 = 无数粗细 × 宽度</div>
-      </div>
-      <div class="demo-body">
-        <div class="d21-stage">
-          <div class="d21-preview" id="d21Preview" style="font-variation-settings:'wght' 400,'wdth' 100">LANDO NORRIS</div>
-          <div class="d21-controls">
-            <label>weight <span id="d21WghtVal">400</span><input type="range" id="d21Wght" min="200" max="900" value="400"></label>
-            <label>width <span id="d21WdthVal">100</span><input type="range" id="d21Wdth" min="75" max="125" value="100"></label>
-          </div>
-          <div class="d21-readout mono">font-variation-settings: 'wght' <span id="d21Out1">400</span>, 'wdth' <span id="d21Out2">100</span></div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        拽下面两个滑块，看 LANDO NORRIS 实时变粗 / 变窄。这是一个 woff2 文件能做到的——可变字体的 <strong>wght</strong>（粗细）和 <strong>wdth</strong>（字宽）两个轴可以独立调。原站用的就是 GitHub 开源的 Mona Sans，每个标题在不同 section 的字宽都微调过——这种"字宽呼吸"靠静态字体根本做不到。
-      </div>
-    </div>
-
-    <!-- DEMO 21 · Footer 三色主题 -->
-    <div class="demo" id="demo21">
-      <div class="demo-head">
-        <div class="num">21 / 25</div>
-        <div class="name">Footer 三色主题 · data-footer-theme="black|green|white"</div>
-        <div class="tags">同 nav 哨兵思路 · footer-theme 由 section 决定</div>
-      </div>
-      <div class="demo-body">
-        <div class="d22-footer" id="d22Footer" data-footer-theme="green">
-          <div class="d22-logo">LN · OFF+BRAND</div>
-          <div class="d22-links">
-            <span>HOME</span><span>ON TRACK</span><span>OFF TRACK</span><span>CALENDAR</span>
-          </div>
-          <div class="d22-state mono">data-footer-theme="<span id="d22ThemeOut">green</span>"</div>
-        </div>
-        <div class="d22-controls">
-          <button class="btn d22-btn" data-ft="green">green</button>
-          <button class="btn d22-btn" data-ft="black">black</button>
-          <button class="btn d22-btn" data-ft="white">white</button>
-        </div>
-      </div>
-      <div class="demo-foot">
-        Footer 跟 nav 的主题切换机制一样——CSS 用 <code>[data-footer-theme="black"] { ... }</code> 接管。但<strong>触发源不同</strong>：nav 用全站散布的隐形哨兵 div，footer 是绑定到具体 section（不同 section 落到 footer 的颜色不同）。off-track 页有黑底章节，footer 就 black；on-track 是深绿，footer 就 green。
-      </div>
-    </div>
-
-    <!-- DEMO 22 · Rive button micro-interactions -->
-    <div class="demo" id="demo22">
-      <div class="demo-head">
-        <div class="num">22 / 25</div>
-        <div class="name">按钮 hover 微动效合集 · data-btn-rive-rotate / -hover / -invert</div>
-        <div class="tags">btn-ui.riv · rotate / invert / scale / shake</div>
-      </div>
-      <div class="demo-body">
-        <div class="d23-grid">
-          <button class="d23-btn d23-rotate" data-btn-rive-rotate="90">
-            <span class="d23-txt">Send Mail</span>
-            <span class="d23-icon"><svg viewBox="0 0 16 16"><path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-          </button>
-          <button class="d23-btn d23-invert" data-btn-rive-invert="true">
-            <span class="d23-txt">Read Story</span>
-            <span class="d23-icon"><svg viewBox="0 0 16 16"><path d="M3 13L13 3M5 3h8v8" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-          </button>
-          <button class="d23-btn d23-scale" data-btn-rive-hover="scale">
-            <span class="d23-txt">Race In</span>
-            <span class="d23-icon"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="currentColor" fill="none" stroke-width="1.5"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg></span>
-          </button>
-          <button class="d23-btn d23-shake" data-btn-rive-hover="shake">
-            <span class="d23-txt">Watch Live</span>
-            <span class="d23-icon"><svg viewBox="0 0 16 16"><polygon points="5,3 5,13 13,8" fill="currentColor"/></svg></span>
-          </button>
-        </div>
-      </div>
-      <div class="demo-foot">
-        OFF+BRAND 站上每个按钮都是 Rive 实例——hover 不是 CSS transition 那么简单，是状态机里的"图标自转 90deg / 内外反色 / scale 弹 / 抖动"。这 4 个按钮分别对应 <code>data-btn-rive-rotate="90"</code>、<code>data-btn-rive-invert="true"</code>、<code>data-btn-rive-hover="scale"</code>、<code>data-btn-rive-hover="shake"</code>。我这里用 CSS 仿了交互——原版每个图标也都是 Rive 矢量动画。
-      </div>
-    </div>
-
-    <!-- DEMO 23 · Stat hover image swap -->
-    <div class="demo" id="demo23">
-      <div class="demo-head">
-        <div class="num">23 / 25</div>
-        <div class="name">Stat hover 图替换 · data-stat-hover-img</div>
-        <div class="tags">on-track 页统计卡 · 鼠标进 → 大图淡入</div>
-      </div>
-      <div class="demo-body">
-        <div class="d24-stage" id="d24Stage">
-          <div class="d24-bg" id="d24Bg"></div>
-          <div class="d24-grid">
-            <div class="d24-stat" data-stat-hover-img="pole" data-bg="linear-gradient(135deg,#d2ff00 0%,#5a7d00 100%)"><div class="d24-num">28</div><div class="d24-lbl">POLE POSITIONS</div></div>
-            <div class="d24-stat" data-stat-hover-img="podiums" data-bg="linear-gradient(135deg,#7a9100,#0d1109)"><div class="d24-num">42</div><div class="d24-lbl">PODIUMS</div></div>
-            <div class="d24-stat" data-stat-hover-img="laps" data-bg="linear-gradient(135deg,#0a1208,#1c2218)"><div class="d24-num">8K+</div><div class="d24-lbl">FASTEST LAPS</div></div>
-            <div class="d24-stat" data-stat-hover-img="wins" data-bg="radial-gradient(circle at 30% 40%,#d2ff00,#3a4500)"><div class="d24-num">19</div><div class="d24-lbl">RACE WINS</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        鼠标移到任一统计上，背后大图淡入（这里用渐变代图）。原站 on-track 页用 <code>data-stat-hover-img</code> 把每个统计绑一张照片——hover 时整面墙的视觉切换成"这个数字对应的赛车场景"。一种"数字会讲故事"的设计。
-      </div>
-    </div>
-
-    <!-- DEMO 24 · per-section scroll progress -->
-    <div class="demo" id="demo24">
-      <div class="demo-head">
-        <div class="num">24 / 25</div>
-        <div class="name">章节滚动进度条 · 独立 demo 化（页面顶部那条线的局部版）</div>
-        <div class="tags">scroll-indicator-bar · transform: scaleX</div>
-      </div>
-      <div class="demo-body" style="padding:0">
-        <div class="d25-stage" id="d25Stage">
-          <div class="d25-bar"><div class="d25-bar-fill" id="d25Fill"></div></div>
-          <div class="d25-content">
-            <div class="d25-block">
-              <div class="d25-eyebrow mono">section · 01 / 03</div>
-              <p>滚动这个 section，看上方的细线随你的滚动百分比拉长。这是 <code>scroll-indicator-bar</code> 的局部版——原站把它装在全站顶端，整页进度可见。</p>
-            </div>
-            <div class="d25-block">
-              <div class="d25-eyebrow mono">section · 02 / 03</div>
-              <p>实现公式：<code>scaleX = (scrollY - sectionTop) / sectionHeight</code>。和顶部全局进度条一样，但 trigger 换成单个 section。</p>
-            </div>
-            <div class="d25-block">
-              <div class="d25-eyebrow mono">section · 03 / 03</div>
-              <p>到底了。看头部那条柠檬绿细线，应该已经 100%。<code>transform-origin: 0 50%</code> + <code>scaleX(progress)</code> 是最省 CPU 的写法——硬件加速 transform，不触发 reflow。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="demo-foot">
-        全站顶部进度条是同一套机制的全局版，按整个文档的 <code>scrollHeight</code> 算。Off+Brand 这个 <code>.scroll-indicator</code> 是页面右下角的小元件——独立计算 + 独立 z-index。两层进度提示（全局 + 局部）让用户随时知道"我在哪 / 还有多少"。
-      </div>
-    </div>
-
     <!-- DEMO 11 · the lime page-transition curtain -->
     <div class="demo" id="demo11">
       <div class="demo-head">
-        <div class="num">25 / 25</div>
+        <div class="num">02 / 25</div>
         <div class="name">全屏柠檬绿过场幕布 · page-transition.riv（点击链接时盖屏 → 揭屏）</div>
         <div class="tags">.transition-w · data-rive-primary · Taxi.js 切页 · Rive state-machine 3 input</div>
       </div>
@@ -1286,12 +752,656 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         点按钮看柠檬绿幕布从下往上盖整屏 → DOM 切到下一页 → 幕布往上掀出去揭屏。原站的 <code>.transition-w</code> 容器里有一个 <code>canvas[data-rive-primary]</code> 跑 <strong>page-transition.riv</strong>，状态机三个 input：<code>initialInput</code>（首次进站 "Load Norris" 按钮态）/ <code>transitionOutInput</code>（盖屏）/ <code>transitionInInput</code>（揭屏）。Taxi.js 在 <code>onLeave</code> hook 里调 <code>EL()</code> 把 out=true 触发盖屏，然后替换 DOM，再调 <code>H$()</code> 把 in=true 触发揭屏。<strong>外接脚本 <code>transitions-rive-isolate.js</code></strong> 单独隔离这个 Rive 实例避免被其他逻辑误碰。柠檬绿用 Rive 而不是 CSS 是因为下沿不是直线——是有机的"波浪 / 头盔轮廓"曲线。
       </div>
     </div>
+    <div class="cat-divider" data-cat="scroll" id="cat-scroll">
+      <div class="cat-divider-key">B</div>
+      <div class="cat-divider-name">滚动驱动</div>
+      <div class="cat-divider-tail"></div>
+    </div>
+
+    <!-- DEMO 3 -->
+    <div class="demo" id="demo3">
+      <div class="demo-head">
+        <div class="num">03 / 25</div>
+        <div class="name">scrub:true · 滚轮直接拽 3D 头盔</div>
+        <div class="tags">ScrollTrigger.scrub · transform3d · 没有"自动播放"</div>
+      </div>
+      <div class="demo-body">
+        <div class="d3-stage" id="d3Stage">
+          <div class="d3-pin">
+            <div class="d3-perspective">
+              <div class="d3-helmet" id="d3Helmet">
+                <div class="face f1"><span class="lbl">helmet · front</span></div>
+                <div class="face f2"><span class="lbl">side · L</span></div>
+                <div class="face f3"><span class="lbl">rear</span></div>
+                <div class="face f4"><span class="lbl">side · R</span></div>
+                <div class="face f5"><span class="lbl">crown</span></div>
+                <div class="face f6"><span class="lbl">chin</span></div>
+              </div>
+            </div>
+            <div class="d3-progress">scroll progress · <span class="v" id="d3Pct">0%</span> · helmet.rotate <span class="v" id="d3Deg">0deg</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        往下滚 1 屏看头盔自转。这不是 setInterval、不是 CSS animation，是滚动条本身在驱动 <code>rotateY()</code>。原站用 Three.js + GLTF 真 3D，我这个 demo 用 CSS 3D 立方体演示同样的 "scroll = playhead" 设计哲学。
+      </div>
+    </div>
+    <!-- DEMO 4 -->
+    <div class="demo" id="demo4">
+      <div class="demo-head">
+        <div class="num">04 / 25</div>
+        <div class="name">横向 pin 滚动（on-track 页的 horizontal-pin-wrap）</div>
+        <div class="tags">ScrollTrigger.pin · translateX · 1 屏吃 3 屏</div>
+      </div>
+      <div class="demo-body" style="padding:0">
+        <div class="d4-wrap" id="d4Wrap">
+          <div class="d4-pin">
+            <div class="d4-track" id="d4Track">
+              <div class="d4-card"><div class="pill">01 · Brazil GP</div><div class="num">+2.1s</div><div><div class="t">São Paulo · Wet</div><div class="d">湿地起步，雨胎换中性胎窗口卡在第 27 圈。同段他超了 4 个人。</div></div></div>
+              <div class="d4-card"><div class="pill">02 · Vegas GP</div><div class="num">P1</div><div><div class="t">Las Vegas · Night</div><div class="d">夜战拿杆位起步守到最后一圈。冷胎温窗口比预期短 0.4 圈。</div></div></div>
+              <div class="d4-card"><div class="pill">03 · Imola</div><div class="num">+0.8s</div><div><div class="t">Imola · Wet→Dry</div><div class="d">天气变化 3 次，pit 策略走的最反直觉那条。</div></div></div>
+              <div class="d4-card"><div class="pill">04 · Monaco</div><div class="num">P3</div><div><div class="t">Monaco · Street</div><div class="d">街道赛，超不动只能等。但起步那一脚刹车是赛季最稳的一次。</div></div></div>
+              <div class="d4-card"><div class="pill">05 · Silverstone</div><div class="num">P2</div><div><div class="t">Home race</div><div class="d">主场，万人看台一起站起来。最后 5 圈胎差用尽。</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        滚动条往下走，卡片往左走。这是 GSAP 教科书写法：<code>pin: true</code> 把容器钉在视口里，<code>scrub: true</code> 让滚轮的纵向距离变成卡片轨道的横向 <code>translateX</code>。一屏纵向 = 多屏横向，让水平内容能装进竖屏滚动。
+      </div>
+    </div>
+    <!-- DEMO 5 -->
+    <div class="demo" id="demo5">
+      <div class="demo-head">
+        <div class="num">05 / 25</div>
+        <div class="name">速度敏感 marquee（往下滚加速，往上滚反向）</div>
+        <div class="tags">ScrollTrigger.velocity · CSS keyframe play-state</div>
+      </div>
+      <div class="demo-body">
+        <div class="d5-stage" id="d5Stage">
+          <div class="label">scroll velocity · <span id="d5VelOut">0</span> · direction <span id="d5Dir">→</span></div>
+          <div class="d5-row" id="d5R1">
+            <span class="item">2025 WDC</span><span class="item">McLaren MCL39</span><span class="item">L4ndo N0rris</span><span class="item">From Bristol</span><span class="item">Since 2019</span><span class="item">2025 WDC</span><span class="item">McLaren MCL39</span><span class="item">L4ndo N0rris</span><span class="item">From Bristol</span><span class="item">Since 2019</span>
+          </div>
+          <div class="d5-row" id="d5R2">
+            <span class="item">Reverse Lane</span><span class="item">Pole Position</span><span class="item">P1</span><span class="item">Quattro Stagioni</span><span class="item">Lap of Honour</span><span class="item">Reverse Lane</span><span class="item">Pole Position</span><span class="item">P1</span><span class="item">Quattro Stagioni</span><span class="item">Lap of Honour</span>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        滚得越快，文字跑得越快；反向滚动，文字反向。Off+Brand 的 <code>data-marquee-scroll-direction-target</code> + <code>data-marquee-scroll-speed</code> 就是这个机制。**让滚动行为本身变成内容的一部分**——你滚得快文字也急，相当于让用户给页面"配 BGM"。
+      </div>
+    </div>
+    <!-- DEMO 15 · scroll-driven color interpolation -->
+    <div class="demo" id="demo15">
+      <div class="demo-head">
+        <div class="num">06 / 25</div>
+        <div class="name">滚动驱动头盔色彩补间（on-track 页 data-gl-change-from/to）</div>
+        <div class="tags">scroll progress · hex 插值 · 同步 UI 文本</div>
+      </div>
+      <div class="demo-body" style="padding:0">
+        <div class="d15-stage" id="d15Stage">
+          <div class="d15-pin">
+            <div class="d15-orb" id="d15Orb"></div>
+            <div class="d15-info">
+              <div class="d15-row"><span class="d15-k">progress</span><span class="d15-v" id="d15Prog">0%</span></div>
+              <div class="d15-row"><span class="d15-k">color</span><span class="d15-v" id="d15Hex">#0a0e07</span></div>
+              <div class="d15-row"><span class="d15-k">data-gl-change-from</span><span class="d15-v">"dark-green"</span></div>
+              <div class="d15-row"><span class="d15-k">data-gl-change-to</span><span class="d15-v">"lime"</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        往下滚一屏，看圆球（"头盔"）颜色从暗绿 <code>#0a1208</code> 渐变到柠檬绿 <code>#d2ff00</code>。每帧根据 ScrollTrigger 的 progress（0→1）做 R/G/B 三通道线性插值，写回 CSS。原站把这写到 Three.js 的 uniform 里同时改 PBR 材质 baseColor，连**头盔反光的色温**也跟着变。
+      </div>
+    </div>
+    <!-- DEMO 19 · Rive scroll scrub (SVG path draw) -->
+    <div class="demo" id="demo19svg">
+      <div class="demo-head">
+        <div class="num">07 / 25</div>
+        <div class="name">Rive 滚动 scrub · 滚动条 = 播放头</div>
+        <div class="tags">data-rive-scrolltrigger-start/-end · stroke-dashoffset · 声明式</div>
+      </div>
+      <div class="demo-body" style="padding:0">
+        <div class="d20-stage" id="d20Stage">
+          <div class="d20-pin">
+            <svg class="d20-svg" viewBox="0 0 600 320">
+              <path id="d20Path" d="M30 280 Q60 80 200 160 Q340 240 380 120 Q420 20 500 100 Q560 160 570 60" fill="none" stroke="#d2ff00" stroke-width="3" stroke-linecap="round" stroke-dasharray="900" stroke-dashoffset="900"/>
+              <circle id="d20Dot" cx="30" cy="280" r="8" fill="#d2ff00"/>
+            </svg>
+            <div class="d20-info">
+              <div class="d15-row"><span class="d15-k">progress</span><span class="d15-v" id="d20Prog">0%</span></div>
+              <div class="d15-row"><span class="d15-k">stroke-dashoffset</span><span class="d15-v" id="d20Off">900</span></div>
+              <div class="d15-row"><span class="d15-k">data-rive-scrolltrigger-start</span><span class="d15-v">"top bottom"</span></div>
+              <div class="d15-row"><span class="d15-k">data-rive-scrolltrigger-end</span><span class="d15-v">"bottom center"</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        滚到这里，曲线被滚轮拉着画出来——这就是把滚动条变成 Rive 时间线播放头的核心机制。原站只需在标签上写 <code>data-rive-scrolltrigger-start="top bottom"</code> 和 <code>data-rive-scrolltrigger-end="bottom center"</code>，运行时自动配对 ScrollTrigger 把 progress 写到 Rive state machine 的 mix input 上。<strong>零 JS、声明式</strong>。
+      </div>
+    </div>
+    <!-- DEMO 24 · per-section scroll progress -->
+    <div class="demo" id="demo24">
+      <div class="demo-head">
+        <div class="num">08 / 25</div>
+        <div class="name">章节滚动进度条 · 独立 demo 化（页面顶部那条线的局部版）</div>
+        <div class="tags">scroll-indicator-bar · transform: scaleX</div>
+      </div>
+      <div class="demo-body" style="padding:0">
+        <div class="d25-stage" id="d25Stage">
+          <div class="d25-bar"><div class="d25-bar-fill" id="d25Fill"></div></div>
+          <div class="d25-content">
+            <div class="d25-block">
+              <div class="d25-eyebrow mono">section · 01 / 03</div>
+              <p>滚动这个 section，看上方的细线随你的滚动百分比拉长。这是 <code>scroll-indicator-bar</code> 的局部版——原站把它装在全站顶端，整页进度可见。</p>
+            </div>
+            <div class="d25-block">
+              <div class="d25-eyebrow mono">section · 02 / 03</div>
+              <p>实现公式：<code>scaleX = (scrollY - sectionTop) / sectionHeight</code>。和顶部全局进度条一样，但 trigger 换成单个 section。</p>
+            </div>
+            <div class="d25-block">
+              <div class="d25-eyebrow mono">section · 03 / 03</div>
+              <p>到底了。看头部那条柠檬绿细线，应该已经 100%。<code>transform-origin: 0 50%</code> + <code>scaleX(progress)</code> 是最省 CPU 的写法——硬件加速 transform，不触发 reflow。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        全站顶部进度条是同一套机制的全局版，按整个文档的 <code>scrollHeight</code> 算。Off+Brand 这个 <code>.scroll-indicator</code> 是页面右下角的小元件——独立计算 + 独立 z-index。两层进度提示（全局 + 局部）让用户随时知道"我在哪 / 还有多少"。
+      </div>
+    </div>
+    <div class="cat-divider" data-cat="nav" id="cat-nav">
+      <div class="cat-divider-key">C</div>
+      <div class="cat-divider-name">导航 & 主题</div>
+      <div class="cat-divider-tail"></div>
+    </div>
+
+    <!-- DEMO 2 -->
+    <div class="demo" id="demo2">
+      <div class="demo-head">
+        <div class="num">09 / 25</div>
+        <div class="name">隐形哨兵 div 切换导航主题（dark / light / lime）</div>
+        <div class="tags">ScrollTrigger.onToggle · data-nav-theme-target</div>
+      </div>
+      <div class="demo-body">
+        <div class="d2-stage" id="d2Stage">
+          <div class="d2-scroll">
+            <div class="d2-zone dark">↓ 这是深绿区，导航是浅灰</div>
+            <div class="d2-sentinel" data-label="sentinel: light" data-theme="light"></div>
+            <div class="d2-zone light">↓ 这是浅色区，导航翻成深绿</div>
+            <div class="d2-sentinel" data-label="sentinel: lime" data-theme="lime"></div>
+            <div class="d2-zone lime">↓ 这是柠檬绿区，导航整体反白</div>
+            <div class="d2-sentinel" data-label="sentinel: dark" data-theme="dark"></div>
+            <div class="d2-zone dark">↓ 回到深绿区</div>
+          </div>
+        </div>
+        <div class="d2-readout">页面顶部导航的 <span class="v" id="d2ReadOut">data-theme="dark"</span> 正在被这个滚动容器控制。在容器里滚动，看顶部 nav。</div>
+      </div>
+      <div class="demo-foot">
+        原站把哨兵做成"零高度"div：<code>&lt;div data-nav-theme-target="light"&gt;&lt;/div&gt;</code>。ScrollTrigger 监听它何时穿过视口顶部，翻 nav 的属性，CSS 用 <code>[data-nav-theme="light"] .nav-brand path { fill: ... }</code> 把样式接管。**section 怎么改都不会破，因为色不是从 section 抽的**。
+      </div>
+    </div>
+    <!-- DEMO 21 · Footer 三色主题 -->
+    <div class="demo" id="demo21">
+      <div class="demo-head">
+        <div class="num">10 / 25</div>
+        <div class="name">Footer 三色主题 · data-footer-theme="black|green|white"</div>
+        <div class="tags">同 nav 哨兵思路 · footer-theme 由 section 决定</div>
+      </div>
+      <div class="demo-body">
+        <div class="d22-footer" id="d22Footer" data-footer-theme="green">
+          <div class="d22-logo">LN · OFF+BRAND</div>
+          <div class="d22-links">
+            <span>HOME</span><span>ON TRACK</span><span>OFF TRACK</span><span>CALENDAR</span>
+          </div>
+          <div class="d22-state mono">data-footer-theme="<span id="d22ThemeOut">green</span>"</div>
+        </div>
+        <div class="d22-controls">
+          <button class="btn d22-btn" data-ft="green">green</button>
+          <button class="btn d22-btn" data-ft="black">black</button>
+          <button class="btn d22-btn" data-ft="white">white</button>
+        </div>
+      </div>
+      <div class="demo-foot">
+        Footer 跟 nav 的主题切换机制一样——CSS 用 <code>[data-footer-theme="black"] { ... }</code> 接管。但<strong>触发源不同</strong>：nav 用全站散布的隐形哨兵 div，footer 是绑定到具体 section（不同 section 落到 footer 的颜色不同）。off-track 页有黑底章节，footer 就 black；on-track 是深绿，footer 就 green。
+      </div>
+    </div>
+    <div class="cat-divider" data-cat="micro" id="cat-micro">
+      <div class="cat-divider-key">D</div>
+      <div class="cat-divider-name">微动效</div>
+      <div class="cat-divider-tail"></div>
+    </div>
+
+    <!-- DEMO 6 -->
+    <div class="demo" id="demo6">
+      <div class="demo-head">
+        <div class="num">11 / 25</div>
+        <div class="name">Rive 状态机的"一个文件 = 一台状态切换机"</div>
+        <div class="tags">circuits.riv · data-rive-input-track</div>
+      </div>
+      <div class="demo-body">
+        <div class="d6-stage">
+          <div class="d6-canvas">
+            <div class="d6-svg" id="d6Svg">
+              <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path id="d6Path" d="M40 100 Q40 40 100 40 T160 100 Q160 160 100 160 T40 100" stroke-dasharray="500" stroke-dashoffset="0" />
+                <circle id="d6Dot" cx="40" cy="100" r="6" fill="currentColor" stroke="none"/>
+                <text id="d6Label" x="100" y="190" text-anchor="middle" fill="currentColor" stroke="none" font-size="10" letter-spacing="3" font-family="monospace">MONTRÉAL</text>
+              </svg>
+            </div>
+          </div>
+          <div class="d6-controls">
+            <div style="font-size:.7rem;letter-spacing:.25em;color:var(--fg-mute);text-transform:uppercase;margin-bottom:.5rem">hover 切换 input "track"</div>
+            <button class="d6-btn is-active" data-track="MONTRÉAL" data-d="M40 100 Q40 40 100 40 T160 100 Q160 160 100 160 T40 100">CA · Montréal</button>
+            <button class="d6-btn" data-track="MONACO" data-d="M30 120 L60 60 Q100 30 140 60 L170 120 Q160 170 100 170 Q40 170 30 120 Z">MC · Monaco</button>
+            <button class="d6-btn" data-track="SILVERSTONE" data-d="M20 100 L50 50 L120 50 L180 80 L160 130 L100 150 L40 140 Z">UK · Silverstone</button>
+            <button class="d6-btn" data-track="SUZUKA" data-d="M40 60 L120 40 Q170 70 140 110 Q90 130 60 100 Q30 130 80 170 L150 160">JP · Suzuka</button>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        点按钮看 SVG 路径插值。原站的 <code>data-rive-file="circuits"</code> 是 <strong>1 个</strong> Rive 文件装了全部 24 条赛道，外部只发 <code>state.track = "monaco"</code> 一句话就切。如果用 Lottie 你需要 24 个 .json 文件 + 24 次切换的过渡动画。<strong>Rive 比 Lottie 强在状态机</strong>——这是核心区别。
+      </div>
+    </div>
+    <!-- DEMO 18 · char-level hover link flip -->
+    <div class="demo" id="demo18">
+      <div class="demo-head">
+        <div class="num">12 / 25</div>
+        <div class="name">链接字符级 hover 翻页（整站每个 nav-link 都用）</div>
+        <div class="tags">data-anim="text-hover" · 上下两层字符 · stagger</div>
+      </div>
+      <div class="demo-body">
+        <div class="d18-stage">
+          <a class="d18-link" data-anim="text-hover" href="#"><span class="d18-clip"><span class="d18-row">H<span>o</span>m<span>e</span></span><span class="d18-row d18-row-2">H<span>o</span>m<span>e</span></span></span></a>
+          <a class="d18-link" data-anim="text-hover" href="#"><span class="d18-clip"><span class="d18-row">O<span>n</span>&nbsp;<span>T</span>r<span>a</span>c<span>k</span></span><span class="d18-row d18-row-2">O<span>n</span>&nbsp;<span>T</span>r<span>a</span>c<span>k</span></span></span></a>
+          <a class="d18-link" data-anim="text-hover" href="#"><span class="d18-clip"><span class="d18-row">O<span>f</span>f<span>&nbsp;</span>T<span>r</span>a<span>c</span>k</span><span class="d18-row d18-row-2">O<span>f</span>f<span>&nbsp;</span>T<span>r</span>a<span>c</span>k</span></span></a>
+          <a class="d18-link" data-anim="text-hover" href="#"><span class="d18-clip"><span class="d18-row">C<span>a</span>l<span>e</span>n<span>d</span>a<span>r</span></span><span class="d18-row d18-row-2">C<span>a</span>l<span>e</span>n<span>d</span>a<span>r</span></span></span></a>
+        </div>
+      </div>
+      <div class="demo-foot">
+        鼠标移到链接上，每个字符上滚一行高，下面藏着同一个字符的副本顶上来——看起来像"在原地翻面"。原站每个 nav link、social link、cta 按钮都套这个动作。字符级 stagger 让每个字母错峰翻面，比一整个单词一起滑出去优雅得多。
+      </div>
+    </div>
+    <!-- DEMO 22 · Rive button micro-interactions -->
+    <div class="demo" id="demo22">
+      <div class="demo-head">
+        <div class="num">13 / 25</div>
+        <div class="name">按钮 hover 微动效合集 · data-btn-rive-rotate / -hover / -invert</div>
+        <div class="tags">btn-ui.riv · rotate / invert / scale / shake</div>
+      </div>
+      <div class="demo-body">
+        <div class="d23-grid">
+          <button class="d23-btn d23-rotate" data-btn-rive-rotate="90">
+            <span class="d23-txt">Send Mail</span>
+            <span class="d23-icon"><svg viewBox="0 0 16 16"><path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <button class="d23-btn d23-invert" data-btn-rive-invert="true">
+            <span class="d23-txt">Read Story</span>
+            <span class="d23-icon"><svg viewBox="0 0 16 16"><path d="M3 13L13 3M5 3h8v8" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <button class="d23-btn d23-scale" data-btn-rive-hover="scale">
+            <span class="d23-txt">Race In</span>
+            <span class="d23-icon"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="currentColor" fill="none" stroke-width="1.5"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg></span>
+          </button>
+          <button class="d23-btn d23-shake" data-btn-rive-hover="shake">
+            <span class="d23-txt">Watch Live</span>
+            <span class="d23-icon"><svg viewBox="0 0 16 16"><polygon points="5,3 5,13 13,8" fill="currentColor"/></svg></span>
+          </button>
+        </div>
+      </div>
+      <div class="demo-foot">
+        OFF+BRAND 站上每个按钮都是 Rive 实例——hover 不是 CSS transition 那么简单，是状态机里的"图标自转 90deg / 内外反色 / scale 弹 / 抖动"。这 4 个按钮分别对应 <code>data-btn-rive-rotate="90"</code>、<code>data-btn-rive-invert="true"</code>、<code>data-btn-rive-hover="scale"</code>、<code>data-btn-rive-hover="shake"</code>。我这里用 CSS 仿了交互——原版每个图标也都是 Rive 矢量动画。
+      </div>
+    </div>
+    <div class="cat-divider" data-cat="data" id="cat-data">
+      <div class="cat-divider-key">E</div>
+      <div class="cat-divider-name">数据驱动</div>
+      <div class="cat-divider-tail"></div>
+    </div>
+
+    <!-- DEMO 12 · flip-digit countdown -->
+    <div class="demo" id="demo12">
+      <div class="demo-head">
+        <div class="num">14 / 25</div>
+        <div class="name">倒计时翻页数字（on-track / calendar 页都用）</div>
+        <div class="tags">data-countdown-digit · yPercent flip · 每秒更新</div>
+      </div>
+      <div class="demo-body">
+        <div class="d12-stage">
+          <div class="d12-eyebrow">下一场比赛 · MONTRÉAL GP</div>
+          <div class="d12-row">
+            <div class="d12-cell"><div class="d12-num" data-countdown-digit="day"><span></span><span></span></div><div class="d12-lbl">days</div></div>
+            <div class="d12-sep">:</div>
+            <div class="d12-cell"><div class="d12-num" data-countdown-digit="hour"><span></span><span></span></div><div class="d12-lbl">hours</div></div>
+            <div class="d12-sep">:</div>
+            <div class="d12-cell"><div class="d12-num" data-countdown-digit="min"><span></span><span></span></div><div class="d12-lbl">mins</div></div>
+            <div class="d12-sep">:</div>
+            <div class="d12-cell"><div class="d12-num" data-countdown-digit="sec"><span></span><span></span></div><div class="d12-lbl">secs</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        每个数字位是一个上下两层的容器，新数字克隆到下沿、旧数字 <code>yPercent: -100</code> 滚出。<code>data-countdown-digit="day|hour|min|sec"</code> 让 JS 知道往哪个位置写。原站这个组件复用率极高——首页、on-track、calendar、partnerships 都用同一套。
+      </div>
+    </div>
+    <!-- DEMO 19 · CMS-driven race calendar -->
+    <div class="demo" id="demo19">
+      <div class="demo-head">
+        <div class="num">15 / 25</div>
+        <div class="name">CMS 驱动的赛季日历 · prev/next 切换（calendar 页核心）</div>
+        <div class="tags">data-cal-list · data-cal-control · 字段填充</div>
+      </div>
+      <div class="demo-body">
+        <div class="d19-stage">
+          <div class="d19-card" id="d19Card">
+            <div class="d19-head">
+              <div class="d19-flag" id="d19Flag">🇲🇨</div>
+              <div class="d19-id" id="d19Id">04 / 24</div>
+            </div>
+            <div class="d19-name" id="d19Name" data-cal-list="circuit-name">Monaco GP</div>
+            <div class="d19-meta">
+              <div class="d19-cell"><div class="d19-k">circuit</div><div class="d19-v" id="d19Circuit" data-cal-list="circuit-id">Circuit de Monaco</div></div>
+              <div class="d19-cell"><div class="d19-k">length</div><div class="d19-v" id="d19Len" data-cal-list="circuit-lap-length">3.337 km</div></div>
+              <div class="d19-cell"><div class="d19-k">laps</div><div class="d19-v" id="d19Laps" data-cal-list="circuit-lap-amount">78</div></div>
+              <div class="d19-cell"><div class="d19-k">distance</div><div class="d19-v" id="d19Dist" data-cal-list="circuit-distance">260 km</div></div>
+            </div>
+            <div class="d19-schedule">
+              <div class="d19-srow"><span class="d19-srow-k">PRAC 1</span><span class="d19-srow-v" id="d19P1">Fri 13:30</span></div>
+              <div class="d19-srow"><span class="d19-srow-k">PRAC 2</span><span class="d19-srow-v" id="d19P2">Fri 17:00</span></div>
+              <div class="d19-srow"><span class="d19-srow-k">PRAC 3</span><span class="d19-srow-v" id="d19P3">Sat 12:30</span></div>
+              <div class="d19-srow"><span class="d19-srow-k">QUAL</span><span class="d19-srow-v" id="d19Q">Sat 16:00</span></div>
+              <div class="d19-srow d19-srow-race"><span class="d19-srow-k">RACE</span><span class="d19-srow-v" id="d19R">Sun 15:00</span></div>
+            </div>
+          </div>
+          <div class="d19-controls">
+            <button class="btn d19-btn" data-cal-control="previous-item">← prev</button>
+            <button class="btn d19-btn" data-cal-control="next-item">next →</button>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        点 prev / next 切换 6 场比赛。每场都有赛道名、长度、圈数、距离、4 个 session 时间——这些字段在原站全部来自 Webflow CMS Collection，<code>data-cal-list="circuit-name"</code> 等属性让 JS 知道哪个 DOM 节点对应哪个字段。<strong>整张赛季日历只是一个组件，数据从 CMS 拉</strong>，赛后还能动态同步成绩到 <code>-time-result</code> 字段里。
+      </div>
+    </div>
+    <div class="cat-divider" data-cat="gesture" id="cat-gesture">
+      <div class="cat-divider-key">F</div>
+      <div class="cat-divider-name">手势 & 光标</div>
+      <div class="cat-divider-tail"></div>
+    </div>
+
+    <!-- DEMO 8 -->
+    <div class="demo" id="demo8">
+      <div class="demo-head">
+        <div class="num">16 / 25</div>
+        <div class="name">"tap to lock" · 模态手势把页面让出来</div>
+        <div class="tags">data-home-swipe-toggle · touch-action · 移动端神技</div>
+      </div>
+      <div class="demo-body">
+        <div class="d8-stage" id="d8Stage">
+          <div class="d8-toggle"><button class="btn" id="d8Btn">tap to lock</button></div>
+          <div class="d8-canvas" id="d8Canvas">
+            <div class="d8-orb" id="d8Orb"></div>
+          </div>
+          <div class="d8-hint" id="d8Hint">未锁 · 在这里滑动 = 翻页面</div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        移动端最大痛点：单指滑屏 = 滚页面，于是没法转 3D 模型。Off+Brand 给了一个开关："tap to lock"——锁住后，<code>touch-action: none</code> 把页面滚动禁了，单指拖只控这个画布。<strong>把手势模态化</strong>，工程不难，产品 IQ 极高。
+      </div>
+    </div>
+    <!-- DEMO 9 -->
+    <div class="demo" id="demo9">
+      <div class="demo-head">
+        <div class="num">17 / 25</div>
+        <div class="name">自定义光标 + 悬停区域 reveal（on-track 页 highlights/schedule）</div>
+        <div class="tags">data-mouse-area · data-mouse-reveal · clip-path tracking</div>
+      </div>
+      <div class="demo-body">
+        <div class="d9-stage" id="d9Stage">
+          <div class="d9-cursor" id="d9Cursor"><span>scroll</span></div>
+          <div class="d9-zone" data-mouse-area="highlights" data-cursor-text="highlights ↗">
+            <div class="d9-zone-bg"></div>
+            <div class="d9-zone-label">data-mouse-area="highlights"</div>
+            <div class="d9-zone-reveal" data-mouse-reveal>
+              <img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'><defs><linearGradient id='g' x1='0' x2='1'><stop offset='0' stop-color='%23d2ff00'/><stop offset='1' stop-color='%23a8c800'/></linearGradient></defs><rect width='400' height='240' fill='url(%23g)'/><text x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='monospace' font-size='28' fill='%23101400' letter-spacing='8'>HIGHLIGHTS</text></svg>"/>
+            </div>
+          </div>
+          <div class="d9-zone" data-mouse-area="schedule" data-cursor-text="schedule ↗">
+            <div class="d9-zone-bg" style="background:linear-gradient(135deg,#1c2218,#0a1208)"></div>
+            <div class="d9-zone-label">data-mouse-area="schedule"</div>
+            <div class="d9-zone-reveal" data-mouse-reveal>
+              <img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'><rect width='400' height='240' fill='%23101400'/><text x='50%25' y='40%25' text-anchor='middle' font-family='monospace' font-size='22' fill='%23d2ff00' letter-spacing='6'>NEXT RACE</text><text x='50%25' y='70%25' text-anchor='middle' font-family='sans-serif' font-size='42' fill='%23d2ff00'>Montréal</text></svg>"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        把鼠标移到上面两个色块上。光标变大变色 + 显示文案 + 色块里 reveal 一张图（用 <code>clip-path: circle(80px at cursorX cursorY)</code>跟踪）。原站的 <code>data-mouse-area / -reveal / -track</code> 三件套就是这个机制——把"鼠标位置"变成"可写入的设计变量"。
+      </div>
+    </div>
+    <!-- DEMO 17 · menu image blend-mode columns -->
+    <div class="demo" id="demo17">
+      <div class="demo-head">
+        <div class="num">18 / 25</div>
+        <div class="name">菜单图片轨道 + 鼠标穿过 blend-mode（nav-menu 神技）</div>
+        <div class="tags">data-nav-img · menu-img-blends · mix-blend-mode</div>
+      </div>
+      <div class="demo-body">
+        <div class="d17-stage" id="d17Stage">
+          <div class="d17-col" data-nav-img="1"><div class="d17-img i1"></div><div class="d17-blend"></div></div>
+          <div class="d17-col" data-nav-img="2"><div class="d17-img i2"></div><div class="d17-blend"></div></div>
+          <div class="d17-col" data-nav-img="3"><div class="d17-img i3"></div><div class="d17-blend"></div></div>
+          <div class="d17-col" data-nav-img="4"><div class="d17-img i4"></div><div class="d17-blend"></div></div>
+          <div class="d17-col" data-nav-img="5"><div class="d17-img i5"></div><div class="d17-blend"></div></div>
+        </div>
+        <p style="margin-top:1rem;font-size:.8rem;color:var(--fg-dim)">鼠标在色块间扫过，每列上盖一层 mix-blend-mode 的图层，色彩相互重叠。</p>
+      </div>
+      <div class="demo-foot">
+        nav 菜单展开时，主图轨道下盖了 3 层 <code>.menu-img-blend-1/2/3</code>，分别是 <code>mix-blend-mode: difference / multiply / screen</code>。鼠标 hover 时调每层 opacity，产生"图片之间相互染色"的效果——比单纯的滤镜更复杂、更"叠层"。
+      </div>
+    </div>
+    <div class="cat-divider" data-cat="visual" id="cat-visual">
+      <div class="cat-divider-key">G</div>
+      <div class="cat-divider-name">视觉系统</div>
+      <div class="cat-divider-tail"></div>
+    </div>
+
+    <!-- DEMO 7 -->
+    <div class="demo" id="demo7">
+      <div class="demo-head">
+        <div class="num">19 / 25</div>
+        <div class="name">1728 设计稿基准 · clamp 流体缩放</div>
+        <div class="tags">clamp() · CSS custom property · 设计师友好</div>
+      </div>
+      <div class="demo-body">
+        <div class="d7-stage">
+          <div class="d7-readout">
+            <div class="d7-cell"><div class="k">viewport 宽</div><div class="v" id="d7Vw">— px</div></div>
+            <div class="d7-cell"><div class="k">fluid-container</div><div class="v" id="d7Fc">— px</div></div>
+            <div class="d7-cell"><div class="k">设计基准</div><div class="v">1728</div></div>
+            <div class="d7-cell"><div class="k">当前 root fz</div><div class="v" id="d7Fz">— px</div></div>
+          </div>
+          <div class="d7-demo-text">这段字号 = (clamp(992, 100vw, 1920) / 1728) × 48px</div>
+          <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">缩放浏览器宽度，看上面四个数字怎么联动。这就是 OFF+BRAND 整站字号"会呼吸"的秘密。</p>
+        </div>
+      </div>
+      <div class="demo-foot">
+        把设计稿里的 px 直接换算成 fluid-font 倍数：<code>font-size: calc(var(--fluid-container) / var(--design-width) * 48px)</code>。**设计师在 1728 画的标题，工程师不用算移动端 28、平板 36、桌面 48**——一个公式解决。
+      </div>
+    </div>
+    <!-- DEMO 13 · oval-scroll arc text -->
+    <div class="demo" id="demo13">
+      <div class="demo-head">
+        <div class="num">20 / 25</div>
+        <div class="name">椭圆轨迹大字 · TRACK / OFFTRACK 那种弧形排版</div>
+        <div class="tags">data-oval-scroll · 字符 rotate · transform-origin 在弧心</div>
+      </div>
+      <div class="demo-body">
+        <div class="d13-stage">
+          <div class="d13-arc" id="d13Arc">
+            <div class="d13-arc-char" data-oval-scroll>O</div><div class="d13-arc-char" data-oval-scroll>F</div><div class="d13-arc-char" data-oval-scroll>F</div><div class="d13-arc-char" data-oval-scroll>T</div><div class="d13-arc-char" data-oval-scroll>R</div><div class="d13-arc-char" data-oval-scroll>A</div><div class="d13-arc-char" data-oval-scroll>C</div><div class="d13-arc-char" data-oval-scroll>K</div>
+          </div>
+          <div class="d13-controls">
+            <label>弧度 <input type="range" id="d13Curve" min="20" max="160" value="80"></label>
+            <label>半径 <input type="range" id="d13Radius" min="180" max="420" value="280"></label>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        每个字符独立 <code>rotate()</code> + 同一个 <code>transform-origin</code>（弧心），形成一段弧。<code>[split-text]:not[data-oval-scroll]</code> 这种反选选择器在原站 CSS 里出现——告诉我们标了 <code>data-oval-scroll</code> 的会走"另一条排版路径"。拽上面两个滑块调弧度和半径，看大字怎么弯。
+      </div>
+    </div>
+    <!-- DEMO 14 · GSAP FLIP layout morph -->
+    <div class="demo" id="demo14">
+      <div class="demo-head">
+        <div class="num">21 / 25</div>
+        <div class="name">布局变形（FLIP）· off-track 页的 data-heroflip="pos1/pos2/pos3"</div>
+        <div class="tags">First-Last-Invert-Play · 记录前后 rect · GSAP fromTo</div>
+      </div>
+      <div class="demo-body">
+        <div class="d14-stage">
+          <div class="d14-grid" id="d14Grid" data-layout="grid">
+            <div class="d14-card" data-color="lime"><span>01</span><em>HOME</em></div>
+            <div class="d14-card" data-color="dark"><span>02</span><em>HELMET</em></div>
+            <div class="d14-card" data-color="lime"><span>03</span><em>RACE</em></div>
+            <div class="d14-card" data-color="dark"><span>04</span><em>WIN</em></div>
+            <div class="d14-card" data-color="lime"><span>05</span><em>PODIUM</em></div>
+            <div class="d14-card" data-color="dark"><span>06</span><em>CHAMPION</em></div>
+          </div>
+          <div class="d14-controls">
+            <button class="btn d14-btn is-on" data-flip="grid">grid 3×2</button>
+            <button class="btn d14-btn" data-flip="row">row · 横排</button>
+            <button class="btn d14-btn" data-flip="stack">stack · 叠</button>
+            <button class="btn d14-btn" data-flip="scatter">scatter · 散开</button>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        点按钮看 6 张卡片"飞"到新位置。FLIP 是经典技术：<strong>F</strong>irst 记录前位置 → 应用新布局 <strong>L</strong>ast 记录后位置 → <strong>I</strong>nvert 用 transform 把卡片"反推"回前位置（视觉无变化）→ <strong>P</strong>lay 把 transform tween 到 0。所有人看到的是元素"飞过去"，但其实 DOM 早换了位置。原站的 <code>data-heroflip="pos1/pos2/pos3"</code> 让同一张图在 off-track 页不同章节"飞"过去。
+      </div>
+    </div>
+    <!-- DEMO 16 · SVG mask container shapes -->
+    <div class="demo" id="demo16">
+      <div class="demo-head">
+        <div class="num">22 / 25</div>
+        <div class="name">SVG 异形容器 · data-helmet-item / mask-callout / mask-case</div>
+        <div class="tags">-webkit-mask-image · 不规则切角圆缺 · 不是 clip-path</div>
+      </div>
+      <div class="demo-body">
+        <div class="d16-grid">
+          <div class="d16-card" data-mask="a"><div class="d16-mask"><div class="d16-content"><span>01</span>NEXT RACE</div></div><div class="d16-tag">callout-left</div></div>
+          <div class="d16-card" data-mask="b"><div class="d16-mask"><div class="d16-content"><span>02</span>LAST LAP</div></div><div class="d16-tag">callout-right</div></div>
+          <div class="d16-card" data-mask="c"><div class="d16-mask"><div class="d16-content"><span>03</span>FASTEST</div></div><div class="d16-tag">case-left</div></div>
+          <div class="d16-card" data-mask="d"><div class="d16-mask"><div class="d16-content"><span>04</span>POINTS</div></div><div class="d16-tag">case-right</div></div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        4 张卡片用 4 个不同形状的 SVG 当容器外形——左凹缺、右凹缺、左切角、右切角。<code>-webkit-mask-image: url("...svg")</code> 把卡片"剪"成 SVG 的形状。CSS clip-path 也能做简单形状但**带凹缺/弧形组合就只能 SVG mask**。原站 off-track 页的卡片墙就是这套，对称的左右开口看上去像 HUD 仪表盘。
+      </div>
+    </div>
+    <!-- DEMO 20 · Variable Font 双轴 -->
+    <div class="demo" id="demo20">
+      <div class="demo-head">
+        <div class="num">23 / 25</div>
+        <div class="name">Variable Font 双轴 · Mona Sans wdth + wght</div>
+        <div class="tags">font-variation-settings · 一个 woff2 = 无数粗细 × 宽度</div>
+      </div>
+      <div class="demo-body">
+        <div class="d21-stage">
+          <div class="d21-preview" id="d21Preview" style="font-variation-settings:'wght' 400,'wdth' 100">LANDO NORRIS</div>
+          <div class="d21-controls">
+            <label>weight <span id="d21WghtVal">400</span><input type="range" id="d21Wght" min="200" max="900" value="400"></label>
+            <label>width <span id="d21WdthVal">100</span><input type="range" id="d21Wdth" min="75" max="125" value="100"></label>
+          </div>
+          <div class="d21-readout mono">font-variation-settings: 'wght' <span id="d21Out1">400</span>, 'wdth' <span id="d21Out2">100</span></div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        拽下面两个滑块，看 LANDO NORRIS 实时变粗 / 变窄。这是一个 woff2 文件能做到的——可变字体的 <strong>wght</strong>（粗细）和 <strong>wdth</strong>（字宽）两个轴可以独立调。原站用的就是 GitHub 开源的 Mona Sans，每个标题在不同 section 的字宽都微调过——这种"字宽呼吸"靠静态字体根本做不到。
+      </div>
+    </div>
+    <div class="cat-divider" data-cat="media" id="cat-media">
+      <div class="cat-divider-key">H</div>
+      <div class="cat-divider-name">媒体</div>
+      <div class="cat-divider-tail"></div>
+    </div>
+
+    <!-- DEMO 10 -->
+    <div class="demo" id="demo10">
+      <div class="demo-head">
+        <div class="num">24 / 25</div>
+        <div class="name">hover 自动播放视频（data-video-stream + Vimeo lazy load）</div>
+        <div class="tags">data-stream-hover · IntersectionObserver · placeholder→stream</div>
+      </div>
+      <div class="demo-body">
+        <div class="d10-grid">
+          <div class="d10-card" data-stream-hover>
+            <div class="d10-placeholder">
+              <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width=".5"/><polygon points="42,32 42,68 70,50" fill="currentColor"/></svg>
+              <span class="lbl">vimeo · 824804225</span>
+            </div>
+            <div class="d10-stream" data-stream-content>
+              <div class="d10-bars"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="d10-time">▶ 00:0<span data-tsec>0</span> / 00:18</div>
+            </div>
+          </div>
+          <div class="d10-card" data-stream-hover>
+            <div class="d10-placeholder" style="background:linear-gradient(135deg,#2a3024,#0a1208)">
+              <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width=".5"/><polygon points="42,32 42,68 70,50" fill="currentColor"/></svg>
+              <span class="lbl">vimeo · 824804226</span>
+            </div>
+            <div class="d10-stream" data-stream-content>
+              <div class="d10-bars"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="d10-time">▶ 00:0<span data-tsec>0</span> / 00:32</div>
+            </div>
+          </div>
+          <div class="d10-card" data-stream-hover>
+            <div class="d10-placeholder" style="background:linear-gradient(135deg,#1c2218,#131811)">
+              <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width=".5"/><polygon points="42,32 42,68 70,50" fill="currentColor"/></svg>
+              <span class="lbl">vimeo · 824804227</span>
+            </div>
+            <div class="d10-stream" data-stream-content>
+              <div class="d10-bars"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="d10-time">▶ 00:0<span data-tsec>0</span> / 00:24</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        鼠标悬停到卡片上，placeholder 退场，"视频流"接管（这里我用 CSS 条带模拟，原站是 Vimeo iframe 用 <code>data-stream-url</code> 拉流）。Off+Brand 用 IntersectionObserver 决定何时加载视频，hover 决定何时播放——<strong>不让视频在视野外烧带宽</strong>。on-track 页底的 social 卡片墙就是这套。
+      </div>
+    </div>
+    <!-- DEMO 23 · Stat hover image swap -->
+    <div class="demo" id="demo23">
+      <div class="demo-head">
+        <div class="num">25 / 25</div>
+        <div class="name">Stat hover 图替换 · data-stat-hover-img</div>
+        <div class="tags">on-track 页统计卡 · 鼠标进 → 大图淡入</div>
+      </div>
+      <div class="demo-body">
+        <div class="d24-stage" id="d24Stage">
+          <div class="d24-bg" id="d24Bg"></div>
+          <div class="d24-grid">
+            <div class="d24-stat" data-stat-hover-img="pole" data-bg="linear-gradient(135deg,#d2ff00 0%,#5a7d00 100%)"><div class="d24-num">28</div><div class="d24-lbl">POLE POSITIONS</div></div>
+            <div class="d24-stat" data-stat-hover-img="podiums" data-bg="linear-gradient(135deg,#7a9100,#0d1109)"><div class="d24-num">42</div><div class="d24-lbl">PODIUMS</div></div>
+            <div class="d24-stat" data-stat-hover-img="laps" data-bg="linear-gradient(135deg,#0a1208,#1c2218)"><div class="d24-num">8K+</div><div class="d24-lbl">FASTEST LAPS</div></div>
+            <div class="d24-stat" data-stat-hover-img="wins" data-bg="radial-gradient(circle at 30% 40%,#d2ff00,#3a4500)"><div class="d24-num">19</div><div class="d24-lbl">RACE WINS</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        鼠标移到任一统计上，背后大图淡入（这里用渐变代图）。原站 on-track 页用 <code>data-stat-hover-img</code> 把每个统计绑一张照片——hover 时整面墙的视觉切换成"这个数字对应的赛车场景"。一种"数字会讲故事"的设计。
+      </div>
+    </div>
 
   </div>
 </section>
 
 <!-- ============== PER-PAGE ============== -->
-<section data-section="逐页拆解">
+<section id="pages-section" data-section="逐页拆解">
   <div class="shell">
     <div class="eyebrow reveal">03 · 全站 4 个主页面 · 每页一个"招牌交互"</div>
     <h2 class="title-1 reveal">不是首页好看而已。<em>每一页</em>都藏着不一样的招式。</h2>
@@ -1407,7 +1517,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
           <tr><td>transitions-rive-isolate.js</td><td>独立外接脚本</td><td>把这个 Rive 实例从主线 RAF 隔离开，避免被 ScrollTrigger / Lenis 误调度</td></tr>
         </tbody>
       </table>
-      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 25</strong> 用纯 CSS 仿了曲线 SVG + 三态切换，时序跟原站 ~550ms 盖屏 + ~200ms 切换 + ~550ms 揭屏对齐。原站幕布形状更复杂，但**机制完全一样**。</p>
+      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 02</strong> 用纯 CSS 仿了曲线 SVG + 三态切换，时序跟原站 ~550ms 盖屏 + ~200ms 切换 + ~550ms 揭屏对齐。原站幕布形状更复杂，但**机制完全一样**。</p>
     </div>
 
     <div class="page-block reveal">
@@ -1420,7 +1530,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
           <tr><td>data-mouse-track</td><td>仅追踪光标但不揭示（用于位移/视差）</td><td>monitor pointerEvent, update CSS var</td></tr>
         </tbody>
       </table>
-      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 09</strong> 演示了这套。</p>
+      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 17</strong> 演示了这套。</p>
     </div>
 
     <div class="page-block reveal">
@@ -1450,7 +1560,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
           <tr><td>data-stream-muted/-loop/-autoplay</td><td>Vimeo Player API 参数</td><td>透传给 iframe</td></tr>
         </tbody>
       </table>
-      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 10</strong> 演示了这套。最大价值：<strong>视频不进视野 / 没 hover 就不下载流</strong>。</p>
+      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 24</strong> 演示了这套。最大价值：<strong>视频不进视野 / 没 hover 就不下载流</strong>。</p>
     </div>
 
     <div class="page-block reveal">
@@ -2100,6 +2210,28 @@ d9Zones.forEach(z => {
   }
   document.querySelectorAll('[data-cal-control]').forEach(b => {
     b.addEventListener('click', () => go(b.dataset.calControl === 'next-item' ? 1 : -1));
+  });
+})();
+
+/* =================== smooth-jump for all in-page hash links === */
+(function(){
+  function jumpTo(id){
+    const el = document.getElementById(id);
+    if (!el) return;
+    const navH = (document.getElementById('nav')?.offsetHeight) || 64;
+    const top = el.getBoundingClientRect().top + window.scrollY - navH - 16;
+    window.scrollTo({ top, behavior: 'smooth' });
+    history.replaceState(null, '', '#' + id);
+  }
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (href.length < 2) return;
+    const id = href.slice(1);
+    if (!document.getElementById(id)) return;
+    e.preventDefault();
+    jumpTo(id);
   });
 })();
 
