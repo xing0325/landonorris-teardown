@@ -230,6 +230,120 @@ section:last-of-type{border-bottom:none}
 @keyframes bars{0%,100%{height:20%}50%{height:90%}}
 .d10-time{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.75rem;letter-spacing:.1em}
 
+/* ---------- demo 12: countdown digit ---------- */
+.d12-stage{padding:2rem 0;text-align:center}
+.d12-eyebrow{font-size:.7rem;letter-spacing:.3em;color:var(--lime);text-transform:uppercase;margin-bottom:1.5rem}
+.d12-row{display:flex;align-items:flex-start;justify-content:center;gap:1rem;flex-wrap:wrap}
+.d12-cell{display:flex;flex-direction:column;align-items:center}
+.d12-sep{font-size:clamp(2rem,5vw,3rem);font-weight:200;color:var(--fg-mute);line-height:1}
+.d12-num{display:flex;gap:.15rem;font-family:'JetBrains Mono',ui-monospace,monospace}
+.d12-num span{position:relative;display:inline-block;width:.8em;height:1.2em;overflow:hidden;font-size:clamp(2.2rem,6vw,3.6rem);font-weight:300;line-height:1.2em;color:var(--fg);background:linear-gradient(180deg,var(--bg-3),var(--bg-2));border:1px solid var(--line-soft);border-radius:6px;padding:0 .12em;box-sizing:content-box}
+.d12-num span::before,.d12-num span::after{content:attr(data-cur);position:absolute;left:.12em;top:0;color:var(--lime)}
+.d12-num span::after{content:attr(data-next);top:100%}
+.d12-num span.flip{animation:d12Flip .4s var(--cubic) forwards}
+@keyframes d12Flip{from{transform:translateY(0)}to{transform:translateY(-100%)}}
+.d12-num span.flip::before,.d12-num span.flip::after{animation:d12FlipChild .4s var(--cubic) forwards}
+@keyframes d12FlipChild{0%{transform:translateY(0)}100%{transform:translateY(0)}}
+.d12-lbl{font-size:.6rem;letter-spacing:.25em;color:var(--fg-mute);text-transform:uppercase;margin-top:.6rem}
+
+/* ---------- demo 13: oval-scroll arc ---------- */
+.d13-stage{padding:2rem 0;text-align:center;position:relative;min-height:300px}
+.d13-arc{position:relative;height:200px;display:flex;justify-content:center;align-items:flex-end}
+.d13-arc-char{position:absolute;font-size:clamp(2rem,4.5vw,3.4rem);font-weight:300;color:var(--lime);line-height:1;transform-origin:50% 280px;letter-spacing:.05em;transition:transform .35s var(--cubic),transform-origin .35s var(--cubic)}
+.d13-controls{margin-top:2rem;display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+.d13-controls label{display:flex;align-items:center;gap:.5rem;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-dim)}
+.d13-controls input{accent-color:var(--lime)}
+
+/* ---------- demo 14: GSAP FLIP ---------- */
+.d14-stage{padding:1rem 0}
+.d14-grid{display:grid;gap:.75rem;transition:none}
+.d14-grid[data-layout="grid"]{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,120px)}
+.d14-grid[data-layout="row"]{grid-template-columns:repeat(6,1fr);grid-template-rows:160px}
+.d14-grid[data-layout="stack"]{grid-template-columns:1fr;grid-template-rows:repeat(6,52px)}
+.d14-grid[data-layout="scatter"]{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,140px);transform:rotate(-2deg)}
+.d14-card{position:relative;background:var(--bg-3);border:1px solid var(--line-soft);border-radius:4px;display:flex;flex-direction:column;justify-content:space-between;padding:.85rem 1rem;will-change:transform;font-family:'JetBrains Mono',ui-monospace,monospace}
+.d14-card[data-color="lime"]{background:linear-gradient(135deg,rgba(208,255,0,.12),var(--bg-3));border-color:rgba(208,255,0,.3)}
+.d14-card[data-color="dark"]{background:linear-gradient(135deg,#0a1208,var(--bg-2))}
+.d14-card span{font-size:.65rem;letter-spacing:.25em;color:var(--lime)}
+.d14-card em{font-style:normal;font-size:.9rem;font-weight:500;color:var(--fg);letter-spacing:.05em}
+.d14-grid[data-layout="scatter"] .d14-card:nth-child(1){transform:rotate(2deg) translateY(-8px)}
+.d14-grid[data-layout="scatter"] .d14-card:nth-child(3){transform:rotate(-3deg) translateY(10px)}
+.d14-grid[data-layout="scatter"] .d14-card:nth-child(5){transform:rotate(4deg) translateY(-5px)}
+.d14-controls{display:flex;gap:.5rem;margin-top:1.5rem;flex-wrap:wrap}
+.d14-btn{font-size:.65rem;padding:.5rem 1rem}
+
+/* ---------- demo 15: scroll color interp ---------- */
+.d15-stage{position:relative;height:240vh}
+.d15-pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap;padding:2rem}
+.d15-orb{width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#1a2410,#0a1208);box-shadow:0 0 80px rgba(208,255,0,.0),inset 0 0 50px rgba(0,0,0,.5);transition:none;flex-shrink:0}
+.d15-info{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.75rem;display:flex;flex-direction:column;gap:.5rem;min-width:260px}
+.d15-row{display:flex;justify-content:space-between;gap:1rem;border-bottom:1px dashed var(--line-soft);padding-bottom:.4rem}
+.d15-k{color:var(--fg-mute);letter-spacing:.1em}
+.d15-v{color:var(--lime)}
+
+/* ---------- demo 16: SVG mask shapes ---------- */
+.d16-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;padding:1rem 0}
+.d16-card{position:relative}
+.d16-mask{aspect-ratio:1;background:linear-gradient(135deg,#0a1208,var(--bg-3));border:1px solid var(--line-soft)}
+.d16-card[data-mask="a"] .d16-mask{-webkit-mask:radial-gradient(circle 28px at 0% 50%,transparent 27px,#000 28px);mask:radial-gradient(circle 28px at 0% 50%,transparent 27px,#000 28px)}
+.d16-card[data-mask="b"] .d16-mask{-webkit-mask:radial-gradient(circle 28px at 100% 50%,transparent 27px,#000 28px);mask:radial-gradient(circle 28px at 100% 50%,transparent 27px,#000 28px)}
+.d16-card[data-mask="c"] .d16-mask{-webkit-mask:linear-gradient(135deg,transparent 40px,#000 41px);mask:linear-gradient(135deg,transparent 40px,#000 41px)}
+.d16-card[data-mask="d"] .d16-mask{-webkit-mask:linear-gradient(-135deg,transparent 40px,#000 41px);mask:linear-gradient(-135deg,transparent 40px,#000 41px)}
+.d16-card{background:none}
+.d16-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:1.25rem;color:var(--lime);font-weight:500;letter-spacing:.05em}
+.d16-content span{font-size:.65rem;letter-spacing:.3em;color:var(--fg-mute);margin-bottom:.35rem;font-family:'JetBrains Mono',ui-monospace,monospace}
+.d16-tag{position:absolute;top:.5rem;left:.5rem;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-mute);font-family:'JetBrains Mono',ui-monospace,monospace;background:rgba(0,0,0,.5);padding:.2rem .5rem;border-radius:3px}
+
+/* ---------- demo 17: menu image blend ---------- */
+.d17-stage{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;height:280px}
+.d17-col{position:relative;overflow:hidden;border-radius:3px;cursor:none;transition:transform .35s var(--cubic)}
+.d17-col:hover{transform:translateY(-8px)}
+.d17-img{position:absolute;inset:0;background-size:cover;background-position:center}
+.d17-img.i1{background:linear-gradient(135deg,#d2ff00,#5a7d00)}
+.d17-img.i2{background:linear-gradient(135deg,#7a9100,#1c2a04)}
+.d17-img.i3{background:linear-gradient(45deg,#a8c800,#3a4500)}
+.d17-img.i4{background:linear-gradient(225deg,#e8ff66,#7a9100)}
+.d17-img.i5{background:linear-gradient(315deg,#bdf039,#465800)}
+.d17-blend{position:absolute;inset:0;background:linear-gradient(135deg,#d2ff00,#101400);mix-blend-mode:difference;opacity:0;transition:opacity .45s var(--cubic)}
+.d17-col:hover .d17-blend{opacity:1}
+.d17-col::after{content:attr(data-nav-img);position:absolute;bottom:.5rem;left:.6rem;font-size:.7rem;letter-spacing:.2em;color:#0a0e07;font-weight:600;font-family:'JetBrains Mono',ui-monospace,monospace}
+
+/* ---------- demo 18: char hover flip ---------- */
+.d18-stage{display:flex;flex-direction:column;gap:1rem;padding:1.5rem 0}
+.d18-link{display:inline-block;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:300;letter-spacing:-.005em;color:var(--fg);text-decoration:none;width:fit-content}
+.d18-clip{display:inline-block;overflow:hidden;line-height:1.1;position:relative;height:1.1em}
+.d18-row{display:block;transition:transform .55s var(--cubic);will-change:transform}
+.d18-row span{display:inline-block;transition:transform .55s var(--cubic),color .35s;will-change:transform}
+.d18-row-2{position:absolute;top:100%;left:0;color:var(--lime)}
+.d18-link:hover .d18-row{transform:translateY(-100%)}
+.d18-link:hover .d18-row-2 span,.d18-link:hover .d18-row span{transition-delay:calc(var(--i,0) * 30ms)}
+.d18-link:hover .d18-row span:nth-child(1){--i:0}
+.d18-link:hover .d18-row span:nth-child(2){--i:1}
+.d18-link:hover .d18-row span:nth-child(3){--i:2}
+.d18-link:hover .d18-row span:nth-child(4){--i:3}
+.d18-link:hover .d18-row span:nth-child(5){--i:4}
+
+/* ---------- demo 19: cms calendar ---------- */
+.d19-stage{padding:1rem 0;max-width:520px;margin:0 auto}
+.d19-card{background:var(--bg-3);border:1px solid var(--line-soft);border-radius:4px;padding:1.5rem;transition:opacity .35s var(--cubic),transform .35s var(--cubic)}
+.d19-card.swap{opacity:0;transform:translateY(8px)}
+.d19-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.d19-flag{font-size:1.6rem;line-height:1}
+.d19-id{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;letter-spacing:.2em;color:var(--lime)}
+.d19-name{font-size:1.6rem;font-weight:300;letter-spacing:-.01em;line-height:1;margin-bottom:1.25rem}
+.d19-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-bottom:1.5rem;border-top:1px solid var(--line-soft);padding-top:1rem}
+.d19-cell .d19-k{font-size:.55rem;letter-spacing:.25em;color:var(--fg-mute);text-transform:uppercase;margin-bottom:.2rem;font-family:'JetBrains Mono',ui-monospace,monospace}
+.d19-cell .d19-v{font-size:.95rem;color:var(--fg);font-weight:500}
+.d19-schedule{border-top:1px solid var(--line-soft);padding-top:1rem;display:flex;flex-direction:column;gap:.4rem}
+.d19-srow{display:flex;justify-content:space-between;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.78rem}
+.d19-srow-k{color:var(--fg-mute);letter-spacing:.15em}
+.d19-srow-v{color:var(--fg)}
+.d19-srow-race{margin-top:.4rem;padding-top:.4rem;border-top:1px dashed var(--line-soft)}
+.d19-srow-race .d19-srow-k{color:var(--lime);font-weight:600}
+.d19-srow-race .d19-srow-v{color:var(--lime);font-weight:600}
+.d19-controls{display:flex;justify-content:space-between;gap:.5rem;margin-top:1.25rem}
+.d19-btn{flex:1;font-size:.7rem}
+
 /* ---------- demo 11: lime page-transition curtain ---------- */
 .d11-viewport{position:relative;height:380px;border:1px solid var(--line-soft);border-radius:4px;overflow:hidden;background:var(--bg-3)}
 .d11-page{position:absolute;inset:0;padding:2rem;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:.6rem}
@@ -380,14 +494,14 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
 <!-- ============== DEMOS ============== -->
 <section data-section="可玩 demo">
   <div class="shell">
-    <div class="eyebrow reveal">02 · 11 个能动手的 demo</div>
+    <div class="eyebrow reveal">02 · 19 个能动手的 demo</div>
     <h2 class="title-1 reveal">读到这里，先停下来 <em>玩一会儿</em>。</h2>
     <p class="lede reveal">每一个 demo 都对应原站的一个真实交互。点按钮、滚滚轮、拖鼠标，自己感受一遍。下面有源码片段说"它怎么做出来的"。</p>
 
     <!-- DEMO 1 -->
     <div class="demo" id="demo1">
       <div class="demo-head">
-        <div class="num">01 / 08</div>
+        <div class="num">01 / 19</div>
         <div class="name">字符级 stagger 入场 + 椭圆 clip 收缩</div>
         <div class="tags">GSAP · SplitText · power3.out</div>
       </div>
@@ -410,7 +524,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 2 -->
     <div class="demo" id="demo2">
       <div class="demo-head">
-        <div class="num">02 / 08</div>
+        <div class="num">02 / 19</div>
         <div class="name">隐形哨兵 div 切换导航主题（dark / light / lime）</div>
         <div class="tags">ScrollTrigger.onToggle · data-nav-theme-target</div>
       </div>
@@ -436,7 +550,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 3 -->
     <div class="demo" id="demo3">
       <div class="demo-head">
-        <div class="num">03 / 08</div>
+        <div class="num">03 / 19</div>
         <div class="name">scrub:true · 滚轮直接拽 3D 头盔</div>
         <div class="tags">ScrollTrigger.scrub · transform3d · 没有"自动播放"</div>
       </div>
@@ -465,7 +579,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 4 -->
     <div class="demo" id="demo4">
       <div class="demo-head">
-        <div class="num">04 / 08</div>
+        <div class="num">04 / 19</div>
         <div class="name">横向 pin 滚动（on-track 页的 horizontal-pin-wrap）</div>
         <div class="tags">ScrollTrigger.pin · translateX · 1 屏吃 3 屏</div>
       </div>
@@ -490,7 +604,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 5 -->
     <div class="demo" id="demo5">
       <div class="demo-head">
-        <div class="num">05 / 08</div>
+        <div class="num">05 / 19</div>
         <div class="name">速度敏感 marquee（往下滚加速，往上滚反向）</div>
         <div class="tags">ScrollTrigger.velocity · CSS keyframe play-state</div>
       </div>
@@ -513,7 +627,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 6 -->
     <div class="demo" id="demo6">
       <div class="demo-head">
-        <div class="num">06 / 08</div>
+        <div class="num">06 / 19</div>
         <div class="name">Rive 状态机的"一个文件 = 一台状态切换机"</div>
         <div class="tags">circuits.riv · data-rive-input-track</div>
       </div>
@@ -545,7 +659,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 7 -->
     <div class="demo" id="demo7">
       <div class="demo-head">
-        <div class="num">07 / 08</div>
+        <div class="num">07 / 19</div>
         <div class="name">1728 设计稿基准 · clamp 流体缩放</div>
         <div class="tags">clamp() · CSS custom property · 设计师友好</div>
       </div>
@@ -569,7 +683,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 8 -->
     <div class="demo" id="demo8">
       <div class="demo-head">
-        <div class="num">08 / 08</div>
+        <div class="num">08 / 19</div>
         <div class="name">"tap to lock" · 模态手势把页面让出来</div>
         <div class="tags">data-home-swipe-toggle · touch-action · 移动端神技</div>
       </div>
@@ -590,7 +704,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 9 -->
     <div class="demo" id="demo9">
       <div class="demo-head">
-        <div class="num">09 / 11</div>
+        <div class="num">09 / 19</div>
         <div class="name">自定义光标 + 悬停区域 reveal（on-track 页 highlights/schedule）</div>
         <div class="tags">data-mouse-area · data-mouse-reveal · clip-path tracking</div>
       </div>
@@ -621,7 +735,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 10 -->
     <div class="demo" id="demo10">
       <div class="demo-head">
-        <div class="num">10 / 11</div>
+        <div class="num">10 / 19</div>
         <div class="name">hover 自动播放视频（data-video-stream + Vimeo lazy load）</div>
         <div class="tags">data-stream-hover · IntersectionObserver · placeholder→stream</div>
       </div>
@@ -664,10 +778,216 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
       </div>
     </div>
 
+    <!-- DEMO 12 · flip-digit countdown -->
+    <div class="demo" id="demo12">
+      <div class="demo-head">
+        <div class="num">11 / 19</div>
+        <div class="name">倒计时翻页数字（on-track / calendar 页都用）</div>
+        <div class="tags">data-countdown-digit · yPercent flip · 每秒更新</div>
+      </div>
+      <div class="demo-body">
+        <div class="d12-stage">
+          <div class="d12-eyebrow">下一场比赛 · MONTRÉAL GP</div>
+          <div class="d12-row">
+            <div class="d12-cell"><div class="d12-num" data-countdown-digit="day"><span></span><span></span></div><div class="d12-lbl">days</div></div>
+            <div class="d12-sep">:</div>
+            <div class="d12-cell"><div class="d12-num" data-countdown-digit="hour"><span></span><span></span></div><div class="d12-lbl">hours</div></div>
+            <div class="d12-sep">:</div>
+            <div class="d12-cell"><div class="d12-num" data-countdown-digit="min"><span></span><span></span></div><div class="d12-lbl">mins</div></div>
+            <div class="d12-sep">:</div>
+            <div class="d12-cell"><div class="d12-num" data-countdown-digit="sec"><span></span><span></span></div><div class="d12-lbl">secs</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        每个数字位是一个上下两层的容器，新数字克隆到下沿、旧数字 <code>yPercent: -100</code> 滚出。<code>data-countdown-digit="day|hour|min|sec"</code> 让 JS 知道往哪个位置写。原站这个组件复用率极高——首页、on-track、calendar、partnerships 都用同一套。
+      </div>
+    </div>
+
+    <!-- DEMO 13 · oval-scroll arc text -->
+    <div class="demo" id="demo13">
+      <div class="demo-head">
+        <div class="num">12 / 19</div>
+        <div class="name">椭圆轨迹大字 · TRACK / OFFTRACK 那种弧形排版</div>
+        <div class="tags">data-oval-scroll · 字符 rotate · transform-origin 在弧心</div>
+      </div>
+      <div class="demo-body">
+        <div class="d13-stage">
+          <div class="d13-arc" id="d13Arc">
+            <div class="d13-arc-char" data-oval-scroll>O</div><div class="d13-arc-char" data-oval-scroll>F</div><div class="d13-arc-char" data-oval-scroll>F</div><div class="d13-arc-char" data-oval-scroll>T</div><div class="d13-arc-char" data-oval-scroll>R</div><div class="d13-arc-char" data-oval-scroll>A</div><div class="d13-arc-char" data-oval-scroll>C</div><div class="d13-arc-char" data-oval-scroll>K</div>
+          </div>
+          <div class="d13-controls">
+            <label>弧度 <input type="range" id="d13Curve" min="20" max="160" value="80"></label>
+            <label>半径 <input type="range" id="d13Radius" min="180" max="420" value="280"></label>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        每个字符独立 <code>rotate()</code> + 同一个 <code>transform-origin</code>（弧心），形成一段弧。<code>[split-text]:not[data-oval-scroll]</code> 这种反选选择器在原站 CSS 里出现——告诉我们标了 <code>data-oval-scroll</code> 的会走"另一条排版路径"。拽上面两个滑块调弧度和半径，看大字怎么弯。
+      </div>
+    </div>
+
+    <!-- DEMO 14 · GSAP FLIP layout morph -->
+    <div class="demo" id="demo14">
+      <div class="demo-head">
+        <div class="num">13 / 19</div>
+        <div class="name">布局变形（FLIP）· off-track 页的 data-heroflip="pos1/pos2/pos3"</div>
+        <div class="tags">First-Last-Invert-Play · 记录前后 rect · GSAP fromTo</div>
+      </div>
+      <div class="demo-body">
+        <div class="d14-stage">
+          <div class="d14-grid" id="d14Grid" data-layout="grid">
+            <div class="d14-card" data-color="lime"><span>01</span><em>HOME</em></div>
+            <div class="d14-card" data-color="dark"><span>02</span><em>HELMET</em></div>
+            <div class="d14-card" data-color="lime"><span>03</span><em>RACE</em></div>
+            <div class="d14-card" data-color="dark"><span>04</span><em>WIN</em></div>
+            <div class="d14-card" data-color="lime"><span>05</span><em>PODIUM</em></div>
+            <div class="d14-card" data-color="dark"><span>06</span><em>CHAMPION</em></div>
+          </div>
+          <div class="d14-controls">
+            <button class="btn d14-btn is-on" data-flip="grid">grid 3×2</button>
+            <button class="btn d14-btn" data-flip="row">row · 横排</button>
+            <button class="btn d14-btn" data-flip="stack">stack · 叠</button>
+            <button class="btn d14-btn" data-flip="scatter">scatter · 散开</button>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        点按钮看 6 张卡片"飞"到新位置。FLIP 是经典技术：<strong>F</strong>irst 记录前位置 → 应用新布局 <strong>L</strong>ast 记录后位置 → <strong>I</strong>nvert 用 transform 把卡片"反推"回前位置（视觉无变化）→ <strong>P</strong>lay 把 transform tween 到 0。所有人看到的是元素"飞过去"，但其实 DOM 早换了位置。原站的 <code>data-heroflip="pos1/pos2/pos3"</code> 让同一张图在 off-track 页不同章节"飞"过去。
+      </div>
+    </div>
+
+    <!-- DEMO 15 · scroll-driven color interpolation -->
+    <div class="demo" id="demo15">
+      <div class="demo-head">
+        <div class="num">14 / 19</div>
+        <div class="name">滚动驱动头盔色彩补间（on-track 页 data-gl-change-from/to）</div>
+        <div class="tags">scroll progress · hex 插值 · 同步 UI 文本</div>
+      </div>
+      <div class="demo-body" style="padding:0">
+        <div class="d15-stage" id="d15Stage">
+          <div class="d15-pin">
+            <div class="d15-orb" id="d15Orb"></div>
+            <div class="d15-info">
+              <div class="d15-row"><span class="d15-k">progress</span><span class="d15-v" id="d15Prog">0%</span></div>
+              <div class="d15-row"><span class="d15-k">color</span><span class="d15-v" id="d15Hex">#0a0e07</span></div>
+              <div class="d15-row"><span class="d15-k">data-gl-change-from</span><span class="d15-v">"dark-green"</span></div>
+              <div class="d15-row"><span class="d15-k">data-gl-change-to</span><span class="d15-v">"lime"</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        往下滚一屏，看圆球（"头盔"）颜色从暗绿 <code>#0a1208</code> 渐变到柠檬绿 <code>#d2ff00</code>。每帧根据 ScrollTrigger 的 progress（0→1）做 R/G/B 三通道线性插值，写回 CSS。原站把这写到 Three.js 的 uniform 里同时改 PBR 材质 baseColor，连**头盔反光的色温**也跟着变。
+      </div>
+    </div>
+
+    <!-- DEMO 16 · SVG mask container shapes -->
+    <div class="demo" id="demo16">
+      <div class="demo-head">
+        <div class="num">15 / 19</div>
+        <div class="name">SVG 异形容器 · data-helmet-item / mask-callout / mask-case</div>
+        <div class="tags">-webkit-mask-image · 不规则切角圆缺 · 不是 clip-path</div>
+      </div>
+      <div class="demo-body">
+        <div class="d16-grid">
+          <div class="d16-card" data-mask="a"><div class="d16-mask"><div class="d16-content"><span>01</span>NEXT RACE</div></div><div class="d16-tag">callout-left</div></div>
+          <div class="d16-card" data-mask="b"><div class="d16-mask"><div class="d16-content"><span>02</span>LAST LAP</div></div><div class="d16-tag">callout-right</div></div>
+          <div class="d16-card" data-mask="c"><div class="d16-mask"><div class="d16-content"><span>03</span>FASTEST</div></div><div class="d16-tag">case-left</div></div>
+          <div class="d16-card" data-mask="d"><div class="d16-mask"><div class="d16-content"><span>04</span>POINTS</div></div><div class="d16-tag">case-right</div></div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        4 张卡片用 4 个不同形状的 SVG 当容器外形——左凹缺、右凹缺、左切角、右切角。<code>-webkit-mask-image: url("...svg")</code> 把卡片"剪"成 SVG 的形状。CSS clip-path 也能做简单形状但**带凹缺/弧形组合就只能 SVG mask**。原站 off-track 页的卡片墙就是这套，对称的左右开口看上去像 HUD 仪表盘。
+      </div>
+    </div>
+
+    <!-- DEMO 17 · menu image blend-mode columns -->
+    <div class="demo" id="demo17">
+      <div class="demo-head">
+        <div class="num">16 / 19</div>
+        <div class="name">菜单图片轨道 + 鼠标穿过 blend-mode（nav-menu 神技）</div>
+        <div class="tags">data-nav-img · menu-img-blends · mix-blend-mode</div>
+      </div>
+      <div class="demo-body">
+        <div class="d17-stage" id="d17Stage">
+          <div class="d17-col" data-nav-img="1"><div class="d17-img i1"></div><div class="d17-blend"></div></div>
+          <div class="d17-col" data-nav-img="2"><div class="d17-img i2"></div><div class="d17-blend"></div></div>
+          <div class="d17-col" data-nav-img="3"><div class="d17-img i3"></div><div class="d17-blend"></div></div>
+          <div class="d17-col" data-nav-img="4"><div class="d17-img i4"></div><div class="d17-blend"></div></div>
+          <div class="d17-col" data-nav-img="5"><div class="d17-img i5"></div><div class="d17-blend"></div></div>
+        </div>
+        <p style="margin-top:1rem;font-size:.8rem;color:var(--fg-dim)">鼠标在色块间扫过，每列上盖一层 mix-blend-mode 的图层，色彩相互重叠。</p>
+      </div>
+      <div class="demo-foot">
+        nav 菜单展开时，主图轨道下盖了 3 层 <code>.menu-img-blend-1/2/3</code>，分别是 <code>mix-blend-mode: difference / multiply / screen</code>。鼠标 hover 时调每层 opacity，产生"图片之间相互染色"的效果——比单纯的滤镜更复杂、更"叠层"。
+      </div>
+    </div>
+
+    <!-- DEMO 18 · char-level hover link flip -->
+    <div class="demo" id="demo18">
+      <div class="demo-head">
+        <div class="num">17 / 19</div>
+        <div class="name">链接字符级 hover 翻页（整站每个 nav-link 都用）</div>
+        <div class="tags">data-anim="text-hover" · 上下两层字符 · stagger</div>
+      </div>
+      <div class="demo-body">
+        <div class="d18-stage">
+          <a class="d18-link" data-anim="text-hover" href="#"><span class="d18-clip"><span class="d18-row">H<span>o</span>m<span>e</span></span><span class="d18-row d18-row-2">H<span>o</span>m<span>e</span></span></span></a>
+          <a class="d18-link" data-anim="text-hover" href="#"><span class="d18-clip"><span class="d18-row">O<span>n</span>&nbsp;<span>T</span>r<span>a</span>c<span>k</span></span><span class="d18-row d18-row-2">O<span>n</span>&nbsp;<span>T</span>r<span>a</span>c<span>k</span></span></span></a>
+          <a class="d18-link" data-anim="text-hover" href="#"><span class="d18-clip"><span class="d18-row">O<span>f</span>f<span>&nbsp;</span>T<span>r</span>a<span>c</span>k</span><span class="d18-row d18-row-2">O<span>f</span>f<span>&nbsp;</span>T<span>r</span>a<span>c</span>k</span></span></a>
+          <a class="d18-link" data-anim="text-hover" href="#"><span class="d18-clip"><span class="d18-row">C<span>a</span>l<span>e</span>n<span>d</span>a<span>r</span></span><span class="d18-row d18-row-2">C<span>a</span>l<span>e</span>n<span>d</span>a<span>r</span></span></span></a>
+        </div>
+      </div>
+      <div class="demo-foot">
+        鼠标移到链接上，每个字符上滚一行高，下面藏着同一个字符的副本顶上来——看起来像"在原地翻面"。原站每个 nav link、social link、cta 按钮都套这个动作。字符级 stagger 让每个字母错峰翻面，比一整个单词一起滑出去优雅得多。
+      </div>
+    </div>
+
+    <!-- DEMO 19 · CMS-driven race calendar -->
+    <div class="demo" id="demo19">
+      <div class="demo-head">
+        <div class="num">18 / 19</div>
+        <div class="name">CMS 驱动的赛季日历 · prev/next 切换（calendar 页核心）</div>
+        <div class="tags">data-cal-list · data-cal-control · 字段填充</div>
+      </div>
+      <div class="demo-body">
+        <div class="d19-stage">
+          <div class="d19-card" id="d19Card">
+            <div class="d19-head">
+              <div class="d19-flag" id="d19Flag">🇲🇨</div>
+              <div class="d19-id" id="d19Id">04 / 24</div>
+            </div>
+            <div class="d19-name" id="d19Name" data-cal-list="circuit-name">Monaco GP</div>
+            <div class="d19-meta">
+              <div class="d19-cell"><div class="d19-k">circuit</div><div class="d19-v" id="d19Circuit" data-cal-list="circuit-id">Circuit de Monaco</div></div>
+              <div class="d19-cell"><div class="d19-k">length</div><div class="d19-v" id="d19Len" data-cal-list="circuit-lap-length">3.337 km</div></div>
+              <div class="d19-cell"><div class="d19-k">laps</div><div class="d19-v" id="d19Laps" data-cal-list="circuit-lap-amount">78</div></div>
+              <div class="d19-cell"><div class="d19-k">distance</div><div class="d19-v" id="d19Dist" data-cal-list="circuit-distance">260 km</div></div>
+            </div>
+            <div class="d19-schedule">
+              <div class="d19-srow"><span class="d19-srow-k">PRAC 1</span><span class="d19-srow-v" id="d19P1">Fri 13:30</span></div>
+              <div class="d19-srow"><span class="d19-srow-k">PRAC 2</span><span class="d19-srow-v" id="d19P2">Fri 17:00</span></div>
+              <div class="d19-srow"><span class="d19-srow-k">PRAC 3</span><span class="d19-srow-v" id="d19P3">Sat 12:30</span></div>
+              <div class="d19-srow"><span class="d19-srow-k">QUAL</span><span class="d19-srow-v" id="d19Q">Sat 16:00</span></div>
+              <div class="d19-srow d19-srow-race"><span class="d19-srow-k">RACE</span><span class="d19-srow-v" id="d19R">Sun 15:00</span></div>
+            </div>
+          </div>
+          <div class="d19-controls">
+            <button class="btn d19-btn" data-cal-control="previous-item">← prev</button>
+            <button class="btn d19-btn" data-cal-control="next-item">next →</button>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        点 prev / next 切换 6 场比赛。每场都有赛道名、长度、圈数、距离、4 个 session 时间——这些字段在原站全部来自 Webflow CMS Collection，<code>data-cal-list="circuit-name"</code> 等属性让 JS 知道哪个 DOM 节点对应哪个字段。<strong>整张赛季日历只是一个组件，数据从 CMS 拉</strong>，赛后还能动态同步成绩到 <code>-time-result</code> 字段里。
+      </div>
+    </div>
+
     <!-- DEMO 11 · the lime page-transition curtain -->
     <div class="demo" id="demo11">
       <div class="demo-head">
-        <div class="num">11 / 11</div>
+        <div class="num">19 / 19</div>
         <div class="name">全屏柠檬绿过场幕布 · page-transition.riv（点击链接时盖屏 → 揭屏）</div>
         <div class="tags">.transition-w · data-rive-primary · Taxi.js 切页 · Rive state-machine 3 input</div>
       </div>
@@ -830,7 +1150,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
           <tr><td>transitions-rive-isolate.js</td><td>独立外接脚本</td><td>把这个 Rive 实例从主线 RAF 隔离开，避免被 ScrollTrigger / Lenis 误调度</td></tr>
         </tbody>
       </table>
-      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 11</strong> 用纯 CSS 仿了曲线 SVG + 三态切换，时序跟原站 ~550ms 盖屏 + ~200ms 切换 + ~550ms 揭屏对齐。原站幕布形状更复杂，但**机制完全一样**。</p>
+      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 19</strong> 用纯 CSS 仿了曲线 SVG + 三态切换，时序跟原站 ~550ms 盖屏 + ~200ms 切换 + ~550ms 揭屏对齐。原站幕布形状更复杂，但**机制完全一样**。</p>
     </div>
 
     <div class="page-block reveal">
@@ -1370,6 +1690,161 @@ d9Zones.forEach(z => {
 });
 
 /* =================== DEMO 10 · already pure-CSS hover (no JS needed) === */
+
+/* =================== DEMO 12 · countdown digit flip === */
+(function(){
+  const cells = document.querySelectorAll('.d12-num');
+  const target = new Date(Date.now() + (32*86400 + 5*3600 + 21*60 + 17)*1000); // 32d 5h ahead
+  function pad(n){ return String(Math.max(0,n)).padStart(2,"0"); }
+  function set(cell, val){
+    const cur = cell.dataset.cur, nxt = pad(val);
+    if (cur === nxt) return;
+    const spans = cell.querySelectorAll('span');
+    const a = nxt[0], b = nxt[1];
+    spans[0].textContent = a;
+    spans[1].textContent = b;
+    cell.dataset.cur = nxt;
+    spans.forEach(s => { s.classList.remove('flip'); void s.offsetWidth; s.classList.add('flip'); });
+  }
+  function tick(){
+    const diff = target - new Date();
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor(diff%86400000/3600000);
+    const m = Math.floor(diff%3600000/60000);
+    const s = Math.floor(diff%60000/1000);
+    set(document.querySelector('[data-countdown-digit="day"]'), d);
+    set(document.querySelector('[data-countdown-digit="hour"]'), h);
+    set(document.querySelector('[data-countdown-digit="min"]'), m);
+    set(document.querySelector('[data-countdown-digit="sec"]'), s);
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+/* =================== DEMO 13 · oval arc layout === */
+(function(){
+  const arc = document.getElementById('d13Arc');
+  const chars = arc.querySelectorAll('.d13-arc-char');
+  const curveInput = document.getElementById('d13Curve');
+  const radiusInput = document.getElementById('d13Radius');
+  function layout(){
+    const totalDeg = parseFloat(curveInput.value);
+    const radius = parseFloat(radiusInput.value);
+    const n = chars.length;
+    const step = totalDeg / (n - 1);
+    chars.forEach((c,i) => {
+      const deg = -totalDeg/2 + step*i;
+      c.style.transformOrigin = `50% ${radius}px`;
+      c.style.transform = `translateX(-50%) rotate(${deg}deg)`;
+      c.style.left = "50%";
+      c.style.bottom = "0";
+    });
+  }
+  layout();
+  curveInput.addEventListener('input', layout);
+  radiusInput.addEventListener('input', layout);
+  window.addEventListener('resize', layout);
+})();
+
+/* =================== DEMO 14 · GSAP FLIP === */
+(function(){
+  const grid = document.getElementById('d14Grid');
+  const cards = grid.querySelectorAll('.d14-card');
+  const btns = document.querySelectorAll('.d14-btn');
+  function flipTo(layout){
+    const first = new Map();
+    cards.forEach(c => first.set(c, c.getBoundingClientRect()));
+    btns.forEach(b => b.classList.toggle('is-on', b.dataset.flip === layout));
+    grid.dataset.layout = layout;
+    cards.forEach(c => {
+      const last = c.getBoundingClientRect();
+      const f = first.get(c);
+      const dx = f.left - last.left;
+      const dy = f.top - last.top;
+      const sx = f.width / last.width;
+      const sy = f.height / last.height;
+      gsap.fromTo(c, { x: dx, y: dy, scaleX: sx, scaleY: sy }, { x:0, y:0, scaleX:1, scaleY:1, duration:.65, ease:"power3.inOut" });
+    });
+  }
+  btns.forEach(b => b.addEventListener('click', () => flipTo(b.dataset.flip)));
+})();
+
+/* =================== DEMO 15 · scroll color interp === */
+(function(){
+  const stage = document.getElementById('d15Stage');
+  const orb = document.getElementById('d15Orb');
+  const prog = document.getElementById('d15Prog');
+  const hex = document.getElementById('d15Hex');
+  const from = [10,18,8];   // #0a1208
+  const to   = [210,255,0]; // #d2ff00
+  function lerp(a,b,t){ return Math.round(a + (b-a)*t); }
+  function toHex(rgb){ return "#" + rgb.map(v => v.toString(16).padStart(2,"0")).join(""); }
+  ScrollTrigger.create({
+    trigger: stage, start: "top top", end: "bottom bottom", scrub: true,
+    onUpdate: self => {
+      const t = self.progress;
+      const r = lerp(from[0],to[0],t), g = lerp(from[1],to[1],t), b = lerp(from[2],to[2],t);
+      const c = toHex([r,g,b]);
+      orb.style.background = `radial-gradient(circle at 35% 35%, ${c}, ${toHex([Math.max(0,r-40),Math.max(0,g-40),Math.max(0,b-40)])})`;
+      orb.style.boxShadow = `0 0 ${20+t*80}px rgba(208,255,0,${t*.6}), inset 0 0 50px rgba(0,0,0,.5)`;
+      prog.textContent = (t*100).toFixed(0) + "%";
+      hex.textContent = c;
+    }
+  });
+})();
+
+/* =================== DEMO 17 · menu blend cursor === */
+(function(){
+  const cols = document.querySelectorAll('.d17-col');
+  cols.forEach(c => {
+    c.addEventListener('mousemove', e => {
+      const r = c.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      const blend = c.querySelector('.d17-blend');
+      blend.style.background = `radial-gradient(circle at ${x*100}% ${y*100}%, #d2ff00, #101400)`;
+    });
+  });
+})();
+
+/* =================== DEMO 19 · CMS calendar === */
+(function(){
+  const races = [
+    { id:"02 / 24", name:"Saudi Arabian GP", flag:"🇸🇦", circuit:"Jeddah Corniche", len:"6.174 km", laps:50, dist:"308 km", p1:"Thu 16:30", p2:"Thu 20:00", p3:"Fri 16:30", q:"Fri 20:00", r:"Sat 20:00" },
+    { id:"03 / 24", name:"Australian GP", flag:"🇦🇺", circuit:"Albert Park", len:"5.278 km", laps:58, dist:"306 km", p1:"Fri 12:30", p2:"Fri 16:00", p3:"Sat 12:30", q:"Sat 16:00", r:"Sun 15:00" },
+    { id:"04 / 24", name:"Monaco GP", flag:"🇲🇨", circuit:"Circuit de Monaco", len:"3.337 km", laps:78, dist:"260 km", p1:"Fri 13:30", p2:"Fri 17:00", p3:"Sat 12:30", q:"Sat 16:00", r:"Sun 15:00" },
+    { id:"05 / 24", name:"Canadian GP", flag:"🇨🇦", circuit:"Circuit Gilles Villeneuve", len:"4.361 km", laps:70, dist:"305 km", p1:"Fri 13:30", p2:"Fri 17:00", p3:"Sat 12:30", q:"Sat 16:00", r:"Sun 14:00" },
+    { id:"06 / 24", name:"British GP", flag:"🇬🇧", circuit:"Silverstone", len:"5.891 km", laps:52, dist:"306 km", p1:"Fri 12:30", p2:"Fri 16:00", p3:"Sat 11:30", q:"Sat 15:00", r:"Sun 15:00" },
+    { id:"07 / 24", name:"Japanese GP", flag:"🇯🇵", circuit:"Suzuka", len:"5.807 km", laps:53, dist:"307 km", p1:"Fri 11:30", p2:"Fri 15:00", p3:"Sat 11:30", q:"Sat 15:00", r:"Sun 14:00" },
+  ];
+  let i = 2; // monaco
+  const card = document.getElementById('d19Card');
+  function render(){
+    const r = races[i];
+    document.getElementById('d19Flag').textContent = r.flag;
+    document.getElementById('d19Id').textContent = r.id;
+    document.getElementById('d19Name').textContent = r.name;
+    document.getElementById('d19Circuit').textContent = r.circuit;
+    document.getElementById('d19Len').textContent = r.len;
+    document.getElementById('d19Laps').textContent = r.laps;
+    document.getElementById('d19Dist').textContent = r.dist;
+    document.getElementById('d19P1').textContent = r.p1;
+    document.getElementById('d19P2').textContent = r.p2;
+    document.getElementById('d19P3').textContent = r.p3;
+    document.getElementById('d19Q').textContent = r.q;
+    document.getElementById('d19R').textContent = r.r;
+  }
+  function go(delta){
+    card.classList.add('swap');
+    setTimeout(() => {
+      i = (i + delta + races.length) % races.length;
+      render();
+      card.classList.remove('swap');
+    }, 250);
+  }
+  document.querySelectorAll('[data-cal-control]').forEach(b => {
+    b.addEventListener('click', () => go(b.dataset.calControl === 'next-item' ? 1 : -1));
+  });
+})();
 
 /* =================== DEMO 11 · lime page-transition curtain === */
 const d11Viewport = document.getElementById("d11Viewport");
