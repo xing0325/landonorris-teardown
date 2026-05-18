@@ -101,7 +101,9 @@ section:last-of-type{border-bottom:none}
 .stack-card .desc{font-size:.85rem;color:var(--fg-dim);line-height:1.45}
 
 /* ---------- demo blocks ---------- */
-.demo{margin:3rem 0;background:var(--bg-2);border:1px solid var(--line-soft);border-radius:4px;overflow:hidden}
+.demo{margin:3rem 0;background:var(--bg-2);border:1px solid var(--line-soft);border-radius:4px;overflow:visible;position:relative;isolation:isolate}
+/* only non-pin demos clip overflow for clean rounded corners */
+.demo:not(:has(.pin-stage)) .demo-body,.demo:not(:has(.pin-stage)) .demo-head,.demo:not(:has(.pin-stage)) .demo-foot{overflow:hidden}
 .demo-head{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 1.5rem;border-bottom:1px solid var(--line-soft);gap:1rem;flex-wrap:wrap}
 .demo-head .num{font-size:.7rem;letter-spacing:.3em;color:var(--lime)}
 .demo-head .name{font-size:1rem;font-weight:500;flex:1;min-width:200px}
@@ -343,6 +345,47 @@ section:last-of-type{border-bottom:none}
 .d19-srow-race .d19-srow-v{color:var(--lime);font-weight:600}
 .d19-controls{display:flex;justify-content:space-between;gap:.5rem;margin-top:1.25rem}
 .d19-btn{flex:1;font-size:.7rem}
+
+/* ---------- demo 26 · magnetic button ---------- */
+.d26-stage{height:280px;display:grid;place-items:center;position:relative}
+.d26-btn{padding:1.2rem 2rem;border:1px solid var(--lime);background:transparent;color:var(--lime);font-size:.78rem;letter-spacing:.25em;text-transform:uppercase;border-radius:999px;display:inline-flex;align-items:center;gap:.7rem;font-family:'JetBrains Mono',ui-monospace,monospace;cursor:pointer;will-change:transform;transition:background .35s,color .35s}
+.d26-btn svg{width:.9rem;height:.9rem}
+.d26-btn:hover{background:var(--lime);color:#0a0e07}
+
+/* ---------- demo 27 · counter ---------- */
+.d27-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;padding:2rem 0}
+.d27-stat{padding:1.5rem;border:1px solid var(--line-soft);border-radius:4px;background:var(--bg-3)}
+.d27-num{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:200;color:var(--lime);line-height:1;margin-bottom:.5rem;font-feature-settings:"tnum";letter-spacing:-.02em;font-family:"Mona Sans",sans-serif}
+.d27-lbl{font-size:.6rem;letter-spacing:.25em;color:var(--fg-mute);text-transform:uppercase;font-family:'JetBrains Mono',ui-monospace,monospace}
+
+/* ---------- demo 28 · CSS dual marquee ---------- */
+.d28-row{overflow:hidden;margin-bottom:.4rem;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.d28-track{display:flex;gap:3rem;white-space:nowrap;font-size:clamp(1.2rem,3vw,2rem);font-weight:300;letter-spacing:-.005em;color:var(--lime);width:max-content}
+.d28-track span{display:inline-flex;align-items:center}
+.d28-track span::after{content:"·";margin-left:3rem;color:var(--fg-mute)}
+.d28-left .d28-track{animation:d28Left 18s linear infinite}
+.d28-right .d28-track{animation:d28Right 22s linear infinite}
+@keyframes d28Left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes d28Right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+/* ---------- demo 29 · scroll-driven font width ---------- */
+.d29-stage{position:relative;height:280vh}
+.d29-pin{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;padding:2rem}
+.d29-text{font-family:"Mona Sans",sans-serif;font-size:clamp(3rem,12vw,9rem);letter-spacing:-.02em;color:var(--lime);text-align:center;line-height:1}
+.d29-info{font-size:.75rem;color:var(--fg-mute);letter-spacing:.2em}
+.d29-info span{color:var(--lime);font-weight:600}
+
+/* ---------- demo 30 · hold-to-transition ---------- */
+.d30-stage{padding:3rem 0;text-align:center}
+.d30-btn{position:relative;padding:1.2rem 3rem;border:1px solid var(--lime);color:var(--lime);background:transparent;border-radius:999px;font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;font-family:'JetBrains Mono',ui-monospace,monospace;overflow:hidden;cursor:pointer;user-select:none;-webkit-user-select:none}
+.d30-fill{position:absolute;inset:0;background:var(--lime);transform:translateX(-100%);transition:transform .35s var(--cubic);will-change:transform}
+.d30-btn.holding .d30-fill{transform:translateX(0);transition:transform .6s linear}
+.d30-btn.holding .d30-txt{color:#0a0e07}
+.d30-btn.done{border-color:var(--lime)}
+.d30-btn.done .d30-fill{transform:translateX(0)}
+.d30-btn.done .d30-txt{color:#0a0e07}
+.d30-txt{position:relative;z-index:1;transition:color .35s}
+.d30-status{margin-top:1.5rem;font-size:.7rem;color:var(--fg-dim);letter-spacing:.2em;font-family:'JetBrains Mono',ui-monospace,monospace}
 
 /* ---------- pin progress hint ---------- */
 .pin-hint{position:absolute;left:50%;bottom:2rem;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--fg-mute);text-align:center;pointer-events:none;transition:opacity .35s var(--cubic);z-index:5}
@@ -634,47 +677,8 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <div class="splash-eyebrow reveal">选一个分类开始 · 25 demos · 8 categories</div>
     <h2 class="splash-title reveal">先看哪一类？<em>同类的都放在一起</em>，点卡片直接跳。</h2>
     <p class="splash-sub reveal">如果你只想学某一种动效（比如"滚动驱动"或者"微动效"），直接点对应分类——会跳到那一组的开头。也可以从头看完，从 A 类入场到 H 类媒体顺着滚下去。</p>
-    <div class="splash-grid">
-      <a class="splash-card splash-jump reveal" href="#filter-entrance" data-cat="entrance">
-        <div class="splash-card-head"><div class="splash-card-key">A</div><div class="splash-card-name">入场 &amp; 转场</div></div>
-        <div class="splash-card-meta">用户与页面的"门" · <strong>2</strong> demos</div>
-        <div class="splash-card-list"><span>01</span><span>02</span></div>
-      </a>
-      <a class="splash-card splash-jump reveal" href="#filter-scroll" data-cat="scroll">
-        <div class="splash-card-head"><div class="splash-card-key">B</div><div class="splash-card-name">滚动驱动</div></div>
-        <div class="splash-card-meta">把滚动条变成时间线 · <strong>6</strong> demos</div>
-        <div class="splash-card-list"><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span></div>
-      </a>
-      <a class="splash-card splash-jump reveal" href="#filter-nav" data-cat="nav">
-        <div class="splash-card-head"><div class="splash-card-key">C</div><div class="splash-card-name">导航 &amp; 主题</div></div>
-        <div class="splash-card-meta">section 间的色彩切换 · <strong>2</strong> demos</div>
-        <div class="splash-card-list"><span>09</span><span>10</span></div>
-      </a>
-      <a class="splash-card splash-jump reveal" href="#filter-micro" data-cat="micro">
-        <div class="splash-card-head"><div class="splash-card-key">D</div><div class="splash-card-name">微动效</div></div>
-        <div class="splash-card-meta">按钮 / 链接 / 字符的小动作 · <strong>3</strong> demos</div>
-        <div class="splash-card-list"><span>11</span><span>12</span><span>13</span></div>
-      </a>
-      <a class="splash-card splash-jump reveal" href="#filter-data" data-cat="data">
-        <div class="splash-card-head"><div class="splash-card-key">E</div><div class="splash-card-name">数据驱动</div></div>
-        <div class="splash-card-meta">CMS / 定时 / 计算 · <strong>2</strong> demos</div>
-        <div class="splash-card-list"><span>14</span><span>15</span></div>
-      </a>
-      <a class="splash-card splash-jump reveal" href="#filter-gesture" data-cat="gesture">
-        <div class="splash-card-head"><div class="splash-card-key">F</div><div class="splash-card-name">手势 &amp; 光标</div></div>
-        <div class="splash-card-meta">鼠标 / 触屏的硬件交互 · <strong>3</strong> demos</div>
-        <div class="splash-card-list"><span>16</span><span>17</span><span>18</span></div>
-      </a>
-      <a class="splash-card splash-jump reveal" href="#filter-visual" data-cat="visual">
-        <div class="splash-card-head"><div class="splash-card-key">G</div><div class="splash-card-name">视觉系统</div></div>
-        <div class="splash-card-meta">字体 / 布局 / 形状 / 容器 · <strong>5</strong> demos</div>
-        <div class="splash-card-list"><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span></div>
-      </a>
-      <a class="splash-card splash-jump reveal" href="#filter-media" data-cat="media">
-        <div class="splash-card-head"><div class="splash-card-key">H</div><div class="splash-card-name">媒体</div></div>
-        <div class="splash-card-meta">视频 / 图片相关 · <strong>2</strong> demos</div>
-        <div class="splash-card-list"><span>24</span><span>25</span></div>
-      </a>
+    <div class="splash-grid" id="splashGrid">
+      <!-- cards injected by JS based on CAT_MAP -->
     </div>
     <div class="splash-foot">
       <a href="#stack-section">先看技术栈 ↓</a>
@@ -733,7 +737,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 1 -->
     <div class="demo" id="demo1">
       <div class="demo-head">
-        <div class="num">01 / 25</div>
+        <div class="num">01 / 30</div>
         <div class="name">字符级 stagger 入场 + 椭圆 clip 收缩</div>
         <div class="tags">GSAP · SplitText · power3.out</div>
       </div>
@@ -755,7 +759,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 11 · the lime page-transition curtain -->
     <div class="demo" id="demo11">
       <div class="demo-head">
-        <div class="num">02 / 25</div>
+        <div class="num">02 / 30</div>
         <div class="name">全屏柠檬绿过场幕布 · page-transition.riv（点击链接时盖屏 → 揭屏）</div>
         <div class="tags">.transition-w · data-rive-primary · Taxi.js 切页 · Rive state-machine 3 input</div>
       </div>
@@ -806,7 +810,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 3 -->
     <div class="demo" id="demo3">
       <div class="demo-head">
-        <div class="num">03 / 25</div>
+        <div class="num">03 / 30</div>
         <div class="name">scrub:true · 滚轮直接拽 3D 头盔</div>
         <div class="tags">ScrollTrigger.scrub · transform3d · 没有"自动播放"</div>
       </div>
@@ -836,7 +840,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 4 -->
     <div class="demo" id="demo4">
       <div class="demo-head">
-        <div class="num">04 / 25</div>
+        <div class="num">04 / 30</div>
         <div class="name">横向 pin 滚动（on-track 页的 horizontal-pin-wrap）</div>
         <div class="tags">ScrollTrigger.pin · translateX · 1 屏吃 3 屏</div>
       </div>
@@ -860,7 +864,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 5 -->
     <div class="demo" id="demo5">
       <div class="demo-head">
-        <div class="num">05 / 25</div>
+        <div class="num">05 / 30</div>
         <div class="name">速度敏感 marquee（往下滚加速，往上滚反向）</div>
         <div class="tags">ScrollTrigger.velocity · CSS keyframe play-state</div>
       </div>
@@ -882,7 +886,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 15 · scroll-driven color interpolation -->
     <div class="demo" id="demo15">
       <div class="demo-head">
-        <div class="num">06 / 25</div>
+        <div class="num">06 / 30</div>
         <div class="name">滚动驱动头盔色彩补间（on-track 页 data-gl-change-from/to）</div>
         <div class="tags">scroll progress · hex 插值 · 同步 UI 文本</div>
       </div>
@@ -908,7 +912,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 19 · Rive scroll scrub (SVG path draw) -->
     <div class="demo" id="demo19svg">
       <div class="demo-head">
-        <div class="num">07 / 25</div>
+        <div class="num">07 / 30</div>
         <div class="name">Rive 滚动 scrub · 滚动条 = 播放头</div>
         <div class="tags">data-rive-scrolltrigger-start/-end · stroke-dashoffset · 声明式</div>
       </div>
@@ -937,7 +941,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 24 · per-section scroll progress -->
     <div class="demo" id="demo24">
       <div class="demo-head">
-        <div class="num">08 / 25</div>
+        <div class="num">08 / 30</div>
         <div class="name">章节滚动进度条 · 独立 demo 化（页面顶部那条线的局部版）</div>
         <div class="tags">scroll-indicator-bar · transform: scaleX</div>
       </div>
@@ -964,6 +968,29 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         全站顶部进度条是同一套机制的全局版，按整个文档的 <code>scrollHeight</code> 算。Off+Brand 这个 <code>.scroll-indicator</code> 是页面右下角的小元件——独立计算 + 独立 z-index。两层进度提示（全局 + 局部）让用户随时知道"我在哪 / 还有多少"。
       </div>
     </div>
+    <!-- DEMO 28 · CSS dual marquee -->
+    <div class="demo" id="demo28">
+      <div class="demo-head">
+        <div class="num">09 / 30</div>
+        <div class="name">CSS 无限 marquee · 双向 · 零 JS</div>
+        <div class="tags">data-css-marquee-list · @keyframes · 18s infinite</div>
+      </div>
+      <div class="demo-body" style="padding:1.5rem 0">
+        <div class="d28-row d28-left">
+          <div class="d28-track">
+            <span>2025 WDC</span><span>McLAREN MCL39</span><span>L4NDO N0RRIS</span><span>FROM BRISTOL</span><span>SINCE 2019</span><span>2025 WDC</span><span>McLAREN MCL39</span><span>L4NDO N0RRIS</span><span>FROM BRISTOL</span><span>SINCE 2019</span>
+          </div>
+        </div>
+        <div class="d28-row d28-right">
+          <div class="d28-track">
+            <span>P1</span><span>POLE</span><span>FASTEST LAP</span><span>HAT-TRICK</span><span>PODIUM</span><span>P1</span><span>POLE</span><span>FASTEST LAP</span><span>HAT-TRICK</span><span>PODIUM</span>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        两行文字相向滚动，<strong>完全没有 JS</strong>。CSS <code>@keyframes</code> + <code>animation: 18s linear infinite</code>。原站的 <code>data-css-marquee-list="left|right"</code> 就是这个机制。clone 一份子节点让循环看起来无缝。
+      </div>
+    </div>
     <div class="cat-divider" data-cat="nav" id="cat-nav">
       <div class="cat-divider-key">C</div>
       <div class="cat-divider-name">导航 & 主题</div>
@@ -973,7 +1000,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 2 -->
     <div class="demo" id="demo2">
       <div class="demo-head">
-        <div class="num">09 / 25</div>
+        <div class="num">10 / 30</div>
         <div class="name">隐形哨兵 div 切换导航主题（dark / light / lime）</div>
         <div class="tags">ScrollTrigger.onToggle · data-nav-theme-target</div>
       </div>
@@ -998,7 +1025,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 21 · Footer 三色主题 -->
     <div class="demo" id="demo21">
       <div class="demo-head">
-        <div class="num">10 / 25</div>
+        <div class="num">11 / 30</div>
         <div class="name">Footer 三色主题 · data-footer-theme="black|green|white"</div>
         <div class="tags">同 nav 哨兵思路 · footer-theme 由 section 决定</div>
       </div>
@@ -1029,7 +1056,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 6 -->
     <div class="demo" id="demo6">
       <div class="demo-head">
-        <div class="num">11 / 25</div>
+        <div class="num">12 / 30</div>
         <div class="name">Rive 状态机的"一个文件 = 一台状态切换机"</div>
         <div class="tags">circuits.riv · data-rive-input-track</div>
       </div>
@@ -1060,7 +1087,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 18 · char-level hover link flip -->
     <div class="demo" id="demo18">
       <div class="demo-head">
-        <div class="num">12 / 25</div>
+        <div class="num">13 / 30</div>
         <div class="name">链接字符级 hover 翻页（整站每个 nav-link 都用）</div>
         <div class="tags">data-anim="text-hover" · 上下两层字符 · stagger</div>
       </div>
@@ -1079,7 +1106,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 22 · Rive button micro-interactions -->
     <div class="demo" id="demo22">
       <div class="demo-head">
-        <div class="num">13 / 25</div>
+        <div class="num">14 / 30</div>
         <div class="name">按钮 hover 微动效合集 · data-btn-rive-rotate / -hover / -invert</div>
         <div class="tags">btn-ui.riv · rotate / invert / scale / shake</div>
       </div>
@@ -1107,6 +1134,45 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         OFF+BRAND 站上每个按钮都是 Rive 实例——hover 不是 CSS transition 那么简单，是状态机里的"图标自转 90deg / 内外反色 / scale 弹 / 抖动"。这 4 个按钮分别对应 <code>data-btn-rive-rotate="90"</code>、<code>data-btn-rive-invert="true"</code>、<code>data-btn-rive-hover="scale"</code>、<code>data-btn-rive-hover="shake"</code>。我这里用 CSS 仿了交互——原版每个图标也都是 Rive 矢量动画。
       </div>
     </div>
+    <!-- DEMO 26 · magnetic button -->
+    <div class="demo" id="demo26">
+      <div class="demo-head">
+        <div class="num">15 / 30</div>
+        <div class="name">磁力按钮 · 鼠标靠近被吸过去</div>
+        <div class="tags">mousemove · lerp · transform translate · ease 0.18</div>
+      </div>
+      <div class="demo-body">
+        <div class="d26-stage" id="d26Stage">
+          <button class="d26-btn" id="d26Btn">
+            <span>Race In</span>
+            <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="currentColor" fill="none" stroke-width="1.5"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="demo-foot">
+        鼠标在 stage 内移动，距按钮 200px 半径内开始引力（distance ↓ → pull force ↑）。用 <code>lerp(current, target, 0.18)</code> 平滑过渡，每帧 RAF 更新 transform。OFF+BRAND 的 cta 按钮 hover 区都有这个磁吸感。
+      </div>
+    </div>
+    <!-- DEMO 30 · hold-to-transition button -->
+    <div class="demo" id="demo30">
+      <div class="demo-head">
+        <div class="num">16 / 30</div>
+        <div class="name">Hold-to-transition · 按住 0.6s 才触发</div>
+        <div class="tags">mousedown timer · 进度环 · 防误触</div>
+      </div>
+      <div class="demo-body">
+        <div class="d30-stage">
+          <button class="d30-btn" id="d30Btn">
+            <span class="d30-fill"></span>
+            <span class="d30-txt" id="d30Txt">Hold to enter</span>
+          </button>
+          <div class="d30-status mono" id="d30Status">等待按下 ...</div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        高级 cta 越来越多用 hold-to-confirm 设计：手感更重、确认更慎重。按住按钮直到进度条充满 (0.6s) 才触发，松手取消。OFF+BRAND 某些跳转按钮用了这种模式，防止用户误点。
+      </div>
+    </div>
     <div class="cat-divider" data-cat="data" id="cat-data">
       <div class="cat-divider-key">E</div>
       <div class="cat-divider-name">数据驱动</div>
@@ -1116,7 +1182,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 12 · flip-digit countdown -->
     <div class="demo" id="demo12">
       <div class="demo-head">
-        <div class="num">14 / 25</div>
+        <div class="num">17 / 30</div>
         <div class="name">倒计时翻页数字（on-track / calendar 页都用）</div>
         <div class="tags">data-countdown-digit · yPercent flip · 每秒更新</div>
       </div>
@@ -1141,7 +1207,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 19 · CMS-driven race calendar -->
     <div class="demo" id="demo19">
       <div class="demo-head">
-        <div class="num">15 / 25</div>
+        <div class="num">18 / 30</div>
         <div class="name">CMS 驱动的赛季日历 · prev/next 切换（calendar 页核心）</div>
         <div class="tags">data-cal-list · data-cal-control · 字段填充</div>
       </div>
@@ -1177,6 +1243,25 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         点 prev / next 切换 6 场比赛。每场都有赛道名、长度、圈数、距离、4 个 session 时间——这些字段在原站全部来自 Webflow CMS Collection，<code>data-cal-list="circuit-name"</code> 等属性让 JS 知道哪个 DOM 节点对应哪个字段。<strong>整张赛季日历只是一个组件，数据从 CMS 拉</strong>，赛后还能动态同步成绩到 <code>-time-result</code> 字段里。
       </div>
     </div>
+    <!-- DEMO 27 · scroll counter -->
+    <div class="demo" id="demo27">
+      <div class="demo-head">
+        <div class="num">19 / 30</div>
+        <div class="name">滚动触发数字计数器</div>
+        <div class="tags">ScrollTrigger once · GSAP snap · power2.out</div>
+      </div>
+      <div class="demo-body">
+        <div class="d27-grid">
+          <div class="d27-stat"><div class="d27-num" data-counter data-to="42">0</div><div class="d27-lbl">PODIUMS</div></div>
+          <div class="d27-stat"><div class="d27-num" data-counter data-to="19">0</div><div class="d27-lbl">RACE WINS</div></div>
+          <div class="d27-stat"><div class="d27-num" data-counter data-to="28">0</div><div class="d27-lbl">POLES</div></div>
+          <div class="d27-stat"><div class="d27-num" data-counter data-to="180">0</div><div class="d27-lbl">RACE STARTS</div></div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        把这个 demo 滚到视口里，4 个数字会从 0 渐增到目标值。一次性触发（<code>once: true</code>），不会因为再次滚回又开始动。<code>snap: { textContent: 1 }</code> 让数字按整数跳，不出现 41.74。原站每个统计进场都用这个。
+      </div>
+    </div>
     <div class="cat-divider" data-cat="gesture" id="cat-gesture">
       <div class="cat-divider-key">F</div>
       <div class="cat-divider-name">手势 & 光标</div>
@@ -1186,7 +1271,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 8 -->
     <div class="demo" id="demo8">
       <div class="demo-head">
-        <div class="num">16 / 25</div>
+        <div class="num">20 / 30</div>
         <div class="name">"tap to lock" · 模态手势把页面让出来</div>
         <div class="tags">data-home-swipe-toggle · touch-action · 移动端神技</div>
       </div>
@@ -1206,7 +1291,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 9 -->
     <div class="demo" id="demo9">
       <div class="demo-head">
-        <div class="num">17 / 25</div>
+        <div class="num">21 / 30</div>
         <div class="name">自定义光标 + 悬停区域 reveal（on-track 页 highlights/schedule）</div>
         <div class="tags">data-mouse-area · data-mouse-reveal · clip-path tracking</div>
       </div>
@@ -1236,7 +1321,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 17 · menu image blend-mode columns -->
     <div class="demo" id="demo17">
       <div class="demo-head">
-        <div class="num">18 / 25</div>
+        <div class="num">22 / 30</div>
         <div class="name">菜单图片轨道 + 鼠标穿过 blend-mode（nav-menu 神技）</div>
         <div class="tags">data-nav-img · menu-img-blends · mix-blend-mode</div>
       </div>
@@ -1263,7 +1348,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 7 -->
     <div class="demo" id="demo7">
       <div class="demo-head">
-        <div class="num">19 / 25</div>
+        <div class="num">23 / 30</div>
         <div class="name">1728 设计稿基准 · clamp 流体缩放</div>
         <div class="tags">clamp() · CSS custom property · 设计师友好</div>
       </div>
@@ -1286,7 +1371,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 13 · oval-scroll arc text -->
     <div class="demo" id="demo13">
       <div class="demo-head">
-        <div class="num">20 / 25</div>
+        <div class="num">24 / 30</div>
         <div class="name">椭圆轨迹大字 · TRACK / OFFTRACK 那种弧形排版</div>
         <div class="tags">data-oval-scroll · 字符 rotate · transform-origin 在弧心</div>
       </div>
@@ -1308,7 +1393,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 14 · GSAP FLIP layout morph -->
     <div class="demo" id="demo14">
       <div class="demo-head">
-        <div class="num">21 / 25</div>
+        <div class="num">25 / 30</div>
         <div class="name">布局变形（FLIP）· off-track 页的 data-heroflip="pos1/pos2/pos3"</div>
         <div class="tags">First-Last-Invert-Play · 记录前后 rect · GSAP fromTo</div>
       </div>
@@ -1337,7 +1422,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 16 · SVG mask container shapes -->
     <div class="demo" id="demo16">
       <div class="demo-head">
-        <div class="num">22 / 25</div>
+        <div class="num">26 / 30</div>
         <div class="name">SVG 异形容器 · data-helmet-item / mask-callout / mask-case</div>
         <div class="tags">-webkit-mask-image · 不规则切角圆缺 · 不是 clip-path</div>
       </div>
@@ -1356,7 +1441,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 20 · Variable Font 双轴 -->
     <div class="demo" id="demo20">
       <div class="demo-head">
-        <div class="num">23 / 25</div>
+        <div class="num">27 / 30</div>
         <div class="name">Variable Font 双轴 · Mona Sans wdth + wght</div>
         <div class="tags">font-variation-settings · 一个 woff2 = 无数粗细 × 宽度</div>
       </div>
@@ -1374,6 +1459,27 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         拽下面两个滑块，看 LANDO NORRIS 实时变粗 / 变窄。这是一个 woff2 文件能做到的——可变字体的 <strong>wght</strong>（粗细）和 <strong>wdth</strong>（字宽）两个轴可以独立调。原站用的就是 GitHub 开源的 Mona Sans，每个标题在不同 section 的字宽都微调过——这种"字宽呼吸"靠静态字体根本做不到。
       </div>
     </div>
+    <!-- DEMO 29 · scroll-driven font width -->
+    <div class="demo" id="demo29">
+      <div class="demo-head">
+        <div class="num">28 / 30</div>
+        <div class="name">滚动驱动字宽变化 · Mona Sans wdth axis</div>
+        <div class="tags">ScrollTrigger scrub · font-variation-settings · 75→125</div>
+      </div>
+      <div class="demo-body" style="padding:0">
+        <div class="d29-stage pin-stage" id="d29Stage" data-pin-state="start">
+          <div class="pin-hint pin-hint-start is-start"><span>↓ 滚动看字变胖</span><span class="arrow"></span></div>
+          <div class="pin-hint pin-hint-done is-done"><span>✓ 已达最宽 · 继续往下</span><span class="arrow"></span></div>
+          <div class="d29-pin">
+            <div class="d29-text" id="d29Text" style="font-variation-settings:'wght' 300, 'wdth' 75">CHAMPION</div>
+            <div class="d29-info mono">wdth: <span id="d29Out">75</span> · wght: <span id="d29Out2">300</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        Variable Font + ScrollTrigger 的合奏：滚动 progress 0→1 同时驱动 <code>wdth</code> 75→125 和 <code>wght</code> 300→700。字从瘦弱变粗壮 —— 一个 woff2 文件就够，**完全没换字体**。OFF+BRAND 在 hero 小幅做过这个动作。
+      </div>
+    </div>
     <div class="cat-divider" data-cat="media" id="cat-media">
       <div class="cat-divider-key">H</div>
       <div class="cat-divider-name">媒体</div>
@@ -1383,7 +1489,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 10 -->
     <div class="demo" id="demo10">
       <div class="demo-head">
-        <div class="num">24 / 25</div>
+        <div class="num">29 / 30</div>
         <div class="name">hover 自动播放视频（data-video-stream + Vimeo lazy load）</div>
         <div class="tags">data-stream-hover · IntersectionObserver · placeholder→stream</div>
       </div>
@@ -1428,7 +1534,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 23 · Stat hover image swap -->
     <div class="demo" id="demo23">
       <div class="demo-head">
-        <div class="num">25 / 25</div>
+        <div class="num">30 / 30</div>
         <div class="name">Stat hover 图替换 · data-stat-hover-img</div>
         <div class="tags">on-track 页统计卡 · 鼠标进 → 大图淡入</div>
       </div>
@@ -1581,7 +1687,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
           <tr><td>data-mouse-track</td><td>仅追踪光标但不揭示（用于位移/视差）</td><td>monitor pointerEvent, update CSS var</td></tr>
         </tbody>
       </table>
-      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 17</strong> 演示了这套。</p>
+      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 21</strong> 演示了这套。</p>
     </div>
 
     <div class="page-block reveal">
@@ -1611,7 +1717,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
           <tr><td>data-stream-muted/-loop/-autoplay</td><td>Vimeo Player API 参数</td><td>透传给 iframe</td></tr>
         </tbody>
       </table>
-      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 24</strong> 演示了这套。最大价值：<strong>视频不进视野 / 没 hover 就不下载流</strong>。</p>
+      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 29</strong> 演示了这套。最大价值：<strong>视频不进视野 / 没 hover 就不下载流</strong>。</p>
     </div>
 
     <div class="page-block reveal">
@@ -2267,6 +2373,110 @@ d9Zones.forEach(z => {
   });
 })();
 
+/* =================== DEMO 26 · magnetic button === */
+(function(){
+  const stage = document.getElementById('d26Stage');
+  const btn = document.getElementById('d26Btn');
+  if(!stage||!btn) return;
+  let tx=0,ty=0,cx=0,cy=0,inside=false;
+  stage.addEventListener('mouseenter', () => { inside=true; });
+  stage.addEventListener('mouseleave', () => { inside=false; tx=0; ty=0; });
+  stage.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const bx = r.left+r.width/2, by = r.top+r.height/2;
+    const dx = e.clientX-bx, dy = e.clientY-by;
+    const dist = Math.sqrt(dx*dx+dy*dy);
+    const radius = 200;
+    if (dist < radius){
+      const force = (radius-dist)/radius * 0.45;
+      tx = dx*force; ty = dy*force;
+    } else { tx=0; ty=0; }
+  });
+  function tick(){
+    cx += (tx-cx)*0.18;
+    cy += (ty-cy)*0.18;
+    btn.style.transform = `translate(${cx.toFixed(2)}px, ${cy.toFixed(2)}px)`;
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+/* =================== DEMO 27 · scroll counter === */
+(function(){
+  document.querySelectorAll('[data-counter]').forEach(el => {
+    const to = parseInt(el.dataset.to, 10);
+    ScrollTrigger.create({
+      trigger: el, start: "top 85%", once: true,
+      onEnter: () => {
+        const obj = { v: 0 };
+        gsap.to(obj, { v: to, duration: 1.6, ease: "power2.out", onUpdate: () => {
+          el.textContent = Math.floor(obj.v);
+        }, onComplete: () => { el.textContent = to; }});
+      }
+    });
+  });
+})();
+
+/* =================== DEMO 29 · scroll-driven font width === */
+(function(){
+  const stage = document.getElementById('d29Stage');
+  const text = document.getElementById('d29Text');
+  const out = document.getElementById('d29Out');
+  const out2 = document.getElementById('d29Out2');
+  if(!stage||!text) return;
+  ScrollTrigger.create({
+    trigger: stage, start: "top top", end: "bottom bottom", scrub: true,
+    onUpdate: self => {
+      const t = self.progress;
+      const wdth = 75 + t*50;
+      const wght = 300 + t*400;
+      text.style.fontVariationSettings = `'wght' ${wght.toFixed(0)}, 'wdth' ${wdth.toFixed(0)}`;
+      out.textContent = wdth.toFixed(0);
+      out2.textContent = wght.toFixed(0);
+      stage.dataset.pinState = t < .08 ? "start" : (t > .92 ? "end" : "mid");
+    }
+  });
+})();
+
+/* =================== DEMO 30 · hold-to-transition === */
+(function(){
+  const btn = document.getElementById('d30Btn');
+  const txt = document.getElementById('d30Txt');
+  const status = document.getElementById('d30Status');
+  if(!btn) return;
+  let timer = null;
+  function start(e){
+    if (e) e.preventDefault();
+    if (btn.classList.contains('done')) {
+      btn.classList.remove('done');
+      txt.textContent = "Hold to enter";
+    }
+    btn.classList.add('holding');
+    status.textContent = "按住中 · 别松手 · 0.6s";
+    timer = setTimeout(() => {
+      btn.classList.remove('holding');
+      btn.classList.add('done');
+      txt.textContent = "✓ Entered";
+      status.textContent = "触发成功 · hold-to-confirm 完成";
+      timer = null;
+    }, 600);
+  }
+  function cancel(){
+    if (timer) { clearTimeout(timer); timer = null;
+      btn.classList.remove('holding');
+      status.textContent = "取消了 · 需要按住 0.6 秒才触发";
+    } else if (btn.classList.contains('holding')) {
+      btn.classList.remove('holding');
+    }
+  }
+  btn.addEventListener('mousedown', start);
+  btn.addEventListener('touchstart', start, {passive:false});
+  btn.addEventListener('mouseup', cancel);
+  btn.addEventListener('mouseleave', cancel);
+  btn.addEventListener('touchend', cancel);
+  btn.addEventListener('touchcancel', cancel);
+})();
+
 /* =================== smooth-jump for all in-page hash links === */
 (function(){
   function jumpTo(id){
@@ -2326,7 +2536,12 @@ const CAT_MAP = {
   demo22:   {key:"D",name:"微动效",cat:"micro"},
   demo23:   {key:"H",name:"媒体",cat:"media"},
   demo24:   {key:"B",name:"滚动驱动",cat:"scroll"},
-  demo11:   {key:"A",name:"入场",cat:"entrance"}
+  demo11:   {key:"A",name:"入场",cat:"entrance"},
+  demo26:   {key:"D",name:"微动效",cat:"micro"},
+  demo27:   {key:"E",name:"数据驱动",cat:"data"},
+  demo28:   {key:"B",name:"滚动驱动",cat:"scroll"},
+  demo29:   {key:"G",name:"视觉系统",cat:"visual"},
+  demo30:   {key:"D",name:"微动效",cat:"micro"}
 };
 
 const CAT_NAMES = {
@@ -2354,6 +2569,47 @@ const CAT_NAMES = {
   });
   // also tag cat-dividers (they already have data-cat from the script)
   document.querySelectorAll('.cat-divider').forEach(d => d.classList.add('is-cat-div'));
+})();
+
+/* =================== render splash-grid dynamically from CAT_MAP === */
+(function renderSplashGrid(){
+  const grid = document.getElementById('splashGrid');
+  if (!grid) return;
+  // collect demos by category, in DOM order
+  const byCat = {};
+  document.querySelectorAll('.demo').forEach(d => {
+    const m = CAT_MAP[d.id]; if (!m) return;
+    (byCat[m.cat] = byCat[m.cat] || []).push(d);
+  });
+  const order = ["entrance","scroll","nav","micro","data","gesture","visual","media"];
+  const subtitle = {
+    entrance:"用户与页面的\"门\"",
+    scroll:"把滚动条变成时间线",
+    nav:"section 间的色彩切换",
+    micro:"按钮 / 链接 / 字符的小动作",
+    data:"CMS / 定时 / 计算",
+    gesture:"鼠标 / 触屏的硬件交互",
+    visual:"字体 / 布局 / 形状 / 容器",
+    media:"视频 / 图片相关"
+  };
+  let html = "";
+  order.forEach(cat => {
+    const list = byCat[cat] || [];
+    if (!list.length) return;
+    const meta = CAT_NAMES[cat];
+    // get the displayed numbers (.num textContent) of each demo
+    const nums = list.map(d => {
+      const t = d.querySelector('.num')?.textContent?.trim() || '';
+      const m = /^(\d+)/.exec(t);
+      return m ? m[1] : '';
+    }).filter(Boolean);
+    html += `<a class="splash-card splash-jump reveal" href="#filter-${cat}" data-cat="${cat}">
+      <div class="splash-card-head"><div class="splash-card-key">${meta.key}</div><div class="splash-card-name">${meta.name}</div></div>
+      <div class="splash-card-meta">${subtitle[cat]} · <strong>${list.length}</strong> demos</div>
+      <div class="splash-card-list">${nums.map(n => `<span>${n}</span>`).join('')}</div>
+    </a>`;
+  });
+  grid.innerHTML = html;
 })();
 
 /* =================== focus mode (filter by category) === */
