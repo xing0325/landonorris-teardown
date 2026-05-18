@@ -134,7 +134,7 @@ section:last-of-type{border-bottom:none}
 .d2-readout .v{color:var(--lime);font-weight:600}
 
 /* ---------- demo 3: scroll-driven 3D ---------- */
-.d3-stage{position:relative;height:160vh;background:linear-gradient(to bottom,var(--bg-2),var(--bg-3))}
+.d3-stage{position:relative;height:340vh;background:linear-gradient(to bottom,var(--bg-2),var(--bg-3))}
 .d3-pin{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden}
 .d3-helmet{width:240px;height:240px;position:relative;transform-style:preserve-3d;will-change:transform}
 .d3-helmet .face{position:absolute;inset:0;border:1px solid var(--lime);background:linear-gradient(135deg,rgba(208,255,0,.05),rgba(208,255,0,.18));backdrop-filter:blur(2px)}
@@ -273,7 +273,7 @@ section:last-of-type{border-bottom:none}
 .d14-btn{font-size:.65rem;padding:.5rem 1rem}
 
 /* ---------- demo 15: scroll color interp ---------- */
-.d15-stage{position:relative;height:240vh}
+.d15-stage{position:relative;height:320vh}
 .d15-pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap;padding:2rem}
 .d15-orb{width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#1a2410,#0a1208);box-shadow:0 0 80px rgba(208,255,0,.0),inset 0 0 50px rgba(0,0,0,.5);transition:none;flex-shrink:0}
 .d15-info{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.75rem;display:flex;flex-direction:column;gap:.5rem;min-width:260px}
@@ -344,6 +344,43 @@ section:last-of-type{border-bottom:none}
 .d19-controls{display:flex;justify-content:space-between;gap:.5rem;margin-top:1.25rem}
 .d19-btn{flex:1;font-size:.7rem}
 
+/* ---------- pin progress hint ---------- */
+.pin-hint{position:absolute;left:50%;bottom:2rem;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--fg-mute);text-align:center;pointer-events:none;transition:opacity .35s var(--cubic);z-index:5}
+.pin-hint.is-start{color:var(--lime)}
+.pin-hint.is-done{color:var(--lime)}
+.pin-hint .arrow{width:1px;height:1.4rem;background:currentColor;position:relative}
+.pin-hint .arrow::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%) rotate(45deg);width:.5rem;height:.5rem;border-right:1px solid currentColor;border-bottom:1px solid currentColor}
+.pin-hint.is-done .arrow{animation:pinHintDone 1.2s var(--cubic) infinite}
+@keyframes pinHintDone{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+.pin-stage[data-pin-state="start"] .pin-hint-done,
+.pin-stage[data-pin-state="mid"] .pin-hint-done,
+.pin-stage[data-pin-state="end"] .pin-hint-start{opacity:0}
+.pin-stage[data-pin-state="end"] .pin-hint-mid{opacity:0}
+
+/* ---------- filter mode (only-this-category view) ---------- */
+.filter-bar{position:fixed;top:4.5rem;left:50%;transform:translateX(-50%);display:none;align-items:center;gap:1rem;padding:.6rem 1rem .6rem 1.2rem;background:rgba(10,14,7,.92);backdrop-filter:blur(12px);border:1px solid var(--lime);border-radius:999px;z-index:35;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);font-family:'JetBrains Mono',ui-monospace,monospace}
+body[data-filter] .filter-bar{display:inline-flex;animation:filterBarIn .4s var(--cubic)}
+@keyframes filterBarIn{from{opacity:0;transform:translateX(-50%) translateY(-8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.filter-bar .filter-key{display:inline-grid;place-items:center;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--lime);color:#0a0e07;font-weight:700;font-size:.65rem}
+.filter-bar .filter-name{color:var(--lime)}
+.filter-bar .filter-count{color:var(--fg-dim);font-weight:400}
+.filter-bar .filter-back{padding:.4rem .9rem;border:1px solid var(--lime);border-radius:999px;color:var(--lime);cursor:pointer;background:transparent;font-family:inherit;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;transition:background .25s,color .25s}
+.filter-bar .filter-back:hover{background:var(--lime);color:#0a0e07}
+
+/* in filter mode, hide non-active demos / dividers and other sections */
+body[data-filter] .cat-divider:not(.is-active){display:none}
+body[data-filter] .demo:not(.is-active){display:none}
+body[data-filter] #stack-section,
+body[data-filter] #pages-section,
+body[data-filter] section[data-section="全局系统"],
+body[data-filter] section[data-section="资源清单"],
+body[data-filter] section[data-section="可抄配方"],
+body[data-filter] section[data-section="收尾"]{display:none}
+body[data-filter] .cat-toc{display:none}
+body[data-filter] .splash{padding:6rem 0 3rem;min-height:0}
+body[data-filter] .splash-grid .splash-card:not(.is-active){opacity:.35;transform:scale(.95)}
+body[data-filter] .splash-grid .splash-card.is-active{border-color:var(--lime);box-shadow:0 0 0 1px var(--lime)}
+
 /* ---------- category dividers + scroll-margin for anchor jumps ---------- */
 .demo{scroll-margin-top:6rem}
 .cat-divider{scroll-margin-top:6rem;display:flex;align-items:center;gap:1rem;padding:3rem 0 1.5rem;margin-top:2rem;border-top:1px solid var(--line-soft)}
@@ -396,7 +433,7 @@ html{scroll-behavior:smooth}
 .cat-pill::before{content:"";width:.5rem;height:.5rem;background:var(--lime);border-radius:50%}
 
 /* ---------- demo 19 (Rive scrub SVG draw) · d20- ---------- */
-.d20-stage{position:relative;height:200vh;background:linear-gradient(to bottom,var(--bg-2),var(--bg-3))}
+.d20-stage{position:relative;height:320vh;background:linear-gradient(to bottom,var(--bg-2),var(--bg-3))}
 .d20-pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2rem;padding:2rem}
 .d20-svg{width:min(600px,90%);height:auto;display:block}
 .d20-info{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.75rem;display:flex;flex-direction:column;gap:.4rem;min-width:300px;max-width:90%}
@@ -448,7 +485,7 @@ html{scroll-behavior:smooth}
 @media(max-width:600px){.d24-grid{grid-template-columns:1fr}}
 
 /* ---------- demo 24 (per-section scroll progress) · d25- ---------- */
-.d25-stage{position:relative;height:200vh;background:linear-gradient(to bottom,var(--bg-2),var(--bg-3))}
+.d25-stage{position:relative;height:280vh;background:linear-gradient(to bottom,var(--bg-2),var(--bg-3))}
 .d25-bar{position:sticky;top:0;left:0;right:0;height:3px;background:var(--bg);z-index:5;overflow:hidden}
 .d25-bar-fill{width:100%;height:100%;background:var(--lime);transform-origin:0 50%;transform:scaleX(0);transition:transform .1s linear}
 .d25-content{padding:25vh 2rem;display:flex;flex-direction:column;gap:30vh}
@@ -559,6 +596,14 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
   <div class="nav-section">当前章节 · <span id="navSection">入场</span></div>
 </nav>
 
+<!-- floating filter bar (shown in focus mode) -->
+<div class="filter-bar" id="filterBar">
+  <span class="filter-key" id="filterKey">B</span>
+  <span class="filter-name" id="filterName">滚动驱动</span>
+  <span class="filter-count" id="filterCount">· 6 demos</span>
+  <button class="filter-back" id="filterBack">查看全部 ↑</button>
+</div>
+
 <!-- ============== HERO ============== -->
 <section class="hero" data-section="入场">
   <div class="hud-frame tl"></div>
@@ -590,42 +635,42 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <h2 class="splash-title reveal">先看哪一类？<em>同类的都放在一起</em>，点卡片直接跳。</h2>
     <p class="splash-sub reveal">如果你只想学某一种动效（比如"滚动驱动"或者"微动效"），直接点对应分类——会跳到那一组的开头。也可以从头看完，从 A 类入场到 H 类媒体顺着滚下去。</p>
     <div class="splash-grid">
-      <a class="splash-card splash-jump reveal" href="#cat-entrance" data-cat="entrance">
+      <a class="splash-card splash-jump reveal" href="#filter-entrance" data-cat="entrance">
         <div class="splash-card-head"><div class="splash-card-key">A</div><div class="splash-card-name">入场 &amp; 转场</div></div>
         <div class="splash-card-meta">用户与页面的"门" · <strong>2</strong> demos</div>
         <div class="splash-card-list"><span>01</span><span>02</span></div>
       </a>
-      <a class="splash-card splash-jump reveal" href="#cat-scroll" data-cat="scroll">
+      <a class="splash-card splash-jump reveal" href="#filter-scroll" data-cat="scroll">
         <div class="splash-card-head"><div class="splash-card-key">B</div><div class="splash-card-name">滚动驱动</div></div>
         <div class="splash-card-meta">把滚动条变成时间线 · <strong>6</strong> demos</div>
         <div class="splash-card-list"><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span></div>
       </a>
-      <a class="splash-card splash-jump reveal" href="#cat-nav" data-cat="nav">
+      <a class="splash-card splash-jump reveal" href="#filter-nav" data-cat="nav">
         <div class="splash-card-head"><div class="splash-card-key">C</div><div class="splash-card-name">导航 &amp; 主题</div></div>
         <div class="splash-card-meta">section 间的色彩切换 · <strong>2</strong> demos</div>
         <div class="splash-card-list"><span>09</span><span>10</span></div>
       </a>
-      <a class="splash-card splash-jump reveal" href="#cat-micro" data-cat="micro">
+      <a class="splash-card splash-jump reveal" href="#filter-micro" data-cat="micro">
         <div class="splash-card-head"><div class="splash-card-key">D</div><div class="splash-card-name">微动效</div></div>
         <div class="splash-card-meta">按钮 / 链接 / 字符的小动作 · <strong>3</strong> demos</div>
         <div class="splash-card-list"><span>11</span><span>12</span><span>13</span></div>
       </a>
-      <a class="splash-card splash-jump reveal" href="#cat-data" data-cat="data">
+      <a class="splash-card splash-jump reveal" href="#filter-data" data-cat="data">
         <div class="splash-card-head"><div class="splash-card-key">E</div><div class="splash-card-name">数据驱动</div></div>
         <div class="splash-card-meta">CMS / 定时 / 计算 · <strong>2</strong> demos</div>
         <div class="splash-card-list"><span>14</span><span>15</span></div>
       </a>
-      <a class="splash-card splash-jump reveal" href="#cat-gesture" data-cat="gesture">
+      <a class="splash-card splash-jump reveal" href="#filter-gesture" data-cat="gesture">
         <div class="splash-card-head"><div class="splash-card-key">F</div><div class="splash-card-name">手势 &amp; 光标</div></div>
         <div class="splash-card-meta">鼠标 / 触屏的硬件交互 · <strong>3</strong> demos</div>
         <div class="splash-card-list"><span>16</span><span>17</span><span>18</span></div>
       </a>
-      <a class="splash-card splash-jump reveal" href="#cat-visual" data-cat="visual">
+      <a class="splash-card splash-jump reveal" href="#filter-visual" data-cat="visual">
         <div class="splash-card-head"><div class="splash-card-key">G</div><div class="splash-card-name">视觉系统</div></div>
         <div class="splash-card-meta">字体 / 布局 / 形状 / 容器 · <strong>5</strong> demos</div>
         <div class="splash-card-list"><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span></div>
       </a>
-      <a class="splash-card splash-jump reveal" href="#cat-media" data-cat="media">
+      <a class="splash-card splash-jump reveal" href="#filter-media" data-cat="media">
         <div class="splash-card-head"><div class="splash-card-key">H</div><div class="splash-card-name">媒体</div></div>
         <div class="splash-card-meta">视频 / 图片相关 · <strong>2</strong> demos</div>
         <div class="splash-card-list"><span>24</span><span>25</span></div>
@@ -766,7 +811,9 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         <div class="tags">ScrollTrigger.scrub · transform3d · 没有"自动播放"</div>
       </div>
       <div class="demo-body">
-        <div class="d3-stage" id="d3Stage">
+        <div class="d3-stage pin-stage" id="d3Stage" data-pin-state="start">
+          <div class="pin-hint pin-hint-start is-start"><span>↓ 滚动 6 个面看完</span><span class="arrow"></span></div>
+          <div class="pin-hint pin-hint-done is-done"><span>✓ 动效完成 · 继续往下</span><span class="arrow"></span></div>
           <div class="d3-pin">
             <div class="d3-perspective">
               <div class="d3-helmet" id="d3Helmet">
@@ -840,7 +887,9 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         <div class="tags">scroll progress · hex 插值 · 同步 UI 文本</div>
       </div>
       <div class="demo-body" style="padding:0">
-        <div class="d15-stage" id="d15Stage">
+        <div class="d15-stage pin-stage" id="d15Stage" data-pin-state="start">
+          <div class="pin-hint pin-hint-start is-start"><span>↓ 滚动让头盔变色</span><span class="arrow"></span></div>
+          <div class="pin-hint pin-hint-done is-done"><span>✓ 色彩补间完成 · 继续</span><span class="arrow"></span></div>
           <div class="d15-pin">
             <div class="d15-orb" id="d15Orb"></div>
             <div class="d15-info">
@@ -864,7 +913,9 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         <div class="tags">data-rive-scrolltrigger-start/-end · stroke-dashoffset · 声明式</div>
       </div>
       <div class="demo-body" style="padding:0">
-        <div class="d20-stage" id="d20Stage">
+        <div class="d20-stage pin-stage" id="d20Stage" data-pin-state="start">
+          <div class="pin-hint pin-hint-start is-start"><span>↓ 滚动把曲线画出来</span><span class="arrow"></span></div>
+          <div class="pin-hint pin-hint-done is-done"><span>✓ 路径绘制完成 · 继续</span><span class="arrow"></span></div>
           <div class="d20-pin">
             <svg class="d20-svg" viewBox="0 0 600 320">
               <path id="d20Path" d="M30 280 Q60 80 200 160 Q340 240 380 120 Q420 20 500 100 Q560 160 570 60" fill="none" stroke="#d2ff00" stroke-width="3" stroke-linecap="round" stroke-dasharray="900" stroke-dashoffset="900"/>
@@ -891,7 +942,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         <div class="tags">scroll-indicator-bar · transform: scaleX</div>
       </div>
       <div class="demo-body" style="padding:0">
-        <div class="d25-stage" id="d25Stage">
+        <div class="d25-stage pin-stage" id="d25Stage" data-pin-state="start">
           <div class="d25-bar"><div class="d25-bar-fill" id="d25Fill"></div></div>
           <div class="d25-content">
             <div class="d25-block">
@@ -1876,11 +1927,13 @@ ScrollTrigger.create({
   end: "bottom bottom",
   scrub: true,
   onUpdate: self => {
-    const deg = self.progress * 720;
-    const tilt = -20 + self.progress * 40;
+    const p = self.progress;
+    const deg = p * 540;
+    const tilt = -20 + p * 40;
     d3Helmet.style.transform = `rotateX(${tilt}deg) rotateY(${deg}deg)`;
-    d3Pct.textContent = (self.progress * 100).toFixed(0) + "%";
+    d3Pct.textContent = (p * 100).toFixed(0) + "%";
     d3Deg.textContent = deg.toFixed(0) + "deg";
+    d3Stage.dataset.pinState = p < .08 ? "start" : (p > .92 ? "end" : "mid");
   }
 });
 
@@ -2155,6 +2208,7 @@ d9Zones.forEach(z => {
       orb.style.boxShadow = `0 0 ${20+t*80}px rgba(208,255,0,${t*.6}), inset 0 0 50px rgba(0,0,0,.5)`;
       prog.textContent = (t*100).toFixed(0) + "%";
       hex.textContent = c;
+      stage.dataset.pinState = t < .08 ? "start" : (t > .92 ? "end" : "mid");
     }
   });
 })();
@@ -2229,51 +2283,155 @@ d9Zones.forEach(z => {
     const href = a.getAttribute('href');
     if (href.length < 2) return;
     const id = href.slice(1);
+    // hash routes like #filter-X are handled by focusMode via hashchange
+    if (id.startsWith('filter-')) {
+      e.preventDefault();
+      if (location.hash === href) {
+        // same hash: still trigger filter logic
+        if (window.__applyFilter) window.__applyFilter(id.slice(7));
+      } else {
+        location.hash = href;
+      }
+      return;
+    }
     if (!document.getElementById(id)) return;
     e.preventDefault();
     jumpTo(id);
   });
 })();
 
-/* =================== inject category pills into each demo head === */
-(function(){
-  const catMap = {
-    demo1:    ["A","入场"],
-    demo2:    ["C","导航主题"],
-    demo3:    ["B","滚动驱动"],
-    demo4:    ["B","滚动驱动"],
-    demo5:    ["B","滚动驱动"],
-    demo6:    ["D","微动效"],
-    demo7:    ["G","视觉系统"],
-    demo8:    ["F","手势光标"],
-    demo9:    ["F","手势光标"],
-    demo10:   ["H","媒体"],
-    demo12:   ["E","数据驱动"],
-    demo13:   ["G","视觉系统"],
-    demo14:   ["G","视觉系统"],
-    demo15:   ["B","滚动驱动"],
-    demo16:   ["G","视觉系统"],
-    demo17:   ["F","手势光标"],
-    demo18:   ["D","微动效"],
-    demo19:   ["E","数据驱动"],
-    demo19svg:["B","滚动驱动"],
-    demo20:   ["G","视觉系统"],
-    demo21:   ["C","导航主题"],
-    demo22:   ["D","微动效"],
-    demo23:   ["H","媒体"],
-    demo24:   ["B","滚动驱动"],
-    demo11:   ["A","入场"]
-  };
+/* =================== inject category pills + filter mode === */
+const CAT_MAP = {
+  demo1:    {key:"A",name:"入场",cat:"entrance"},
+  demo2:    {key:"C",name:"导航主题",cat:"nav"},
+  demo3:    {key:"B",name:"滚动驱动",cat:"scroll"},
+  demo4:    {key:"B",name:"滚动驱动",cat:"scroll"},
+  demo5:    {key:"B",name:"滚动驱动",cat:"scroll"},
+  demo6:    {key:"D",name:"微动效",cat:"micro"},
+  demo7:    {key:"G",name:"视觉系统",cat:"visual"},
+  demo8:    {key:"F",name:"手势光标",cat:"gesture"},
+  demo9:    {key:"F",name:"手势光标",cat:"gesture"},
+  demo10:   {key:"H",name:"媒体",cat:"media"},
+  demo12:   {key:"E",name:"数据驱动",cat:"data"},
+  demo13:   {key:"G",name:"视觉系统",cat:"visual"},
+  demo14:   {key:"G",name:"视觉系统",cat:"visual"},
+  demo15:   {key:"B",name:"滚动驱动",cat:"scroll"},
+  demo16:   {key:"G",name:"视觉系统",cat:"visual"},
+  demo17:   {key:"F",name:"手势光标",cat:"gesture"},
+  demo18:   {key:"D",name:"微动效",cat:"micro"},
+  demo19:   {key:"E",name:"数据驱动",cat:"data"},
+  demo19svg:{key:"B",name:"滚动驱动",cat:"scroll"},
+  demo20:   {key:"G",name:"视觉系统",cat:"visual"},
+  demo21:   {key:"C",name:"导航主题",cat:"nav"},
+  demo22:   {key:"D",name:"微动效",cat:"micro"},
+  demo23:   {key:"H",name:"媒体",cat:"media"},
+  demo24:   {key:"B",name:"滚动驱动",cat:"scroll"},
+  demo11:   {key:"A",name:"入场",cat:"entrance"}
+};
+
+const CAT_NAMES = {
+  entrance: {key:"A", name:"入场 & 转场"},
+  scroll:   {key:"B", name:"滚动驱动"},
+  nav:      {key:"C", name:"导航 & 主题"},
+  micro:    {key:"D", name:"微动效"},
+  data:     {key:"E", name:"数据驱动"},
+  gesture:  {key:"F", name:"手势 & 光标"},
+  visual:   {key:"G", name:"视觉系统"},
+  media:    {key:"H", name:"媒体"}
+};
+
+(function injectPills(){
   document.querySelectorAll('.demo').forEach(d => {
-    const m = catMap[d.id];
+    const m = CAT_MAP[d.id];
     if (!m) return;
+    d.dataset.cat = m.cat;
     const pill = document.createElement('div');
     pill.className = 'cat-pill';
-    pill.textContent = `${m[0]} · ${m[1]}`;
+    pill.textContent = `${m.key} · ${m.name}`;
     const head = d.querySelector('.demo-head');
     const num = head && head.querySelector('.num');
     if (num) num.after(pill); else head && head.prepend(pill);
   });
+  // also tag cat-dividers (they already have data-cat from the script)
+  document.querySelectorAll('.cat-divider').forEach(d => d.classList.add('is-cat-div'));
+})();
+
+/* =================== focus mode (filter by category) === */
+(function focusMode(){
+  const filterBar = document.getElementById('filterBar');
+  const filterKey = document.getElementById('filterKey');
+  const filterName = document.getElementById('filterName');
+  const filterCount = document.getElementById('filterCount');
+  const filterBack = document.getElementById('filterBack');
+
+  function applyFilter(cat){
+    const meta = CAT_NAMES[cat];
+    if (!meta) return clearFilter();
+    document.body.dataset.filter = cat;
+    let count = 0;
+    document.querySelectorAll('.demo').forEach(d => {
+      const isActive = d.dataset.cat === cat;
+      d.classList.toggle('is-active', isActive);
+      if (isActive) count++;
+    });
+    document.querySelectorAll('.cat-divider').forEach(d => {
+      d.classList.toggle('is-active', d.dataset.cat === cat);
+    });
+    document.querySelectorAll('.splash-card').forEach(c => {
+      c.classList.toggle('is-active', c.dataset.cat === cat);
+    });
+    filterKey.textContent = meta.key;
+    filterName.textContent = meta.name;
+    filterCount.textContent = `· ${count} demos`;
+    // scroll to the active divider after a tick (DOM has hidden others)
+    requestAnimationFrame(() => {
+      const div = document.querySelector('.cat-divider.is-active');
+      if (div) {
+        const navH = (document.getElementById('nav')?.offsetHeight) || 64;
+        const top = div.getBoundingClientRect().top + window.scrollY - navH - 16;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+      try { ScrollTrigger && ScrollTrigger.refresh(); } catch(e){}
+    });
+  }
+
+  function clearFilter(){
+    delete document.body.dataset.filter;
+    document.querySelectorAll('.demo.is-active, .cat-divider.is-active, .splash-card.is-active')
+      .forEach(el => el.classList.remove('is-active'));
+    history.replaceState(null, '', location.pathname + location.search);
+    try { ScrollTrigger && ScrollTrigger.refresh(); } catch(e){}
+  }
+
+  function handleHash(){
+    const h = location.hash;
+    const m = /^#filter-([a-z]+)$/.exec(h);
+    if (m && CAT_NAMES[m[1]]) {
+      applyFilter(m[1]);
+    } else {
+      // hash is something else (or empty) → exit filter
+      if (document.body.dataset.filter && (!h || !h.startsWith('#filter-'))) {
+        clearFilter();
+      }
+    }
+  }
+
+  filterBack.addEventListener('click', () => {
+    clearFilter();
+    // scroll back to splash
+    const splash = document.querySelector('.splash');
+    if (splash) {
+      const navH = (document.getElementById('nav')?.offsetHeight) || 64;
+      const top = splash.getBoundingClientRect().top + window.scrollY - navH - 16;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+
+  window.addEventListener('hashchange', handleHash);
+  window.__applyFilter = applyFilter;
+  window.__clearFilter = clearFilter;
+  // initial check
+  setTimeout(handleHash, 200);
 })();
 
 /* =================== DEMO 19 (svg scrub) · d20- ============ */
@@ -2296,6 +2454,7 @@ d9Zones.forEach(z => {
       dot.setAttribute('cy', pt.y);
       prog.textContent = (t * 100).toFixed(0) + "%";
       off.textContent = newOff.toFixed(0);
+      stage.dataset.pinState = t < .08 ? "start" : (t > .92 ? "end" : "mid");
     }
   });
 })();
