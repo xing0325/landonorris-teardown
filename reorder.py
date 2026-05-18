@@ -1,13 +1,15 @@
-"""Reorder 65 demo blocks. D micro is fattest at 40."""
+"""Reorder 89 demo blocks. D micro 40 + others."""
 import re, sys, pathlib
 
 SRC = pathlib.Path(r"C:\Users\david\OneDrive\桌面\lando-norris-reverse-engineering.html")
 
 ORDER = [
-    # A · entrance
+    # A · entrance (4)
     ("demo1",     "entrance", "A", "入场 & 转场"),
     ("demo11",    "entrance", "A", "入场 & 转场"),
-    # B · scroll
+    ("demo66",    "entrance", "A", "入场 & 转场"),
+    ("demo67",    "entrance", "A", "入场 & 转场"),
+    # B · scroll (11)
     ("demo3",     "scroll",   "B", "滚动驱动"),
     ("demo4",     "scroll",   "B", "滚动驱动"),
     ("demo5",     "scroll",   "B", "滚动驱动"),
@@ -15,11 +17,18 @@ ORDER = [
     ("demo19svg", "scroll",   "B", "滚动驱动"),
     ("demo24",    "scroll",   "B", "滚动驱动"),
     ("demo28",    "scroll",   "B", "滚动驱动"),
-    # C · nav
+    ("demo68",    "scroll",   "B", "滚动驱动"),
+    ("demo69",    "scroll",   "B", "滚动驱动"),
+    ("demo70",    "scroll",   "B", "滚动驱动"),
+    ("demo71",    "scroll",   "B", "滚动驱动"),
+    # C · nav (6)
     ("demo2",     "nav",      "C", "导航 & 主题"),
     ("demo21",    "nav",      "C", "导航 & 主题"),
-    # D · micro — 40 total, 4 subgroups
-    # D.buttons (10)
+    ("demo72",    "nav",      "C", "导航 & 主题"),
+    ("demo73",    "nav",      "C", "导航 & 主题"),
+    ("demo74",    "nav",      "C", "导航 & 主题"),
+    ("demo75",    "nav",      "C", "导航 & 主题"),
+    # D · micro (40)
     ("demo22",    "micro",    "D", "微动效"),
     ("demo26",    "micro",    "D", "微动效"),
     ("demo30",    "micro",    "D", "微动效"),
@@ -30,7 +39,6 @@ ORDER = [
     ("demo35",    "micro",    "D", "微动效"),
     ("demo36",    "micro",    "D", "微动效"),
     ("demo37",    "micro",    "D", "微动效"),
-    # D.links (10)
     ("demo18",    "micro",    "D", "微动效"),
     ("demo6",     "micro",    "D", "微动效"),
     ("demo38",    "micro",    "D", "微动效"),
@@ -41,7 +49,6 @@ ORDER = [
     ("demo43",    "micro",    "D", "微动效"),
     ("demo44",    "micro",    "D", "微动效"),
     ("demo45",    "micro",    "D", "微动效"),
-    # D.forms (10)
     ("demo46",    "micro",    "D", "微动效"),
     ("demo47",    "micro",    "D", "微动效"),
     ("demo48",    "micro",    "D", "微动效"),
@@ -52,7 +59,6 @@ ORDER = [
     ("demo53",    "micro",    "D", "微动效"),
     ("demo54",    "micro",    "D", "微动效"),
     ("demo55",    "micro",    "D", "微动效"),
-    # D.feedback (10)
     ("demo56",    "micro",    "D", "微动效"),
     ("demo57",    "micro",    "D", "微动效"),
     ("demo58",    "micro",    "D", "微动效"),
@@ -63,24 +69,38 @@ ORDER = [
     ("demo63",    "micro",    "D", "微动效"),
     ("demo64",    "micro",    "D", "微动效"),
     ("demo65",    "micro",    "D", "微动效"),
-    # E · data
+    # E · data (6)
     ("demo12",    "data",     "E", "数据驱动"),
     ("demo19",    "data",     "E", "数据驱动"),
     ("demo27",    "data",     "E", "数据驱动"),
-    # F · gesture
+    ("demo76",    "data",     "E", "数据驱动"),
+    ("demo77",    "data",     "E", "数据驱动"),
+    ("demo78",    "data",     "E", "数据驱动"),
+    # F · gesture (7)
     ("demo8",     "gesture",  "F", "手势 & 光标"),
     ("demo9",     "gesture",  "F", "手势 & 光标"),
     ("demo17",    "gesture",  "F", "手势 & 光标"),
-    # G · visual
+    ("demo79",    "gesture",  "F", "手势 & 光标"),
+    ("demo80",    "gesture",  "F", "手势 & 光标"),
+    ("demo81",    "gesture",  "F", "手势 & 光标"),
+    ("demo82",    "gesture",  "F", "手势 & 光标"),
+    # G · visual (11)
     ("demo7",     "visual",   "G", "视觉系统"),
     ("demo13",    "visual",   "G", "视觉系统"),
     ("demo14",    "visual",   "G", "视觉系统"),
     ("demo16",    "visual",   "G", "视觉系统"),
     ("demo20",    "visual",   "G", "视觉系统"),
     ("demo29",    "visual",   "G", "视觉系统"),
-    # H · media
+    ("demo83",    "visual",   "G", "视觉系统"),
+    ("demo84",    "visual",   "G", "视觉系统"),
+    ("demo85",    "visual",   "G", "视觉系统"),
+    ("demo86",    "visual",   "G", "视觉系统"),
+    ("demo87",    "visual",   "G", "视觉系统"),
+    # H · media (4)
     ("demo10",    "media",    "H", "媒体"),
     ("demo23",    "media",    "H", "媒体"),
+    ("demo88",    "media",    "H", "媒体"),
+    ("demo89",    "media",    "H", "媒体"),
 ]
 
 TOTAL = len(ORDER)
@@ -136,7 +156,6 @@ new_text = text[:start] + new_section + text[end:]
 
 id_to_new = {oid: i for i, (oid, *_) in enumerate(ORDER, start=1)}
 
-# Patch references
 new_text = re.sub(r'Demo \d+</strong> 用纯 CSS', f'Demo {id_to_new["demo11"]:02d}</strong> 用纯 CSS', new_text)
 
 def patch_ordered(text, ids):

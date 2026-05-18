@@ -903,6 +903,196 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
 @keyframes d65H{0%,100%{transform:scale(1)}30%{transform:scale(1.35)}60%{transform:scale(.92)}}
 .d65-like .particle{position:absolute;width:6px;height:6px;background:var(--lime);border-radius:50%;left:1.4rem;top:50%;pointer-events:none}
 
+
+/* batch2: 66-89 */
+
+/* 66 svg morph */
+.d66-svg{width:200px;height:200px}
+.d66-svg path{transition:d .6s var(--cubic),fill .6s var(--cubic)}
+
+/* 67 logo draw */
+.d67-svg{width:240px;height:80px}
+.d67-svg path{stroke-dasharray:600;stroke-dashoffset:600;animation:d67D 2.4s var(--cubic) forwards}
+.d67-svg.replay path{animation:none}
+@keyframes d67D{to{stroke-dashoffset:0}}
+
+/* 68 parallax */
+.d68-stage{position:relative;height:300vh;background:#0a1208;overflow:hidden}
+.d68-layer{position:absolute;inset:-20% -10% -20% -10%;will-change:transform}
+.d68-back{background:radial-gradient(circle at 20% 80%,rgba(208,255,0,.1),transparent 50%)}
+.d68-mid{background:radial-gradient(circle at 80% 30%,rgba(122,145,0,.2),transparent 60%)}
+.d68-front{background:radial-gradient(circle at 50% 50%,rgba(208,255,0,.15),transparent 40%)}
+.d68-text{position:sticky;top:40%;text-align:center;color:var(--lime);z-index:10}
+.d68-text h3{font-size:clamp(2.4rem,6vw,4.8rem);font-weight:300;letter-spacing:-.02em}
+.d68-text p{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.8rem;letter-spacing:.2em;color:var(--fg-mute);margin-top:1rem}
+
+/* 69 mask reveal */
+.d69-stage{position:relative;height:240vh}
+.d69-pin{position:sticky;top:0;height:100vh;overflow:hidden}
+.d69-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1c2218,#0a1208);display:grid;place-items:center}
+.d69-bg::before{content:"上一章 · 还看得到";color:var(--fg-mute);font-size:1.2rem;letter-spacing:.2em;font-family:'JetBrains Mono',ui-monospace,monospace}
+.d69-mask{position:absolute;inset:0;background:linear-gradient(135deg,#d2ff00,#5a7d00);clip-path:circle(0% at 50% 50%);display:grid;place-items:center}
+.d69-content{text-align:center;color:#0a0e07}
+.d69-content h3{font-size:clamp(2rem,5vw,3.6rem);font-weight:400;margin-bottom:.5rem}
+.d69-content p{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.8rem;letter-spacing:.2em}
+
+/* 70 stack cards */
+.d70-stage{padding:5vh 0}
+.d70-card{position:sticky;height:60vh;display:grid;place-items:center;font-size:clamp(1.4rem,3vw,2.4rem);font-weight:300;color:var(--lime);border-radius:12px;border:1px solid var(--line-soft);margin:0 auto;width:90%;max-width:680px;letter-spacing:-.01em}
+.d70-card:nth-child(1){top:5vh;z-index:1}
+.d70-card:nth-child(2){top:8vh;z-index:2}
+.d70-card:nth-child(3){top:11vh;z-index:3}
+.d70-card:nth-child(4){top:14vh;z-index:4}
+
+/* 71 scroll-snap */
+.d71-stage{height:60vh;overflow-y:auto;scroll-snap-type:y mandatory;border:1px solid var(--line-soft);border-radius:6px}
+.d71-page{height:60vh;display:grid;place-items:center;color:var(--lime);font-size:clamp(1rem,2.5vw,1.6rem);scroll-snap-align:start;font-weight:300;letter-spacing:.05em}
+
+/* 72 sticky nav shrink */
+.d72-stage{height:60vh;overflow-y:auto;border:1px solid var(--line-soft);border-radius:6px;background:var(--bg-3)}
+.d72-nav{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 1.5rem;background:rgba(10,14,7,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft);transition:padding .35s var(--cubic),backdrop-filter .35s;z-index:10}
+.d72-nav.shrunk{padding:.6rem 1.5rem}
+.d72-logo{font-weight:700;color:var(--lime);font-size:1.2rem;letter-spacing:.05em;transition:font-size .35s var(--cubic)}
+.d72-nav.shrunk .d72-logo{font-size:.9rem}
+.d72-links{display:flex;gap:1rem;font-size:.7rem;letter-spacing:.2em;color:var(--fg-dim);font-family:'JetBrains Mono',ui-monospace,monospace}
+.d72-pad{padding:3rem 1.5rem;color:var(--fg-mute);font-size:.85rem;letter-spacing:.1em;text-align:center}
+
+/* 73 hamburger morph */
+.d73-ham{width:3.5rem;height:3.5rem;display:grid;place-items:center;border:1px solid var(--line-soft);background:var(--bg-3);border-radius:50%;cursor:pointer;position:relative}
+.d73-ham span{display:block;position:absolute;left:25%;right:25%;height:2px;background:var(--lime);transition:transform .35s var(--cubic),opacity .25s}
+.d73-ham span:nth-child(1){top:32%}
+.d73-ham span:nth-child(2){top:50%}
+.d73-ham span:nth-child(3){top:68%}
+.d73-ham.is-x span:nth-child(1){transform:translateY(.55rem) rotate(45deg)}
+.d73-ham.is-x span:nth-child(2){opacity:0}
+.d73-ham.is-x span:nth-child(3){transform:translateY(-.55rem) rotate(-45deg)}
+
+/* 74 theme switcher */
+.d74-card{padding:2.5rem;border:1px solid var(--line-soft);border-radius:8px;background:var(--bg-3);color:var(--fg);width:100%;max-width:380px;transition:background .45s var(--cubic),color .45s,border-color .45s}
+.d74-card[data-theme="light"]{background:#f0f0e8;color:#0a0e07;border-color:#0a0e07}
+.d74-card[data-theme="dark"]{background:#0a1208;color:var(--lime);border-color:var(--lime)}
+.d74-title{font-size:1.3rem;font-weight:500;margin-bottom:.4rem}
+.d74-sub{font-size:.85rem;opacity:.7}
+.d74-switch{display:flex;gap:.4rem}
+.d74-switch button{padding:.55rem 1.1rem;border:1px solid var(--line-soft);background:transparent;color:var(--fg-dim);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;border-radius:999px;cursor:pointer;transition:all .25s}
+.d74-switch button.is-on{border-color:var(--lime);color:var(--lime);background:rgba(208,255,0,.08)}
+
+/* 75 dot navigator */
+.d75-stage{position:relative;height:60vh;overflow-y:auto;border:1px solid var(--line-soft);border-radius:6px}
+.d75-section{height:60vh;display:grid;place-items:center;color:var(--lime);scroll-snap-align:start}
+.d75-section h3{font-size:1.8rem;font-weight:300}
+.d75-dots{position:absolute;right:1rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.6rem;z-index:5}
+.d75-dots a{width:.7rem;height:.7rem;border-radius:50%;background:transparent;border:1.5px solid var(--lime);cursor:pointer;transition:background .25s,transform .25s}
+.d75-dots a.is-on{background:var(--lime);transform:scale(1.3)}
+
+/* 76 localStorage */
+.d76-pref{font-size:.95rem;color:var(--fg-dim)}
+.d76-pref span{color:var(--lime);font-weight:600}
+.d76-hint{font-size:.65rem;letter-spacing:.2em;color:var(--fg-mute)}
+
+/* 77 multi-step form */
+.d77-form{width:100%;max-width:480px;margin:0 auto;padding:1.5rem;background:var(--bg-3);border:1px solid var(--line-soft);border-radius:8px}
+.d77-bar{height:3px;background:var(--bg-2);border-radius:2px;overflow:hidden;margin-bottom:2rem}
+.d77-bar-fill{height:100%;background:var(--lime);transform-origin:0 50%;transition:transform .4s var(--cubic);transform:scaleX(.33)}
+.d77-steps{position:relative;min-height:120px}
+.d77-step{position:absolute;inset:0;opacity:0;transform:translateX(20px);transition:opacity .35s var(--cubic),transform .35s var(--cubic);display:flex;flex-direction:column;gap:.5rem;pointer-events:none}
+.d77-step.is-on{opacity:1;transform:translateX(0);pointer-events:auto}
+.d77-step label{font-size:.7rem;letter-spacing:.2em;color:var(--fg-mute);text-transform:uppercase;font-family:'JetBrains Mono',ui-monospace,monospace}
+.d77-step input,.d77-step select{padding:.85rem 1rem;border:1px solid var(--line-soft);background:var(--bg-2);color:var(--fg);border-radius:6px;font-size:.95rem;font-family:inherit;outline:none}
+.d77-step input:focus,.d77-step select:focus{border-color:var(--lime)}
+.d77-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem}
+.d77-nav .mono{color:var(--fg-mute);font-size:.75rem}
+
+/* 78 undo/redo */
+.d78-stage{width:100%;max-width:480px}
+.d78-ta{width:100%;min-height:140px;padding:1rem;background:var(--bg-3);border:1px solid var(--line-soft);color:var(--fg);border-radius:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.9rem;outline:none;resize:none}
+.d78-ta:focus{border-color:var(--lime)}
+.d78-bar{display:flex;justify-content:space-between;align-items:center;margin-top:.75rem;gap:.5rem}
+.d78-bar .mono{color:var(--fg-mute);font-size:.7rem}
+
+/* 79 swipe */
+.d79-stage{position:relative;width:100%;max-width:480px;height:200px;overflow:hidden;border:1px solid var(--line-soft);border-radius:8px;background:var(--bg-3);touch-action:pan-y;user-select:none}
+.d79-card{position:absolute;inset:0;display:grid;place-items:center;color:var(--lime);font-size:1.4rem;font-weight:300;transition:transform .35s var(--cubic);will-change:transform}
+.d79-pos{margin-top:.75rem;color:var(--fg-mute);font-size:.75rem;letter-spacing:.15em;text-align:center}
+
+/* 80 drag sort */
+.d80-list{display:flex;flex-direction:column;gap:.5rem;width:100%;max-width:380px}
+.d80-item{padding:.85rem 1rem;background:var(--bg-3);border:1px solid var(--line-soft);border-radius:6px;color:var(--fg);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.85rem;cursor:grab;user-select:none;transition:opacity .15s,border-color .25s}
+.d80-item.is-dragging{opacity:.4;cursor:grabbing}
+.d80-item.is-over{border-color:var(--lime)}
+
+/* 81 drag drop upload */
+.d81-drop{padding:3rem 2rem;border:2px dashed var(--line-soft);border-radius:10px;color:var(--fg-dim);text-align:center;transition:border-color .25s,background .25s,transform .25s;cursor:pointer}
+.d81-drop.is-hot{border-color:var(--lime);background:rgba(208,255,0,.05);transform:scale(1.02);color:var(--lime)}
+.d81-drop svg{width:2.5rem;height:2.5rem;margin-bottom:.8rem}
+.d81-t{font-size:1rem;margin-bottom:.4rem}
+.d81-s{font-size:.7rem;letter-spacing:.15em;color:var(--fg-mute)}
+
+/* 82 3D tilt */
+.d82-card{position:relative;width:200px;height:280px;border-radius:12px;overflow:hidden;cursor:pointer;transform-style:preserve-3d;transition:transform .15s ease-out,box-shadow .25s;will-change:transform}
+.d82-bg{position:absolute;inset:0;background:linear-gradient(135deg,#d2ff00,#0a1208);z-index:1}
+.d82-t{position:absolute;left:1rem;top:1rem;font-size:2.4rem;font-weight:300;color:#0a0e07;z-index:2;letter-spacing:-.02em}
+.d82-s{position:absolute;left:1rem;bottom:1rem;color:#0a0e07;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;letter-spacing:.2em;z-index:2}
+
+/* 83 conic-gradient */
+.d83-dial{position:relative;width:130px;height:130px;border-radius:50%;background:conic-gradient(var(--lime) calc(var(--p,0)*1%),var(--bg-3) 0);display:grid;place-items:center}
+.d83-dial::before{content:"";position:absolute;inset:12px;background:var(--bg-2);border-radius:50%}
+.d83-num{position:relative;color:var(--lime);font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:600;font-size:1.3rem}
+
+/* 84 backdrop-filter glass */
+.d84-stage{position:relative;width:100%;max-width:480px;aspect-ratio:5/3;background:linear-gradient(135deg,#d2ff00 0%,#5a7d00 30%,#0a1208 100%);border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.d84-card{padding:1.5rem 2rem;background:rgba(10,14,7,.25);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid rgba(255,255,255,.18);border-radius:10px;color:#fff;max-width:80%}
+.d84-eyebrow{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--lime);margin-bottom:.4rem;font-family:'JetBrains Mono',ui-monospace,monospace}
+.d84-card h3{font-size:1.3rem;font-weight:500;margin-bottom:.4rem}
+.d84-card p{font-size:.85rem;opacity:.85;line-height:1.5}
+
+/* 85 text-stroke */
+.d85-text{font-size:clamp(2.4rem,7vw,5rem);font-weight:700;letter-spacing:-.02em;line-height:1;-webkit-text-stroke:1.5px var(--lime);color:transparent;transition:color .35s,text-stroke .35s;cursor:default;font-family:"Mona Sans",sans-serif}
+.d85-text:hover{color:var(--lime)}
+.d85-1{}
+.d85-2{font-weight:300}
+.d85-3{font-size:clamp(2rem,5vw,3.6rem);letter-spacing:.05em}
+
+/* 86 liquid blob */
+.d86-svg{width:240px;height:240px}
+.d86-svg path{transition:d 2s cubic-bezier(.4,0,.2,1)}
+
+/* 87 3D card flip */
+.d87-card{width:200px;height:280px;perspective:1000px;cursor:pointer}
+.d87-card > .d87-face{position:relative}
+.d87-card{position:relative}
+.d87-card .d87-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1rem;transition:transform .8s cubic-bezier(.4,0,.2,1)}
+.d87-front{background:linear-gradient(135deg,#d2ff00,#5a7d00);color:#0a0e07}
+.d87-front h3{font-size:2.2rem;font-weight:300;letter-spacing:-.02em}
+.d87-front p{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;letter-spacing:.25em;margin-top:1rem}
+.d87-back{background:#0a1208;color:var(--lime);transform:rotateY(180deg);font-size:1rem;letter-spacing:.05em}
+.d87-back span{display:block;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;letter-spacing:.25em;color:var(--fg-mute);margin-top:.5rem}
+.d87-card:hover .d87-front{transform:rotateY(180deg)}
+.d87-card:hover .d87-back{transform:rotateY(360deg)}
+
+/* 88 lightbox */
+.d88-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;width:100%;max-width:480px}
+.d88-thumb{aspect-ratio:1;border-radius:6px;cursor:pointer;transition:transform .25s var(--cubic)}
+.d88-thumb:hover{transform:scale(1.05)}
+.d88-box{position:fixed;inset:0;background:rgba(10,14,7,.9);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;z-index:200}
+.d88-box.is-open{display:flex}
+.d88-stage{position:relative;width:80%;max-width:600px;aspect-ratio:4/3}
+.d88-img{position:absolute;inset:0;border-radius:8px;transition:opacity .25s}
+.d88-prev,.d88-next,.d88-close{position:absolute;background:var(--bg-2);border:1px solid var(--lime);color:var(--lime);width:2.5rem;height:2.5rem;border-radius:50%;cursor:pointer;font-size:1.2rem;display:grid;place-items:center}
+.d88-prev{left:-3.5rem;top:50%;transform:translateY(-50%)}
+.d88-next{right:-3.5rem;top:50%;transform:translateY(-50%)}
+.d88-close{right:-3.5rem;top:-3.5rem}
+.d88-pos{position:absolute;bottom:-2.5rem;left:50%;transform:translateX(-50%);color:var(--lime)}
+
+/* 89 before/after */
+.d89-stage{position:relative;width:100%;max-width:480px;aspect-ratio:5/3;border-radius:8px;overflow:hidden;user-select:none}
+.d89-after{position:absolute;inset:0;background:linear-gradient(135deg,#0a1208,#1c2218 50%,#3a4500)}
+.d89-after::before{content:"AFTER · 干胎";position:absolute;right:1rem;bottom:1rem;color:var(--fg-mute);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.8rem;letter-spacing:.2em}
+.d89-before{position:absolute;inset:0;background:linear-gradient(135deg,#d2ff00,#5a7d00);clip-path:inset(0 50% 0 0);will-change:clip-path}
+.d89-before::before{content:"BEFORE · 雨胎";position:absolute;left:1rem;bottom:1rem;color:#0a0e07;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.8rem;letter-spacing:.2em;font-weight:700}
+.d89-handle{position:absolute;top:0;bottom:0;width:2px;background:var(--lime);left:50%;cursor:ew-resize;display:grid;place-items:center}
+.d89-handle span{display:grid;place-items:center;width:2.4rem;height:2.4rem;background:var(--lime);color:#0a0e07;border-radius:50%;font-weight:700;letter-spacing:.05em}
+
 </style>
 </head>
 <body>
@@ -1024,7 +1214,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 1 -->
     <div class="demo" id="demo1">
       <div class="demo-head">
-        <div class="num">01 / 65</div>
+        <div class="num">01 / 89</div>
         <div class="name">字符级 stagger 入场 + 椭圆 clip 收缩</div>
         <div class="tags">GSAP · SplitText · power3.out</div>
       </div>
@@ -1046,7 +1236,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 11 · the lime page-transition curtain -->
     <div class="demo" id="demo11">
       <div class="demo-head">
-        <div class="num">02 / 65</div>
+        <div class="num">02 / 89</div>
         <div class="name">全屏柠檬绿过场幕布 · page-transition.riv（点击链接时盖屏 → 揭屏）</div>
         <div class="tags">.transition-w · data-rive-primary · Taxi.js 切页 · Rive state-machine 3 input</div>
       </div>
@@ -1088,6 +1278,29 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         点按钮看柠檬绿幕布从下往上盖整屏 → DOM 切到下一页 → 幕布往上掀出去揭屏。原站的 <code>.transition-w</code> 容器里有一个 <code>canvas[data-rive-primary]</code> 跑 <strong>page-transition.riv</strong>，状态机三个 input：<code>initialInput</code>（首次进站 "Load Norris" 按钮态）/ <code>transitionOutInput</code>（盖屏）/ <code>transitionInInput</code>（揭屏）。Taxi.js 在 <code>onLeave</code> hook 里调 <code>EL()</code> 把 out=true 触发盖屏，然后替换 DOM，再调 <code>H$()</code> 把 in=true 触发揭屏。<strong>外接脚本 <code>transitions-rive-isolate.js</code></strong> 单独隔离这个 Rive 实例避免被其他逻辑误碰。柠檬绿用 Rive 而不是 CSS 是因为下沿不是直线——是有机的"波浪 / 头盔轮廓"曲线。
       </div>
     </div>
+    <!-- A · 入场 (new 2) -->
+    <div class="demo" id="demo66">
+      <div class="demo-head">
+        <div class="num">03 / 89</div>
+        <div class="name">SVG morph 过场 · 形状变形</div>
+        <div class="tags">path d morph · GSAP MorphSVG-free · clip-path polygon</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;gap:1rem"><button class="btn" id="d66Btn">↻ Morph</button><svg class="d66-svg" viewBox="0 0 200 200"><path id="d66Path" d="M100 20 L180 180 L20 180 Z" fill="#d2ff00"/></svg></div>
+      </div>
+      <div class="demo-foot">点按钮：三角 → 圆 → 方 → 星 循环。用 <code>setAttribute('d', newPath)</code> + CSS transition 模拟 morph（不用付费 GSAP 插件）。</div>
+    </div>
+    <div class="demo" id="demo67">
+      <div class="demo-head">
+        <div class="num">04 / 89</div>
+        <div class="name">Logo 描线入场 · stroke-dashoffset</div>
+        <div class="tags">SVG path · stroke-dasharray · 进场画出来</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;gap:1rem"><svg class="d67-svg" viewBox="0 0 200 80" id="d67Svg"><path d="M20 60 L20 20 L40 60 L40 20 M60 20 L80 20 L80 60 L60 60 Z M100 60 L100 20 L120 60 L120 20 M140 20 L160 20 L160 60 L140 60 Z M180 60 L180 20" stroke="#d2ff00" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><button class="btn" id="d67Btn">↻ Replay</button></div>
+      </div>
+      <div class="demo-foot">SVG path stroke-dasharray 设为路径总长，stroke-dashoffset 从总长 → 0 平滑过渡，看上去像现场画出来。Logo / 签名 / icon 入场标配。</div>
+    </div>
     <div class="cat-divider" data-cat="scroll" id="cat-scroll">
       <div class="cat-divider-key">B</div>
       <div class="cat-divider-name">滚动驱动</div>
@@ -1097,7 +1310,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 3 -->
     <div class="demo" id="demo3">
       <div class="demo-head">
-        <div class="num">03 / 65</div>
+        <div class="num">05 / 89</div>
         <div class="name">scrub:true · 滚轮直接拽 3D 头盔</div>
         <div class="tags">ScrollTrigger.scrub · transform3d · 没有"自动播放"</div>
       </div>
@@ -1127,7 +1340,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 4 -->
     <div class="demo" id="demo4">
       <div class="demo-head">
-        <div class="num">04 / 65</div>
+        <div class="num">06 / 89</div>
         <div class="name">横向 pin 滚动（on-track 页的 horizontal-pin-wrap）</div>
         <div class="tags">ScrollTrigger.pin · translateX · 1 屏吃 3 屏</div>
       </div>
@@ -1151,7 +1364,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 5 -->
     <div class="demo" id="demo5">
       <div class="demo-head">
-        <div class="num">05 / 65</div>
+        <div class="num">07 / 89</div>
         <div class="name">速度敏感 marquee（往下滚加速，往上滚反向）</div>
         <div class="tags">ScrollTrigger.velocity · CSS keyframe play-state</div>
       </div>
@@ -1173,7 +1386,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 15 · scroll-driven color interpolation -->
     <div class="demo" id="demo15">
       <div class="demo-head">
-        <div class="num">06 / 65</div>
+        <div class="num">08 / 89</div>
         <div class="name">滚动驱动头盔色彩补间（on-track 页 data-gl-change-from/to）</div>
         <div class="tags">scroll progress · hex 插值 · 同步 UI 文本</div>
       </div>
@@ -1199,7 +1412,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 19 · Rive scroll scrub (SVG path draw) -->
     <div class="demo" id="demo19svg">
       <div class="demo-head">
-        <div class="num">07 / 65</div>
+        <div class="num">09 / 89</div>
         <div class="name">Rive 滚动 scrub · 滚动条 = 播放头</div>
         <div class="tags">data-rive-scrolltrigger-start/-end · stroke-dashoffset · 声明式</div>
       </div>
@@ -1228,7 +1441,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 24 · per-section scroll progress -->
     <div class="demo" id="demo24">
       <div class="demo-head">
-        <div class="num">08 / 65</div>
+        <div class="num">10 / 89</div>
         <div class="name">章节滚动进度条 · 独立 demo 化（页面顶部那条线的局部版）</div>
         <div class="tags">scroll-indicator-bar · transform: scaleX</div>
       </div>
@@ -1258,7 +1471,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 28 · CSS dual marquee -->
     <div class="demo" id="demo28">
       <div class="demo-head">
-        <div class="num">09 / 65</div>
+        <div class="num">11 / 89</div>
         <div class="name">CSS 无限 marquee · 双向 · 零 JS</div>
         <div class="tags">data-css-marquee-list · @keyframes · 18s infinite</div>
       </div>
@@ -1278,6 +1491,71 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         两行文字相向滚动，<strong>完全没有 JS</strong>。CSS <code>@keyframes</code> + <code>animation: 18s linear infinite</code>。原站的 <code>data-css-marquee-list="left|right"</code> 就是这个机制。clone 一份子节点让循环看起来无缝。
       </div>
     </div>
+    <!-- B · 滚动 (new 4) -->
+    <div class="demo" id="demo68">
+      <div class="demo-head">
+        <div class="num">12 / 89</div>
+        <div class="name">视差多层背景</div>
+        <div class="tags">3 层 · translateY 不同速度 · scrub</div>
+      </div>
+      <div class="demo-body" style="padding:0">
+        <div class="d68-stage" id="d68Stage">
+          <div class="d68-layer d68-back"></div>
+          <div class="d68-layer d68-mid"></div>
+          <div class="d68-layer d68-front"></div>
+          <div class="d68-text"><h3>VEGAS GP</h3><p>滚动看三层不同速度</p></div>
+        </div>
+      </div>
+      <div class="demo-foot">三层背景按不同速度系数（0.3 / 0.6 / 1.0）translateY，造出深度感。最经典的视差，永不过时。</div>
+    </div>
+    <div class="demo" id="demo69">
+      <div class="demo-head">
+        <div class="num">13 / 89</div>
+        <div class="name">圆形 Mask reveal · 扩散下一屏</div>
+        <div class="tags">clip-path circle scrub · 章节切换的"扩散转场"</div>
+      </div>
+      <div class="demo-body" style="padding:0">
+        <div class="d69-stage" id="d69Stage">
+          <div class="d69-pin">
+            <div class="d69-bg"></div>
+            <div class="d69-mask" id="d69Mask"><div class="d69-content"><h3>下一章 · 露出来了</h3><p>滚动让圆形从中心扩散</p></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-foot">下层是新章节，上层用 <code>clip-path: circle(R at 50% 50%)</code> 从 R=0 扩到 R=150%，滚动控制 R。从一个"小洞"看到全屏。</div>
+    </div>
+    <div class="demo" id="demo70">
+      <div class="demo-head">
+        <div class="num">14 / 89</div>
+        <div class="name">Stack cards 堆叠揭示</div>
+        <div class="tags">多张 sticky 卡 · 后一张盖前一张 · 叠纸效果</div>
+      </div>
+      <div class="demo-body" style="padding:0">
+        <div class="d70-stage">
+          <div class="d70-card" style="background:#1a2410">card 01 · 卡片堆栈</div>
+          <div class="d70-card" style="background:#2a3024">card 02 · 后一张盖上来</div>
+          <div class="d70-card" style="background:#3a4500">card 03 · 像翻牌</div>
+          <div class="d70-card" style="background:#5a7d00">card 04 · 最后一张</div>
+        </div>
+      </div>
+      <div class="demo-foot">每张卡 position: sticky · top 递增 · 滚动时下一张盖上来，前一张 scale 略缩 / opacity 略减。<strong>叠纸 / 翻牌</strong> 视觉。</div>
+    </div>
+    <div class="demo" id="demo71">
+      <div class="demo-head">
+        <div class="num">15 / 89</div>
+        <div class="name">scroll-snap 强制章节对齐</div>
+        <div class="tags">CSS only · scroll-snap-type · 一屏一章节</div>
+      </div>
+      <div class="demo-body" style="padding:0">
+        <div class="d71-stage">
+          <div class="d71-page" style="background:#0a1208">PAGE 01 · 滚一下就咔嚓到下一页</div>
+          <div class="d71-page" style="background:#1c2218">PAGE 02 · CSS scroll-snap-type: y mandatory</div>
+          <div class="d71-page" style="background:#3a4500">PAGE 03 · 每个 child 加 scroll-snap-align: start</div>
+          <div class="d71-page" style="background:#5a7d00">PAGE 04 · 完全零 JS</div>
+        </div>
+      </div>
+      <div class="demo-foot">在内部容器滚动，每一格自动对齐顶部。<strong>零 JS，纯 CSS</strong>。<code>scroll-snap-type: y mandatory</code> + 每个 child <code>scroll-snap-align: start</code>。</div>
+    </div>
     <div class="cat-divider" data-cat="nav" id="cat-nav">
       <div class="cat-divider-key">C</div>
       <div class="cat-divider-name">导航 & 主题</div>
@@ -1287,7 +1565,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 2 -->
     <div class="demo" id="demo2">
       <div class="demo-head">
-        <div class="num">10 / 65</div>
+        <div class="num">16 / 89</div>
         <div class="name">隐形哨兵 div 切换导航主题（dark / light / lime）</div>
         <div class="tags">ScrollTrigger.onToggle · data-nav-theme-target</div>
       </div>
@@ -1312,7 +1590,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 21 · Footer 三色主题 -->
     <div class="demo" id="demo21">
       <div class="demo-head">
-        <div class="num">11 / 65</div>
+        <div class="num">17 / 89</div>
         <div class="name">Footer 三色主题 · data-footer-theme="black|green|white"</div>
         <div class="tags">同 nav 哨兵思路 · footer-theme 由 section 决定</div>
       </div>
@@ -1334,6 +1612,64 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         Footer 跟 nav 的主题切换机制一样——CSS 用 <code>[data-footer-theme="black"] { ... }</code> 接管。但<strong>触发源不同</strong>：nav 用全站散布的隐形哨兵 div，footer 是绑定到具体 section（不同 section 落到 footer 的颜色不同）。off-track 页有黑底章节，footer 就 black；on-track 是深绿，footer 就 green。
       </div>
     </div>
+    <!-- C · 导航 (new 4) -->
+    <div class="demo" id="demo72">
+      <div class="demo-head">
+        <div class="num">18 / 89</div>
+        <div class="name">Sticky nav 滚动时缩小</div>
+        <div class="tags">scroll position · 切 class · padding / 字号收</div>
+      </div>
+      <div class="demo-body" style="padding:0">
+        <div class="d72-stage" id="d72Stage">
+          <nav class="d72-nav" id="d72Nav">
+            <div class="d72-logo">LANDO</div>
+            <div class="d72-links"><span>HOME</span><span>RACE</span><span>STORE</span></div>
+          </nav>
+          <div class="d72-pad">↓ 在此容器内滚动 · nav 会收 ↓</div>
+          <div class="d72-pad" style="height:140vh;background:linear-gradient(var(--bg-3),var(--bg-2))"></div>
+        </div>
+      </div>
+      <div class="demo-foot">容器内滚动 > 50px 后 nav 切上 <code>.shrunk</code> class · padding 收一半 · logo 缩小。<strong>提升内容显示面积</strong>，常用做 hero 释放后的精简 nav。</div>
+    </div>
+    <div class="demo" id="demo73">
+      <div class="demo-head">
+        <div class="num">19 / 89</div>
+        <div class="name">Hamburger 转 close · SVG morph</div>
+        <div class="tags">3 条横线 · rotate + translateY · 变成 X</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><button class="d73-ham" id="d73Ham"><span></span><span></span><span></span></button></div>
+      </div>
+      <div class="demo-foot">点 hamburger：上下两条 rotate 45° 合成 X，中间条 opacity 0。最经典的 nav toggle 动画。</div>
+    </div>
+    <div class="demo" id="demo74">
+      <div class="demo-head">
+        <div class="num">20 / 89</div>
+        <div class="name">主题切换器 · dark / light / system</div>
+        <div class="tags">3 态 toggle · data-theme · 平滑色变</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;gap:1.5rem"><div class="d74-card" id="d74Card"><div class="d74-title">主题预览</div><div class="d74-sub">三态可切：dark / light / system（跟系统）</div></div><div class="d74-switch" id="d74Switch"><button data-theme="dark" class="is-on">Dark</button><button data-theme="light">Light</button><button data-theme="system">System</button></div></div>
+      </div>
+      <div class="demo-foot">按钮组切 <code>data-theme</code>，CSS 用属性选择器接管 + transition 平滑色变。System 跟 <code>prefers-color-scheme</code> 实时变。</div>
+    </div>
+    <div class="demo" id="demo75">
+      <div class="demo-head">
+        <div class="num">21 / 89</div>
+        <div class="name">侧边 dot navigator</div>
+        <div class="tags">IntersectionObserver · 当前 section 自动高亮</div>
+      </div>
+      <div class="demo-body" style="padding:0">
+        <div class="d75-stage" id="d75Stage">
+          <div class="d75-section" data-id="d75-1" style="background:#0a1208"><h3>Section 01</h3></div>
+          <div class="d75-section" data-id="d75-2" style="background:#1c2218"><h3>Section 02</h3></div>
+          <div class="d75-section" data-id="d75-3" style="background:#3a4500"><h3>Section 03</h3></div>
+          <div class="d75-section" data-id="d75-4" style="background:#5a7d00"><h3>Section 04</h3></div>
+          <nav class="d75-dots" id="d75Dots"><a data-id="d75-1" class="is-on"></a><a data-id="d75-2"></a><a data-id="d75-3"></a><a data-id="d75-4"></a></nav>
+        </div>
+      </div>
+      <div class="demo-foot">右侧浮动 dots，IntersectionObserver 检测哪个 section 在视口里就高亮哪个 dot。点 dot 平滑滚到对应 section。</div>
+    </div>
     <div class="cat-divider" data-cat="micro" id="cat-micro">
       <div class="cat-divider-key">D</div>
       <div class="cat-divider-name">微动效</div>
@@ -1343,7 +1679,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 22 · Rive button micro-interactions -->
     <div class="demo" id="demo22">
       <div class="demo-head">
-        <div class="num">12 / 65</div>
+        <div class="num">22 / 89</div>
         <div class="name">按钮 hover 微动效合集 · data-btn-rive-rotate / -hover / -invert</div>
         <div class="tags">btn-ui.riv · rotate / invert / scale / shake</div>
       </div>
@@ -1374,7 +1710,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 26 · magnetic button -->
     <div class="demo" id="demo26">
       <div class="demo-head">
-        <div class="num">13 / 65</div>
+        <div class="num">23 / 89</div>
         <div class="name">磁力按钮 · 鼠标靠近被吸过去</div>
         <div class="tags">mousemove · lerp · transform translate · ease 0.18</div>
       </div>
@@ -1393,7 +1729,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 30 · hold-to-transition button -->
     <div class="demo" id="demo30">
       <div class="demo-head">
-        <div class="num">14 / 65</div>
+        <div class="num">24 / 89</div>
         <div class="name">Hold-to-transition · 按住 0.6s 才触发</div>
         <div class="tags">mousedown timer · 进度环 · 防误触</div>
       </div>
@@ -1413,7 +1749,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- D · 按钮 Buttons (new 7) -->
     <div class="demo" id="demo31">
       <div class="demo-head">
-        <div class="num">15 / 65</div>
+        <div class="num">25 / 89</div>
         <div class="name">按钮 ripple · 点击位置发起涟漪</div>
         <div class="tags">click 位置 · scale + opacity · Material 风</div>
       </div>
@@ -1424,7 +1760,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo32">
       <div class="demo-head">
-        <div class="num">16 / 65</div>
+        <div class="num">26 / 89</div>
         <div class="name">按钮背景从一侧滑入填充</div>
         <div class="tags">::before translateX · pure CSS · hover only</div>
       </div>
@@ -1435,7 +1771,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo33">
       <div class="demo-head">
-        <div class="num">17 / 65</div>
+        <div class="num">27 / 89</div>
         <div class="name">按钮箭头跟随光标方向</div>
         <div class="tags">mousemove · arrow rotate · 朝向鼠标</div>
       </div>
@@ -1446,7 +1782,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo34">
       <div class="demo-head">
-        <div class="num">18 / 65</div>
+        <div class="num">28 / 89</div>
         <div class="name">按钮按下时 inset shadow 内陷</div>
         <div class="tags">:active · inset box-shadow · 拟物感</div>
       </div>
@@ -1457,7 +1793,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo35">
       <div class="demo-head">
-        <div class="num">19 / 65</div>
+        <div class="num">29 / 89</div>
         <div class="name">按钮 loading 态 · 文字变 spinner</div>
         <div class="tags">click → loading · 文字淡出 · spinner 旋</div>
       </div>
@@ -1468,7 +1804,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo36">
       <div class="demo-head">
-        <div class="num">20 / 65</div>
+        <div class="num">30 / 89</div>
         <div class="name">按钮 success 态 · ✓ 替换 + 反色</div>
         <div class="tags">click → 文字 → ✓ Done · 自动复位</div>
       </div>
@@ -1479,7 +1815,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo37">
       <div class="demo-head">
-        <div class="num">21 / 65</div>
+        <div class="num">31 / 89</div>
         <div class="name">按钮 disabled 平滑过渡</div>
         <div class="tags">checkbox 开关 · 灰度 + cursor + transition</div>
       </div>
@@ -1491,7 +1827,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 18 · char-level hover link flip -->
     <div class="demo" id="demo18">
       <div class="demo-head">
-        <div class="num">22 / 65</div>
+        <div class="num">32 / 89</div>
         <div class="name">链接字符级 hover 翻页（整站每个 nav-link 都用）</div>
         <div class="tags">data-anim="text-hover" · 上下两层字符 · stagger</div>
       </div>
@@ -1510,7 +1846,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 6 -->
     <div class="demo" id="demo6">
       <div class="demo-head">
-        <div class="num">23 / 65</div>
+        <div class="num">33 / 89</div>
         <div class="name">Rive 状态机的"一个文件 = 一台状态切换机"</div>
         <div class="tags">circuits.riv · data-rive-input-track</div>
       </div>
@@ -1541,7 +1877,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- D · 链接 / 文本 Links & Text (new 8) -->
     <div class="demo" id="demo38">
       <div class="demo-head">
-        <div class="num">24 / 65</div>
+        <div class="num">34 / 89</div>
         <div class="name">链接下划线从左到右画出</div>
         <div class="tags">::after width · transform-origin: left</div>
       </div>
@@ -1552,7 +1888,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo39">
       <div class="demo-head">
-        <div class="num">25 / 65</div>
+        <div class="num">35 / 89</div>
         <div class="name">链接整词翻面 · cube flip</div>
         <div class="tags">3D transform · rotateX 90° · 两面隐藏背面</div>
       </div>
@@ -1563,7 +1899,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo40">
       <div class="demo-head">
-        <div class="num">26 / 65</div>
+        <div class="num">36 / 89</div>
         <div class="name">Typewriter 打字机</div>
         <div class="tags">setInterval · cursor 闪烁 · 自动循环</div>
       </div>
@@ -1574,7 +1910,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo41">
       <div class="demo-head">
-        <div class="num">27 / 65</div>
+        <div class="num">37 / 89</div>
         <div class="name">Glitch / Scramble · 字符随机替换</div>
         <div class="tags">点击触发 · 字符 32 次随机替换 · 终态显原文</div>
       </div>
@@ -1585,7 +1921,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo42">
       <div class="demo-head">
-        <div class="num">28 / 65</div>
+        <div class="num">38 / 89</div>
         <div class="name">字符 hover 随机抖动</div>
         <div class="tags">每字符独立 transform · random rotate + translate</div>
       </div>
@@ -1596,7 +1932,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo43">
       <div class="demo-head">
-        <div class="num">29 / 65</div>
+        <div class="num">39 / 89</div>
         <div class="name">Read more · 展开 / 折叠</div>
         <div class="tags">grid-template-rows 0fr↔1fr · 平滑无 max-height hack</div>
       </div>
@@ -1607,7 +1943,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo44">
       <div class="demo-head">
-        <div class="num">30 / 65</div>
+        <div class="num">40 / 89</div>
         <div class="name">波浪下划线</div>
         <div class="tags">linear-gradient + mask · SVG wave</div>
       </div>
@@ -1618,7 +1954,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo45">
       <div class="demo-head">
-        <div class="num">31 / 65</div>
+        <div class="num">41 / 89</div>
         <div class="name">SVG icon hover 描线绘制</div>
         <div class="tags">stroke-dasharray + dashoffset transition</div>
       </div>
@@ -1630,7 +1966,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- D · 表单控件 Form Controls (new 10) -->
     <div class="demo" id="demo46">
       <div class="demo-head">
-        <div class="num">32 / 65</div>
+        <div class="num">42 / 89</div>
         <div class="name">Checkbox 描边变实心 + 对勾绘制</div>
         <div class="tags">stroke-dashoffset · 双 path 动画</div>
       </div>
@@ -1641,7 +1977,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo47">
       <div class="demo-head">
-        <div class="num">33 / 65</div>
+        <div class="num">43 / 89</div>
         <div class="name">Toggle switch · 反弹滑块</div>
         <div class="tags">cubic-bezier 反弹 · checkbox 隐藏</div>
       </div>
@@ -1652,7 +1988,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo48">
       <div class="demo-head">
-        <div class="num">34 / 65</div>
+        <div class="num">44 / 89</div>
         <div class="name">Radio · 涟漪选中</div>
         <div class="tags">::before scale 0→1 spring · 切换发涟漪</div>
       </div>
@@ -1663,7 +1999,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo49">
       <div class="demo-head">
-        <div class="num">35 / 65</div>
+        <div class="num">45 / 89</div>
         <div class="name">Slider · 手柄缩放 + 浮动 label</div>
         <div class="tags">input range · :active scale · label 跟拇指</div>
       </div>
@@ -1674,7 +2010,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo50">
       <div class="demo-head">
-        <div class="num">36 / 65</div>
+        <div class="num">46 / 89</div>
         <div class="name">Dual handle range slider</div>
         <div class="tags">两个 input range 重叠 · min/max 互锁</div>
       </div>
@@ -1685,7 +2021,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo51">
       <div class="demo-head">
-        <div class="num">37 / 65</div>
+        <div class="num">47 / 89</div>
         <div class="name">Floating label · 焦点时上浮</div>
         <div class="tags">:placeholder-shown 检测 · transform translateY</div>
       </div>
@@ -1696,7 +2032,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo52">
       <div class="demo-head">
-        <div class="num">38 / 65</div>
+        <div class="num">48 / 89</div>
         <div class="name">实时校验 + 错误抖动</div>
         <div class="tags">input event · invalid class · shake keyframe</div>
       </div>
@@ -1707,7 +2043,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo53">
       <div class="demo-head">
-        <div class="num">39 / 65</div>
+        <div class="num">49 / 89</div>
         <div class="name">Autocomplete · 下拉项 stagger 进入</div>
         <div class="tags">filter 数组 · 每条 stagger 50ms · 键盘可达</div>
       </div>
@@ -1718,7 +2054,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo54">
       <div class="demo-head">
-        <div class="num">40 / 65</div>
+        <div class="num">50 / 89</div>
         <div class="name">多按钮组 magic line underline</div>
         <div class="tags">click 当前按钮 · 计算 rect · transform 转线</div>
       </div>
@@ -1729,7 +2065,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo55">
       <div class="demo-head">
-        <div class="num">41 / 65</div>
+        <div class="num">51 / 89</div>
         <div class="name">Pill / chip · 选中态过渡</div>
         <div class="tags">click toggle · background + color transition</div>
       </div>
@@ -1741,7 +2077,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- D · 反馈与状态 Feedback (new 10) -->
     <div class="demo" id="demo56">
       <div class="demo-head">
-        <div class="num">42 / 65</div>
+        <div class="num">52 / 89</div>
         <div class="name">Modal · backdrop blur + 入场</div>
         <div class="tags">backdrop-filter: blur · scale 0.9→1 · opacity</div>
       </div>
@@ -1752,7 +2088,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo57">
       <div class="demo-head">
-        <div class="num">43 / 65</div>
+        <div class="num">53 / 89</div>
         <div class="name">Modal confirm · 摇晃强调拒绝</div>
         <div class="tags">点空白处 shake · click-outside 检测</div>
       </div>
@@ -1763,7 +2099,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo58">
       <div class="demo-head">
-        <div class="num">44 / 65</div>
+        <div class="num">54 / 89</div>
         <div class="name">Toast · 滑入 + auto-dismiss + stack</div>
         <div class="tags">从底栈 · 3s 自动消失 · 可叠加多条</div>
       </div>
@@ -1774,7 +2110,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo59">
       <div class="demo-head">
-        <div class="num">45 / 65</div>
+        <div class="num">55 / 89</div>
         <div class="name">Tooltip · hover delay + 智能定位</div>
         <div class="tags">600ms delay · 鼠标位置算 tooltip 锚点</div>
       </div>
@@ -1786,7 +2122,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo60">
       <div class="demo-head">
-        <div class="num">46 / 65</div>
+        <div class="num">56 / 89</div>
         <div class="name">Tooltip · 智能边界反转</div>
         <div class="tags">检测 viewport 边缘 · 自动翻方向</div>
       </div>
@@ -1798,7 +2134,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo61">
       <div class="demo-head">
-        <div class="num">47 / 65</div>
+        <div class="num">57 / 89</div>
         <div class="name">Skeleton loader · wave 闪烁</div>
         <div class="tags">linear-gradient 平移 · 占位骨架 · 非 spinner</div>
       </div>
@@ -1809,7 +2145,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo62">
       <div class="demo-head">
-        <div class="num">48 / 65</div>
+        <div class="num">58 / 89</div>
         <div class="name">Empty state · 插画 + 引导</div>
         <div class="tags">SVG 图 + 简短文案 + 主 CTA</div>
       </div>
@@ -1820,7 +2156,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo63">
       <div class="demo-head">
-        <div class="num">49 / 65</div>
+        <div class="num">59 / 89</div>
         <div class="name">Notification badge · 弹出 + 数字翻</div>
         <div class="tags">scale spring · 数字 flip</div>
       </div>
@@ -1831,7 +2167,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo64">
       <div class="demo-head">
-        <div class="num">50 / 65</div>
+        <div class="num">60 / 89</div>
         <div class="name">Cursor 弹簧延迟跟随</div>
         <div class="tags">lerp 0.15 · 一拍一弹 · OFF+BRAND 风</div>
       </div>
@@ -1842,7 +2178,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo65">
       <div class="demo-head">
-        <div class="num">51 / 65</div>
+        <div class="num">61 / 89</div>
         <div class="name">Like / heart · 跳动 + 粒子飞溅</div>
         <div class="tags">click → heartbeat · 8 个粒子飞出 · count 翻</div>
       </div>
@@ -1860,7 +2196,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 12 · flip-digit countdown -->
     <div class="demo" id="demo12">
       <div class="demo-head">
-        <div class="num">52 / 65</div>
+        <div class="num">62 / 89</div>
         <div class="name">倒计时翻页数字（on-track / calendar 页都用）</div>
         <div class="tags">data-countdown-digit · yPercent flip · 每秒更新</div>
       </div>
@@ -1885,7 +2221,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 19 · CMS-driven race calendar -->
     <div class="demo" id="demo19">
       <div class="demo-head">
-        <div class="num">53 / 65</div>
+        <div class="num">63 / 89</div>
         <div class="name">CMS 驱动的赛季日历 · prev/next 切换（calendar 页核心）</div>
         <div class="tags">data-cal-list · data-cal-control · 字段填充</div>
       </div>
@@ -1924,7 +2260,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 27 · scroll counter -->
     <div class="demo" id="demo27">
       <div class="demo-head">
-        <div class="num">54 / 65</div>
+        <div class="num">64 / 89</div>
         <div class="name">滚动触发数字计数器</div>
         <div class="tags">ScrollTrigger once · GSAP snap · power2.out</div>
       </div>
@@ -1940,6 +2276,51 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         把这个 demo 滚到视口里，4 个数字会从 0 渐增到目标值。一次性触发（<code>once: true</code>），不会因为再次滚回又开始动。<code>snap: { textContent: 1 }</code> 让数字按整数跳，不出现 41.74。原站每个统计进场都用这个。
       </div>
     </div>
+    <!-- E · 数据 (new 3) -->
+    <div class="demo" id="demo76">
+      <div class="demo-head">
+        <div class="num">65 / 89</div>
+        <div class="name">localStorage 设置持久化</div>
+        <div class="tags">用户选择 · 刷新依然记得 · key/value</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;gap:1rem"><div class="d76-pref" id="d76Pref">当前偏好: <span class="mono" id="d76Out">—</span></div><div style="display:flex;gap:.5rem"><button class="btn" data-pref="dark">Dark</button><button class="btn" data-pref="light">Light</button><button class="btn" data-pref="auto">Auto</button></div><div class="d76-hint mono">刷新页面看是否记住</div></div>
+      </div>
+      <div class="demo-foot">点按钮 → <code>localStorage.setItem('theme', value)</code>。页面加载时读回。最简单的持久化模式，不需要后端。</div>
+    </div>
+    <div class="demo" id="demo77">
+      <div class="demo-head">
+        <div class="num">66 / 89</div>
+        <div class="name">Multi-step form · 进度条 + 切换</div>
+        <div class="tags">3 步 · prev/next · 进度可视</div>
+      </div>
+      <div class="demo-body">
+        <div class="d77-form">
+          <div class="d77-bar"><div class="d77-bar-fill" id="d77Fill"></div></div>
+          <div class="d77-steps" id="d77Steps">
+            <div class="d77-step is-on"><label>姓名</label><input placeholder="Lando"></div>
+            <div class="d77-step"><label>邮箱</label><input placeholder="@..."></div>
+            <div class="d77-step"><label>赛季偏好</label><select><option>F1</option><option>MotoGP</option></select></div>
+          </div>
+          <div class="d77-nav"><button class="btn" id="d77Prev">← 上一步</button><span class="mono" id="d77Pos">1 / 3</span><button class="btn" id="d77Next">下一步 →</button></div>
+        </div>
+      </div>
+      <div class="demo-foot">3 步表单 · 当前步 opacity 1 + translateX 0，其他步 translateX 隐藏。进度条用 CSS scaleX。</div>
+    </div>
+    <div class="demo" id="demo78">
+      <div class="demo-head">
+        <div class="num">67 / 89</div>
+        <div class="name">Undo / Redo 操作历史栈</div>
+        <div class="tags">push / pop 历史 · Cmd+Z / Cmd+Shift+Z</div>
+      </div>
+      <div class="demo-body">
+        <div class="d78-stage">
+          <textarea class="d78-ta" id="d78Ta" placeholder="输入文字 · Ctrl+Z 撤销 · Ctrl+Shift+Z 重做"></textarea>
+          <div class="d78-bar"><button class="btn" id="d78Undo">↶ Undo</button><span class="mono" id="d78Pos">0 / 0</span><button class="btn" id="d78Redo">↷ Redo</button></div>
+        </div>
+      </div>
+      <div class="demo-foot">每次输入 push 到 history 栈，undo 取上一个 state，redo 恢复。键盘快捷键 Ctrl+Z / Ctrl+Shift+Z 同步绑定。</div>
+    </div>
     <div class="cat-divider" data-cat="gesture" id="cat-gesture">
       <div class="cat-divider-key">F</div>
       <div class="cat-divider-name">手势 & 光标</div>
@@ -1949,7 +2330,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 8 -->
     <div class="demo" id="demo8">
       <div class="demo-head">
-        <div class="num">55 / 65</div>
+        <div class="num">68 / 89</div>
         <div class="name">"tap to lock" · 模态手势把页面让出来</div>
         <div class="tags">data-home-swipe-toggle · touch-action · 移动端神技</div>
       </div>
@@ -1969,7 +2350,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 9 -->
     <div class="demo" id="demo9">
       <div class="demo-head">
-        <div class="num">56 / 65</div>
+        <div class="num">69 / 89</div>
         <div class="name">自定义光标 + 悬停区域 reveal（on-track 页 highlights/schedule）</div>
         <div class="tags">data-mouse-area · data-mouse-reveal · clip-path tracking</div>
       </div>
@@ -1999,7 +2380,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 17 · menu image blend-mode columns -->
     <div class="demo" id="demo17">
       <div class="demo-head">
-        <div class="num">57 / 65</div>
+        <div class="num">70 / 89</div>
         <div class="name">菜单图片轨道 + 鼠标穿过 blend-mode（nav-menu 神技）</div>
         <div class="tags">data-nav-img · menu-img-blends · mix-blend-mode</div>
       </div>
@@ -2017,6 +2398,62 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         nav 菜单展开时，主图轨道下盖了 3 层 <code>.menu-img-blend-1/2/3</code>，分别是 <code>mix-blend-mode: difference / multiply / screen</code>。鼠标 hover 时调每层 opacity，产生"图片之间相互染色"的效果——比单纯的滤镜更复杂、更"叠层"。
       </div>
     </div>
+    <!-- F · 手势 (new 4) -->
+    <div class="demo" id="demo79">
+      <div class="demo-head">
+        <div class="num">71 / 89</div>
+        <div class="name">Swipe 滑动识别 · 卡片切换</div>
+        <div class="tags">touch / mouse drag · 阈值 80px · 方向判定</div>
+      </div>
+      <div class="demo-body">
+        <div class="d79-stage" id="d79Stage">
+          <div class="d79-card" data-i="0">← 滑动试试 · Card 1</div>
+          <div class="d79-card" data-i="1">Card 2</div>
+          <div class="d79-card" data-i="2">Card 3</div>
+          <div class="d79-card" data-i="3">Card 4 →</div>
+        </div>
+        <div class="d79-pos mono" id="d79Pos">1 / 4</div>
+      </div>
+      <div class="demo-foot">鼠标 / 触屏拖拽卡片，水平偏移超过 80px 切换前 / 后一张。同时支持鼠标和触屏（pointerdown/move/up）。</div>
+    </div>
+    <div class="demo" id="demo80">
+      <div class="demo-head">
+        <div class="num">72 / 89</div>
+        <div class="name">列表拖拽排序</div>
+        <div class="tags">drag handle · mouse drag · 数组重排</div>
+      </div>
+      <div class="demo-body">
+        <div class="d80-list" id="d80List">
+          <div class="d80-item" draggable="true">≡ Monaco GP</div>
+          <div class="d80-item" draggable="true">≡ Silverstone</div>
+          <div class="d80-item" draggable="true">≡ Spa</div>
+          <div class="d80-item" draggable="true">≡ Suzuka</div>
+        </div>
+      </div>
+      <div class="demo-foot">每项 draggable，HTML5 drag/drop API。被拖时该项 opacity 0.5，dragover 时插入位置高亮，drop 后更新数组。</div>
+    </div>
+    <div class="demo" id="demo81">
+      <div class="demo-head">
+        <div class="num">73 / 89</div>
+        <div class="name">Drag-drop 文件上传区</div>
+        <div class="tags">dragenter highlight · drop 读文件 · 拒非图片</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><div class="d81-drop" id="d81Drop"><svg viewBox="0 0 32 32"><path d="M16 4 L16 22 M8 14 L16 22 L24 14 M4 28 L28 28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="d81-t">把图片拖到这里</div><div class="d81-s mono" id="d81S">支持: jpg, png, webp</div></div></div>
+      </div>
+      <div class="demo-foot">拖文件进入 → 区域柠檬绿描边 + 缩放。drop 时读 file.name + file.size + 校验 mime type。</div>
+    </div>
+    <div class="demo" id="demo82">
+      <div class="demo-head">
+        <div class="num">74 / 89</div>
+        <div class="name">卡片 3D tilt 鼠标跟随</div>
+        <div class="tags">mousemove · rotateX/Y · perspective · 拟物感</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="gap:1.5rem;flex-wrap:wrap"><div class="d82-card" data-d82-tilt><div class="d82-bg"></div><div class="d82-t">P1</div><div class="d82-s">Las Vegas</div></div><div class="d82-card" data-d82-tilt><div class="d82-bg"></div><div class="d82-t">P3</div><div class="d82-s">Monaco</div></div></div>
+      </div>
+      <div class="demo-foot">鼠标位置算 rotateX / rotateY（绕中心反方向倾斜）+ 阴影偏移。常见于产品卡 / 收藏卡。</div>
+    </div>
     <div class="cat-divider" data-cat="visual" id="cat-visual">
       <div class="cat-divider-key">G</div>
       <div class="cat-divider-name">视觉系统</div>
@@ -2026,7 +2463,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 7 -->
     <div class="demo" id="demo7">
       <div class="demo-head">
-        <div class="num">58 / 65</div>
+        <div class="num">75 / 89</div>
         <div class="name">1728 设计稿基准 · clamp 流体缩放</div>
         <div class="tags">clamp() · CSS custom property · 设计师友好</div>
       </div>
@@ -2049,7 +2486,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 13 · oval-scroll arc text -->
     <div class="demo" id="demo13">
       <div class="demo-head">
-        <div class="num">59 / 65</div>
+        <div class="num">76 / 89</div>
         <div class="name">椭圆轨迹大字 · TRACK / OFFTRACK 那种弧形排版</div>
         <div class="tags">data-oval-scroll · 字符 rotate · transform-origin 在弧心</div>
       </div>
@@ -2071,7 +2508,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 14 · GSAP FLIP layout morph -->
     <div class="demo" id="demo14">
       <div class="demo-head">
-        <div class="num">60 / 65</div>
+        <div class="num">77 / 89</div>
         <div class="name">布局变形（FLIP）· off-track 页的 data-heroflip="pos1/pos2/pos3"</div>
         <div class="tags">First-Last-Invert-Play · 记录前后 rect · GSAP fromTo</div>
       </div>
@@ -2100,7 +2537,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 16 · SVG mask container shapes -->
     <div class="demo" id="demo16">
       <div class="demo-head">
-        <div class="num">61 / 65</div>
+        <div class="num">78 / 89</div>
         <div class="name">SVG 异形容器 · data-helmet-item / mask-callout / mask-case</div>
         <div class="tags">-webkit-mask-image · 不规则切角圆缺 · 不是 clip-path</div>
       </div>
@@ -2119,7 +2556,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 20 · Variable Font 双轴 -->
     <div class="demo" id="demo20">
       <div class="demo-head">
-        <div class="num">62 / 65</div>
+        <div class="num">79 / 89</div>
         <div class="name">Variable Font 双轴 · Mona Sans wdth + wght</div>
         <div class="tags">font-variation-settings · 一个 woff2 = 无数粗细 × 宽度</div>
       </div>
@@ -2140,7 +2577,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 29 · scroll-driven font width -->
     <div class="demo" id="demo29">
       <div class="demo-head">
-        <div class="num">63 / 65</div>
+        <div class="num">80 / 89</div>
         <div class="name">滚动驱动字宽变化 · Mona Sans wdth axis</div>
         <div class="tags">ScrollTrigger scrub · font-variation-settings · 75→125</div>
       </div>
@@ -2158,6 +2595,62 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         Variable Font + ScrollTrigger 的合奏：滚动 progress 0→1 同时驱动 <code>wdth</code> 75→125 和 <code>wght</code> 300→700。字从瘦弱变粗壮 —— 一个 woff2 文件就够，**完全没换字体**。OFF+BRAND 在 hero 小幅做过这个动作。
       </div>
     </div>
+    <!-- G · 视觉 (new 5) -->
+    <div class="demo" id="demo83">
+      <div class="demo-head">
+        <div class="num">81 / 89</div>
+        <div class="name">conic-gradient 圆盘仪表</div>
+        <div class="tags">CSS conic-gradient · 进度环 · 仪表盘</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="gap:2rem;flex-wrap:wrap"><div class="d83-dial" style="--p:65"><div class="d83-num">65%</div></div><div class="d83-dial" style="--p:42"><div class="d83-num">42%</div></div><div class="d83-dial" style="--p:88"><div class="d83-num">88%</div></div></div>
+      </div>
+      <div class="demo-foot">用 <code>conic-gradient(var(--lime) calc(var(--p)*1%), transparent 0)</code> 一行 CSS 画进度环。比 SVG circle stroke-dasharray 简洁得多。</div>
+    </div>
+    <div class="demo" id="demo84">
+      <div class="demo-head">
+        <div class="num">82 / 89</div>
+        <div class="name">backdrop-filter 玻璃感</div>
+        <div class="tags">backdrop-filter: blur · 半透明 · 透出底图</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><div class="d84-stage"><div class="d84-card"><div class="d84-eyebrow">Glassmorphism</div><h3>透过去看底图</h3><p>backdrop-filter: blur(20px) + rgba 半透明背景。</p></div></div></div>
+      </div>
+      <div class="demo-foot">卡片背景 <code>rgba(255,255,255,0.06)</code> + <code>backdrop-filter: blur(20px)</code>。后面色块的颜色被模糊地透出。iOS 风。</div>
+    </div>
+    <div class="demo" id="demo85">
+      <div class="demo-head">
+        <div class="num">83 / 89</div>
+        <div class="name">text-stroke 描边字</div>
+        <div class="tags">-webkit-text-stroke · 中空字 · hover 填充</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="gap:1rem;flex-direction:column"><div class="d85-text d85-1">CHAMPION</div><div class="d85-text d85-2">LANDO</div><div class="d85-text d85-3 mono">NORRIS</div></div>
+      </div>
+      <div class="demo-foot">字本身 transparent，<code>-webkit-text-stroke: 1.5px var(--lime)</code> 给中空描边。hover 时换回填充。</div>
+    </div>
+    <div class="demo" id="demo86">
+      <div class="demo-head">
+        <div class="num">84 / 89</div>
+        <div class="name">Liquid morph blob · 流体形状</div>
+        <div class="tags">SVG path · 周期性变形 · 动态背景</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><svg class="d86-svg" viewBox="0 0 200 200"><path id="d86Path" fill="#d2ff00"/></svg></div>
+      </div>
+      <div class="demo-foot">8 个随机控制点形成的不规则圆，每秒平滑变形一次。常用做 hero 区动态装饰。</div>
+    </div>
+    <div class="demo" id="demo87">
+      <div class="demo-head">
+        <div class="num">85 / 89</div>
+        <div class="name">3D card flip · 双面卡片</div>
+        <div class="tags">transform-style preserve-3d · rotateY 180°</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="gap:1.5rem;flex-wrap:wrap"><div class="d87-card" data-flip><div class="d87-face d87-front"><h3>LANDO</h3><p>HOVER TO FLIP</p></div><div class="d87-face d87-back">McLaren MCL39<br><span>WDC 2025</span></div></div><div class="d87-card" data-flip><div class="d87-face d87-front"><h3>OSCAR</h3><p>HOVER TO FLIP</p></div><div class="d87-face d87-back">McLaren MCL39<br><span>P2 2025</span></div></div></div>
+      </div>
+      <div class="demo-foot">外层 <code>transform-style: preserve-3d</code>，两面分别 rotateY 0° / 180°，hover 整张 rotateY 180° 翻转。背面 backface-visibility hidden。</div>
+    </div>
     <div class="cat-divider" data-cat="media" id="cat-media">
       <div class="cat-divider-key">H</div>
       <div class="cat-divider-name">媒体</div>
@@ -2167,7 +2660,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 10 -->
     <div class="demo" id="demo10">
       <div class="demo-head">
-        <div class="num">64 / 65</div>
+        <div class="num">86 / 89</div>
         <div class="name">hover 自动播放视频（data-video-stream + Vimeo lazy load）</div>
         <div class="tags">data-stream-hover · IntersectionObserver · placeholder→stream</div>
       </div>
@@ -2212,7 +2705,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 23 · Stat hover image swap -->
     <div class="demo" id="demo23">
       <div class="demo-head">
-        <div class="num">65 / 65</div>
+        <div class="num">87 / 89</div>
         <div class="name">Stat hover 图替换 · data-stat-hover-img</div>
         <div class="tags">on-track 页统计卡 · 鼠标进 → 大图淡入</div>
       </div>
@@ -2231,9 +2724,31 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         鼠标移到任一统计上，背后大图淡入（这里用渐变代图）。原站 on-track 页用 <code>data-stat-hover-img</code> 把每个统计绑一张照片——hover 时整面墙的视觉切换成"这个数字对应的赛车场景"。一种"数字会讲故事"的设计。
       </div>
     </div>
+    <!-- H · 媒体 (new 2) -->
+    <div class="demo" id="demo88">
+      <div class="demo-head">
+        <div class="num">88 / 89</div>
+        <div class="name">Lightbox · 点图全屏 + 切换</div>
+        <div class="tags">click 放大 · 左右键切换 · Esc 关</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="gap:.5rem;flex-wrap:wrap"><div class="d88-grid" id="d88Grid"><div class="d88-thumb" data-i="0" style="background:linear-gradient(135deg,#d2ff00,#5a7d00)"></div><div class="d88-thumb" data-i="1" style="background:linear-gradient(135deg,#0a1208,#3a4500)"></div><div class="d88-thumb" data-i="2" style="background:radial-gradient(circle,#d2ff00,#101400)"></div><div class="d88-thumb" data-i="3" style="background:linear-gradient(225deg,#5a7d00,#0a1208)"></div></div></div>
+        <div class="d88-box" id="d88Box"><div class="d88-stage"><div class="d88-img" id="d88Img"></div><button class="d88-prev" id="d88Prev">←</button><button class="d88-next" id="d88Next">→</button><button class="d88-close" id="d88Close">✕</button><div class="d88-pos mono" id="d88PosTxt">1 / 4</div></div></div>
+      </div>
+      <div class="demo-foot">点缩略图打开全屏。Esc 关 · 左右键切 · 背景半透明 + backdrop blur。所有图片画廊的基础。</div>
+    </div>
+    <div class="demo" id="demo89">
+      <div class="demo-head">
+        <div class="num">89 / 89</div>
+        <div class="name">Before / after 对比滑块</div>
+        <div class="tags">clip-path inset · 拖动分割线 · 揭露下层</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><div class="d89-stage" id="d89Stage"><div class="d89-after"></div><div class="d89-before" id="d89Before"></div><div class="d89-handle" id="d89Handle"><span>‖</span></div></div></div>
+      </div>
+      <div class="demo-foot">两张图叠加，上层用 clip-path inset 从右侧裁切，拖中间分割线改变 inset 距离。改装 / before/after / 滤镜对比标配。</div>
+    </div>
 
-
-  </div>
 </section>
 
 <!-- ============== PER-PAGE ============== -->
@@ -2366,7 +2881,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
           <tr><td>data-mouse-track</td><td>仅追踪光标但不揭示（用于位移/视差）</td><td>monitor pointerEvent, update CSS var</td></tr>
         </tbody>
       </table>
-      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 56</strong> 演示了这套。</p>
+      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 69</strong> 演示了这套。</p>
     </div>
 
     <div class="page-block reveal">
@@ -2396,7 +2911,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
           <tr><td>data-stream-muted/-loop/-autoplay</td><td>Vimeo Player API 参数</td><td>透传给 iframe</td></tr>
         </tbody>
       </table>
-      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 64</strong> 演示了这套。最大价值：<strong>视频不进视野 / 没 hover 就不下载流</strong>。</p>
+      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 86</strong> 演示了这套。最大价值：<strong>视频不进视野 / 没 hover 就不下载流</strong>。</p>
     </div>
 
     <div class="page-block reveal">
@@ -3070,9 +3585,9 @@ const TAXONOMY = [
     { l:"全屏路由切换幕布（Rive 状态机）", d:"demo11" },
     { l:"预加载门（点击仪式 Load Norris）", extra:"preloader" },
     { l:"椭圆 clip-path 收缩揭示", d:"demo1" },
-    { l:"SVG morph 过场（一形变另一形）" },
+    { l:"SVG morph 过场（一形变另一形）", d:"demo66" },
     { l:"滚动方向感知入场（向下 / 向上不同动画）" },
-    { l:"Logo 写字 / 描线入场（stroke-dashoffset）" },
+    { l:"Logo 写字 / 描线入场（stroke-dashoffset）", d:"demo67" },
     { l:"多层 section stagger 进场" },
     { l:"Onboarding 首次访问引导" },
     { l:"真路由切换（Taxi.js / Barba / View Transitions API）" },
@@ -3088,15 +3603,15 @@ const TAXONOMY = [
     { l:"Rive scrub · SVG path 绘制", d:"demo19svg" },
     { l:"章节滚动进度条 scaleX", d:"demo24" },
     { l:"CSS 双向无限 marquee（零 JS）", d:"demo28" },
-    { l:"视差多层背景 parallax（不同层不同速度）" },
+    { l:"视差多层背景 parallax（不同层不同速度）", d:"demo68" },
     { l:"滚动驱动 Three.js 相机移动 / 缩放" },
     { l:"滚动驱动 video.currentTime（帧步进）" },
     { l:"滚动驱动 Lottie 帧" },
     { l:"文字 morph 多布局（FLIP + 滚动）" },
-    { l:"Mask reveal · 圆形扩散下一屏" },
-    { l:"Stack cards 堆叠揭示（叠纸效果）" },
+    { l:"Mask reveal · 圆形扩散下一屏", d:"demo69" },
+    { l:"Stack cards 堆叠揭示（叠纸效果）", d:"demo70" },
     { l:"反向滚动揭示（往上滚出现彩蛋）" },
-    { l:"scroll-snap 强制对齐章节" },
+    { l:"scroll-snap 强制对齐章节", d:"demo71" },
     { l:"滚动 hue-rotate / 滤镜变化" },
     { l:"滚动 SVG path d morph 形状变化" },
     { l:"滚动 X% 触发一次性事件" },
@@ -3114,18 +3629,18 @@ const TAXONOMY = [
     { l:"隐形哨兵 div 切 nav 主题", d:"demo2" },
     { l:"Footer 三色主题随 section 切", d:"demo21" },
     { l:"Focus mode 分类筛选（页面级）", extra:"focus mode" },
-    { l:"Sticky nav 滚动时缩小（高度/字号收敛）" },
+    { l:"Sticky nav 滚动时缩小（高度/字号收敛）", d:"demo72" },
     { l:"Nav 透明度随 hero 进度" },
     { l:"滚到底自动隐藏 nav，往上滚显示" },
     { l:"全屏 mega-menu 展开" },
-    { l:"Hamburger 转 close 的 SVG morph" },
+    { l:"Hamburger 转 close 的 SVG morph", d:"demo73" },
     { l:"Auto-TOC 实时高亮当前 section" },
     { l:"View Transitions API（原生跨页）" },
     { l:"Drawer 侧滑菜单（带遮罩）" },
     { l:"Nav link hover underline magic move" },
-    { l:"主题切换器 dark / light / system" },
+    { l:"主题切换器 dark / light / system", d:"demo74" },
     { l:"多语言切换器（带保留滚动位置）" },
-    { l:"Sub-section dot navigator（右侧锚点）" }
+    { l:"Sub-section dot navigator（右侧锚点）", d:"demo75" }
   ]},
   { key:"D", name:"微动效", subgroups:[
     { name:"按钮 Buttons", items:[
@@ -3183,11 +3698,11 @@ const TAXONOMY = [
     { l:"滚动触发数字计数器（0 → N）", d:"demo27" },
     { l:"Realtime fetch + 渲染（赛事成绩同步）" },
     { l:"数据图表（D3 / Chart.js）动效绘制" },
-    { l:"localStorage 设置持久化（偏好）" },
-    { l:"Multi-step form 进度条 + 切换" },
+    { l:"localStorage 设置持久化（偏好）", d:"demo76" },
+    { l:"Multi-step form 进度条 + 切换", d:"demo77" },
     { l:"WebSocket 实时 push（直播 + 进度）" },
     { l:"Optimistic UI（先显示成功后台同步）" },
-    { l:"Undo / redo 操作历史栈" },
+    { l:"Undo / redo 操作历史栈", d:"demo78" },
     { l:"URL state sync 双向（filter / scroll）" },
     { l:"自动保存（debounce 1s）+ 状态指示" },
     { l:"Filter chain 多条件 AND/OR 组合" },
@@ -3197,12 +3712,12 @@ const TAXONOMY = [
     { l:"Tap to lock 移动端模态手势", d:"demo8" },
     { l:"自定义光标 + 区域 reveal", d:"demo9" },
     { l:"菜单图片 blend-mode cursor 跟随", d:"demo17" },
-    { l:"Swipe 滑动左右识别（slider）" },
+    { l:"Swipe 滑动左右识别（slider）", d:"demo79" },
     { l:"Pinch zoom 双指缩放" },
-    { l:"列表拖拽排序（drag handle + auto-scroll）" },
-    { l:"Drag-and-drop 文件上传区（hover 高亮）" },
+    { l:"列表拖拽排序（drag handle + auto-scroll）", d:"demo80" },
+    { l:"Drag-and-drop 文件上传区（hover 高亮）", d:"demo81" },
     { l:"Cursor trail 光标轨迹" },
-    { l:"卡片 3D tilt 鼠标跟随" },
+    { l:"卡片 3D tilt 鼠标跟随", d:"demo82" },
     { l:"拖拽惯性 inertia（甩出去）" },
     { l:"Pointer events 笔压 / 笔触" },
     { l:"鼠标进入页面方向感知（top/left）" },
@@ -3216,7 +3731,7 @@ const TAXONOMY = [
       { l:"椭圆轨迹大字（字符沿弧排列）", d:"demo13" },
       { l:"Variable Font 双轴（wght + wdth）", d:"demo20" },
       { l:"滚动驱动字宽变化（wdth axis sync）", d:"demo29" },
-      { l:"-webkit-text-stroke 描边字" },
+      { l:"-webkit-text-stroke 描边字", d:"demo85" },
       { l:"CSS counter 自动编号样式" },
       { l:"Multi-line text-wrap: balance" },
       { l:"Drop cap 首字母下沉" }
@@ -3234,8 +3749,8 @@ const TAXONOMY = [
       { l:"Custom scrollbar 美化" }
     ]},
     { name:"视觉特效 Effects", items:[
-      { l:"conic-gradient 圆盘 / 仪表盘" },
-      { l:"backdrop-filter blur 玻璃感" },
+      { l:"conic-gradient 圆盘 / 仪表盘", d:"demo83" },
+      { l:"backdrop-filter blur 玻璃感", d:"demo84" },
       { l:"mix-blend-mode 多层叠（difference / multiply）" },
       { l:"CSS filter（hue-rotate / invert / sepia）" },
       { l:"SVG filter feTurbulence 噪声" },
@@ -3243,10 +3758,10 @@ const TAXONOMY = [
       { l:"CSS @property 自定义属性补间" },
       { l:"CSS view() animation-timeline（进入视口）" },
       { l:"Noise overlay 颗粒（赛博朋克 grain）" },
-      { l:"Liquid morph blob（SVG 路径流体）" },
+      { l:"Liquid morph blob（SVG 路径流体）", d:"demo86" },
       { l:"Aurora 极光渐变 + 动画" },
       { l:"Glassmorphism 三层玻璃" },
-      { l:"3D CSS card flip（transform-style preserve-3d）" },
+      { l:"3D CSS card flip（transform-style preserve-3d）", d:"demo87" },
       { l:"Holographic 彩虹反射（gradient + blend）" }
     ]}
   ]},
@@ -3257,8 +3772,8 @@ const TAXONOMY = [
     { l:"自定义视频播放进度条 + 时间码" },
     { l:"WebM 透明通道（alpha 视频）" },
     { l:"Image hover zoom + 视差移动" },
-    { l:"Lightbox 点图全屏 + 键盘切换" },
-    { l:"Before / after 图片对比滑块" },
+    { l:"Lightbox 点图全屏 + 键盘切换", d:"demo88" },
+    { l:"Before / after 图片对比滑块", d:"demo89" },
     { l:"360° 全景图查看器" },
     { l:"Audio play on hover" },
     { l:"Web Audio API 频谱可视化" },
@@ -3553,7 +4068,14 @@ const CAT_MAP = {
   demo31:{key:"D",name:"微动效",cat:"micro"},demo32:{key:"D",name:"微动效",cat:"micro"},demo33:{key:"D",name:"微动效",cat:"micro"},demo34:{key:"D",name:"微动效",cat:"micro"},demo35:{key:"D",name:"微动效",cat:"micro"},demo36:{key:"D",name:"微动效",cat:"micro"},demo37:{key:"D",name:"微动效",cat:"micro"},
   demo38:{key:"D",name:"微动效",cat:"micro"},demo39:{key:"D",name:"微动效",cat:"micro"},demo40:{key:"D",name:"微动效",cat:"micro"},demo41:{key:"D",name:"微动效",cat:"micro"},demo42:{key:"D",name:"微动效",cat:"micro"},demo43:{key:"D",name:"微动效",cat:"micro"},demo44:{key:"D",name:"微动效",cat:"micro"},demo45:{key:"D",name:"微动效",cat:"micro"},
   demo46:{key:"D",name:"微动效",cat:"micro"},demo47:{key:"D",name:"微动效",cat:"micro"},demo48:{key:"D",name:"微动效",cat:"micro"},demo49:{key:"D",name:"微动效",cat:"micro"},demo50:{key:"D",name:"微动效",cat:"micro"},demo51:{key:"D",name:"微动效",cat:"micro"},demo52:{key:"D",name:"微动效",cat:"micro"},demo53:{key:"D",name:"微动效",cat:"micro"},demo54:{key:"D",name:"微动效",cat:"micro"},demo55:{key:"D",name:"微动效",cat:"micro"},
-  demo56:{key:"D",name:"微动效",cat:"micro"},demo57:{key:"D",name:"微动效",cat:"micro"},demo58:{key:"D",name:"微动效",cat:"micro"},demo59:{key:"D",name:"微动效",cat:"micro"},demo60:{key:"D",name:"微动效",cat:"micro"},demo61:{key:"D",name:"微动效",cat:"micro"},demo62:{key:"D",name:"微动效",cat:"micro"},demo63:{key:"D",name:"微动效",cat:"micro"},demo64:{key:"D",name:"微动效",cat:"micro"},demo65:{key:"D",name:"微动效",cat:"micro"}
+  demo56:{key:"D",name:"微动效",cat:"micro"},demo57:{key:"D",name:"微动效",cat:"micro"},demo58:{key:"D",name:"微动效",cat:"micro"},demo59:{key:"D",name:"微动效",cat:"micro"},demo60:{key:"D",name:"微动效",cat:"micro"},demo61:{key:"D",name:"微动效",cat:"micro"},demo62:{key:"D",name:"微动效",cat:"micro"},demo63:{key:"D",name:"微动效",cat:"micro"},demo64:{key:"D",name:"微动效",cat:"micro"},demo65:{key:"D",name:"微动效",cat:"micro"},
+  demo66:{key:"A",name:"入场",cat:"entrance"},demo67:{key:"A",name:"入场",cat:"entrance"},
+  demo68:{key:"B",name:"滚动驱动",cat:"scroll"},demo69:{key:"B",name:"滚动驱动",cat:"scroll"},demo70:{key:"B",name:"滚动驱动",cat:"scroll"},demo71:{key:"B",name:"滚动驱动",cat:"scroll"},
+  demo72:{key:"C",name:"导航主题",cat:"nav"},demo73:{key:"C",name:"导航主题",cat:"nav"},demo74:{key:"C",name:"导航主题",cat:"nav"},demo75:{key:"C",name:"导航主题",cat:"nav"},
+  demo76:{key:"E",name:"数据驱动",cat:"data"},demo77:{key:"E",name:"数据驱动",cat:"data"},demo78:{key:"E",name:"数据驱动",cat:"data"},
+  demo79:{key:"F",name:"手势光标",cat:"gesture"},demo80:{key:"F",name:"手势光标",cat:"gesture"},demo81:{key:"F",name:"手势光标",cat:"gesture"},demo82:{key:"F",name:"手势光标",cat:"gesture"},
+  demo83:{key:"G",name:"视觉系统",cat:"visual"},demo84:{key:"G",name:"视觉系统",cat:"visual"},demo85:{key:"G",name:"视觉系统",cat:"visual"},demo86:{key:"G",name:"视觉系统",cat:"visual"},demo87:{key:"G",name:"视觉系统",cat:"visual"},
+  demo88:{key:"H",name:"媒体",cat:"media"},demo89:{key:"H",name:"媒体",cat:"media"}
 };
 
 const CAT_NAMES = {
@@ -4247,6 +4769,388 @@ ScrollTrigger.batch(".reveal", {
       }
     }
   });
+})();
+
+
+/* batch2 demos 66-89 */
+
+// 66 svg morph
+(function(){
+  const path = document.getElementById('d66Path');
+  const btn = document.getElementById('d66Btn');
+  if(!path||!btn) return;
+  const shapes = [
+    "M100 20 L180 180 L20 180 Z",                                    // triangle
+    "M100 20 A80 80 0 1 1 100 180 A80 80 0 1 1 100 20",              // circle
+    "M30 30 L170 30 L170 170 L30 170 Z",                              // square
+    "M100 20 L120 80 L180 80 L130 120 L150 180 L100 145 L50 180 L70 120 L20 80 L80 80 Z"  // star
+  ];
+  let i = 0;
+  btn.addEventListener('click', () => {
+    i = (i+1) % shapes.length;
+    path.setAttribute('d', shapes[i]);
+  });
+})();
+
+// 67 logo draw
+(function(){
+  const svg = document.getElementById('d67Svg');
+  const btn = document.getElementById('d67Btn');
+  if(!svg||!btn) return;
+  btn.addEventListener('click', () => {
+    svg.classList.add('replay');
+    void svg.offsetWidth;
+    svg.classList.remove('replay');
+  });
+})();
+
+// 68 parallax
+(function(){
+  const stage = document.getElementById('d68Stage');
+  if(!stage) return;
+  const back = stage.querySelector('.d68-back');
+  const mid = stage.querySelector('.d68-mid');
+  const front = stage.querySelector('.d68-front');
+  ScrollTrigger.create({
+    trigger: stage, start: "top bottom", end: "bottom top", scrub: true,
+    onUpdate: self => {
+      const t = self.progress * 200;
+      back.style.transform = `translateY(${-t*0.3}px)`;
+      mid.style.transform = `translateY(${-t*0.6}px)`;
+      front.style.transform = `translateY(${-t*1}px)`;
+    }
+  });
+})();
+
+// 69 mask reveal
+(function(){
+  const stage = document.getElementById('d69Stage');
+  const mask = document.getElementById('d69Mask');
+  if(!stage||!mask) return;
+  ScrollTrigger.create({
+    trigger: stage, start: "top top", end: "bottom bottom", scrub: true,
+    onUpdate: self => {
+      const r = self.progress * 150;
+      mask.style.clipPath = `circle(${r}% at 50% 50%)`;
+    }
+  });
+})();
+
+// 72 sticky nav shrink
+(function(){
+  const stage = document.getElementById('d72Stage');
+  const nav = document.getElementById('d72Nav');
+  if(!stage||!nav) return;
+  stage.addEventListener('scroll', () => {
+    nav.classList.toggle('shrunk', stage.scrollTop > 60);
+  });
+})();
+
+// 73 hamburger
+(function(){
+  const ham = document.getElementById('d73Ham');
+  if(!ham) return;
+  ham.addEventListener('click', () => ham.classList.toggle('is-x'));
+})();
+
+// 74 theme switcher
+(function(){
+  const card = document.getElementById('d74Card');
+  const sw = document.getElementById('d74Switch');
+  if(!card||!sw) return;
+  sw.querySelectorAll('button').forEach(b => {
+    b.addEventListener('click', () => {
+      sw.querySelectorAll('button').forEach(x => x.classList.remove('is-on'));
+      b.classList.add('is-on');
+      const t = b.dataset.theme;
+      if (t === 'system') {
+        const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+        card.dataset.theme = dark ? 'dark' : 'light';
+      } else {
+        card.dataset.theme = t;
+      }
+    });
+  });
+})();
+
+// 75 dot navigator
+(function(){
+  const stage = document.getElementById('d75Stage');
+  const dots = document.getElementById('d75Dots');
+  if(!stage||!dots) return;
+  const secs = stage.querySelectorAll('.d75-section');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        const id = e.target.dataset.id;
+        dots.querySelectorAll('a').forEach(d => d.classList.toggle('is-on', d.dataset.id === id));
+      }
+    });
+  }, { root: stage, threshold: 0.5 });
+  secs.forEach(s => obs.observe(s));
+  dots.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      const target = stage.querySelector(`[data-id="${a.dataset.id}"]`);
+      if(target) stage.scrollTo({ top: target.offsetTop, behavior: 'smooth' });
+    });
+  });
+})();
+
+// 76 localStorage
+(function(){
+  const out = document.getElementById('d76Out');
+  const pref = document.getElementById('d76Pref');
+  if(!out||!pref) return;
+  const KEY = 'cookbook-d76-pref';
+  const saved = localStorage.getItem(KEY) || '—';
+  out.textContent = saved;
+  pref.parentElement.querySelectorAll('[data-pref]').forEach(b => {
+    b.addEventListener('click', () => {
+      const v = b.dataset.pref;
+      localStorage.setItem(KEY, v);
+      out.textContent = v;
+    });
+  });
+})();
+
+// 77 multi-step form
+(function(){
+  const fill = document.getElementById('d77Fill');
+  const steps = document.getElementById('d77Steps');
+  const pos = document.getElementById('d77Pos');
+  const prev = document.getElementById('d77Prev');
+  const next = document.getElementById('d77Next');
+  if(!steps) return;
+  const list = steps.querySelectorAll('.d77-step');
+  let i = 0;
+  function render(){
+    list.forEach((s, idx) => s.classList.toggle('is-on', idx === i));
+    fill.style.transform = `scaleX(${(i+1)/list.length})`;
+    pos.textContent = `${i+1} / ${list.length}`;
+  }
+  prev.addEventListener('click', () => { i = Math.max(0, i-1); render(); });
+  next.addEventListener('click', () => { i = Math.min(list.length-1, i+1); render(); });
+  render();
+})();
+
+// 78 undo/redo
+(function(){
+  const ta = document.getElementById('d78Ta');
+  const undo = document.getElementById('d78Undo');
+  const redo = document.getElementById('d78Redo');
+  const pos = document.getElementById('d78Pos');
+  if(!ta) return;
+  let history = [''], ptr = 0;
+  let saveTimer = null;
+  function save(){
+    if (history[ptr] === ta.value) return;
+    history = history.slice(0, ptr+1);
+    history.push(ta.value);
+    ptr = history.length-1;
+    upd();
+  }
+  function upd(){ pos.textContent = `${ptr} / ${history.length-1}`; }
+  ta.addEventListener('input', () => {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(save, 400);
+  });
+  undo.addEventListener('click', () => { if(ptr>0){ ptr--; ta.value = history[ptr]; upd(); }});
+  redo.addEventListener('click', () => { if(ptr<history.length-1){ ptr++; ta.value = history[ptr]; upd(); }});
+  ta.addEventListener('keydown', e => {
+    if((e.ctrlKey||e.metaKey) && e.key === 'z' && !e.shiftKey){ e.preventDefault(); undo.click(); }
+    if((e.ctrlKey||e.metaKey) && (e.key === 'y' || (e.shiftKey && e.key === 'Z' || e.key === 'z'))){ e.preventDefault(); redo.click(); }
+  });
+  upd();
+})();
+
+// 79 swipe
+(function(){
+  const stage = document.getElementById('d79Stage');
+  const pos = document.getElementById('d79Pos');
+  if(!stage) return;
+  const cards = stage.querySelectorAll('.d79-card');
+  let i = 0, startX = null;
+  function render(offset=0){
+    cards.forEach((c, idx) => {
+      const dx = (idx - i) * 100 + (offset / stage.offsetWidth * 100);
+      c.style.transform = `translateX(${dx}%)`;
+    });
+    pos.textContent = `${i+1} / ${cards.length}`;
+  }
+  function down(e){ startX = e.touches ? e.touches[0].clientX : e.clientX; }
+  function move(e){
+    if(startX === null) return;
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    render(x - startX);
+  }
+  function up(e){
+    if(startX === null) return;
+    const x = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+    const d = x - startX;
+    if(Math.abs(d) > 80){
+      if(d > 0 && i > 0) i--;
+      else if(d < 0 && i < cards.length-1) i++;
+    }
+    startX = null;
+    render();
+  }
+  stage.addEventListener('mousedown', down);
+  stage.addEventListener('mousemove', move);
+  window.addEventListener('mouseup', up);
+  stage.addEventListener('touchstart', down, {passive:true});
+  stage.addEventListener('touchmove', move, {passive:true});
+  stage.addEventListener('touchend', up);
+  render();
+})();
+
+// 80 drag sort
+(function(){
+  const list = document.getElementById('d80List');
+  if(!list) return;
+  let dragged = null;
+  list.addEventListener('dragstart', e => {
+    if(e.target.classList.contains('d80-item')){
+      dragged = e.target;
+      e.target.classList.add('is-dragging');
+    }
+  });
+  list.addEventListener('dragend', e => {
+    if(dragged){ dragged.classList.remove('is-dragging'); dragged = null; }
+    list.querySelectorAll('.is-over').forEach(x => x.classList.remove('is-over'));
+  });
+  list.addEventListener('dragover', e => {
+    e.preventDefault();
+    const target = e.target.closest('.d80-item');
+    if(target && target !== dragged){
+      list.querySelectorAll('.is-over').forEach(x => x.classList.remove('is-over'));
+      target.classList.add('is-over');
+    }
+  });
+  list.addEventListener('drop', e => {
+    e.preventDefault();
+    const target = e.target.closest('.d80-item');
+    if(target && dragged && target !== dragged){
+      const items = [...list.children];
+      const fi = items.indexOf(dragged), ti = items.indexOf(target);
+      if(fi < ti) list.insertBefore(dragged, target.nextSibling);
+      else list.insertBefore(dragged, target);
+    }
+  });
+})();
+
+// 81 drag-drop
+(function(){
+  const drop = document.getElementById('d81Drop');
+  const status = document.getElementById('d81S');
+  if(!drop) return;
+  drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('is-hot'); });
+  drop.addEventListener('dragleave', () => drop.classList.remove('is-hot'));
+  drop.addEventListener('drop', e => {
+    e.preventDefault();
+    drop.classList.remove('is-hot');
+    const file = e.dataTransfer.files[0];
+    if(!file) return;
+    if(!file.type.startsWith('image/')){ status.textContent = '只接受图片 ✕'; return; }
+    status.textContent = `✓ ${file.name} · ${(file.size/1024).toFixed(0)} KB`;
+  });
+})();
+
+// 82 3D tilt
+(function(){
+  document.querySelectorAll('[data-d82-tilt]').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `perspective(800px) rotateY(${x*20}deg) rotateX(${-y*20}deg)`;
+      card.style.boxShadow = `${-x*30}px ${-y*30}px 50px rgba(208,255,0,.25)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.boxShadow = '';
+    });
+  });
+})();
+
+// 86 liquid blob
+(function(){
+  const path = document.getElementById('d86Path');
+  if(!path) return;
+  function gen(){
+    const cx = 100, cy = 100;
+    const n = 8;
+    const pts = [];
+    for(let i = 0; i < n; i++){
+      const a = (Math.PI*2/n) * i;
+      const r = 60 + Math.random() * 30;
+      pts.push([cx + Math.cos(a)*r, cy + Math.sin(a)*r]);
+    }
+    let d = `M ${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)} `;
+    for(let i = 1; i <= n; i++){
+      const p0 = pts[(i-1) % n], p1 = pts[i % n];
+      const mx = (p0[0] + p1[0]) / 2, my = (p0[1] + p1[1]) / 2;
+      d += `Q ${p0[0].toFixed(1)} ${p0[1].toFixed(1)} ${mx.toFixed(1)} ${my.toFixed(1)} `;
+    }
+    d += 'Z';
+    return d;
+  }
+  path.setAttribute('d', gen());
+  setInterval(() => path.setAttribute('d', gen()), 2000);
+})();
+
+// 88 lightbox
+(function(){
+  const grid = document.getElementById('d88Grid');
+  const box = document.getElementById('d88Box');
+  const img = document.getElementById('d88Img');
+  const prev = document.getElementById('d88Prev');
+  const next = document.getElementById('d88Next');
+  const close = document.getElementById('d88Close');
+  const posTxt = document.getElementById('d88PosTxt');
+  if(!grid) return;
+  const thumbs = [...grid.querySelectorAll('.d88-thumb')];
+  let cur = 0;
+  function show(i){
+    cur = (i + thumbs.length) % thumbs.length;
+    img.style.background = thumbs[cur].style.background;
+    posTxt.textContent = `${cur+1} / ${thumbs.length}`;
+    box.classList.add('is-open');
+  }
+  grid.addEventListener('click', e => {
+    const t = e.target.closest('.d88-thumb');
+    if(t) show(+t.dataset.i);
+  });
+  prev.addEventListener('click', () => show(cur-1));
+  next.addEventListener('click', () => show(cur+1));
+  close.addEventListener('click', () => box.classList.remove('is-open'));
+  document.addEventListener('keydown', e => {
+    if(!box.classList.contains('is-open')) return;
+    if(e.key === 'Escape') box.classList.remove('is-open');
+    if(e.key === 'ArrowLeft') show(cur-1);
+    if(e.key === 'ArrowRight') show(cur+1);
+  });
+})();
+
+// 89 before/after
+(function(){
+  const stage = document.getElementById('d89Stage');
+  const before = document.getElementById('d89Before');
+  const handle = document.getElementById('d89Handle');
+  if(!stage||!before||!handle) return;
+  let dragging = false;
+  function setX(clientX){
+    const r = stage.getBoundingClientRect();
+    let pct = (clientX - r.left) / r.width * 100;
+    pct = Math.max(0, Math.min(100, pct));
+    before.style.clipPath = `inset(0 ${100-pct}% 0 0)`;
+    handle.style.left = pct + '%';
+  }
+  stage.addEventListener('mousedown', e => { dragging = true; setX(e.clientX); });
+  window.addEventListener('mousemove', e => { if(dragging) setX(e.clientX); });
+  window.addEventListener('mouseup', () => dragging = false);
+  stage.addEventListener('touchstart', e => { dragging = true; setX(e.touches[0].clientX); }, {passive:true});
+  stage.addEventListener('touchmove', e => { if(dragging) setX(e.touches[0].clientX); }, {passive:true});
+  stage.addEventListener('touchend', () => dragging = false);
 })();
 
 </script>
