@@ -1,0 +1,425 @@
+    <!-- D · 按钮 Buttons (new 7) -->
+    <div class="demo" id="demo31">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">按钮 ripple · 点击位置发起涟漪</div>
+        <div class="tags">click 位置 · scale + opacity · Material 风</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><button class="d31-btn" id="d31Btn">Click anywhere on me</button></div>
+      </div>
+      <div class="demo-foot">从点击的具体位置发起涟漪，<code>scale 0 → 4</code> + opacity 1 → 0。点击 5 次能叠出多波。Material Design 经典反馈。</div>
+    </div>
+
+    <div class="demo" id="demo32">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">按钮背景从一侧滑入填充</div>
+        <div class="tags">::before translateX · pure CSS · hover only</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="gap:1rem;display:flex;justify-content:center;flex-wrap:wrap"><button class="d32-btn d32-l">From Left</button><button class="d32-btn d32-r">From Right</button><button class="d32-btn d32-b">From Bottom</button></div>
+      </div>
+      <div class="demo-foot">三个按钮分别从左、右、底滑入。零 JS · 纯 <code>::before</code> + <code>transform: translateX/Y</code> + hover transition。</div>
+    </div>
+
+    <div class="demo" id="demo33">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">按钮箭头跟随光标方向</div>
+        <div class="tags">mousemove · arrow rotate · 朝向鼠标</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" id="d33Stage"><button class="d33-btn">Race In <span class="d33-arrow" id="d33Arrow">→</span></button></div>
+      </div>
+      <div class="demo-foot">鼠标进入按钮后箭头自动旋转朝向光标，离开复位 → 默认右指。</div>
+    </div>
+
+    <div class="demo" id="demo34">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">按钮按下时 inset shadow 内陷</div>
+        <div class="tags">:active · inset box-shadow · 拟物感</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><button class="d34-btn">Press &amp; hold me</button></div>
+      </div>
+      <div class="demo-foot">:active 状态加 <code>box-shadow: inset 0 4px 12px rgba(0,0,0,.4)</code> 模拟物理按下感。</div>
+    </div>
+
+    <div class="demo" id="demo35">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">按钮 loading 态 · 文字变 spinner</div>
+        <div class="tags">click → loading · 文字淡出 · spinner 旋</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><button class="d35-btn" id="d35Btn"><span class="d35-txt">Submit</span><span class="d35-sp"></span></button></div>
+      </div>
+      <div class="demo-foot">点击 → 进入 loading 态，1.6 秒后恢复（演示）。spinner 是 1 个 CSS rotate 圆弧。</div>
+    </div>
+
+    <div class="demo" id="demo36">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">按钮 success 态 · ✓ 替换 + 反色</div>
+        <div class="tags">click → 文字 → ✓ Done · 自动复位</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><button class="d36-btn" id="d36Btn">Save changes</button></div>
+      </div>
+      <div class="demo-foot">click → 文字短暂被 ✓ 替换 + 背景反色 1.6 秒 → 自动复位。表单提交后最常见的反馈。</div>
+    </div>
+
+    <div class="demo" id="demo37">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">按钮 disabled 平滑过渡</div>
+        <div class="tags">checkbox 开关 · 灰度 + cursor + transition</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;gap:1rem;display:flex;align-items:center"><label class="d37-en"><input type="checkbox" id="d37Toggle"> Enable button</label><button class="d37-btn" id="d37Btn" disabled>Continue</button></div>
+      </div>
+      <div class="demo-foot">切 checkbox 看按钮从灰过渡到柠檬绿。disabled 不是瞬间切换 —— 是平滑的 opacity + filter 渐变。</div>
+    </div>
+
+    <!-- D · 链接 / 文本 Links & Text (new 8) -->
+    <div class="demo" id="demo38">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">链接下划线从左到右画出</div>
+        <div class="tags">::after width · transform-origin: left</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="gap:2rem"><a class="d38-link">View race</a><a class="d38-link">Read story</a><a class="d38-link">Watch highlights</a></div>
+      </div>
+      <div class="demo-foot">::after 宽度 100% + transform: scaleX(0)，hover 时 scaleX(1)，<code>transform-origin: left</code> 让动画从左到右。</div>
+    </div>
+
+    <div class="demo" id="demo39">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">链接整词翻面 · cube flip</div>
+        <div class="tags">3D transform · rotateX 90° · 两面隐藏背面</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="gap:1.5rem;flex-wrap:wrap"><a class="d39-link"><span class="d39-face">Hover</span><span class="d39-face d39-back">Click ↗</span></a><a class="d39-link"><span class="d39-face">Lando</span><span class="d39-face d39-back">Norris</span></a><a class="d39-link"><span class="d39-face">Watch</span><span class="d39-face d39-back">Live</span></a></div>
+      </div>
+      <div class="demo-foot">两个 <code>.d39-face</code> 一个 0°、一个 -90°（背面）。hover 时整个 link rotateX 90° 让背面转上来。</div>
+    </div>
+
+    <div class="demo" id="demo40">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Typewriter 打字机</div>
+        <div class="tags">setInterval · cursor 闪烁 · 自动循环</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;display:flex;align-items:flex-start;text-align:left"><div class="d40-text"><span id="d40Out"></span><span class="d40-cursor"></span></div></div>
+      </div>
+      <div class="demo-foot">每 80ms 加一个字符；写完停 1.5s；自动擦除；下一句循环。</div>
+    </div>
+
+    <div class="demo" id="demo41">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Glitch / Scramble · 字符随机替换</div>
+        <div class="tags">点击触发 · 字符 32 次随机替换 · 终态显原文</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column"><div class="d41-out" id="d41Out">LANDO NORRIS</div><button class="btn" id="d41Btn" style="margin-top:1.5rem">↻ Scramble</button></div>
+      </div>
+      <div class="demo-foot">点按钮 → 每个字符 32 次随机替换为 ASCII 字符（速度 50ms/帧），最后稳定显出原文。<strong>赛博朋克解码风</strong>。</div>
+    </div>
+
+    <div class="demo" id="demo42">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">字符 hover 随机抖动</div>
+        <div class="tags">每字符独立 transform · random rotate + translate</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><div class="d42-text"><span>L</span><span>A</span><span>N</span><span>D</span><span>O</span><span>&nbsp;</span><span>N</span><span>O</span><span>R</span><span>R</span><span>I</span><span>S</span></div></div>
+      </div>
+      <div class="demo-foot">每个字符独立 hover · 各自 random ±15° rotate + ±4px translate · 离开复位。</div>
+    </div>
+
+    <div class="demo" id="demo43">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Read more · 展开 / 折叠</div>
+        <div class="tags">grid-template-rows 0fr↔1fr · 平滑无 max-height hack</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column"><div class="d43-card"><h4>2024 Brazilian GP</h4><div class="d43-trunc">湿地起步，雨胎换中性胎窗口卡在第 27 圈。同段他超了 4 个人。</div><div class="d43-coll" id="d43Coll">从大雨到干胎的窗口是赛季最早最艰难的一次。Pit 策略走的最反直觉那条 —— 比对手早 3 圈进入。半圈内胎温窗口卡死，必须找到 P5 之前才能稳。最后冲线时距 P3 差 0.8 秒。</div><button class="d43-toggle" id="d43Toggle">阅读全文 ↓</button></div></div>
+      </div>
+      <div class="demo-foot">用 <code>grid-template-rows: 0fr → 1fr</code> 而不是 max-height — 自适应内容高度，过渡平滑，没有"猜测最大高度"的 hack。</div>
+    </div>
+
+    <div class="demo" id="demo44">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">波浪下划线</div>
+        <div class="tags">linear-gradient + mask · SVG wave</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="gap:2rem;flex-wrap:wrap"><a class="d44-link">Wavy underline</a><a class="d44-link">McLaren MCL39</a><a class="d44-link">Hover for waves</a></div>
+      </div>
+      <div class="demo-foot">用 <code>background-image: url('data:image/svg+xml...')</code> 嵌入 SVG 波形作为下划线。hover 时 background-position 流动起来。</div>
+    </div>
+
+    <div class="demo" id="demo45">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">SVG icon hover 描线绘制</div>
+        <div class="tags">stroke-dasharray + dashoffset transition</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="gap:1.5rem"><a class="d45-link"><span>Map</span><svg viewBox="0 0 24 24"><path class="d45-p" d="M3 20 L9 16 L15 19 L21 14 L21 4 L15 9 L9 5 L3 8 Z M9 5 L9 16 M15 9 L15 19" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="d45-link"><span>Race</span><svg viewBox="0 0 24 24"><path class="d45-p" d="M5 18 L5 6 L19 6 M5 14 L13 14 M19 6 L19 18 L5 18 M19 14 L13 14" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round"/></svg></a><a class="d45-link"><span>Send</span><svg viewBox="0 0 24 24"><path class="d45-p" d="M3 12 L21 12 M14 6 L21 12 L14 18" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+      </div>
+      <div class="demo-foot">hover 时 path 的 <code>stroke-dashoffset</code> 从 100% 收到 0 — 像现场描线一样画出图标。</div>
+    </div>
+
+    <!-- D · 表单控件 Form Controls (new 10) -->
+    <div class="demo" id="demo46">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Checkbox 描边变实心 + 对勾绘制</div>
+        <div class="tags">stroke-dashoffset · 双 path 动画</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;gap:1rem;display:flex"><label class="d46-row"><input type="checkbox"><span class="d46-box"><svg viewBox="0 0 16 16"><path d="M3 8 L7 12 L13 4" /></svg></span> Wet tires</label><label class="d46-row"><input type="checkbox"><span class="d46-box"><svg viewBox="0 0 16 16"><path d="M3 8 L7 12 L13 4" /></svg></span> Dry compound</label><label class="d46-row"><input type="checkbox"><span class="d46-box"><svg viewBox="0 0 16 16"><path d="M3 8 L7 12 L13 4" /></svg></span> Soft strategy</label></div>
+      </div>
+      <div class="demo-foot">未选: 灰色描边 · 选中: 柠檬绿填充 + 对勾用 <code>stroke-dasharray</code> "描画"出来。</div>
+    </div>
+
+    <div class="demo" id="demo47">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Toggle switch · 反弹滑块</div>
+        <div class="tags">cubic-bezier 反弹 · checkbox 隐藏</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;gap:1rem;display:flex"><label class="d47-row"><span>DRS</span><span class="d47-tg"><input type="checkbox"><span class="d47-track"><span class="d47-knob"></span></span></span></label><label class="d47-row"><span>Pit limiter</span><span class="d47-tg"><input type="checkbox" checked><span class="d47-track"><span class="d47-knob"></span></span></span></label></div>
+      </div>
+      <div class="demo-foot">用 <code>cubic-bezier(0.65, 1.5, 0.5, 1)</code> 让 knob 滑过去时弹一下。</div>
+    </div>
+
+    <div class="demo" id="demo48">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Radio · 涟漪选中</div>
+        <div class="tags">::before scale 0→1 spring · 切换发涟漪</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;gap:.7rem;display:flex"><label class="d48-row"><input type="radio" name="d48"><span class="d48-dot"></span> Wet</label><label class="d48-row"><input type="radio" name="d48" checked><span class="d48-dot"></span> Intermediate</label><label class="d48-row"><input type="radio" name="d48"><span class="d48-dot"></span> Slick</label></div>
+      </div>
+      <div class="demo-foot">选中那项的 dot 外圈扩出一圈涟漪，spring ease 弹回。</div>
+    </div>
+
+    <div class="demo" id="demo49">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Slider · 手柄缩放 + 浮动 label</div>
+        <div class="tags">input range · :active scale · label 跟拇指</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;width:100%;max-width:480px"><div class="d49-wrap"><input type="range" min="0" max="100" value="65" id="d49R"><div class="d49-label" id="d49L">65</div><div class="d49-track" id="d49T"></div></div></div>
+      </div>
+      <div class="demo-foot">拖拽时 thumb scale 1.4 + 上方浮 label 显示当前值；track 已用部分用柠檬绿。</div>
+    </div>
+
+    <div class="demo" id="demo50">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Dual handle range slider</div>
+        <div class="tags">两个 input range 重叠 · min/max 互锁</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;width:100%;max-width:480px"><div class="d50-wrap"><input type="range" min="0" max="100" value="20" id="d50A"><input type="range" min="0" max="100" value="75" id="d50B"><div class="d50-track" id="d50T"></div><div class="d50-out mono"><span id="d50OutA">20</span> — <span id="d50OutB">75</span></div></div></div>
+      </div>
+      <div class="demo-foot">两个 range input 重叠，min 不能越过 max。常用做"价格区间 / 时间窗口"过滤。</div>
+    </div>
+
+    <div class="demo" id="demo51">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Floating label · 焦点时上浮</div>
+        <div class="tags">:placeholder-shown 检测 · transform translateY</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;gap:1rem;width:100%;max-width:380px"><div class="d51-field"><input id="d51A" placeholder=" "><label for="d51A">Email</label></div><div class="d51-field"><input id="d51B" placeholder=" "><label for="d51B">Race team</label></div></div>
+      </div>
+      <div class="demo-foot">输入时（或 focus 时）label 上浮变小。关键是 <code>placeholder=" "</code>（一个空格）+ <code>:not(:placeholder-shown)</code> 选择器。</div>
+    </div>
+
+    <div class="demo" id="demo52">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">实时校验 + 错误抖动</div>
+        <div class="tags">input event · invalid class · shake keyframe</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;gap:.5rem;width:100%;max-width:380px"><input class="d52-input" id="d52I" type="text" placeholder="试着输入 email 格式..."><div class="d52-msg" id="d52M">需要 @ 和 .</div></div>
+      </div>
+      <div class="demo-foot">每输入一个字符立即校验；不合规时输入框抖动 + 错误消息淡入；合规时柠檬绿描边。</div>
+    </div>
+
+    <div class="demo" id="demo53">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Autocomplete · 下拉项 stagger 进入</div>
+        <div class="tags">filter 数组 · 每条 stagger 50ms · 键盘可达</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;width:100%;max-width:380px"><div class="d53-wrap"><input class="d53-input" id="d53I" placeholder="Search circuit (try mon, su, sil)..."><ul class="d53-list" id="d53L"></ul></div></div>
+      </div>
+      <div class="demo-foot">输入即时过滤 24 条赛道，匹配的项从下沉位置 stagger 浮上来。</div>
+    </div>
+
+    <div class="demo" id="demo54">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">多按钮组 magic line underline</div>
+        <div class="tags">click 当前按钮 · 计算 rect · transform 转线</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="width:100%"><div class="d54-tabs" id="d54Tabs"><button class="is-active">Home</button><button>On Track</button><button>Off Track</button><button>Calendar</button><span class="d54-line" id="d54Line"></span></div></div>
+      </div>
+      <div class="demo-foot">点不同 tab，底部那条柠檬绿 line 平滑滑到新位置。靠 <code>getBoundingClientRect()</code> + transform translateX/scaleX。</div>
+    </div>
+
+    <div class="demo" id="demo55">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Pill / chip · 选中态过渡</div>
+        <div class="tags">click toggle · background + color transition</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-wrap:wrap;gap:.5rem"><button class="d55-chip">Wet</button><button class="d55-chip">Dry</button><button class="d55-chip is-on">Soft</button><button class="d55-chip">Medium</button><button class="d55-chip">Hard</button><button class="d55-chip is-on">Pit lane</button></div>
+      </div>
+      <div class="demo-foot">每个 chip 是独立 toggle。选中: 柠檬绿底 + 暗字 + scale 1.05。多选 / 单选都用同一组件。</div>
+    </div>
+
+    <!-- D · 反馈与状态 Feedback (new 10) -->
+    <div class="demo" id="demo56">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Modal · backdrop blur + 入场</div>
+        <div class="tags">backdrop-filter: blur · scale 0.9→1 · opacity</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><button class="btn" id="d56Open">Open modal</button><div class="d56-bd" id="d56Bd"><div class="d56-modal"><div class="d56-eyebrow">Message from Lando</div><div class="d56-title">See you at Spa</div><div class="d56-sub">Race weekend starts Friday.</div><button class="btn" id="d56Close">Close</button></div></div></div>
+      </div>
+      <div class="demo-foot">backdrop <code>backdrop-filter: blur(12px)</code> 让后面页面模糊；modal 从 scale 0.92 弹到 1 + opacity 0→1。</div>
+    </div>
+
+    <div class="demo" id="demo57">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Modal confirm · 摇晃强调拒绝</div>
+        <div class="tags">点空白处 shake · click-outside 检测</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><button class="btn" id="d57Open">Delete race history</button><div class="d57-bd" id="d57Bd"><div class="d57-modal" id="d57M"><div class="d57-title">Delete race history?</div><div class="d57-sub">12 races · This can't be undone</div><div style="display:flex;gap:.5rem;margin-top:1rem"><button class="btn" id="d57Yes">Yes</button><button class="btn d57-no" id="d57No">No</button></div></div></div></div>
+      </div>
+      <div class="demo-foot">打开后点 modal 外面（backdrop）→ modal 横向 shake 提醒用户必须做选择。常用做防误关。</div>
+    </div>
+
+    <div class="demo" id="demo58">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Toast · 滑入 + auto-dismiss + stack</div>
+        <div class="tags">从底栈 · 3s 自动消失 · 可叠加多条</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-direction:column;gap:1rem;display:flex"><div style="display:flex;gap:.5rem"><button class="btn" data-toast="success">Success</button><button class="btn" data-toast="info">Info</button><button class="btn" data-toast="error">Error</button></div><div class="d58-stack" id="d58Stack"></div></div>
+      </div>
+      <div class="demo-foot">点不同按钮发不同类型 toast — 右下角栈式排列，3 秒后自动滑走。可叠多条。</div>
+    </div>
+
+    <div class="demo" id="demo59">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Tooltip · hover delay + 智能定位</div>
+        <div class="tags">600ms delay · 鼠标位置算 tooltip 锚点</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="flex-wrap:wrap;gap:1rem"><button class="d59-trig" data-tip="Pole Position · 28 in career">Poles</button><button class="d59-trig" data-tip="Race wins · 19 (and counting)">Wins</button><button class="d59-trig" data-tip="DNF · only 4 last season">DNF</button></div>
+        <div class="d59-tip" id="d59Tip"></div>
+      </div>
+      <div class="demo-foot">hover 600ms 后才显 — 防止快速划过时无意触发。位置跟鼠标。</div>
+    </div>
+
+    <div class="demo" id="demo60">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Tooltip · 智能边界反转</div>
+        <div class="tags">检测 viewport 边缘 · 自动翻方向</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="justify-content:space-between;display:flex;flex-wrap:wrap"><button class="d60-trig" data-tip="At far left — flips right">Left edge</button><button class="d60-trig" data-tip="Center button">Centered</button><button class="d60-trig" data-tip="At far right — flips left">Right edge</button></div>
+        <div class="d60-tip" id="d60Tip"></div>
+      </div>
+      <div class="demo-foot">tooltip 默认在按钮下方 / 居中。如果太靠左/右/底，自动翻转方向不溢出视口。</div>
+    </div>
+
+    <div class="demo" id="demo61">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Skeleton loader · wave 闪烁</div>
+        <div class="tags">linear-gradient 平移 · 占位骨架 · 非 spinner</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><div class="d61-card"><div class="d61-skel d61-img"></div><div class="d61-skel d61-l1"></div><div class="d61-skel d61-l2"></div><div class="d61-skel d61-l3"></div></div></div>
+      </div>
+      <div class="demo-foot">骨架占位 + 一条柠檬光带从左到右扫过。比转圈 spinner 更"内容感"。</div>
+    </div>
+
+    <div class="demo" id="demo62">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Empty state · 插画 + 引导</div>
+        <div class="tags">SVG 图 + 简短文案 + 主 CTA</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><div class="d62-empty"><svg viewBox="0 0 96 96"><circle cx="48" cy="48" r="44" stroke="currentColor" fill="none" stroke-width="1" opacity=".25"/><path d="M30 56 Q48 36 66 56" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/><circle cx="36" cy="42" r="2" fill="currentColor"/><circle cx="60" cy="42" r="2" fill="currentColor"/></svg><div class="d62-t">还没有比赛记录</div><div class="d62-s">完成第一场比赛后这里会出现你的成绩。</div><button class="btn">Browse races</button></div></div>
+      </div>
+      <div class="demo-foot">不只是 "No data" 三个字 — 是图 + 文 + 下一步 CTA。让用户知道"在等什么"而不是"出错了"。</div>
+    </div>
+
+    <div class="demo" id="demo63">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Notification badge · 弹出 + 数字翻</div>
+        <div class="tags">scale spring · 数字 flip</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage" style="gap:1.5rem"><button class="d63-bell" id="d63Bell"><svg viewBox="0 0 24 24"><path d="M12 3 C8 3 7 6 7 10 C7 14 5 16 5 17 L19 17 C19 16 17 14 17 10 C17 6 16 3 12 3 M10 19 A2 2 0 0 0 14 19" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round"/></svg><span class="d63-badge" id="d63Badge">0</span></button><button class="btn" id="d63Add">+1 notification</button><button class="btn" id="d63Clear">Clear</button></div>
+      </div>
+      <div class="demo-foot">点 "+1" → badge 数字翻新 + 整个 badge scale 0→1 弹一下。0 时自动隐藏。</div>
+    </div>
+
+    <div class="demo" id="demo64">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Cursor 弹簧延迟跟随</div>
+        <div class="tags">lerp 0.15 · 一拍一弹 · OFF+BRAND 风</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage d64-stage" id="d64Stage" style="height:240px;cursor:none;position:relative;overflow:hidden"><div class="d64-c" id="d64Cur"></div><div class="d64-hint mono">Move pointer here · cursor 慢半拍跟来</div></div>
+      </div>
+      <div class="demo-foot">真实光标隐藏，自定义大圆 lerp(current, target, 0.15) 平滑跟随。原站每个 hover 区都用变形版。</div>
+    </div>
+
+    <div class="demo" id="demo65">
+      <div class="demo-head">
+        <div class="num">99 / 65</div>
+        <div class="name">Like / heart · 跳动 + 粒子飞溅</div>
+        <div class="tags">click → heartbeat · 8 个粒子飞出 · count 翻</div>
+      </div>
+      <div class="demo-body">
+        <div class="dmb-stage"><button class="d65-like" id="d65Like"><svg viewBox="0 0 24 24"><path d="M12 21 C5 16 3 12 3 8.5 C3 5.5 5.5 3 8.5 3 C10.5 3 12 4 12 5.5 C12 4 13.5 3 15.5 3 C18.5 3 21 5.5 21 8.5 C21 12 19 16 12 21 Z" stroke="currentColor" fill="none" stroke-width="2" stroke-linejoin="round"/></svg><span id="d65Count">42</span></button></div>
+      </div>
+      <div class="demo-foot">点心脏 → 心跳一次 + 8 个柠檬绿小圆飞溅出去 + count + 1。所有社交媒体的赞按钮都偷这个。</div>
+    </div>
