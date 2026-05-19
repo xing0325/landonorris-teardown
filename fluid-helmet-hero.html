@@ -368,7 +368,7 @@ const advectionMat = new THREE.ShaderMaterial({
   uniforms: {
     uVel: { value: null },
     uDt: { value: 0.016 },
-    uDissipation: { value: 0.985 }
+    uDissipation: { value: 0.994 }  // 更黏 · 鼠标停了液体仍在流
   },
   vertexShader: passVert,
   fragmentShader: PRECISION + `
@@ -392,8 +392,8 @@ const forceMat = new THREE.ShaderMaterial({
     uVel: { value: null },
     uMouse: { value: new THREE.Vector2(0.5, 0.5) },
     uMouseVel: { value: new THREE.Vector2(0, 0) },
-    uRadius: { value: 0.10 },
-    uStrength: { value: 0.6 }
+    uRadius: { value: 0.16 },
+    uStrength: { value: 1.4 }   // 液体被推得更猛
   },
   vertexShader: passVert,
   fragmentShader: PRECISION + `
@@ -583,20 +583,18 @@ const planeMat = new THREE.ShaderMaterial({
     void main(){
       vUv = uv;
       vec3 p = position;
-      // velocity-driven displacement
+      // velocity-driven displacement (vertex 粒度，主要给整体 z 凸起)
       vec2 vel = texture2D(uVelocity, uv).xy;
       vVel = vel;
       float velMag = length(vel);
-      // local displacement along normal
-      float disp = velMag * 0.35;
+      // local displacement along normal (强化 6x)
+      float disp = velMag * 1.6;
       // add subtle background simplex noise for "alive" effect
       float n = snoise(vec2(uv * 4.0 + uTime * 0.08));
       disp += n * 0.012;
-      // hover boost
-      disp += uHover * 0.05 * (0.5 + 0.5 * sin(uTime * 2.0 + uv.x * 8.0));
       p.z += disp;
-      // subtle x/y shift along velocity direction (creates "fluid drag")
-      p.xy += vel * 0.02;
+      // slight x/y drift along velocity direction (subtle, fragment 会做更精细的 UV trace)
+      p.xy += vel * 0.05;
       vDisp = disp;
       gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
     }
@@ -604,6 +602,7 @@ const planeMat = new THREE.ShaderMaterial({
   fragmentShader: `
     precision highp float;
     uniform sampler2D uHelmet;
+    uniform sampler2D uVelocity;
     uniform vec3 uColor;
     uniform float uTime;
     uniform float uAspect;
@@ -612,14 +611,27 @@ const planeMat = new THREE.ShaderMaterial({
     varying vec2 vVel;
 
     void main(){
-      // adjust UV to maintain aspect ratio
+      // 关键：fragment 自己重新 sample velocity（256 分辨率，比 128 顶点细）
+      // 多步反向 trace · 这是"液体把头盔像素拖走"的核心
+      // 每步往回追溯 velocity，最终找到的位置就是"原本该显示的头盔像素"
       vec2 uv = vUv;
-      // slightly distort UV by velocity (creates "rippled" look on texture)
-      uv += vVel * 0.04;
-      vec4 c = texture2D(uHelmet, uv);
-      // edge glow from displacement
-      float glow = clamp(abs(vDisp) * 3.0, 0.0, 1.0);
-      c.rgb += uColor * glow * 0.4;
+      vec2 vel0 = texture2D(uVelocity, uv).xy;
+      // 4 步 Lagrangian backtrace · 长度跟 velocity 大小走
+      vec2 traceUv = uv;
+      for (int i = 0; i < 4; i++){
+        vec2 vTrace = texture2D(uVelocity, traceUv).xy;
+        traceUv -= vTrace * 0.11;
+      }
+      vec4 c = texture2D(uHelmet, traceUv);
+
+      // 颜色：液体越快的地方，柠檬绿越亮（这才是"液体到哪颜色到哪"）
+      float velMag = length(vel0);
+      float glow = clamp(velMag * 8.0, 0.0, 1.0);
+      c.rgb += uColor * glow * 0.55;
+      // 高速区域加一道朝向流速方向的"流光"
+      float streak = clamp(dot(normalize(vel0 + vec2(0.001)), vec2(1.0, 0.0)) * velMag * 4.0, -1.0, 1.0);
+      c.rgb += uColor * abs(streak) * 0.25;
+
       // subtle scan line
       c.rgb -= step(0.997, fract(vUv.y * 100.0)) * 0.04;
       gl_FragColor = c;
@@ -734,8 +746,9 @@ function animate(now){
   planeMat.uniforms.uAspect.value = window.innerWidth / window.innerHeight;
 
   // gentle plane tilt with mouse
-  plane.rotation.y = (mouse.pos.x - 0.5) * 0.12;
-  plane.rotation.x = (mouse.pos.y - 0.5) * -0.12;
+  // 头盔不再直接跟鼠标 · 改用极弱的滞后跟随（lerp）让倾斜显得"被液体带的"
+  plane.rotation.y += ((mouse.pos.x - 0.5) * 0.05 - plane.rotation.y) * 0.04;
+  plane.rotation.x += ((mouse.pos.y - 0.5) * -0.05 - plane.rotation.x) * 0.04;
 
   // scale plane based on viewport aspect
   const aspect = window.innerWidth / window.innerHeight;
