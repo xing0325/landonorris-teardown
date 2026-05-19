@@ -1141,6 +1141,31 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
   .hel-c{font-size:.68rem}
 }
 
+
+/* helmet pipeline diagram */
+.hel-pipe{margin:3rem 0;background:var(--bg-2);border:1px solid var(--line-soft);border-radius:6px;padding:1.5rem;overflow-x:auto}
+.hel-pipe-head{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;letter-spacing:.3em;color:var(--lime);text-transform:uppercase;margin-bottom:1rem}
+.hel-pipe-svg{width:100%;min-width:680px;height:auto;display:block}
+.hel-pipe-foot{margin-top:1rem;padding-top:1rem;border-top:1px dashed var(--line-soft);font-size:.78rem;color:var(--fg-dim)}
+.hel-pipe-foot code{background:rgba(208,255,0,.08);color:var(--lime);padding:.15em .4em;border-radius:3px;font-family:'JetBrains Mono',ui-monospace,monospace}
+
+/* params grid */
+.hel-params{margin:2rem 0;background:var(--bg-2);border:1px solid var(--line-soft);border-radius:6px;padding:1.5rem}
+.hel-params-head{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;letter-spacing:.3em;color:var(--lime);text-transform:uppercase;margin-bottom:1rem}
+.hel-params-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.5rem}
+.hel-param{background:var(--bg-3);border:1px solid var(--line-soft);border-radius:4px;padding:.85rem 1rem;font-family:'JetBrains Mono',ui-monospace,monospace}
+.hel-param .k{display:block;font-size:.62rem;letter-spacing:.2em;color:var(--fg-mute);text-transform:uppercase;margin-bottom:.25rem}
+.hel-param .v{display:block;font-size:1.3rem;color:var(--lime);font-weight:600;line-height:1;margin-bottom:.35rem}
+.hel-param .n{font-size:.7rem;color:var(--fg-dim);line-height:1.4}
+
+/* demo 90 · fluid cursor */
+.d90-stage{position:relative;height:380px;border:1px solid var(--line-soft);border-radius:8px;overflow:hidden;cursor:none;background:linear-gradient(135deg,#0a1208,#1c2218)}
+.d90-svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.d90-cur{position:absolute;width:1.4rem;height:1.4rem;border-radius:50%;background:var(--lime);mix-blend-mode:difference;pointer-events:none;transform:translate(-50%,-50%);opacity:.7;transition:opacity .25s}
+.d90-stage:not(:hover) .d90-cur{opacity:.35}
+.d90-hint{position:absolute;left:1rem;bottom:1rem;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.65rem;color:var(--fg-mute);letter-spacing:.2em;pointer-events:none}
+.d90-state{position:absolute;right:1rem;top:1rem;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.65rem;color:var(--lime);letter-spacing:.15em;pointer-events:none;background:rgba(10,14,7,.7);padding:.35rem .6rem;border-radius:3px;border:1px solid var(--line-soft)}
+
 </style>
 </head>
 <body>
@@ -1262,7 +1287,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 1 -->
     <div class="demo" id="demo1">
       <div class="demo-head">
-        <div class="num">01 / 89</div>
+        <div class="num">01 / 90</div>
         <div class="name">字符级 stagger 入场 + 椭圆 clip 收缩</div>
         <div class="tags">GSAP · SplitText · power3.out</div>
       </div>
@@ -1284,7 +1309,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 11 · the lime page-transition curtain -->
     <div class="demo" id="demo11">
       <div class="demo-head">
-        <div class="num">02 / 89</div>
+        <div class="num">02 / 90</div>
         <div class="name">全屏柠檬绿过场幕布 · page-transition.riv（点击链接时盖屏 → 揭屏）</div>
         <div class="tags">.transition-w · data-rive-primary · Taxi.js 切页 · Rive state-machine 3 input</div>
       </div>
@@ -1329,7 +1354,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- A · 入场 (new 2) -->
     <div class="demo" id="demo66">
       <div class="demo-head">
-        <div class="num">03 / 89</div>
+        <div class="num">03 / 90</div>
         <div class="name">SVG morph 过场 · 形状变形</div>
         <div class="tags">path d morph · GSAP MorphSVG-free · clip-path polygon</div>
       </div>
@@ -1340,7 +1365,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo67">
       <div class="demo-head">
-        <div class="num">04 / 89</div>
+        <div class="num">04 / 90</div>
         <div class="name">Logo 描线入场 · stroke-dashoffset</div>
         <div class="tags">SVG path · stroke-dasharray · 进场画出来</div>
       </div>
@@ -1358,7 +1383,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 3 -->
     <div class="demo" id="demo3">
       <div class="demo-head">
-        <div class="num">05 / 89</div>
+        <div class="num">05 / 90</div>
         <div class="name">scrub:true · 滚轮直接拽 3D 头盔</div>
         <div class="tags">ScrollTrigger.scrub · transform3d · 没有"自动播放"</div>
       </div>
@@ -1388,7 +1413,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 4 -->
     <div class="demo" id="demo4">
       <div class="demo-head">
-        <div class="num">06 / 89</div>
+        <div class="num">06 / 90</div>
         <div class="name">横向 pin 滚动（on-track 页的 horizontal-pin-wrap）</div>
         <div class="tags">ScrollTrigger.pin · translateX · 1 屏吃 3 屏</div>
       </div>
@@ -1412,7 +1437,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 5 -->
     <div class="demo" id="demo5">
       <div class="demo-head">
-        <div class="num">07 / 89</div>
+        <div class="num">07 / 90</div>
         <div class="name">速度敏感 marquee（往下滚加速，往上滚反向）</div>
         <div class="tags">ScrollTrigger.velocity · CSS keyframe play-state</div>
       </div>
@@ -1434,7 +1459,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 15 · scroll-driven color interpolation -->
     <div class="demo" id="demo15">
       <div class="demo-head">
-        <div class="num">08 / 89</div>
+        <div class="num">08 / 90</div>
         <div class="name">滚动驱动头盔色彩补间（on-track 页 data-gl-change-from/to）</div>
         <div class="tags">scroll progress · hex 插值 · 同步 UI 文本</div>
       </div>
@@ -1460,7 +1485,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 19 · Rive scroll scrub (SVG path draw) -->
     <div class="demo" id="demo19svg">
       <div class="demo-head">
-        <div class="num">09 / 89</div>
+        <div class="num">09 / 90</div>
         <div class="name">Rive 滚动 scrub · 滚动条 = 播放头</div>
         <div class="tags">data-rive-scrolltrigger-start/-end · stroke-dashoffset · 声明式</div>
       </div>
@@ -1489,7 +1514,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 24 · per-section scroll progress -->
     <div class="demo" id="demo24">
       <div class="demo-head">
-        <div class="num">10 / 89</div>
+        <div class="num">10 / 90</div>
         <div class="name">章节滚动进度条 · 独立 demo 化（页面顶部那条线的局部版）</div>
         <div class="tags">scroll-indicator-bar · transform: scaleX</div>
       </div>
@@ -1519,7 +1544,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 28 · CSS dual marquee -->
     <div class="demo" id="demo28">
       <div class="demo-head">
-        <div class="num">11 / 89</div>
+        <div class="num">11 / 90</div>
         <div class="name">CSS 无限 marquee · 双向 · 零 JS</div>
         <div class="tags">data-css-marquee-list · @keyframes · 18s infinite</div>
       </div>
@@ -1542,7 +1567,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- B · 滚动 (new 4) -->
     <div class="demo" id="demo68">
       <div class="demo-head">
-        <div class="num">12 / 89</div>
+        <div class="num">12 / 90</div>
         <div class="name">视差多层背景</div>
         <div class="tags">3 层 · translateY 不同速度 · scrub</div>
       </div>
@@ -1558,7 +1583,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo69">
       <div class="demo-head">
-        <div class="num">13 / 89</div>
+        <div class="num">13 / 90</div>
         <div class="name">圆形 Mask reveal · 扩散下一屏</div>
         <div class="tags">clip-path circle scrub · 章节切换的"扩散转场"</div>
       </div>
@@ -1574,7 +1599,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo70">
       <div class="demo-head">
-        <div class="num">14 / 89</div>
+        <div class="num">14 / 90</div>
         <div class="name">Stack cards 堆叠揭示</div>
         <div class="tags">多张 sticky 卡 · 后一张盖前一张 · 叠纸效果</div>
       </div>
@@ -1590,7 +1615,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo71">
       <div class="demo-head">
-        <div class="num">15 / 89</div>
+        <div class="num">15 / 90</div>
         <div class="name">scroll-snap 强制章节对齐</div>
         <div class="tags">CSS only · scroll-snap-type · 一屏一章节</div>
       </div>
@@ -1613,7 +1638,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 2 -->
     <div class="demo" id="demo2">
       <div class="demo-head">
-        <div class="num">16 / 89</div>
+        <div class="num">16 / 90</div>
         <div class="name">隐形哨兵 div 切换导航主题（dark / light / lime）</div>
         <div class="tags">ScrollTrigger.onToggle · data-nav-theme-target</div>
       </div>
@@ -1638,7 +1663,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 21 · Footer 三色主题 -->
     <div class="demo" id="demo21">
       <div class="demo-head">
-        <div class="num">17 / 89</div>
+        <div class="num">17 / 90</div>
         <div class="name">Footer 三色主题 · data-footer-theme="black|green|white"</div>
         <div class="tags">同 nav 哨兵思路 · footer-theme 由 section 决定</div>
       </div>
@@ -1663,7 +1688,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- C · 导航 (new 4) -->
     <div class="demo" id="demo72">
       <div class="demo-head">
-        <div class="num">18 / 89</div>
+        <div class="num">18 / 90</div>
         <div class="name">Sticky nav 滚动时缩小</div>
         <div class="tags">scroll position · 切 class · padding / 字号收</div>
       </div>
@@ -1681,7 +1706,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo73">
       <div class="demo-head">
-        <div class="num">19 / 89</div>
+        <div class="num">19 / 90</div>
         <div class="name">Hamburger 转 close · SVG morph</div>
         <div class="tags">3 条横线 · rotate + translateY · 变成 X</div>
       </div>
@@ -1692,7 +1717,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo74">
       <div class="demo-head">
-        <div class="num">20 / 89</div>
+        <div class="num">20 / 90</div>
         <div class="name">主题切换器 · dark / light / system</div>
         <div class="tags">3 态 toggle · data-theme · 平滑色变</div>
       </div>
@@ -1703,7 +1728,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo75">
       <div class="demo-head">
-        <div class="num">21 / 89</div>
+        <div class="num">21 / 90</div>
         <div class="name">侧边 dot navigator</div>
         <div class="tags">IntersectionObserver · 当前 section 自动高亮</div>
       </div>
@@ -1727,7 +1752,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 22 · Rive button micro-interactions -->
     <div class="demo" id="demo22">
       <div class="demo-head">
-        <div class="num">22 / 89</div>
+        <div class="num">22 / 90</div>
         <div class="name">按钮 hover 微动效合集 · data-btn-rive-rotate / -hover / -invert</div>
         <div class="tags">btn-ui.riv · rotate / invert / scale / shake</div>
       </div>
@@ -1758,7 +1783,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 26 · magnetic button -->
     <div class="demo" id="demo26">
       <div class="demo-head">
-        <div class="num">23 / 89</div>
+        <div class="num">23 / 90</div>
         <div class="name">磁力按钮 · 鼠标靠近被吸过去</div>
         <div class="tags">mousemove · lerp · transform translate · ease 0.18</div>
       </div>
@@ -1777,7 +1802,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 30 · hold-to-transition button -->
     <div class="demo" id="demo30">
       <div class="demo-head">
-        <div class="num">24 / 89</div>
+        <div class="num">24 / 90</div>
         <div class="name">Hold-to-transition · 按住 0.6s 才触发</div>
         <div class="tags">mousedown timer · 进度环 · 防误触</div>
       </div>
@@ -1797,7 +1822,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- D · 按钮 Buttons (new 7) -->
     <div class="demo" id="demo31">
       <div class="demo-head">
-        <div class="num">25 / 89</div>
+        <div class="num">25 / 90</div>
         <div class="name">按钮 ripple · 点击位置发起涟漪</div>
         <div class="tags">click 位置 · scale + opacity · Material 风</div>
       </div>
@@ -1808,7 +1833,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo32">
       <div class="demo-head">
-        <div class="num">26 / 89</div>
+        <div class="num">26 / 90</div>
         <div class="name">按钮背景从一侧滑入填充</div>
         <div class="tags">::before translateX · pure CSS · hover only</div>
       </div>
@@ -1819,7 +1844,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo33">
       <div class="demo-head">
-        <div class="num">27 / 89</div>
+        <div class="num">27 / 90</div>
         <div class="name">按钮箭头跟随光标方向</div>
         <div class="tags">mousemove · arrow rotate · 朝向鼠标</div>
       </div>
@@ -1830,7 +1855,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo34">
       <div class="demo-head">
-        <div class="num">28 / 89</div>
+        <div class="num">28 / 90</div>
         <div class="name">按钮按下时 inset shadow 内陷</div>
         <div class="tags">:active · inset box-shadow · 拟物感</div>
       </div>
@@ -1841,7 +1866,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo35">
       <div class="demo-head">
-        <div class="num">29 / 89</div>
+        <div class="num">29 / 90</div>
         <div class="name">按钮 loading 态 · 文字变 spinner</div>
         <div class="tags">click → loading · 文字淡出 · spinner 旋</div>
       </div>
@@ -1852,7 +1877,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo36">
       <div class="demo-head">
-        <div class="num">30 / 89</div>
+        <div class="num">30 / 90</div>
         <div class="name">按钮 success 态 · ✓ 替换 + 反色</div>
         <div class="tags">click → 文字 → ✓ Done · 自动复位</div>
       </div>
@@ -1863,7 +1888,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo37">
       <div class="demo-head">
-        <div class="num">31 / 89</div>
+        <div class="num">31 / 90</div>
         <div class="name">按钮 disabled 平滑过渡</div>
         <div class="tags">checkbox 开关 · 灰度 + cursor + transition</div>
       </div>
@@ -1875,7 +1900,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 18 · char-level hover link flip -->
     <div class="demo" id="demo18">
       <div class="demo-head">
-        <div class="num">32 / 89</div>
+        <div class="num">32 / 90</div>
         <div class="name">链接字符级 hover 翻页（整站每个 nav-link 都用）</div>
         <div class="tags">data-anim="text-hover" · 上下两层字符 · stagger</div>
       </div>
@@ -1894,7 +1919,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 6 -->
     <div class="demo" id="demo6">
       <div class="demo-head">
-        <div class="num">33 / 89</div>
+        <div class="num">33 / 90</div>
         <div class="name">Rive 状态机的"一个文件 = 一台状态切换机"</div>
         <div class="tags">circuits.riv · data-rive-input-track</div>
       </div>
@@ -1925,7 +1950,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- D · 链接 / 文本 Links & Text (new 8) -->
     <div class="demo" id="demo38">
       <div class="demo-head">
-        <div class="num">34 / 89</div>
+        <div class="num">34 / 90</div>
         <div class="name">链接下划线从左到右画出</div>
         <div class="tags">::after width · transform-origin: left</div>
       </div>
@@ -1936,7 +1961,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo39">
       <div class="demo-head">
-        <div class="num">35 / 89</div>
+        <div class="num">35 / 90</div>
         <div class="name">链接整词翻面 · cube flip</div>
         <div class="tags">3D transform · rotateX 90° · 两面隐藏背面</div>
       </div>
@@ -1947,7 +1972,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo40">
       <div class="demo-head">
-        <div class="num">36 / 89</div>
+        <div class="num">36 / 90</div>
         <div class="name">Typewriter 打字机</div>
         <div class="tags">setInterval · cursor 闪烁 · 自动循环</div>
       </div>
@@ -1958,7 +1983,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo41">
       <div class="demo-head">
-        <div class="num">37 / 89</div>
+        <div class="num">37 / 90</div>
         <div class="name">Glitch / Scramble · 字符随机替换</div>
         <div class="tags">点击触发 · 字符 32 次随机替换 · 终态显原文</div>
       </div>
@@ -1969,7 +1994,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo42">
       <div class="demo-head">
-        <div class="num">38 / 89</div>
+        <div class="num">38 / 90</div>
         <div class="name">字符 hover 随机抖动</div>
         <div class="tags">每字符独立 transform · random rotate + translate</div>
       </div>
@@ -1980,7 +2005,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo43">
       <div class="demo-head">
-        <div class="num">39 / 89</div>
+        <div class="num">39 / 90</div>
         <div class="name">Read more · 展开 / 折叠</div>
         <div class="tags">grid-template-rows 0fr↔1fr · 平滑无 max-height hack</div>
       </div>
@@ -1991,7 +2016,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo44">
       <div class="demo-head">
-        <div class="num">40 / 89</div>
+        <div class="num">40 / 90</div>
         <div class="name">波浪下划线</div>
         <div class="tags">linear-gradient + mask · SVG wave</div>
       </div>
@@ -2002,7 +2027,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo45">
       <div class="demo-head">
-        <div class="num">41 / 89</div>
+        <div class="num">41 / 90</div>
         <div class="name">SVG icon hover 描线绘制</div>
         <div class="tags">stroke-dasharray + dashoffset transition</div>
       </div>
@@ -2014,7 +2039,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- D · 表单控件 Form Controls (new 10) -->
     <div class="demo" id="demo46">
       <div class="demo-head">
-        <div class="num">42 / 89</div>
+        <div class="num">42 / 90</div>
         <div class="name">Checkbox 描边变实心 + 对勾绘制</div>
         <div class="tags">stroke-dashoffset · 双 path 动画</div>
       </div>
@@ -2025,7 +2050,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo47">
       <div class="demo-head">
-        <div class="num">43 / 89</div>
+        <div class="num">43 / 90</div>
         <div class="name">Toggle switch · 反弹滑块</div>
         <div class="tags">cubic-bezier 反弹 · checkbox 隐藏</div>
       </div>
@@ -2036,7 +2061,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo48">
       <div class="demo-head">
-        <div class="num">44 / 89</div>
+        <div class="num">44 / 90</div>
         <div class="name">Radio · 涟漪选中</div>
         <div class="tags">::before scale 0→1 spring · 切换发涟漪</div>
       </div>
@@ -2047,7 +2072,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo49">
       <div class="demo-head">
-        <div class="num">45 / 89</div>
+        <div class="num">45 / 90</div>
         <div class="name">Slider · 手柄缩放 + 浮动 label</div>
         <div class="tags">input range · :active scale · label 跟拇指</div>
       </div>
@@ -2058,7 +2083,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo50">
       <div class="demo-head">
-        <div class="num">46 / 89</div>
+        <div class="num">46 / 90</div>
         <div class="name">Dual handle range slider</div>
         <div class="tags">两个 input range 重叠 · min/max 互锁</div>
       </div>
@@ -2069,7 +2094,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo51">
       <div class="demo-head">
-        <div class="num">47 / 89</div>
+        <div class="num">47 / 90</div>
         <div class="name">Floating label · 焦点时上浮</div>
         <div class="tags">:placeholder-shown 检测 · transform translateY</div>
       </div>
@@ -2080,7 +2105,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo52">
       <div class="demo-head">
-        <div class="num">48 / 89</div>
+        <div class="num">48 / 90</div>
         <div class="name">实时校验 + 错误抖动</div>
         <div class="tags">input event · invalid class · shake keyframe</div>
       </div>
@@ -2091,7 +2116,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo53">
       <div class="demo-head">
-        <div class="num">49 / 89</div>
+        <div class="num">49 / 90</div>
         <div class="name">Autocomplete · 下拉项 stagger 进入</div>
         <div class="tags">filter 数组 · 每条 stagger 50ms · 键盘可达</div>
       </div>
@@ -2102,7 +2127,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo54">
       <div class="demo-head">
-        <div class="num">50 / 89</div>
+        <div class="num">50 / 90</div>
         <div class="name">多按钮组 magic line underline</div>
         <div class="tags">click 当前按钮 · 计算 rect · transform 转线</div>
       </div>
@@ -2113,7 +2138,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo55">
       <div class="demo-head">
-        <div class="num">51 / 89</div>
+        <div class="num">51 / 90</div>
         <div class="name">Pill / chip · 选中态过渡</div>
         <div class="tags">click toggle · background + color transition</div>
       </div>
@@ -2125,7 +2150,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- D · 反馈与状态 Feedback (new 10) -->
     <div class="demo" id="demo56">
       <div class="demo-head">
-        <div class="num">52 / 89</div>
+        <div class="num">52 / 90</div>
         <div class="name">Modal · backdrop blur + 入场</div>
         <div class="tags">backdrop-filter: blur · scale 0.9→1 · opacity</div>
       </div>
@@ -2136,7 +2161,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo57">
       <div class="demo-head">
-        <div class="num">53 / 89</div>
+        <div class="num">53 / 90</div>
         <div class="name">Modal confirm · 摇晃强调拒绝</div>
         <div class="tags">点空白处 shake · click-outside 检测</div>
       </div>
@@ -2147,7 +2172,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo58">
       <div class="demo-head">
-        <div class="num">54 / 89</div>
+        <div class="num">54 / 90</div>
         <div class="name">Toast · 滑入 + auto-dismiss + stack</div>
         <div class="tags">从底栈 · 3s 自动消失 · 可叠加多条</div>
       </div>
@@ -2158,7 +2183,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo59">
       <div class="demo-head">
-        <div class="num">55 / 89</div>
+        <div class="num">55 / 90</div>
         <div class="name">Tooltip · hover delay + 智能定位</div>
         <div class="tags">600ms delay · 鼠标位置算 tooltip 锚点</div>
       </div>
@@ -2170,7 +2195,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo60">
       <div class="demo-head">
-        <div class="num">56 / 89</div>
+        <div class="num">56 / 90</div>
         <div class="name">Tooltip · 智能边界反转</div>
         <div class="tags">检测 viewport 边缘 · 自动翻方向</div>
       </div>
@@ -2182,7 +2207,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo61">
       <div class="demo-head">
-        <div class="num">57 / 89</div>
+        <div class="num">57 / 90</div>
         <div class="name">Skeleton loader · wave 闪烁</div>
         <div class="tags">linear-gradient 平移 · 占位骨架 · 非 spinner</div>
       </div>
@@ -2193,7 +2218,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo62">
       <div class="demo-head">
-        <div class="num">58 / 89</div>
+        <div class="num">58 / 90</div>
         <div class="name">Empty state · 插画 + 引导</div>
         <div class="tags">SVG 图 + 简短文案 + 主 CTA</div>
       </div>
@@ -2204,7 +2229,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo63">
       <div class="demo-head">
-        <div class="num">59 / 89</div>
+        <div class="num">59 / 90</div>
         <div class="name">Notification badge · 弹出 + 数字翻</div>
         <div class="tags">scale spring · 数字 flip</div>
       </div>
@@ -2215,7 +2240,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo64">
       <div class="demo-head">
-        <div class="num">60 / 89</div>
+        <div class="num">60 / 90</div>
         <div class="name">Cursor 弹簧延迟跟随</div>
         <div class="tags">lerp 0.15 · 一拍一弹 · OFF+BRAND 风</div>
       </div>
@@ -2226,7 +2251,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo65">
       <div class="demo-head">
-        <div class="num">61 / 89</div>
+        <div class="num">61 / 90</div>
         <div class="name">Like / heart · 跳动 + 粒子飞溅</div>
         <div class="tags">click → heartbeat · 8 个粒子飞出 · count 翻</div>
       </div>
@@ -2244,7 +2269,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 12 · flip-digit countdown -->
     <div class="demo" id="demo12">
       <div class="demo-head">
-        <div class="num">62 / 89</div>
+        <div class="num">62 / 90</div>
         <div class="name">倒计时翻页数字（on-track / calendar 页都用）</div>
         <div class="tags">data-countdown-digit · yPercent flip · 每秒更新</div>
       </div>
@@ -2269,7 +2294,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 19 · CMS-driven race calendar -->
     <div class="demo" id="demo19">
       <div class="demo-head">
-        <div class="num">63 / 89</div>
+        <div class="num">63 / 90</div>
         <div class="name">CMS 驱动的赛季日历 · prev/next 切换（calendar 页核心）</div>
         <div class="tags">data-cal-list · data-cal-control · 字段填充</div>
       </div>
@@ -2308,7 +2333,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 27 · scroll counter -->
     <div class="demo" id="demo27">
       <div class="demo-head">
-        <div class="num">64 / 89</div>
+        <div class="num">64 / 90</div>
         <div class="name">滚动触发数字计数器</div>
         <div class="tags">ScrollTrigger once · GSAP snap · power2.out</div>
       </div>
@@ -2327,7 +2352,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- E · 数据 (new 3) -->
     <div class="demo" id="demo76">
       <div class="demo-head">
-        <div class="num">65 / 89</div>
+        <div class="num">65 / 90</div>
         <div class="name">localStorage 设置持久化</div>
         <div class="tags">用户选择 · 刷新依然记得 · key/value</div>
       </div>
@@ -2338,7 +2363,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo77">
       <div class="demo-head">
-        <div class="num">66 / 89</div>
+        <div class="num">66 / 90</div>
         <div class="name">Multi-step form · 进度条 + 切换</div>
         <div class="tags">3 步 · prev/next · 进度可视</div>
       </div>
@@ -2357,7 +2382,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo78">
       <div class="demo-head">
-        <div class="num">67 / 89</div>
+        <div class="num">67 / 90</div>
         <div class="name">Undo / Redo 操作历史栈</div>
         <div class="tags">push / pop 历史 · Cmd+Z / Cmd+Shift+Z</div>
       </div>
@@ -2378,7 +2403,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 8 -->
     <div class="demo" id="demo8">
       <div class="demo-head">
-        <div class="num">68 / 89</div>
+        <div class="num">68 / 90</div>
         <div class="name">"tap to lock" · 模态手势把页面让出来</div>
         <div class="tags">data-home-swipe-toggle · touch-action · 移动端神技</div>
       </div>
@@ -2398,7 +2423,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 9 -->
     <div class="demo" id="demo9">
       <div class="demo-head">
-        <div class="num">69 / 89</div>
+        <div class="num">69 / 90</div>
         <div class="name">自定义光标 + 悬停区域 reveal（on-track 页 highlights/schedule）</div>
         <div class="tags">data-mouse-area · data-mouse-reveal · clip-path tracking</div>
       </div>
@@ -2428,7 +2453,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 17 · menu image blend-mode columns -->
     <div class="demo" id="demo17">
       <div class="demo-head">
-        <div class="num">70 / 89</div>
+        <div class="num">70 / 90</div>
         <div class="name">菜单图片轨道 + 鼠标穿过 blend-mode（nav-menu 神技）</div>
         <div class="tags">data-nav-img · menu-img-blends · mix-blend-mode</div>
       </div>
@@ -2449,7 +2474,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- F · 手势 (new 4) -->
     <div class="demo" id="demo79">
       <div class="demo-head">
-        <div class="num">71 / 89</div>
+        <div class="num">71 / 90</div>
         <div class="name">Swipe 滑动识别 · 卡片切换</div>
         <div class="tags">touch / mouse drag · 阈值 80px · 方向判定</div>
       </div>
@@ -2466,7 +2491,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo80">
       <div class="demo-head">
-        <div class="num">72 / 89</div>
+        <div class="num">72 / 90</div>
         <div class="name">列表拖拽排序</div>
         <div class="tags">drag handle · mouse drag · 数组重排</div>
       </div>
@@ -2482,7 +2507,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo81">
       <div class="demo-head">
-        <div class="num">73 / 89</div>
+        <div class="num">73 / 90</div>
         <div class="name">Drag-drop 文件上传区</div>
         <div class="tags">dragenter highlight · drop 读文件 · 拒非图片</div>
       </div>
@@ -2493,7 +2518,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo82">
       <div class="demo-head">
-        <div class="num">74 / 89</div>
+        <div class="num">74 / 90</div>
         <div class="name">卡片 3D tilt 鼠标跟随</div>
         <div class="tags">mousemove · rotateX/Y · perspective · 拟物感</div>
       </div>
@@ -2511,7 +2536,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 7 -->
     <div class="demo" id="demo7">
       <div class="demo-head">
-        <div class="num">75 / 89</div>
+        <div class="num">75 / 90</div>
         <div class="name">1728 设计稿基准 · clamp 流体缩放</div>
         <div class="tags">clamp() · CSS custom property · 设计师友好</div>
       </div>
@@ -2534,7 +2559,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 13 · oval-scroll arc text -->
     <div class="demo" id="demo13">
       <div class="demo-head">
-        <div class="num">76 / 89</div>
+        <div class="num">76 / 90</div>
         <div class="name">椭圆轨迹大字 · TRACK / OFFTRACK 那种弧形排版</div>
         <div class="tags">data-oval-scroll · 字符 rotate · transform-origin 在弧心</div>
       </div>
@@ -2556,7 +2581,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 14 · GSAP FLIP layout morph -->
     <div class="demo" id="demo14">
       <div class="demo-head">
-        <div class="num">77 / 89</div>
+        <div class="num">77 / 90</div>
         <div class="name">布局变形（FLIP）· off-track 页的 data-heroflip="pos1/pos2/pos3"</div>
         <div class="tags">First-Last-Invert-Play · 记录前后 rect · GSAP fromTo</div>
       </div>
@@ -2585,7 +2610,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 16 · SVG mask container shapes -->
     <div class="demo" id="demo16">
       <div class="demo-head">
-        <div class="num">78 / 89</div>
+        <div class="num">78 / 90</div>
         <div class="name">SVG 异形容器 · data-helmet-item / mask-callout / mask-case</div>
         <div class="tags">-webkit-mask-image · 不规则切角圆缺 · 不是 clip-path</div>
       </div>
@@ -2604,7 +2629,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 20 · Variable Font 双轴 -->
     <div class="demo" id="demo20">
       <div class="demo-head">
-        <div class="num">79 / 89</div>
+        <div class="num">79 / 90</div>
         <div class="name">Variable Font 双轴 · Mona Sans wdth + wght</div>
         <div class="tags">font-variation-settings · 一个 woff2 = 无数粗细 × 宽度</div>
       </div>
@@ -2625,7 +2650,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 29 · scroll-driven font width -->
     <div class="demo" id="demo29">
       <div class="demo-head">
-        <div class="num">80 / 89</div>
+        <div class="num">80 / 90</div>
         <div class="name">滚动驱动字宽变化 · Mona Sans wdth axis</div>
         <div class="tags">ScrollTrigger scrub · font-variation-settings · 75→125</div>
       </div>
@@ -2646,7 +2671,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- G · 视觉 (new 5) -->
     <div class="demo" id="demo83">
       <div class="demo-head">
-        <div class="num">81 / 89</div>
+        <div class="num">81 / 90</div>
         <div class="name">conic-gradient 圆盘仪表</div>
         <div class="tags">CSS conic-gradient · 进度环 · 仪表盘</div>
       </div>
@@ -2657,7 +2682,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo84">
       <div class="demo-head">
-        <div class="num">82 / 89</div>
+        <div class="num">82 / 90</div>
         <div class="name">backdrop-filter 玻璃感</div>
         <div class="tags">backdrop-filter: blur · 半透明 · 透出底图</div>
       </div>
@@ -2668,7 +2693,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo85">
       <div class="demo-head">
-        <div class="num">83 / 89</div>
+        <div class="num">83 / 90</div>
         <div class="name">text-stroke 描边字</div>
         <div class="tags">-webkit-text-stroke · 中空字 · hover 填充</div>
       </div>
@@ -2679,7 +2704,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo86">
       <div class="demo-head">
-        <div class="num">84 / 89</div>
+        <div class="num">84 / 90</div>
         <div class="name">Liquid morph blob · 流体形状</div>
         <div class="tags">SVG path · 周期性变形 · 动态背景</div>
       </div>
@@ -2690,7 +2715,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo87">
       <div class="demo-head">
-        <div class="num">85 / 89</div>
+        <div class="num">85 / 90</div>
         <div class="name">3D card flip · 双面卡片</div>
         <div class="tags">transform-style preserve-3d · rotateY 180°</div>
       </div>
@@ -2698,6 +2723,46 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
         <div class="dmb-stage" style="gap:1.5rem;flex-wrap:wrap"><div class="d87-card" data-flip><div class="d87-face d87-front"><h3>LANDO</h3><p>HOVER TO FLIP</p></div><div class="d87-face d87-back">McLaren MCL39<br><span>WDC 2025</span></div></div><div class="d87-card" data-flip><div class="d87-face d87-front"><h3>OSCAR</h3><p>HOVER TO FLIP</p></div><div class="d87-face d87-back">McLaren MCL39<br><span>P2 2025</span></div></div></div>
       </div>
       <div class="demo-foot">外层 <code>transform-style: preserve-3d</code>，两面分别 rotateY 0° / 180°，hover 整张 rotateY 180° 翻转。背面 backface-visibility hidden。</div>
+    </div>
+    <!-- DEMO 90 · 鼠标驱动流体位移 -->
+    <div class="demo" id="demo90">
+      <div class="demo-head">
+        <div class="num">86 / 90</div>
+        <div class="name">鼠标驱动流体位移（仿原版头盔的简化版）</div>
+        <div class="tags">SVG feTurbulence + feDisplacementMap · 鼠标位置驱动 · idle Lissajous</div>
+      </div>
+      <div class="demo-body" style="padding:0">
+        <div class="d90-stage" id="d90Stage">
+          <svg class="d90-svg" viewBox="0 0 400 380" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <filter id="d90Fluid" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence id="d90Turb" type="fractalNoise" baseFrequency="0.014 0.018" numOctaves="2" seed="3" result="noise"/>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="35" xChannelSelector="R" yChannelSelector="G"/>
+              </filter>
+              <linearGradient id="d90G" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#d2ff00"/>
+                <stop offset="1" stop-color="#5a7d00"/>
+              </linearGradient>
+            </defs>
+            <g filter="url(#d90Fluid)" transform="translate(200 190)">
+              <!-- 头盔轮廓 -->
+              <ellipse cx="0" cy="-15" rx="110" ry="120" fill="url(#d90G)"/>
+              <path d="M-108 30 Q-108 70 -65 90 L65 90 Q108 70 108 30 Z" fill="url(#d90G)" opacity=".85"/>
+              <path d="M-82 -40 Q-86 25 -72 50 L72 50 Q86 25 82 -40 Q64 -55 0 -55 Q-64 -55 -82 -40 Z" fill="#0a0e07" opacity=".85"/>
+              <path d="M-58 -28 Q-40 -42 -12 -42" stroke="#fff" stroke-width="2" fill="none" opacity=".55" stroke-linecap="round"/>
+              <rect x="-108" y="-6" width="216" height="3" fill="#0a0e07" opacity=".4"/>
+            </g>
+          </svg>
+          <div class="d90-cur" id="d90Cur"></div>
+          <div class="d90-hint">移开鼠标 2.5s · 自动游走</div>
+          <div class="d90-state" id="d90State">MODE · idle</div>
+        </div>
+      </div>
+      <div class="demo-foot">
+        鼠标在框里动，头盔像被搅动的流体一样变形。这是 <strong>简化版</strong>（SVG <code>feTurbulence</code> + <code>feDisplacementMap</code>，鼠标位置驱动 <code>baseFrequency</code> 偏移）—— 不是真 Navier-Stokes 求解器，但视觉上 90% 相似，代码量是原版的 <strong>1/60</strong>。
+        <br><br>
+        <strong>原版的实现</strong>是 Three.js + 6 个 GPU shader pass + 6 个 ping-pong FBO + 鼠标力场注入 + Jacobi 迭代解压力。要写出来约 3000 行代码（含 shaders）。这里 80 行 JS 就有可见的效果。<strong>权衡</strong>：原版有真物理守恒（无散度场），流动方向自然延展；这版没有，鼠标停了就停。
+      </div>
     </div>
     <div class="cat-divider" data-cat="media" id="cat-media">
       <div class="cat-divider-key">H</div>
@@ -2708,7 +2773,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 10 -->
     <div class="demo" id="demo10">
       <div class="demo-head">
-        <div class="num">86 / 89</div>
+        <div class="num">87 / 90</div>
         <div class="name">hover 自动播放视频（data-video-stream + Vimeo lazy load）</div>
         <div class="tags">data-stream-hover · IntersectionObserver · placeholder→stream</div>
       </div>
@@ -2753,7 +2818,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- DEMO 23 · Stat hover image swap -->
     <div class="demo" id="demo23">
       <div class="demo-head">
-        <div class="num">87 / 89</div>
+        <div class="num">88 / 90</div>
         <div class="name">Stat hover 图替换 · data-stat-hover-img</div>
         <div class="tags">on-track 页统计卡 · 鼠标进 → 大图淡入</div>
       </div>
@@ -2775,7 +2840,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     <!-- H · 媒体 (new 2) -->
     <div class="demo" id="demo88">
       <div class="demo-head">
-        <div class="num">88 / 89</div>
+        <div class="num">89 / 90</div>
         <div class="name">Lightbox · 点图全屏 + 切换</div>
         <div class="tags">click 放大 · 左右键切换 · Esc 关</div>
       </div>
@@ -2787,7 +2852,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
     </div>
     <div class="demo" id="demo89">
       <div class="demo-head">
-        <div class="num">89 / 89</div>
+        <div class="num">90 / 90</div>
         <div class="name">Before / after 对比滑块</div>
         <div class="tags">clip-path inset · 拖动分割线 · 揭露下层</div>
       </div>
@@ -2796,6 +2861,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
       </div>
       <div class="demo-foot">两张图叠加，上层用 clip-path inset 从右侧裁切，拖中间分割线改变 inset 距离。改装 / before/after / 滤镜对比标配。</div>
     </div>
+
 
 </section>
 
@@ -2959,7 +3025,7 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
           <tr><td>data-stream-muted/-loop/-autoplay</td><td>Vimeo Player API 参数</td><td>透传给 iframe</td></tr>
         </tbody>
       </table>
-      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 86</strong> 演示了这套。最大价值：<strong>视频不进视野 / 没 hover 就不下载流</strong>。</p>
+      <p style="margin-top:1rem;color:var(--fg-dim);font-size:.85rem">→ 上面 <strong>Demo 87</strong> 演示了这套。最大价值：<strong>视频不进视野 / 没 hover 就不下载流</strong>。</p>
     </div>
 
     <div class="page-block reveal">
@@ -3163,150 +3229,182 @@ stage.<span class="fn">addEventListener</span>(<span class="str">"touchmove"</sp
   </div>
 </section>
 
-<!-- ============== HELMET ANATOMY · 一颗头盔 = 22 个组件 ============== -->
+<!-- ============== HELMET ANATOMY · 流体头盔 GPU 管线 ============== -->
 <section id="helmet-anatomy" data-section="头盔解剖">
   <div class="shell">
     <div class="eyebrow reveal">08 · 头盔解剖 · 重点章节</div>
-    <h2 class="title-1 reveal">一颗头盔 = <em>22 个</em>组件的合体。</h2>
-    <p class="lede reveal">第一屏那个看起来"就一个头盔在转"的画面，实际上是 22 件东西叠在一起。从最底下的暗绿背景到最表层的 tap-to-lock 按钮，每一层都有专门的工程师写代码。下面把每一层拆给你看。</p>
+    <h2 class="title-1 reveal">流体头盔 = <em>GPU Navier-Stokes 模拟</em>驱动的鼠标变形</h2>
+    <p class="lede reveal"><strong>更正：</strong>之前我说"3D 头盔随滚动旋转"——只对了 5%。真正的核心是：<strong>头盔贴在一张 128×128 顶点的平面上</strong>，背后跑一个完整的 GPU 2D 流体求解器，鼠标位置注入力场，速度场再驱动 vertex shader 的位移。这是教科书 <strong>Stable Fluids</strong>（Jos Stam 1999）的 web 实时实现。</p>
 
-    <div class="hel-overview reveal">
-      <svg class="hel-svg" viewBox="0 0 600 540" aria-hidden="true">
+    <!-- 渲染管线 SVG -->
+    <div class="hel-pipe reveal">
+      <div class="hel-pipe-head">每帧 GPU 流体管线 · 6 个 shader pass</div>
+      <svg class="hel-pipe-svg" viewBox="0 0 1000 200" aria-hidden="true">
         <defs>
-          <linearGradient id="helGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#d2ff00" stop-opacity=".9"/>
-            <stop offset="1" stop-color="#5a7d00" stop-opacity=".4"/>
-          </linearGradient>
-          <radialGradient id="helGlow" cx="50%" cy="35%" r="60%">
-            <stop offset="0" stop-color="#d2ff00" stop-opacity=".22"/>
-            <stop offset="1" stop-color="#d2ff00" stop-opacity="0"/>
-          </radialGradient>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0 0 L10 5 L0 10 Z" fill="#d2ff00"/>
+          </marker>
         </defs>
-        <rect x="0" y="0" width="600" height="540" fill="url(#helGlow)"/>
-        <g transform="translate(300 240)">
-          <ellipse cx="0" cy="-30" rx="120" ry="135" fill="url(#helGrad)" opacity=".85"/>
-          <path d="M-118 30 Q-118 80 -70 100 L70 100 Q118 80 118 30 Z" fill="url(#helGrad)" opacity=".7"/>
-          <path d="M-90 -50 Q-95 30 -80 55 L80 55 Q95 30 90 -50 Q70 -65 0 -65 Q-70 -65 -90 -50 Z" fill="#0a0e07" opacity=".7"/>
-          <path d="M-70 -40 Q-50 -55 -20 -55" stroke="#fff" stroke-width="2" fill="none" opacity=".5" stroke-linecap="round"/>
-          <rect x="-118" y="-10" width="236" height="3" fill="#0a0e07" opacity=".4"/>
-          <rect x="-118" y="-2" width="236" height="2" fill="#0a0e07" opacity=".25"/>
+        <g font-family="JetBrains Mono, monospace" font-size="11" fill="#e6e6dd">
+          <g transform="translate(20 80)">
+            <rect width="120" height="50" rx="6" fill="#0a1208" stroke="#d2ff00" stroke-width="1"/>
+            <text x="60" y="22" text-anchor="middle" fill="#d2ff00">Mouse</text>
+            <text x="60" y="38" text-anchor="middle" fill="#8a8d80" font-size="9">x,y + velocity</text>
+          </g>
+          <line x1="142" y1="105" x2="170" y2="105" stroke="#d2ff00" stroke-width="1.5" marker-end="url(#arr)"/>
+          <g transform="translate(175 30)">
+            <rect width="140" height="60" rx="6" fill="#1c2218" stroke="#d2ff00" stroke-width="1"/>
+            <text x="70" y="22" text-anchor="middle" fill="#d2ff00" font-weight="700">① Advection</text>
+            <text x="70" y="38" text-anchor="middle" fill="#8a8d80" font-size="9">BFECC + 0.96 衰减</text>
+            <text x="70" y="50" text-anchor="middle" fill="#8a8d80" font-size="9">速度场跟自己走</text>
+          </g>
+          <g transform="translate(175 110)">
+            <rect width="140" height="60" rx="6" fill="#1c2218" stroke="#d2ff00" stroke-width="1"/>
+            <text x="70" y="22" text-anchor="middle" fill="#d2ff00" font-weight="700">② External Force</text>
+            <text x="70" y="38" text-anchor="middle" fill="#8a8d80" font-size="9">鼠标速度 × 50</text>
+            <text x="70" y="50" text-anchor="middle" fill="#8a8d80" font-size="9">cursor_size 18</text>
+          </g>
+          <line x1="317" y1="60" x2="345" y2="100" stroke="#d2ff00" stroke-width="1"/>
+          <line x1="317" y1="140" x2="345" y2="105" stroke="#d2ff00" stroke-width="1.5" marker-end="url(#arr)"/>
+          <g transform="translate(350 80)">
+            <rect width="140" height="50" rx="6" fill="#1c2218" stroke="#d2ff00" stroke-width="1"/>
+            <text x="70" y="22" text-anchor="middle" fill="#d2ff00" font-weight="700">③ Viscous (opt)</text>
+            <text x="70" y="38" text-anchor="middle" fill="#8a8d80" font-size="9">可选粘性 · 默认 off</text>
+          </g>
+          <line x1="492" y1="105" x2="520" y2="105" stroke="#d2ff00" stroke-width="1.5" marker-end="url(#arr)"/>
+          <g transform="translate(525 80)">
+            <rect width="140" height="50" rx="6" fill="#1c2218" stroke="#d2ff00" stroke-width="1"/>
+            <text x="70" y="22" text-anchor="middle" fill="#d2ff00" font-weight="700">④ Divergence</text>
+            <text x="70" y="38" text-anchor="middle" fill="#8a8d80" font-size="9">∇·v 散度</text>
+          </g>
+          <line x1="667" y1="105" x2="695" y2="105" stroke="#d2ff00" stroke-width="1.5" marker-end="url(#arr)"/>
+          <g transform="translate(700 80)">
+            <rect width="140" height="50" rx="6" fill="#1c2218" stroke="#d2ff00" stroke-width="1"/>
+            <text x="70" y="22" text-anchor="middle" fill="#d2ff00" font-weight="700">⑤ Poisson</text>
+            <text x="70" y="38" text-anchor="middle" fill="#8a8d80" font-size="9">Jacobi × 4 解压力</text>
+          </g>
+          <line x1="842" y1="105" x2="870" y2="105" stroke="#d2ff00" stroke-width="1.5" marker-end="url(#arr)"/>
+          <g transform="translate(870 80)">
+            <rect width="120" height="50" rx="6" fill="#0a1208" stroke="#d2ff00" stroke-width="1.5"/>
+            <text x="60" y="22" text-anchor="middle" fill="#d2ff00" font-weight="700">⑥ Project</text>
+            <text x="60" y="38" text-anchor="middle" fill="#8a8d80" font-size="9">→ 速度场 texture</text>
+          </g>
         </g>
-        <g font-family="JetBrains Mono, monospace" font-size="12" fill="#d2ff00">
-          <g><line x1="180" y1="180" x2="80" y2="120" stroke="#d2ff00" stroke-width="1"/><circle cx="80" cy="120" r="14" fill="#0a0e07" stroke="#d2ff00"/><text x="80" y="124" text-anchor="middle">L1</text><text x="20" y="100" fill="#e6e6dd" font-size="10">3D 头盔本体</text></g>
-          <g><line x1="425" y1="180" x2="520" y2="100" stroke="#d2ff00" stroke-width="1"/><circle cx="520" cy="100" r="14" fill="#0a0e07" stroke="#d2ff00"/><text x="520" y="104" text-anchor="middle">L2</text><text x="475" y="80" fill="#e6e6dd" font-size="10">HDRI 反光</text></g>
-          <g><line x1="180" y1="280" x2="60" y2="320" stroke="#d2ff00" stroke-width="1"/><circle cx="60" cy="320" r="14" fill="#0a0e07" stroke="#d2ff00"/><text x="60" y="324" text-anchor="middle">L3</text><text x="20" y="350" fill="#e6e6dd" font-size="10">Bloom 后期</text></g>
-          <g><line x1="425" y1="290" x2="540" y2="320" stroke="#d2ff00" stroke-width="1"/><circle cx="540" cy="320" r="14" fill="#0a0e07" stroke="#d2ff00"/><text x="540" y="324" text-anchor="middle">L4</text><text x="500" y="350" fill="#e6e6dd" font-size="10">滚动驱动旋转</text></g>
-          <g><line x1="300" y1="380" x2="300" y2="470" stroke="#d2ff00" stroke-width="1"/><circle cx="300" cy="470" r="14" fill="#0a0e07" stroke="#d2ff00"/><text x="300" y="474" text-anchor="middle">L5</text><text x="300" y="500" text-anchor="middle" fill="#e6e6dd" font-size="10">SVG HUD 框 + 周边文字</text></g>
-          <g><line x1="300" y1="100" x2="300" y2="40" stroke="#d2ff00" stroke-width="1"/><circle cx="300" cy="40" r="14" fill="#0a0e07" stroke="#d2ff00"/><text x="300" y="44" text-anchor="middle">L0</text><text x="300" y="20" text-anchor="middle" fill="#e6e6dd" font-size="10">柠檬绿色板 + 暗绿 BG</text></g>
-        </g>
-        <path d="M40 50 L40 20 L80 20" stroke="#d2ff00" stroke-width="1" fill="none" opacity=".5"/>
-        <path d="M560 50 L560 20 L520 20" stroke="#d2ff00" stroke-width="1" fill="none" opacity=".5"/>
-        <path d="M40 490 L40 520 L80 520" stroke="#d2ff00" stroke-width="1" fill="none" opacity=".5"/>
-        <path d="M560 490 L560 520 L520 520" stroke="#d2ff00" stroke-width="1" fill="none" opacity=".5"/>
       </svg>
+      <div class="hel-pipe-foot">
+        <span class="hel-pipe-out">→ <code>tCursorEffect</code> uniform → 头盔 plane vertex shader → 像素位移</span>
+      </div>
     </div>
 
+    <!-- 真实代码参数 -->
+    <div class="hel-params reveal">
+      <div class="hel-params-head">原版参数 · 反向出的 magic numbers</div>
+      <div class="hel-params-grid">
+        <div class="hel-param"><span class="k">resolution</span><span class="v">0.1</span><span class="n">流体网格 = 屏幕 10% · 性能</span></div>
+        <div class="hel-param"><span class="k">cursor_size</span><span class="v">18</span><span class="n">鼠标力场作用半径</span></div>
+        <div class="hel-param"><span class="k">mouse_force</span><span class="v">50</span><span class="n">力强度倍数</span></div>
+        <div class="hel-param"><span class="k">dissipation</span><span class="v">0.96</span><span class="n">每帧速度衰减 · 不会永久流</span></div>
+        <div class="hel-param"><span class="k">iter_poisson</span><span class="v">4</span><span class="n">Jacobi 迭代 · 4 次足够稳</span></div>
+        <div class="hel-param"><span class="k">dt</span><span class="v">0.014</span><span class="n">时间步长</span></div>
+        <div class="hel-param"><span class="k">BFECC</span><span class="v">true</span><span class="n">高阶 advection · 减数值耗散</span></div>
+        <div class="hel-param"><span class="k">ease (mouse)</span><span class="v">0.025</span><span class="n">鼠标归一化的缓动</span></div>
+      </div>
+    </div>
+
+    <!-- 完整渲染流水线 -->
     <div class="hel-stack reveal">
-      <div class="hel-stack-head">从底到顶 · 22 层叠加</div>
-      <div class="hel-layer"><span class="hel-l">L0</span><span class="hel-n">基础设计令牌</span><span class="hel-c">柠檬绿 #d2ff00 · 暗绿 #0a0e07 · cubic-bezier(.65,.05,0,1) · Mona Sans · 1728 clamp</span></div>
-      <div class="hel-layer"><span class="hel-l">L1</span><span class="hel-n">WebGL 头盔本体</span><span class="hel-c">canvas[data-gl="head"] · Three.js · GLTF + Draco + KTX2 · helmet-21.glb</span></div>
-      <div class="hel-layer"><span class="hel-l">L2</span><span class="hel-n">HDRI 反光打光</span><span class="hel-c">3 套 .hdr · MeshStandardMaterial.envMap · 滚动切 dark/faded/light</span></div>
-      <div class="hel-layer"><span class="hel-l">L3</span><span class="hel-n">后期处理 Post-FX</span><span class="hel-c">EffectComposer + UnrealBloomPass + FXAA · 反光会发光</span></div>
-      <div class="hel-layer"><span class="hel-l">L4</span><span class="hel-n">滚动驱动旋转</span><span class="hel-c">ScrollTrigger pin + scrub · 滚轮 = 头盔旋转角度</span></div>
-      <div class="hel-layer"><span class="hel-l">L5</span><span class="hel-n">滚动驱动颜色补间</span><span class="hel-c">data-h-color-from/-to · 头盔色 + HDRI 同步</span></div>
-      <div class="hel-layer"><span class="hel-l">L6</span><span class="hel-n">Rive 2D 头盔 fallback</span><span class="hel-c">reef.riv · helmet-reef_scroll · 移动 + 菜单复用</span></div>
-      <div class="hel-layer"><span class="hel-l">L7</span><span class="hel-n">Rive 赛道路径切换</span><span class="hel-c">circuits.riv · data-rive-input-track="montreal"</span></div>
-      <div class="hel-layer"><span class="hel-l">L8</span><span class="hel-n">SVG HUD 装饰框</span><span class="hel-c">.home-hero-next-race-outline · 119×244 手画 · 凹缺切角</span></div>
-      <div class="hel-layer"><span class="hel-l">L9</span><span class="hel-n">周边文字 · 字符 stagger</span><span class="hel-c">split-text="chars" · stagger 0.02s · power3.out</span></div>
-      <div class="hel-layer"><span class="hel-l">L10</span><span class="hel-n">移动端大字 + 椭圆 clip</span><span class="hel-c">SVG "Lando Norris" + clip-path ellipse 110%→0%</span></div>
-      <div class="hel-layer"><span class="hel-l">L11</span><span class="hel-n">Sticky-hero 多 section pin</span><span class="hel-c">.sticky-track + .sticky-item · scrub 喘息距离</span></div>
-      <div class="hel-layer"><span class="hel-l">L12</span><span class="hel-n">Tap-to-lock 手势</span><span class="hel-c">data-home-swipe-toggle · touch-action 切换</span></div>
-      <div class="hel-layer"><span class="hel-l">L13</span><span class="hel-n">滚动指示 cue</span><span class="hel-c">"scroll" 文字 + 柠檬绿细线动画</span></div>
-      <div class="hel-layer"><span class="hel-l">L14</span><span class="hel-n">隐形哨兵切 nav 主题</span><span class="hel-c">data-nav-theme-target sentinels</span></div>
-      <div class="hel-layer"><span class="hel-l">L15</span><span class="hel-n">入场仪式 Load Norris</span><span class="hel-c">.transition-w · page-transition.riv</span></div>
-      <div class="hel-layer"><span class="hel-l">L16</span><span class="hel-n">路由切换柠檬绿幕布</span><span class="hel-c">Taxi.js · transitionIn/Out Input</span></div>
-      <div class="hel-layer"><span class="hel-l">L17</span><span class="hel-n">Mona Sans Variable 字宽</span><span class="hel-c">font-variation-settings · wdth 75-125</span></div>
-      <div class="hel-layer"><span class="hel-l">L18</span><span class="hel-n">Next Race CMS 数据绑定</span><span class="hel-c">Webflow CMS Collection · w-dyn-list</span></div>
-      <div class="hel-layer"><span class="hel-l">L19</span><span class="hel-n">screen-reader 隐形 H1</span><span class="hel-c">.screen-reader · 语义视觉解耦</span></div>
-      <div class="hel-layer"><span class="hel-l">L20</span><span class="hel-n">横屏锁屏提示</span><span class="hel-c">mob-landscape.riv · "vertical drive" 双关</span></div>
-      <div class="hel-layer"><span class="hel-l">L21</span><span class="hel-n">transitions-rive-isolate.js</span><span class="hel-c">独立 RAF · 不被 ScrollTrigger 误调度</span></div>
+      <div class="hel-stack-head">头盔最终成像 · 完整链路</div>
+      <div class="hel-layer"><span class="hel-l">①</span><span class="hel-n">3D 头盔几何</span><span class="hel-c">helmet-21.glb · Three.js scene · Draco 压缩 · MeshStandardMaterial PBR · HDRI env 三套</span></div>
+      <div class="hel-layer"><span class="hel-l">②</span><span class="hel-n">→ 渲染到 renderTarget</span><span class="hel-c">3D 头盔不直接显示 · 先 off-screen render 成一张 2D 贴图</span></div>
+      <div class="hel-layer"><span class="hel-l">③</span><span class="hel-n">GPU 流体 sim 跑独立 FBO</span><span class="hel-c">6 个 ping-pong 纹理（vel_0/1, vel_viscous0/1, div, pressure_0/1）· 鼠标注入力</span></div>
+      <div class="hel-layer"><span class="hel-l">④</span><span class="hel-n">流体 → 速度场 texture</span><span class="hel-c">sourceTarget.texture · 输出给所有需要的 material 作为 tCursorEffect</span></div>
+      <div class="hel-layer"><span class="hel-l">⑤</span><span class="hel-n">显示平面 · 128 × 128 顶点</span><span class="hel-c">PlaneGeometry(1, 1, 128, 128) · 不是 3D 头盔 · 一个被切碎的平面</span></div>
+      <div class="hel-layer"><span class="hel-l">⑥</span><span class="hel-n">Vertex shader 同时采样</span><span class="hel-c">tDiffuse（②的头盔贴图）+ tCursorEffect（④的速度场）+ tBackgroundNoise · 顶点按 velocity 位移</span></div>
+      <div class="hel-layer"><span class="hel-l">⑦</span><span class="hel-n">Plane 微旋转</span><span class="hel-c">plane.rotation.y = mouse.x * 0.075 · plane.rotation.x = -mouse.y * 0.075 · 整体看着像在"看你"</span></div>
+      <div class="hel-layer"><span class="hel-l">⑧</span><span class="hel-n">Idle state 自动游走</span><span class="hel-c">2.5s 无鼠标 → GSAP timeline 跑 Lissajous · idleCursor = (-cos(t*π*4)*0.75, cos(t*π)*0.5) · 让流体不停</span></div>
+      <div class="hel-layer"><span class="hel-l">⑨</span><span class="hel-n">背景 simplex noise 层</span><span class="hel-c">独立 FBO 跑 noise · 持续微动 · 作为 tBackgroundNoise 叠加</span></div>
+      <div class="hel-layer"><span class="hel-l">⑩</span><span class="hel-n">hover 触发额外动画</span><span class="hel-c">data-gl-helmet="hover" · mouseenter 时调 hoverAnimation(1) · 强度从 0 升到 1</span></div>
     </div>
 
-    <h3 class="title-2 reveal" style="margin-top:5rem">9 个工种 · 一团 22 件零件</h3>
-    <p class="lede reveal">同一个工程师只能写其中 2-3 类。这就是为什么 OFF+BRAND 是个团队。</p>
+    <!-- 关键洞察 -->
+    <div class="hel-takeaway reveal">
+      <div class="hel-takeaway-eyebrow">三句话总结 · 修订版</div>
+      <ul>
+        <li><strong>① 这不是 3D 头盔的旋转 · 是 2D 平面的流体位移。</strong>头盔图 + 速度场 = 看起来在"流" · 实际是 vertex shader 在 displace。</li>
+        <li><strong>② 鼠标不只是位置 · 是力源。</strong>每帧把鼠标速度注入到 Navier-Stokes 求解器 · 流体守恒（无散度）让位移看起来真。</li>
+        <li><strong>③ 没人玩也在动。</strong>idle state 2.5s 后自动 Lissajous · 这就是为什么你打开网页头盔像"活的"。</li>
+      </ul>
+    </div>
+
+    <h3 class="title-2 reveal" style="margin-top:5rem">头盔的"周围配饰" · 20 件</h3>
+    <p class="lede reveal">流体头盔是主菜，外面还围了 20 件东西（HDRI / Bloom / sticky pin / SVG HUD / Rive / 字体...）。点 → 跳对应 demo。</p>
 
     <div class="hel-grid">
       <div class="hel-card">
-        <div class="hel-card-key">3D</div>
-        <h4>3D 渲染管线 · 4 件</h4>
+        <div class="hel-card-key">CORE</div>
+        <h4>流体头盔本体 · 8 件 · 重点</h4>
         <ul>
-          <li><strong>Three.js + GLTFLoader</strong> · helmet-21.glb 主头盔</li>
-          <li><strong>DRACOLoader + KTX2Loader</strong> · 网格 + 纹理压缩</li>
-          <li><strong>MeshStandardMaterial PBR</strong> · 金属/粗糙度/法线</li>
-          <li><strong>HDRI envMap</strong> · dark/faded/light 三套</li>
+          <li><strong>Three.js</strong> · 主渲染器</li>
+          <li><strong>GLTF + Draco + KTX2</strong> · helmet-21.glb 压缩 mesh + 纹理</li>
+          <li><strong>HDRI 3 套</strong> · studio_small_08_1k--dark/faded/light · 滚动切打光</li>
+          <li><strong>EffectComposer + UnrealBloom + FXAA</strong> · 后期发光</li>
+          <li><strong>GPU 流体求解器</strong> · 6 个 shader pass</li>
+          <li><strong>128×128 plane + vertex displacement</strong> · 实际显示载体</li>
+          <li><strong>Idle Lissajous</strong> · 2.5s 后自动游走</li>
+          <li><strong>Background simplex noise</strong> · 持续微动</li>
         </ul>
-        <a class="hel-card-link" href="#demo3">→ Demo 04 scrub 3D 头盔（CSS 3D 仿）</a>
-      </div>
-
-      <div class="hel-card">
-        <div class="hel-card-key">FX</div>
-        <h4>后期 Post-FX · 1 件</h4>
-        <ul>
-          <li><strong>EffectComposer + UnrealBloom + FXAA</strong> · 反光发光 + 反走样</li>
-        </ul>
-        <p class="hel-card-note">后期是普通网页盲区 · 没 bloom 看上去就"塑料"。</p>
+        <a class="hel-card-link" href="#demo90">→ Demo · 鼠标驱动流体位移（简化版仿）</a>
       </div>
 
       <div class="hel-card">
         <div class="hel-card-key">RIVE</div>
-        <h4>Rive 矢量状态机 · 3 件</h4>
+        <h4>Rive 矢量配饰 · 3 件</h4>
         <ul>
-          <li><strong>reef.riv</strong> · 2D 头盔 · 移动端 / 菜单复用</li>
-          <li><strong>circuits.riv</strong> · 24 赛道一个文件 · input 切换</li>
-          <li><strong>page-transition.riv</strong> · 柠檬绿幕布</li>
+          <li><strong>reef.riv</strong> · 2D 头盔 fallback · 移动 + 菜单复用</li>
+          <li><strong>circuits.riv</strong> · 24 赛道 · hover 切换</li>
+          <li><strong>page-transition.riv</strong> · 路由切换的柠檬绿幕布</li>
         </ul>
-        <a class="hel-card-link" href="#demo6">→ Demo 14 Rive 状态机 · #demo11 lime curtain</a>
+        <a class="hel-card-link" href="#demo6">→ Demo 14 · Demo 02</a>
       </div>
 
       <div class="hel-card">
         <div class="hel-card-key">SCRL</div>
-        <h4>滚动驱动 · 4 件</h4>
+        <h4>滚动驱动配饰 · 3 件</h4>
         <ul>
-          <li><strong>Sticky-hero pin</strong> · 多 section 容器</li>
-          <li><strong>头盔旋转 scrub</strong> · 滚轮 = 旋转</li>
-          <li><strong>data-h-color-from/-to</strong> · 头盔色补间</li>
-          <li><strong>HDRI 三套滚动切换</strong> · 反光跟着变</li>
+          <li><strong>Sticky-hero pin</strong> · 多 section 容器 · scrub 喘息距离</li>
+          <li><strong>data-h-color-from/-to</strong> · 头盔色滚动补间</li>
+          <li><strong>data-gl-change-from/-to</strong> · HDRI 强度滚动插值</li>
         </ul>
-        <a class="hel-card-link" href="#demo3">→ Demo 04 + #demo15 色彩</a>
+        <a class="hel-card-link" href="#demo3">→ Demo 04 · Demo 06</a>
       </div>
 
       <div class="hel-card">
         <div class="hel-card-key">TYPE</div>
         <h4>排版 · 4 件</h4>
         <ul>
-          <li><strong>字符 stagger + 椭圆 clip</strong> · 入场</li>
+          <li><strong>字符 stagger + 椭圆 clip</strong> · 周围文字入场</li>
           <li><strong>Mona Sans wdth + wght</strong> · 双轴单 woff2</li>
           <li><strong>1728 流体 clamp</strong> · 字号呼吸</li>
           <li><strong>screen-reader 隐形 H1</strong> · 语义视觉解耦</li>
         </ul>
-        <a class="hel-card-link" href="#demo1">→ Demo 01 + #demo20 Variable Font</a>
+        <a class="hel-card-link" href="#demo1">→ Demo 01 · 20 · 27</a>
       </div>
 
       <div class="hel-card">
         <div class="hel-card-key">SVG</div>
-        <h4>SVG 装饰 · 2 件</h4>
+        <h4>SVG HUD 装饰 · 2 件</h4>
         <ul>
-          <li><strong>HUD 角标 frame</strong> · 4 个角的线</li>
-          <li><strong>Next Race 卡片外框</strong> · 119×244 手画</li>
+          <li><strong>4 个角的 HUD 线框</strong> · 不是 CSS border</li>
+          <li><strong>Next Race 卡片外框</strong> · 119×244 手画 · 凹缺切角</li>
         </ul>
-        <p class="hel-card-note">CSS clip-path 做不出凹缺 + 切角组合 · 只能 SVG。</p>
+        <p class="hel-card-note">CSS clip-path 做不出 · 只能 SVG。</p>
       </div>
 
       <div class="hel-card">
         <div class="hel-card-key">TAP</div>
-        <h4>手势交互 · 2 件</h4>
+        <h4>手势 · 2 件</h4>
         <ul>
-          <li><strong>Tap to lock</strong> · 锁页面只玩头盔</li>
+          <li><strong>Tap to lock</strong> · 移动端锁页面只玩头盔</li>
           <li><strong>横屏锁屏提示</strong> · "vertical drive" 双关</li>
         </ul>
         <a class="hel-card-link" href="#demo8">→ Demo 22 tap to lock</a>
@@ -3314,13 +3412,13 @@ stage.<span class="fn">addEventListener</span>(<span class="str">"touchmove"</sp
 
       <div class="hel-card">
         <div class="hel-card-key">NAV</div>
-        <h4>主题 / 入场 · 3 件</h4>
+        <h4>入场 / 主题 · 3 件</h4>
         <ul>
           <li><strong>Load Norris 预加载门</strong></li>
-          <li><strong>柠檬绿过场幕布</strong></li>
+          <li><strong>柠檬绿过场幕布</strong> · Taxi.js 触发</li>
           <li><strong>隐形哨兵切 nav 主题</strong></li>
         </ul>
-        <a class="hel-card-link" href="#demo11">→ Demo 02 lime curtain · #demo2 nav theme</a>
+        <a class="hel-card-link" href="#demo11">→ Demo 02 · 12</a>
       </div>
 
       <div class="hel-card">
@@ -3332,36 +3430,31 @@ stage.<span class="fn">addEventListener</span>(<span class="str">"touchmove"</sp
           <li><strong>Lenis</strong> · 平滑滚动惯性</li>
           <li><strong>transitions-rive-isolate.js</strong> · Rive 独立 RAF</li>
         </ul>
-        <p class="hel-card-note">基础设施不可见但驱动一切。普通网页没这层。</p>
+        <p class="hel-card-note">不可见但驱动一切。</p>
       </div>
     </div>
 
     <div class="hel-bar reveal">
-      <div class="hel-bar-head">每"工种"在头盔里的占比（按组件数）</div>
+      <div class="hel-bar-head">复杂度对比 · 一颗头盔 vs 一颗按钮</div>
       <div class="hel-bar-list">
-        <div class="hel-bar-row"><span class="hel-bar-k">3D 渲染</span><div class="hel-bar-fill" style="--p:18"></div><span class="hel-bar-n">4</span></div>
-        <div class="hel-bar-row"><span class="hel-bar-k">滚动驱动</span><div class="hel-bar-fill" style="--p:18"></div><span class="hel-bar-n">4</span></div>
-        <div class="hel-bar-row"><span class="hel-bar-k">排版</span><div class="hel-bar-fill" style="--p:18"></div><span class="hel-bar-n">4</span></div>
-        <div class="hel-bar-row"><span class="hel-bar-k">基础设施</span><div class="hel-bar-fill" style="--p:18"></div><span class="hel-bar-n">4</span></div>
-        <div class="hel-bar-row"><span class="hel-bar-k">Rive 矢量</span><div class="hel-bar-fill" style="--p:14"></div><span class="hel-bar-n">3</span></div>
-        <div class="hel-bar-row"><span class="hel-bar-k">主题 / 入场</span><div class="hel-bar-fill" style="--p:14"></div><span class="hel-bar-n">3</span></div>
-        <div class="hel-bar-row"><span class="hel-bar-k">SVG 装饰</span><div class="hel-bar-fill" style="--p:9"></div><span class="hel-bar-n">2</span></div>
-        <div class="hel-bar-row"><span class="hel-bar-k">手势</span><div class="hel-bar-fill" style="--p:9"></div><span class="hel-bar-n">2</span></div>
-        <div class="hel-bar-row"><span class="hel-bar-k">后期 FX</span><div class="hel-bar-fill" style="--p:5"></div><span class="hel-bar-n">1</span></div>
+        <div class="hel-bar-row"><span class="hel-bar-k">流体头盔</span><div class="hel-bar-fill" style="--p:96"></div><span class="hel-bar-n">~3000 行</span></div>
+        <div class="hel-bar-row"><span class="hel-bar-k">磁力按钮</span><div class="hel-bar-fill" style="--p:6"></div><span class="hel-bar-n">~50 行</span></div>
+        <div class="hel-bar-row"><span class="hel-bar-k">字符 stagger</span><div class="hel-bar-fill" style="--p:8"></div><span class="hel-bar-n">~80 行</span></div>
+        <div class="hel-bar-row"><span class="hel-bar-k">CMS 日历</span><div class="hel-bar-fill" style="--p:18"></div><span class="hel-bar-n">~180 行</span></div>
+        <div class="hel-bar-row"><span class="hel-bar-k">横向 pin scroll</span><div class="hel-bar-fill" style="--p:12"></div><span class="hel-bar-n">~120 行</span></div>
       </div>
     </div>
 
-    <div class="hel-takeaway reveal">
-      <div class="hel-takeaway-eyebrow">三句话总结</div>
+    <div class="hel-takeaway reveal" style="margin-top:3rem;background:linear-gradient(135deg,rgba(208,255,0,.08),rgba(208,255,0,0))">
+      <div class="hel-takeaway-eyebrow">为什么这么贵？</div>
       <ul>
-        <li><strong>① 这不是 demo · 是工程团队的合奏。</strong>22 个组件分 9 工种 · 单人写不出来。</li>
-        <li><strong>② "高级感"在层叠。</strong>少一个 HDRI 反光就塑料 · 少一个 bloom 就死板。</li>
-        <li><strong>③ 复用价值在 cookbook · 不在这。</strong>22 件里 14 件能直接拷走（在 web-anim-cookbook）· 剩 8 件需要资产（GLB/HDR/Rive 文件）。</li>
+        <li><strong>流体不是动画 · 是物理。</strong>每帧解一次 Navier-Stokes · 60fps · 1 秒 360 个 shader pass。</li>
+        <li><strong>这是 demoscene 级别。</strong>能写这个的前端国内不超过 50 人。OFF+BRAND 是其中之一。</li>
+        <li><strong>但部分可以仿。</strong>下面 Demo 用 SVG feTurbulence + feDisplacementMap 做了一个简化版 · 90% 的视觉感 · 5% 的代码量。</li>
       </ul>
     </div>
   </div>
 </section>
-
 <!-- ============== TAXONOMY · animation atlas ============== -->
 <section id="taxonomy-section" data-section="动效全景目录">
   <div class="shell">
@@ -3996,6 +4089,7 @@ const TAXONOMY = [
       { l:"Custom scrollbar 美化" }
     ]},
     { name:"视觉特效 Effects", items:[
+      { l:"GPU 流体模拟 · 鼠标驱动顶点位移（原版头盔）", d:"demo90" },
       { l:"conic-gradient 圆盘 / 仪表盘", d:"demo83" },
       { l:"backdrop-filter blur 玻璃感", d:"demo84" },
       { l:"mix-blend-mode 多层叠（difference / multiply）" },
@@ -4322,7 +4416,8 @@ const CAT_MAP = {
   demo76:{key:"E",name:"数据驱动",cat:"data"},demo77:{key:"E",name:"数据驱动",cat:"data"},demo78:{key:"E",name:"数据驱动",cat:"data"},
   demo79:{key:"F",name:"手势光标",cat:"gesture"},demo80:{key:"F",name:"手势光标",cat:"gesture"},demo81:{key:"F",name:"手势光标",cat:"gesture"},demo82:{key:"F",name:"手势光标",cat:"gesture"},
   demo83:{key:"G",name:"视觉系统",cat:"visual"},demo84:{key:"G",name:"视觉系统",cat:"visual"},demo85:{key:"G",name:"视觉系统",cat:"visual"},demo86:{key:"G",name:"视觉系统",cat:"visual"},demo87:{key:"G",name:"视觉系统",cat:"visual"},
-  demo88:{key:"H",name:"媒体",cat:"media"},demo89:{key:"H",name:"媒体",cat:"media"}
+  demo88:{key:"H",name:"媒体",cat:"media"},demo89:{key:"H",name:"媒体",cat:"media"},
+  demo90:{key:"G",name:"视觉系统",cat:"visual"}
 };
 
 const CAT_NAMES = {
@@ -5398,6 +5493,73 @@ ScrollTrigger.batch(".reveal", {
   stage.addEventListener('touchstart', e => { dragging = true; setX(e.touches[0].clientX); }, {passive:true});
   stage.addEventListener('touchmove', e => { if(dragging) setX(e.touches[0].clientX); }, {passive:true});
   stage.addEventListener('touchend', () => dragging = false);
+})();
+
+
+/* demo 90 · fluid cursor displacement */
+(function(){
+  const stage = document.getElementById('d90Stage');
+  const turb = document.getElementById('d90Turb');
+  const cur = document.getElementById('d90Cur');
+  const state = document.getElementById('d90State');
+  if (!stage || !turb) return;
+
+  let mouseX = 0.5, mouseY = 0.5;
+  let curX = 0.5, curY = 0.5;
+  let lastMove = 0;
+  let idleT = 0;
+  let isIdle = true;
+
+  stage.addEventListener('mousemove', e => {
+    const r = stage.getBoundingClientRect();
+    mouseX = (e.clientX - r.left) / r.width;
+    mouseY = (e.clientY - r.top) / r.height;
+    lastMove = performance.now();
+    isIdle = false;
+  });
+  stage.addEventListener('mouseleave', () => {
+    lastMove = 0;
+    isIdle = true;
+  });
+  stage.addEventListener('touchmove', e => {
+    if (!e.touches[0]) return;
+    const r = stage.getBoundingClientRect();
+    mouseX = (e.touches[0].clientX - r.left) / r.width;
+    mouseY = (e.touches[0].clientY - r.top) / r.height;
+    lastMove = performance.now();
+    isIdle = false;
+  }, { passive: true });
+
+  function tick(){
+    // idle detection · 2500ms = 2.5s like original
+    const now = performance.now();
+    if (lastMove === 0 || now - lastMove > 2500) {
+      isIdle = true;
+      idleT += 0.012;
+      // Lissajous (matches original's progress -> idleCursor formula)
+      mouseX = 0.5 + Math.cos(idleT * Math.PI * 4) * -0.4;
+      mouseY = 0.5 + Math.cos(idleT * Math.PI) * 0.35;
+    }
+    // ease the cursor toward mouse
+    curX += (mouseX - curX) * 0.15;
+    curY += (mouseY - curY) * 0.15;
+    // map to baseFrequency offset (creates directional flow)
+    const bx = (0.008 + curX * 0.018).toFixed(4);
+    const by = (0.010 + curY * 0.022).toFixed(4);
+    turb.setAttribute('baseFrequency', `${bx} ${by}`);
+    // animate seed for continuous flow when idle
+    if (isIdle) {
+      const s = (Math.floor(idleT * 60) % 12) + 2;
+      turb.setAttribute('seed', s);
+    }
+    if (cur) {
+      cur.style.left = (curX * 100) + '%';
+      cur.style.top = (curY * 100) + '%';
+    }
+    if (state) state.textContent = isIdle ? 'MODE · idle Lissajous' : 'MODE · mouse driven';
+    requestAnimationFrame(tick);
+  }
+  tick();
 })();
 
 </script>

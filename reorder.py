@@ -96,6 +96,7 @@ ORDER = [
     ("demo85",    "visual",   "G", "视觉系统"),
     ("demo86",    "visual",   "G", "视觉系统"),
     ("demo87",    "visual",   "G", "视觉系统"),
+    ("demo90",    "visual",   "G", "视觉系统"),
     # H · media (4)
     ("demo10",    "media",    "H", "媒体"),
     ("demo23",    "media",    "H", "媒体"),
