@@ -1093,6 +1093,54 @@ footer a{color:var(--lime);text-decoration:underline;text-underline-offset:.25em
 .d89-handle{position:absolute;top:0;bottom:0;width:2px;background:var(--lime);left:50%;cursor:ew-resize;display:grid;place-items:center}
 .d89-handle span{display:grid;place-items:center;width:2.4rem;height:2.4rem;background:var(--lime);color:#0a0e07;border-radius:50%;font-weight:700;letter-spacing:.05em}
 
+
+/* ---------- helmet anatomy section ---------- */
+.hel-overview{margin:3rem auto;display:flex;justify-content:center;max-width:680px}
+.hel-svg{width:100%;height:auto;display:block;border:1px solid var(--line-soft);border-radius:8px;background:linear-gradient(135deg,#0a1208,#1c2218)}
+
+.hel-stack{margin:3rem 0;background:var(--bg-2);border:1px solid var(--line-soft);border-radius:6px;overflow:hidden}
+.hel-stack-head{padding:1rem 1.25rem;background:#070a05;border-bottom:1px solid var(--line-soft);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;letter-spacing:.3em;color:var(--lime);text-transform:uppercase}
+.hel-layer{display:flex;align-items:center;gap:1rem;padding:.75rem 1.25rem;border-bottom:1px dashed var(--line-soft);background:linear-gradient(90deg,rgba(208,255,0,0) 0%,rgba(208,255,0,.04) 30%,rgba(208,255,0,0) 100%);transition:background .25s}
+.hel-layer:last-child{border-bottom:none}
+.hel-layer:hover{background:linear-gradient(90deg,rgba(208,255,0,.02) 0%,rgba(208,255,0,.12) 50%,rgba(208,255,0,.02) 100%)}
+.hel-l{font-family:'JetBrains Mono',ui-monospace,monospace;color:var(--lime);font-weight:700;font-size:.8rem;width:2.6rem;flex-shrink:0}
+.hel-n{font-size:.95rem;font-weight:500;color:var(--fg);min-width:180px;flex-shrink:0}
+.hel-c{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.72rem;color:var(--fg-dim);line-height:1.55;flex:1;letter-spacing:.02em}
+
+.hel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1rem;margin:2rem 0}
+.hel-card{background:var(--bg-2);border:1px solid var(--line-soft);border-radius:6px;padding:1.5rem;position:relative;transition:border-color .35s var(--cubic),transform .35s var(--cubic),background .35s}
+.hel-card:hover{border-color:var(--lime);transform:translateY(-2px);background:var(--bg-3)}
+.hel-card-key{position:absolute;top:1.25rem;right:1.25rem;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.65rem;letter-spacing:.2em;color:#0a0e07;background:var(--lime);padding:.25rem .55rem;border-radius:3px;font-weight:700}
+.hel-card h4{font-size:1.05rem;font-weight:500;margin-bottom:.85rem;padding-right:3rem;letter-spacing:-.005em}
+.hel-card ul{list-style:none;padding:0;margin:0 0 .75rem}
+.hel-card li{font-size:.78rem;color:var(--fg-dim);line-height:1.55;padding:.25rem 0;border-bottom:1px dashed var(--line-soft);font-family:'JetBrains Mono',ui-monospace,monospace}
+.hel-card li:last-child{border-bottom:none}
+.hel-card li strong{color:var(--fg);font-weight:600}
+.hel-card-link{display:inline-block;margin-top:.6rem;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--lime);font-family:'JetBrains Mono',ui-monospace,monospace;padding:.3rem .65rem;background:rgba(208,255,0,.08);border-radius:3px;transition:background .25s}
+.hel-card-link:hover{background:var(--lime);color:#0a0e07}
+.hel-card-note{margin-top:.6rem;font-size:.72rem;color:var(--fg-mute);font-style:italic;line-height:1.5;padding-top:.5rem;border-top:1px dashed var(--line-soft)}
+
+.hel-bar{margin:3rem 0;background:var(--bg-2);border:1px solid var(--line-soft);border-radius:6px;padding:1.5rem}
+.hel-bar-head{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;letter-spacing:.25em;color:var(--lime);text-transform:uppercase;margin-bottom:1rem}
+.hel-bar-list{display:flex;flex-direction:column;gap:.55rem}
+.hel-bar-row{display:flex;align-items:center;gap:.85rem;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.78rem}
+.hel-bar-k{width:6rem;flex-shrink:0;color:var(--fg-dim)}
+.hel-bar-fill{flex:1;height:.85rem;background:linear-gradient(90deg,var(--lime) calc(var(--p)*1%),var(--bg-3) 0);border-radius:2px}
+.hel-bar-n{color:var(--lime);font-weight:700;width:1.5rem;text-align:right}
+
+.hel-takeaway{margin-top:3rem;padding:2rem;background:linear-gradient(135deg,rgba(208,255,0,.05),rgba(208,255,0,0));border:1px solid var(--line);border-radius:8px}
+.hel-takeaway-eyebrow{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.7rem;letter-spacing:.3em;color:var(--lime);text-transform:uppercase;margin-bottom:1rem}
+.hel-takeaway ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.85rem}
+.hel-takeaway li{padding:.7rem 0;font-size:.95rem;line-height:1.6;color:var(--fg-dim);border-bottom:1px dashed var(--line-soft)}
+.hel-takeaway li:last-child{border-bottom:none}
+.hel-takeaway li strong{color:var(--lime);display:block;margin-bottom:.15rem;font-weight:600}
+
+@media (max-width:700px){
+  .hel-layer{flex-wrap:wrap}
+  .hel-n{min-width:auto}
+  .hel-c{font-size:.68rem}
+}
+
 </style>
 </head>
 <body>
@@ -3112,6 +3160,205 @@ stage.<span class="fn">addEventListener</span>(<span class="str">"touchmove"</sp
 });</code></pre>
     </div>
 
+  </div>
+</section>
+
+<!-- ============== HELMET ANATOMY · 一颗头盔 = 22 个组件 ============== -->
+<section id="helmet-anatomy" data-section="头盔解剖">
+  <div class="shell">
+    <div class="eyebrow reveal">08 · 头盔解剖 · 重点章节</div>
+    <h2 class="title-1 reveal">一颗头盔 = <em>22 个</em>组件的合体。</h2>
+    <p class="lede reveal">第一屏那个看起来"就一个头盔在转"的画面，实际上是 22 件东西叠在一起。从最底下的暗绿背景到最表层的 tap-to-lock 按钮，每一层都有专门的工程师写代码。下面把每一层拆给你看。</p>
+
+    <div class="hel-overview reveal">
+      <svg class="hel-svg" viewBox="0 0 600 540" aria-hidden="true">
+        <defs>
+          <linearGradient id="helGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#d2ff00" stop-opacity=".9"/>
+            <stop offset="1" stop-color="#5a7d00" stop-opacity=".4"/>
+          </linearGradient>
+          <radialGradient id="helGlow" cx="50%" cy="35%" r="60%">
+            <stop offset="0" stop-color="#d2ff00" stop-opacity=".22"/>
+            <stop offset="1" stop-color="#d2ff00" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect x="0" y="0" width="600" height="540" fill="url(#helGlow)"/>
+        <g transform="translate(300 240)">
+          <ellipse cx="0" cy="-30" rx="120" ry="135" fill="url(#helGrad)" opacity=".85"/>
+          <path d="M-118 30 Q-118 80 -70 100 L70 100 Q118 80 118 30 Z" fill="url(#helGrad)" opacity=".7"/>
+          <path d="M-90 -50 Q-95 30 -80 55 L80 55 Q95 30 90 -50 Q70 -65 0 -65 Q-70 -65 -90 -50 Z" fill="#0a0e07" opacity=".7"/>
+          <path d="M-70 -40 Q-50 -55 -20 -55" stroke="#fff" stroke-width="2" fill="none" opacity=".5" stroke-linecap="round"/>
+          <rect x="-118" y="-10" width="236" height="3" fill="#0a0e07" opacity=".4"/>
+          <rect x="-118" y="-2" width="236" height="2" fill="#0a0e07" opacity=".25"/>
+        </g>
+        <g font-family="JetBrains Mono, monospace" font-size="12" fill="#d2ff00">
+          <g><line x1="180" y1="180" x2="80" y2="120" stroke="#d2ff00" stroke-width="1"/><circle cx="80" cy="120" r="14" fill="#0a0e07" stroke="#d2ff00"/><text x="80" y="124" text-anchor="middle">L1</text><text x="20" y="100" fill="#e6e6dd" font-size="10">3D 头盔本体</text></g>
+          <g><line x1="425" y1="180" x2="520" y2="100" stroke="#d2ff00" stroke-width="1"/><circle cx="520" cy="100" r="14" fill="#0a0e07" stroke="#d2ff00"/><text x="520" y="104" text-anchor="middle">L2</text><text x="475" y="80" fill="#e6e6dd" font-size="10">HDRI 反光</text></g>
+          <g><line x1="180" y1="280" x2="60" y2="320" stroke="#d2ff00" stroke-width="1"/><circle cx="60" cy="320" r="14" fill="#0a0e07" stroke="#d2ff00"/><text x="60" y="324" text-anchor="middle">L3</text><text x="20" y="350" fill="#e6e6dd" font-size="10">Bloom 后期</text></g>
+          <g><line x1="425" y1="290" x2="540" y2="320" stroke="#d2ff00" stroke-width="1"/><circle cx="540" cy="320" r="14" fill="#0a0e07" stroke="#d2ff00"/><text x="540" y="324" text-anchor="middle">L4</text><text x="500" y="350" fill="#e6e6dd" font-size="10">滚动驱动旋转</text></g>
+          <g><line x1="300" y1="380" x2="300" y2="470" stroke="#d2ff00" stroke-width="1"/><circle cx="300" cy="470" r="14" fill="#0a0e07" stroke="#d2ff00"/><text x="300" y="474" text-anchor="middle">L5</text><text x="300" y="500" text-anchor="middle" fill="#e6e6dd" font-size="10">SVG HUD 框 + 周边文字</text></g>
+          <g><line x1="300" y1="100" x2="300" y2="40" stroke="#d2ff00" stroke-width="1"/><circle cx="300" cy="40" r="14" fill="#0a0e07" stroke="#d2ff00"/><text x="300" y="44" text-anchor="middle">L0</text><text x="300" y="20" text-anchor="middle" fill="#e6e6dd" font-size="10">柠檬绿色板 + 暗绿 BG</text></g>
+        </g>
+        <path d="M40 50 L40 20 L80 20" stroke="#d2ff00" stroke-width="1" fill="none" opacity=".5"/>
+        <path d="M560 50 L560 20 L520 20" stroke="#d2ff00" stroke-width="1" fill="none" opacity=".5"/>
+        <path d="M40 490 L40 520 L80 520" stroke="#d2ff00" stroke-width="1" fill="none" opacity=".5"/>
+        <path d="M560 490 L560 520 L520 520" stroke="#d2ff00" stroke-width="1" fill="none" opacity=".5"/>
+      </svg>
+    </div>
+
+    <div class="hel-stack reveal">
+      <div class="hel-stack-head">从底到顶 · 22 层叠加</div>
+      <div class="hel-layer"><span class="hel-l">L0</span><span class="hel-n">基础设计令牌</span><span class="hel-c">柠檬绿 #d2ff00 · 暗绿 #0a0e07 · cubic-bezier(.65,.05,0,1) · Mona Sans · 1728 clamp</span></div>
+      <div class="hel-layer"><span class="hel-l">L1</span><span class="hel-n">WebGL 头盔本体</span><span class="hel-c">canvas[data-gl="head"] · Three.js · GLTF + Draco + KTX2 · helmet-21.glb</span></div>
+      <div class="hel-layer"><span class="hel-l">L2</span><span class="hel-n">HDRI 反光打光</span><span class="hel-c">3 套 .hdr · MeshStandardMaterial.envMap · 滚动切 dark/faded/light</span></div>
+      <div class="hel-layer"><span class="hel-l">L3</span><span class="hel-n">后期处理 Post-FX</span><span class="hel-c">EffectComposer + UnrealBloomPass + FXAA · 反光会发光</span></div>
+      <div class="hel-layer"><span class="hel-l">L4</span><span class="hel-n">滚动驱动旋转</span><span class="hel-c">ScrollTrigger pin + scrub · 滚轮 = 头盔旋转角度</span></div>
+      <div class="hel-layer"><span class="hel-l">L5</span><span class="hel-n">滚动驱动颜色补间</span><span class="hel-c">data-h-color-from/-to · 头盔色 + HDRI 同步</span></div>
+      <div class="hel-layer"><span class="hel-l">L6</span><span class="hel-n">Rive 2D 头盔 fallback</span><span class="hel-c">reef.riv · helmet-reef_scroll · 移动 + 菜单复用</span></div>
+      <div class="hel-layer"><span class="hel-l">L7</span><span class="hel-n">Rive 赛道路径切换</span><span class="hel-c">circuits.riv · data-rive-input-track="montreal"</span></div>
+      <div class="hel-layer"><span class="hel-l">L8</span><span class="hel-n">SVG HUD 装饰框</span><span class="hel-c">.home-hero-next-race-outline · 119×244 手画 · 凹缺切角</span></div>
+      <div class="hel-layer"><span class="hel-l">L9</span><span class="hel-n">周边文字 · 字符 stagger</span><span class="hel-c">split-text="chars" · stagger 0.02s · power3.out</span></div>
+      <div class="hel-layer"><span class="hel-l">L10</span><span class="hel-n">移动端大字 + 椭圆 clip</span><span class="hel-c">SVG "Lando Norris" + clip-path ellipse 110%→0%</span></div>
+      <div class="hel-layer"><span class="hel-l">L11</span><span class="hel-n">Sticky-hero 多 section pin</span><span class="hel-c">.sticky-track + .sticky-item · scrub 喘息距离</span></div>
+      <div class="hel-layer"><span class="hel-l">L12</span><span class="hel-n">Tap-to-lock 手势</span><span class="hel-c">data-home-swipe-toggle · touch-action 切换</span></div>
+      <div class="hel-layer"><span class="hel-l">L13</span><span class="hel-n">滚动指示 cue</span><span class="hel-c">"scroll" 文字 + 柠檬绿细线动画</span></div>
+      <div class="hel-layer"><span class="hel-l">L14</span><span class="hel-n">隐形哨兵切 nav 主题</span><span class="hel-c">data-nav-theme-target sentinels</span></div>
+      <div class="hel-layer"><span class="hel-l">L15</span><span class="hel-n">入场仪式 Load Norris</span><span class="hel-c">.transition-w · page-transition.riv</span></div>
+      <div class="hel-layer"><span class="hel-l">L16</span><span class="hel-n">路由切换柠檬绿幕布</span><span class="hel-c">Taxi.js · transitionIn/Out Input</span></div>
+      <div class="hel-layer"><span class="hel-l">L17</span><span class="hel-n">Mona Sans Variable 字宽</span><span class="hel-c">font-variation-settings · wdth 75-125</span></div>
+      <div class="hel-layer"><span class="hel-l">L18</span><span class="hel-n">Next Race CMS 数据绑定</span><span class="hel-c">Webflow CMS Collection · w-dyn-list</span></div>
+      <div class="hel-layer"><span class="hel-l">L19</span><span class="hel-n">screen-reader 隐形 H1</span><span class="hel-c">.screen-reader · 语义视觉解耦</span></div>
+      <div class="hel-layer"><span class="hel-l">L20</span><span class="hel-n">横屏锁屏提示</span><span class="hel-c">mob-landscape.riv · "vertical drive" 双关</span></div>
+      <div class="hel-layer"><span class="hel-l">L21</span><span class="hel-n">transitions-rive-isolate.js</span><span class="hel-c">独立 RAF · 不被 ScrollTrigger 误调度</span></div>
+    </div>
+
+    <h3 class="title-2 reveal" style="margin-top:5rem">9 个工种 · 一团 22 件零件</h3>
+    <p class="lede reveal">同一个工程师只能写其中 2-3 类。这就是为什么 OFF+BRAND 是个团队。</p>
+
+    <div class="hel-grid">
+      <div class="hel-card">
+        <div class="hel-card-key">3D</div>
+        <h4>3D 渲染管线 · 4 件</h4>
+        <ul>
+          <li><strong>Three.js + GLTFLoader</strong> · helmet-21.glb 主头盔</li>
+          <li><strong>DRACOLoader + KTX2Loader</strong> · 网格 + 纹理压缩</li>
+          <li><strong>MeshStandardMaterial PBR</strong> · 金属/粗糙度/法线</li>
+          <li><strong>HDRI envMap</strong> · dark/faded/light 三套</li>
+        </ul>
+        <a class="hel-card-link" href="#demo3">→ Demo 04 scrub 3D 头盔（CSS 3D 仿）</a>
+      </div>
+
+      <div class="hel-card">
+        <div class="hel-card-key">FX</div>
+        <h4>后期 Post-FX · 1 件</h4>
+        <ul>
+          <li><strong>EffectComposer + UnrealBloom + FXAA</strong> · 反光发光 + 反走样</li>
+        </ul>
+        <p class="hel-card-note">后期是普通网页盲区 · 没 bloom 看上去就"塑料"。</p>
+      </div>
+
+      <div class="hel-card">
+        <div class="hel-card-key">RIVE</div>
+        <h4>Rive 矢量状态机 · 3 件</h4>
+        <ul>
+          <li><strong>reef.riv</strong> · 2D 头盔 · 移动端 / 菜单复用</li>
+          <li><strong>circuits.riv</strong> · 24 赛道一个文件 · input 切换</li>
+          <li><strong>page-transition.riv</strong> · 柠檬绿幕布</li>
+        </ul>
+        <a class="hel-card-link" href="#demo6">→ Demo 14 Rive 状态机 · #demo11 lime curtain</a>
+      </div>
+
+      <div class="hel-card">
+        <div class="hel-card-key">SCRL</div>
+        <h4>滚动驱动 · 4 件</h4>
+        <ul>
+          <li><strong>Sticky-hero pin</strong> · 多 section 容器</li>
+          <li><strong>头盔旋转 scrub</strong> · 滚轮 = 旋转</li>
+          <li><strong>data-h-color-from/-to</strong> · 头盔色补间</li>
+          <li><strong>HDRI 三套滚动切换</strong> · 反光跟着变</li>
+        </ul>
+        <a class="hel-card-link" href="#demo3">→ Demo 04 + #demo15 色彩</a>
+      </div>
+
+      <div class="hel-card">
+        <div class="hel-card-key">TYPE</div>
+        <h4>排版 · 4 件</h4>
+        <ul>
+          <li><strong>字符 stagger + 椭圆 clip</strong> · 入场</li>
+          <li><strong>Mona Sans wdth + wght</strong> · 双轴单 woff2</li>
+          <li><strong>1728 流体 clamp</strong> · 字号呼吸</li>
+          <li><strong>screen-reader 隐形 H1</strong> · 语义视觉解耦</li>
+        </ul>
+        <a class="hel-card-link" href="#demo1">→ Demo 01 + #demo20 Variable Font</a>
+      </div>
+
+      <div class="hel-card">
+        <div class="hel-card-key">SVG</div>
+        <h4>SVG 装饰 · 2 件</h4>
+        <ul>
+          <li><strong>HUD 角标 frame</strong> · 4 个角的线</li>
+          <li><strong>Next Race 卡片外框</strong> · 119×244 手画</li>
+        </ul>
+        <p class="hel-card-note">CSS clip-path 做不出凹缺 + 切角组合 · 只能 SVG。</p>
+      </div>
+
+      <div class="hel-card">
+        <div class="hel-card-key">TAP</div>
+        <h4>手势交互 · 2 件</h4>
+        <ul>
+          <li><strong>Tap to lock</strong> · 锁页面只玩头盔</li>
+          <li><strong>横屏锁屏提示</strong> · "vertical drive" 双关</li>
+        </ul>
+        <a class="hel-card-link" href="#demo8">→ Demo 22 tap to lock</a>
+      </div>
+
+      <div class="hel-card">
+        <div class="hel-card-key">NAV</div>
+        <h4>主题 / 入场 · 3 件</h4>
+        <ul>
+          <li><strong>Load Norris 预加载门</strong></li>
+          <li><strong>柠檬绿过场幕布</strong></li>
+          <li><strong>隐形哨兵切 nav 主题</strong></li>
+        </ul>
+        <a class="hel-card-link" href="#demo11">→ Demo 02 lime curtain · #demo2 nav theme</a>
+      </div>
+
+      <div class="hel-card">
+        <div class="hel-card-key">INFRA</div>
+        <h4>基础设施 · 4 件</h4>
+        <ul>
+          <li><strong>Webflow CMS</strong> · Next Race 数据</li>
+          <li><strong>Taxi.js</strong> · 无刷新路由</li>
+          <li><strong>Lenis</strong> · 平滑滚动惯性</li>
+          <li><strong>transitions-rive-isolate.js</strong> · Rive 独立 RAF</li>
+        </ul>
+        <p class="hel-card-note">基础设施不可见但驱动一切。普通网页没这层。</p>
+      </div>
+    </div>
+
+    <div class="hel-bar reveal">
+      <div class="hel-bar-head">每"工种"在头盔里的占比（按组件数）</div>
+      <div class="hel-bar-list">
+        <div class="hel-bar-row"><span class="hel-bar-k">3D 渲染</span><div class="hel-bar-fill" style="--p:18"></div><span class="hel-bar-n">4</span></div>
+        <div class="hel-bar-row"><span class="hel-bar-k">滚动驱动</span><div class="hel-bar-fill" style="--p:18"></div><span class="hel-bar-n">4</span></div>
+        <div class="hel-bar-row"><span class="hel-bar-k">排版</span><div class="hel-bar-fill" style="--p:18"></div><span class="hel-bar-n">4</span></div>
+        <div class="hel-bar-row"><span class="hel-bar-k">基础设施</span><div class="hel-bar-fill" style="--p:18"></div><span class="hel-bar-n">4</span></div>
+        <div class="hel-bar-row"><span class="hel-bar-k">Rive 矢量</span><div class="hel-bar-fill" style="--p:14"></div><span class="hel-bar-n">3</span></div>
+        <div class="hel-bar-row"><span class="hel-bar-k">主题 / 入场</span><div class="hel-bar-fill" style="--p:14"></div><span class="hel-bar-n">3</span></div>
+        <div class="hel-bar-row"><span class="hel-bar-k">SVG 装饰</span><div class="hel-bar-fill" style="--p:9"></div><span class="hel-bar-n">2</span></div>
+        <div class="hel-bar-row"><span class="hel-bar-k">手势</span><div class="hel-bar-fill" style="--p:9"></div><span class="hel-bar-n">2</span></div>
+        <div class="hel-bar-row"><span class="hel-bar-k">后期 FX</span><div class="hel-bar-fill" style="--p:5"></div><span class="hel-bar-n">1</span></div>
+      </div>
+    </div>
+
+    <div class="hel-takeaway reveal">
+      <div class="hel-takeaway-eyebrow">三句话总结</div>
+      <ul>
+        <li><strong>① 这不是 demo · 是工程团队的合奏。</strong>22 个组件分 9 工种 · 单人写不出来。</li>
+        <li><strong>② "高级感"在层叠。</strong>少一个 HDRI 反光就塑料 · 少一个 bloom 就死板。</li>
+        <li><strong>③ 复用价值在 cookbook · 不在这。</strong>22 件里 14 件能直接拷走（在 web-anim-cookbook）· 剩 8 件需要资产（GLB/HDR/Rive 文件）。</li>
+      </ul>
+    </div>
   </div>
 </section>
 
