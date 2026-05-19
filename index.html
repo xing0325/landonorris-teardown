@@ -3232,7 +3232,15 @@ stage.<span class="fn">addEventListener</span>(<span class="str">"touchmove"</sp
 <!-- ============== HELMET ANATOMY · 流体头盔 GPU 管线 ============== -->
 <section id="helmet-anatomy" data-section="头盔解剖">
   <div class="shell">
-    <div class="eyebrow reveal">08 · 头盔解剖 · 重点章节</div>
+    <a class="hel-flagship-link" href="fluid-helmet-hero.html" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:1.4rem 1.6rem;border:1px solid var(--lime);background:linear-gradient(135deg,rgba(208,255,0,.08),rgba(208,255,0,0));border-radius:8px;text-decoration:none;color:var(--fg);margin:1.5rem 0 2rem;gap:1rem;flex-wrap:wrap">
+        <div>
+          <div style="font-size:.62rem;letter-spacing:.32em;color:var(--lime);font-family:'JetBrains Mono',ui-monospace,monospace;text-transform:uppercase;margin-bottom:.4rem">flagship demo · 单独打开</div>
+          <div style="font-size:1.05rem;font-weight:500">流体头盔第一屏 · 完整复刻 (Three.js + 真 GPU 流体)</div>
+          <div style="font-size:.78rem;color:var(--fg-dim);margin-top:.3rem;font-family:'JetBrains Mono',ui-monospace,monospace">独立大 demo · ~1000 行 · CDN Three.js + GSAP · 鼠标移过头盔看效果</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.4rem;font-size:.65rem;letter-spacing:.25em;color:var(--lime);font-family:'JetBrains Mono',ui-monospace,monospace;text-transform:uppercase">open ↗</div>
+      </a>
+      <div class="eyebrow reveal">08 · 头盔解剖 · 重点章节</div>
     <h2 class="title-1 reveal">流体头盔 = <em>GPU Navier-Stokes 模拟</em>驱动的鼠标变形</h2>
     <p class="lede reveal"><strong>更正：</strong>之前我说"3D 头盔随滚动旋转"——只对了 5%。真正的核心是：<strong>头盔贴在一张 128×128 顶点的平面上</strong>，背后跑一个完整的 GPU 2D 流体求解器，鼠标位置注入力场，速度场再驱动 vertex shader 的位移。这是教科书 <strong>Stable Fluids</strong>（Jos Stam 1999）的 web 实时实现。</p>
 

@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>流体头盔 hero · 仿原版第一屏 · web-anim-cookbook flagship</title>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+  :root{
+    --bg:#0a0e07; --bg-2:#131811;
+    --fg:#e6e6dd; --fg-dim:#8a8d80; --fg-mute:#5a5d52;
+    --lime:#d2ff00; --lime-off:#a8c800;
+    --line:rgba(208,255,0,.18);
+    --line-soft:rgba(230,230,221,.08);
+    --cubic:cubic-bezier(0.65,0.05,0,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,-apple-system,sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--lime);color:#0a0e07}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+  .mono{font-family:'JetBrains Mono','SF Mono',ui-monospace,monospace;font-feature-settings:"ss01"}
+
+  /* ===== intro gate ===== */
+  .gate{position:fixed;inset:0;background:var(--bg);z-index:100;display:grid;place-items:center;transition:opacity .8s var(--cubic),visibility 0s .8s}
+  .gate.gone{opacity:0;visibility:hidden;pointer-events:none}
+  .gate-inner{text-align:center;max-width:40rem;padding:2rem}
+  .gate-eyebrow{font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--lime);margin-bottom:1.5rem;font-family:'JetBrains Mono',ui-monospace,monospace;opacity:0;transform:translateY(8px);animation:fadeUp .9s var(--cubic) .1s forwards}
+  .gate-title{font-size:clamp(2rem,5vw,3.5rem);font-weight:300;line-height:1.05;letter-spacing:-.02em;margin-bottom:2rem;opacity:0;transform:translateY(12px);animation:fadeUp 1s var(--cubic) .3s forwards}
+  .gate-title em{font-style:normal;color:var(--lime);font-weight:500}
+  .gate-btn{display:inline-flex;align-items:center;gap:.75rem;padding:1.1rem 2.4rem;border:1px solid var(--lime);color:var(--lime);font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;border-radius:999px;cursor:pointer;font-family:'JetBrains Mono',ui-monospace,monospace;opacity:0;animation:fadeUp 1s var(--cubic) .55s forwards;transition:background .35s,color .35s,transform .35s;overflow:hidden;position:relative}
+  .gate-btn::before{content:"";position:absolute;inset:0;background:var(--lime);transform:translateX(-100%);transition:transform .45s var(--cubic);z-index:-1}
+  .gate-btn:hover{color:#0a0e07}
+  .gate-btn:hover::before{transform:translateX(0)}
+  .gate-btn .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+  .gate-foot{margin-top:2.5rem;font-size:.65rem;letter-spacing:.25em;color:var(--fg-mute);font-family:'JetBrains Mono',ui-monospace,monospace;opacity:0;animation:fadeUp 1s var(--cubic) .8s forwards}
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+  /* ===== top nav ===== */
+  .nav{position:fixed;top:0;left:0;right:0;padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;z-index:30;font-family:'JetBrains Mono',ui-monospace,monospace}
+  .nav-brand{display:flex;align-items:center;gap:.6rem;font-size:.7rem;letter-spacing:.2em;font-weight:600}
+  .nav-brand .pulse{width:6px;height:6px;background:var(--lime);border-radius:50%;animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.85)}}
+  .nav-links{display:flex;gap:1.5rem;font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--fg-dim)}
+  .nav-links a{position:relative;cursor:pointer;transition:color .25s}
+  .nav-links a:hover{color:var(--lime)}
+  .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--cubic)}
+  .nav-links a:hover::after{transform:scaleX(1)}
+  .nav-cta{display:flex;align-items:center;gap:1rem}
+  .nav-cta-link{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lime);border-bottom:1px solid var(--lime);padding-bottom:.1rem}
+
+  /* ===== hero ===== */
+  .hero{position:relative;height:100vh;width:100vw;overflow:hidden}
+  #webgl{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
+
+  /* ===== HUD frames ===== */
+  .hud-frame{position:absolute;width:90px;height:60px;border:1px solid var(--line);pointer-events:none;z-index:5}
+  .hud-frame.tl{top:5rem;left:2rem;border-right:none;border-bottom:none}
+  .hud-frame.tr{top:5rem;right:2rem;border-left:none;border-bottom:none}
+  .hud-frame.bl{bottom:5rem;left:2rem;border-right:none;border-top:none}
+  .hud-frame.br{bottom:5rem;right:2rem;border-left:none;border-top:none}
+
+  /* ===== Next Race card (left) ===== */
+  .next-race{position:absolute;left:3.5rem;top:50%;transform:translateY(-50%);z-index:10;display:flex;flex-direction:column;gap:.8rem;max-width:220px}
+  .nr-frame{position:relative;padding:1rem .8rem;width:130px}
+  .nr-frame::before{content:"";position:absolute;inset:0;border:1px solid var(--line);clip-path:polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%);pointer-events:none}
+  .nr-eyebrow{font-size:.6rem;letter-spacing:.32em;color:var(--lime);text-transform:uppercase;margin-bottom:.5rem;font-family:'JetBrains Mono',ui-monospace,monospace}
+  .nr-circuit{width:100%;height:60px;display:block}
+  .nr-circuit path{stroke:var(--lime);stroke-width:1.5;fill:none;stroke-dasharray:240;stroke-dashoffset:0}
+  .nr-circuit circle{fill:var(--lime)}
+  .nr-info{margin-top:.5rem;line-height:1.1}
+  .nr-name{font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;color:var(--lime);font-weight:500;font-family:'JetBrains Mono',ui-monospace,monospace}
+  .nr-gp{font-size:.65rem;letter-spacing:.3em;color:var(--fg-mute);text-transform:uppercase;font-family:'JetBrains Mono',ui-monospace,monospace;margin-top:.2rem}
+  .nr-line{height:1px;background:linear-gradient(90deg,var(--lime),transparent);width:100%}
+  .nr-helmet{display:flex;align-items:center;gap:.6rem;font-size:.55rem;letter-spacing:.3em;color:var(--fg-mute);text-transform:uppercase;font-family:'JetBrains Mono',ui-monospace,monospace}
+  .nr-helmet svg{width:1.5rem;height:1rem;color:var(--lime)}
+
+  /* ===== Signature card (right) ===== */
+  .sig-card{position:absolute;right:3.5rem;top:50%;transform:translateY(-50%);z-index:10;display:flex;flex-direction:column;gap:.6rem;align-items:flex-end;max-width:200px}
+  .sig-svg{width:140px;height:60px;color:var(--lime)}
+  .sig-foot{font-size:.6rem;letter-spacing:.3em;color:var(--fg-mute);text-transform:uppercase;text-align:right;font-family:'JetBrains Mono',ui-monospace,monospace}
+  .sig-foot strong{color:var(--lime);font-weight:600}
+
+  /* ===== Title overlay ===== */
+  .hero-title{position:absolute;left:50%;top:1rem;transform:translate(-50%,0);z-index:8;text-align:center;width:90%;max-width:920px;pointer-events:none;opacity:0}
+  .hero-title.show{opacity:1}
+  .hero-tag{font-size:.65rem;letter-spacing:.4em;color:var(--lime);text-transform:uppercase;margin-bottom:1.2rem;font-family:'JetBrains Mono',ui-monospace,monospace;mix-blend-mode:difference}
+
+  /* ===== Scroll cue ===== */
+  .scroll-cue{position:absolute;left:50%;bottom:3rem;transform:translateX(-50%);z-index:8;display:flex;flex-direction:column;align-items:center;gap:.8rem;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.6rem;letter-spacing:.35em;color:var(--fg-mute);text-transform:uppercase}
+  .scroll-cue .line{width:1px;height:2.6rem;background:linear-gradient(to bottom,var(--lime),transparent);animation:scrollLine 2.4s var(--cubic) infinite}
+  @keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ===== Tap-to-lock button ===== */
+  .lock-btn{position:absolute;right:3rem;bottom:3rem;z-index:8;display:flex;align-items:center;gap:.6rem;padding:.7rem 1.1rem;border:1px solid var(--line);background:rgba(10,14,7,.6);backdrop-filter:blur(8px);color:var(--lime);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;border-radius:999px;cursor:pointer;transition:border-color .35s,background .35s}
+  .lock-btn .dot{width:6px;height:6px;background:var(--lime);border-radius:50%}
+  .lock-btn:hover{border-color:var(--lime)}
+  .lock-btn.is-locked{background:var(--lime);color:#0a0e07;border-color:var(--lime)}
+  .lock-btn.is-locked .dot{background:#0a0e07}
+
+  /* ===== State indicator (debug) ===== */
+  .state-ind{position:absolute;left:3rem;bottom:3rem;z-index:8;display:flex;flex-direction:column;gap:.3rem;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.6rem;letter-spacing:.18em;color:var(--fg-mute)}
+  .state-ind span.v{color:var(--lime);font-weight:600}
+
+  /* ===== Mouse indicator (custom cursor when over helmet area) ===== */
+  .mouse-ind{position:fixed;width:1.6rem;height:1.6rem;border:1px solid var(--lime);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:opacity .25s,transform .35s var(--cubic);mix-blend-mode:difference;z-index:50;opacity:0}
+  .mouse-ind.show{opacity:1}
+  .mouse-ind.is-over{transform:translate(-50%,-50%) scale(2.4);background:var(--lime)}
+
+  /* responsive */
+  @media (max-width:720px){
+    .nav{padding:1rem}
+    .nav-links{display:none}
+    .next-race{left:1rem;max-width:130px}
+    .nr-frame{width:110px}
+    .sig-card{right:1rem;max-width:130px}
+    .sig-svg{width:100px;height:50px}
+    .hud-frame{width:60px;height:40px}
+    .hud-frame.tl,.hud-frame.tr{top:4rem}
+    .lock-btn{right:1rem;bottom:5rem}
+    .state-ind{left:1rem;bottom:5rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- Intro gate -->
+<div class="gate" id="gate">
+  <div class="gate-inner">
+    <div class="gate-eyebrow">flagship demo · web-anim-cookbook</div>
+    <h1 class="gate-title">流体头盔 <em>第一屏</em><br>用 GPU 模拟 + vertex shader 复刻</h1>
+    <button class="gate-btn" id="gateBtn"><span class="dot"></span><span>Load Norris</span></button>
+    <div class="gate-foot">建议桌面 + Chrome / Edge · 鼠标移到中间头盔上</div>
+  </div>
+</div>
+
+<!-- Custom mouse indicator -->
+<div class="mouse-ind" id="mouseInd"></div>
+
+<!-- Top nav -->
+<nav class="nav">
+  <div class="nav-brand"><span class="pulse"></span><span>LANDO NORRIS</span></div>
+  <div class="nav-links">
+    <a>HOME</a><a>ON TRACK</a><a>OFF TRACK</a><a>CALENDAR</a>
+  </div>
+  <div class="nav-cta">
+    <a class="nav-cta-link" href="../">← cookbook</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<main class="hero">
+  <canvas id="webgl"></canvas>
+
+  <!-- HUD frames -->
+  <div class="hud-frame tl"></div>
+  <div class="hud-frame tr"></div>
+  <div class="hud-frame bl"></div>
+  <div class="hud-frame br"></div>
+
+  <!-- Next Race card -->
+  <aside class="next-race">
+    <div class="nr-frame">
+      <div class="nr-eyebrow">Next Race</div>
+      <svg class="nr-circuit" viewBox="0 0 110 50"><path d="M10 40 L20 10 Q40 5 60 15 Q80 25 95 12 Q100 32 80 40 Q50 48 30 38 Z"/><circle cx="10" cy="40" r="3"/></svg>
+      <div class="nr-info">
+        <div class="nr-name">Montréal</div>
+        <div class="nr-gp">gp</div>
+      </div>
+    </div>
+    <div class="nr-line"></div>
+    <div class="nr-helmet">
+      <svg viewBox="0 0 24 16"><path d="M2 10 Q2 4 10 3 Q18 3 22 8 L22 13 L2 13 Z M4 11 L20 11" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+      <span>mclaren f1 since 2019</span>
+    </div>
+  </aside>
+
+  <!-- Signature card -->
+  <aside class="sig-card">
+    <svg class="sig-svg" viewBox="0 0 140 60"><path d="M5 35 Q15 10 25 30 Q35 50 45 30 Q55 10 65 30 Q70 40 75 35 Q85 20 95 30 Q105 50 115 30 Q125 15 135 25" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="sig-foot"><strong>LANDO</strong> · norris</div>
+  </aside>
+
+  <!-- Title overlay -->
+  <div class="hero-title" id="title">
+    <div class="hero-tag">live · fluid · GPU</div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="scroll-cue">
+    <span>move mouse over helmet</span>
+    <span class="line"></span>
+  </div>
+
+  <!-- Tap-to-lock -->
+  <button class="lock-btn" id="lockBtn"><span class="dot"></span><span id="lockTxt">tap to lock</span></button>
+
+  <!-- State indicator -->
+  <div class="state-ind">
+    <div>mode · <span class="v" id="stMode">idle</span></div>
+    <div>fps · <span class="v" id="stFps">—</span></div>
+    <div>vel · <span class="v" id="stVel">0.00</span></div>
+  </div>
+</main>
+
+<script>
+/* =================== Helmet Canvas Texture =================== */
+function createHelmetCanvas(){
+  const cv = document.createElement('canvas');
+  cv.width = cv.height = 1024;
+  const ctx = cv.getContext('2d');
+
+  // Transparent background
+  ctx.clearRect(0, 0, 1024, 1024);
+
+  ctx.save();
+  ctx.translate(512, 512);
+
+  // Outer crown (lime gradient)
+  const g1 = ctx.createRadialGradient(-100, -200, 50, 0, 0, 500);
+  g1.addColorStop(0, '#ffffd2');
+  g1.addColorStop(0.18, '#d2ff00');
+  g1.addColorStop(0.6, '#a8c800');
+  g1.addColorStop(1, '#3a4500');
+  ctx.fillStyle = g1;
+  ctx.beginPath();
+  ctx.ellipse(0, -60, 360, 400, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Chin
+  ctx.beginPath();
+  ctx.moveTo(-355, 100);
+  ctx.quadraticCurveTo(-355, 290, -200, 340);
+  ctx.lineTo(200, 340);
+  ctx.quadraticCurveTo(355, 290, 355, 100);
+  ctx.closePath();
+  ctx.fill();
+
+  // Visor (dark)
+  const visorG = ctx.createLinearGradient(0, -150, 0, 200);
+  visorG.addColorStop(0, '#0a0e07');
+  visorG.addColorStop(0.5, '#1c2218');
+  visorG.addColorStop(1, '#0a0e07');
+  ctx.fillStyle = visorG;
+  ctx.beginPath();
+  ctx.moveTo(-270, -150);
+  ctx.quadraticCurveTo(-285, 80, -240, 180);
+  ctx.lineTo(240, 180);
+  ctx.quadraticCurveTo(285, 80, 270, -150);
+  ctx.quadraticCurveTo(210, -200, 0, -200);
+  ctx.quadraticCurveTo(-210, -200, -270, -150);
+  ctx.closePath();
+  ctx.fill();
+
+  // Visor highlight (top-left curve)
+  ctx.strokeStyle = 'rgba(255,255,255,0.45)';
+  ctx.lineWidth = 4;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(-210, -120);
+  ctx.quadraticCurveTo(-150, -170, -60, -170);
+  ctx.stroke();
+
+  // Visor lower highlight
+  ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(-200, 100);
+  ctx.quadraticCurveTo(0, 140, 200, 100);
+  ctx.stroke();
+
+  // Stripes
+  ctx.fillStyle = 'rgba(10,14,7,0.55)';
+  ctx.fillRect(-355, 0, 710, 10);
+  ctx.fillStyle = 'rgba(10,14,7,0.32)';
+  ctx.fillRect(-355, 16, 710, 6);
+
+  // Brand text on chin
+  ctx.fillStyle = 'rgba(10,14,7,0.7)';
+  ctx.font = 'bold 22px monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText('McLAREN', 0, 270);
+
+  // Side vent (left)
+  ctx.fillStyle = 'rgba(10,14,7,0.4)';
+  ctx.beginPath();
+  ctx.ellipse(-280, 60, 20, 50, 0, 0, Math.PI * 2);
+  ctx.fill();
+  // Side vent (right)
+  ctx.beginPath();
+  ctx.ellipse(280, 60, 20, 50, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Subtle noise
+  for (let i = 0; i < 800; i++){
+    const r = 320 + Math.random() * 50;
+    const a = Math.random() * Math.PI * 2;
+    ctx.fillStyle = 'rgba(255,255,210,' + (Math.random() * 0.08) + ')';
+    ctx.fillRect(Math.cos(a) * r, Math.sin(a) * r, 2, 2);
+  }
+
+  ctx.restore();
+  return cv;
+}
+
+/* =================== Three.js setup =================== */
+const canvas = document.getElementById('webgl');
+const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+function resize(){
+  const w = window.innerWidth, h = window.innerHeight;
+  renderer.setSize(w, h, false);
+}
+resize();
+window.addEventListener('resize', resize);
+
+const scene = new THREE.Scene();
+const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, -10, 10);
+camera.position.z = 1;
+
+/* =================== GPGPU velocity field =================== */
+const VEL_RES = 256;
+function makeRT(){
+  return new THREE.WebGLRenderTarget(VEL_RES, VEL_RES, {
+    minFilter: THREE.LinearFilter,
+    magFilter: THREE.LinearFilter,
+    format: THREE.RGBAFormat,
+    type: THREE.FloatType,
+    depthBuffer: false,
+    stencilBuffer: false
+  });
+}
+let velA = makeRT(), velB = makeRT();
+
+// scene for velocity update pass (offscreen)
+const velScene = new THREE.Scene();
+const velCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+const velQuad = new THREE.Mesh(
+  new THREE.PlaneGeometry(2, 2),
+  new THREE.ShaderMaterial({
+    uniforms: {
+      uVelocity: { value: null },
+      uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+      uMouseVel: { value: new THREE.Vector2(0, 0) },
+      uMouseRadius: { value: 0.12 },
+      uMouseStrength: { value: 0.55 },
+      uDecay: { value: 0.965 },
+      uDt: { value: 0.016 }
+    },
+    vertexShader: `
+      varying vec2 vUv;
+      void main(){ vUv = uv; gl_Position = vec4(position, 1.0); }
+    `,
+    fragmentShader: `
+      precision highp float;
+      uniform sampler2D uVelocity;
+      uniform vec2 uMouse;
+      uniform vec2 uMouseVel;
+      uniform float uMouseRadius;
+      uniform float uMouseStrength;
+      uniform float uDecay;
+      uniform float uDt;
+      varying vec2 vUv;
+      void main(){
+        // semi-Lagrangian advection
+        vec2 v = texture2D(uVelocity, vUv).xy;
+        vec2 prevUv = vUv - v * uDt;
+        vec2 advected = texture2D(uVelocity, prevUv).xy;
+        advected *= uDecay;
+        // mouse force injection
+        float d = distance(vUv, uMouse);
+        float falloff = smoothstep(uMouseRadius, 0.0, d);
+        advected += uMouseVel * falloff * uMouseStrength;
+        gl_FragColor = vec4(advected, 0.0, 1.0);
+      }
+    `
+  })
+);
+velScene.add(velQuad);
+
+/* =================== Display plane (helmet) =================== */
+const helmetTex = new THREE.CanvasTexture(createHelmetCanvas());
+helmetTex.minFilter = THREE.LinearFilter;
+helmetTex.magFilter = THREE.LinearFilter;
+helmetTex.needsUpdate = true;
+
+const planeGeo = new THREE.PlaneGeometry(1.05, 1.05, 128, 128);
+const planeMat = new THREE.ShaderMaterial({
+  transparent: true,
+  uniforms: {
+    uVelocity: { value: null },
+    uHelmet: { value: helmetTex },
+    uTime: { value: 0 },
+    uHover: { value: 0 },
+    uColor: { value: new THREE.Color(0xd2ff00) },
+    uAspect: { value: 1 }
+  },
+  vertexShader: `
+    precision highp float;
+    uniform sampler2D uVelocity;
+    uniform float uTime;
+    uniform float uHover;
+    varying vec2 vUv;
+    varying float vDisp;
+    varying vec2 vVel;
+
+    // 2D simplex noise (Ashima)
+    vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}
+    vec2 mod289(vec2 x){return x-floor(x*(1.0/289.0))*289.0;}
+    vec3 permute(vec3 x){return mod289(((x*34.0)+1.0)*x);}
+    float snoise(vec2 v){
+      const vec4 C=vec4(0.211324865405187,0.366025403784439,-0.577350269189626,0.024390243902439);
+      vec2 i=floor(v+dot(v,C.yy));
+      vec2 x0=v-i+dot(i,C.xx);
+      vec2 i1=(x0.x>x0.y)?vec2(1.0,0.0):vec2(0.0,1.0);
+      vec4 x12=x0.xyxy+C.xxzz;
+      x12.xy-=i1;
+      i=mod289(i);
+      vec3 p=permute(permute(i.y+vec3(0.0,i1.y,1.0))+i.x+vec3(0.0,i1.x,1.0));
+      vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.0);
+      m=m*m;m=m*m;
+      vec3 x=2.0*fract(p*C.www)-1.0;
+      vec3 h=abs(x)-0.5;
+      vec3 ox=floor(x+0.5);
+      vec3 a0=x-ox;
+      m*=1.79284291400159-0.85373472095314*(a0*a0+h*h);
+      vec3 g;
+      g.x=a0.x*x0.x+h.x*x0.y;
+      g.yz=a0.yz*x12.xz+h.yz*x12.yw;
+      return 130.0*dot(m,g);
+    }
+
+    void main(){
+      vUv = uv;
+      vec3 p = position;
+      // velocity-driven displacement
+      vec2 vel = texture2D(uVelocity, uv).xy;
+      vVel = vel;
+      float velMag = length(vel);
+      // local displacement along normal
+      float disp = velMag * 0.35;
+      // add subtle background simplex noise for "alive" effect
+      float n = snoise(vec2(uv * 4.0 + uTime * 0.08));
+      disp += n * 0.012;
+      // hover boost
+      disp += uHover * 0.05 * (0.5 + 0.5 * sin(uTime * 2.0 + uv.x * 8.0));
+      p.z += disp;
+      // subtle x/y shift along velocity direction (creates "fluid drag")
+      p.xy += vel * 0.02;
+      vDisp = disp;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
+    }
+  `,
+  fragmentShader: `
+    precision highp float;
+    uniform sampler2D uHelmet;
+    uniform vec3 uColor;
+    uniform float uTime;
+    uniform float uAspect;
+    varying vec2 vUv;
+    varying float vDisp;
+    varying vec2 vVel;
+
+    void main(){
+      // adjust UV to maintain aspect ratio
+      vec2 uv = vUv;
+      // slightly distort UV by velocity (creates "rippled" look on texture)
+      uv += vVel * 0.04;
+      vec4 c = texture2D(uHelmet, uv);
+      // edge glow from displacement
+      float glow = clamp(abs(vDisp) * 3.0, 0.0, 1.0);
+      c.rgb += uColor * glow * 0.4;
+      // subtle scan line
+      c.rgb -= step(0.997, fract(vUv.y * 100.0)) * 0.04;
+      gl_FragColor = c;
+    }
+  `
+});
+
+const plane = new THREE.Mesh(planeGeo, planeMat);
+scene.add(plane);
+
+/* =================== Mouse tracking =================== */
+const mouse = {
+  pos: new THREE.Vector2(0.5, 0.5),
+  vel: new THREE.Vector2(0, 0),
+  prev: new THREE.Vector2(0.5, 0.5),
+  active: false,
+  overHelmet: false,
+  lastMoveT: 0,
+  locked: false
+};
+
+const mouseInd = document.getElementById('mouseInd');
+const lockBtn = document.getElementById('lockBtn');
+const lockTxt = document.getElementById('lockTxt');
+
+function updateMouseFromClient(cx, cy){
+  const w = window.innerWidth, h = window.innerHeight;
+  mouse.pos.x = cx / w;
+  mouse.pos.y = 1 - cy / h;
+  mouse.lastMoveT = performance.now();
+  mouse.active = true;
+  // estimate over-helmet (center 50% area)
+  mouse.overHelmet = Math.abs(mouse.pos.x - 0.5) < 0.25 && Math.abs(mouse.pos.y - 0.5) < 0.35;
+  mouseInd.style.left = cx + 'px';
+  mouseInd.style.top = cy + 'px';
+  mouseInd.classList.add('show');
+  mouseInd.classList.toggle('is-over', mouse.overHelmet);
+}
+
+window.addEventListener('mousemove', e => updateMouseFromClient(e.clientX, e.clientY));
+window.addEventListener('mouseleave', () => mouseInd.classList.remove('show'));
+window.addEventListener('touchmove', e => {
+  if (!e.touches[0]) return;
+  if (mouse.locked) e.preventDefault();
+  updateMouseFromClient(e.touches[0].clientX, e.touches[0].clientY);
+}, { passive: false });
+
+lockBtn.addEventListener('click', () => {
+  mouse.locked = !mouse.locked;
+  lockBtn.classList.toggle('is-locked', mouse.locked);
+  lockTxt.textContent = mouse.locked ? 'unlock' : 'tap to lock';
+  document.body.style.overflow = mouse.locked ? 'hidden' : '';
+});
+
+/* =================== Idle Lissajous (auto-tour when inactive) =================== */
+let idleT = 0;
+let lastIdleX = 0.5, lastIdleY = 0.5;
+
+/* =================== Animation loop =================== */
+const stMode = document.getElementById('stMode');
+const stFps = document.getElementById('stFps');
+const stVel = document.getElementById('stVel');
+let lastT = performance.now();
+let frameCount = 0, fps = 60, fpsAcc = 0;
+
+function animate(now){
+  requestAnimationFrame(animate);
+  const dt = Math.min((now - lastT) / 1000, 0.05);
+  lastT = now;
+
+  // FPS calc
+  fpsAcc += dt;
+  frameCount++;
+  if (fpsAcc > 0.5){
+    fps = Math.round(frameCount / fpsAcc);
+    frameCount = 0;
+    fpsAcc = 0;
+    stFps.textContent = fps;
+  }
+
+  // Idle detection
+  const idleMs = now - mouse.lastMoveT;
+  const isIdle = (!mouse.active) || idleMs > 2500;
+  if (isIdle){
+    idleT += dt * 0.4;
+    // Lissajous-style path (matches original's c9 idleState formula)
+    const tx = 0.5 + Math.cos(idleT * Math.PI * 4) * -0.28;
+    const ty = 0.5 + Math.cos(idleT * Math.PI) * 0.22;
+    mouse.pos.x += (tx - mouse.pos.x) * 0.06;
+    mouse.pos.y += (ty - mouse.pos.y) * 0.06;
+    stMode.textContent = 'idle Lissajous';
+  } else {
+    stMode.textContent = 'mouse driven';
+  }
+
+  // Compute mouse velocity
+  mouse.vel.x = (mouse.pos.x - mouse.prev.x) * 60 * 0.5;
+  mouse.vel.y = (mouse.pos.y - mouse.prev.y) * 60 * 0.5;
+  mouse.prev.x = mouse.pos.x;
+  mouse.prev.y = mouse.pos.y;
+
+  const velMag = mouse.vel.length();
+  stVel.textContent = velMag.toFixed(2);
+
+  // ---- velocity update pass ----
+  const velUni = velQuad.material.uniforms;
+  velUni.uVelocity.value = velA.texture;
+  velUni.uMouse.value.copy(mouse.pos);
+  velUni.uMouseVel.value.copy(mouse.vel);
+  velUni.uDt.value = dt * 60;
+
+  renderer.setRenderTarget(velB);
+  renderer.render(velScene, velCam);
+  // swap
+  const tmp = velA; velA = velB; velB = tmp;
+
+  // ---- display pass ----
+  planeMat.uniforms.uVelocity.value = velA.texture;
+  planeMat.uniforms.uTime.value += dt;
+  planeMat.uniforms.uHover.value += ((mouse.overHelmet ? 1 : 0) - planeMat.uniforms.uHover.value) * 0.06;
+  planeMat.uniforms.uAspect.value = window.innerWidth / window.innerHeight;
+
+  // gentle plane tilt with mouse
+  plane.rotation.y = (mouse.pos.x - 0.5) * 0.12;
+  plane.rotation.x = (mouse.pos.y - 0.5) * -0.12;
+
+  // scale plane based on viewport aspect
+  const aspect = window.innerWidth / window.innerHeight;
+  if (aspect > 1){
+    plane.scale.set(1, aspect, 1);
+  } else {
+    plane.scale.set(1 / aspect, 1, 1);
+  }
+  // keep plane proportional to a square helmet
+  // override: pick min dim
+  const s = Math.min(1, 1) * 0.95;
+  if (aspect > 1){
+    plane.scale.set(0.95 / aspect, 0.95, 1);
+  } else {
+    plane.scale.set(0.95, 0.95 * aspect, 1);
+  }
+
+  renderer.setRenderTarget(null);
+  renderer.setClearColor(0x0a0e07, 1);
+  renderer.render(scene, camera);
+}
+
+/* =================== Intro gate / title char stagger =================== */
+const gate = document.getElementById('gate');
+const gateBtn = document.getElementById('gateBtn');
+const title = document.getElementById('title');
+
+// Build big title chars
+const titleStr = 'LANDO NORRIS';
+let titleHtml = '<div style="font-size:clamp(2.8rem,9vw,8rem);font-weight:200;letter-spacing:-.03em;line-height:1;color:#e6e6dd;mix-blend-mode:difference;font-family:Inter,sans-serif">';
+for (const ch of titleStr){
+  if (ch === ' '){
+    titleHtml += '<span style="display:inline-block;width:.4em"></span>';
+  } else {
+    titleHtml += `<span class="tch" style="display:inline-block;transform:translateY(110%);will-change:transform">${ch}</span>`;
+  }
+}
+titleHtml += '</div>';
+title.insertAdjacentHTML('beforeend', titleHtml);
+
+function startHero(){
+  gate.classList.add('gone');
+  setTimeout(() => {
+    title.classList.add('show');
+    gsap.to('.tch', { y: 0, duration: 1, stagger: 0.045, ease: 'power3.out' });
+  }, 350);
+  // start animation loop
+  requestAnimationFrame(animate);
+}
+
+gateBtn.addEventListener('click', startHero);
+// also start on Enter / Space key
+window.addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && !gate.classList.contains('gone')){
+    e.preventDefault();
+    startHero();
+  }
+});
+
+// Init velocity textures with zero (Three.js default is already zero)
+
+</script>
+</body>
+</html>
