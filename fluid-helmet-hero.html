@@ -320,65 +320,213 @@ const scene = new THREE.Scene();
 const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, -10, 10);
 camera.position.z = 1;
 
-/* =================== GPGPU velocity field =================== */
+/* =================== Complete Stable Fluids · 6 pass GPU pipeline ===================
+   ① Advection (semi-Lagrangian + dissipation)
+   ② External Force (mouse velocity injection)
+   ③ Viscous diffusion (optional · Jacobi iteration)
+   ④ Divergence (∇·v)
+   ⑤ Poisson pressure (Jacobi × N iterations)
+   ⑥ Pressure project (subtract gradient → divergence-free field)
+   这才是真正的"换性"流体 — Poisson 解压力让流体不会凭空消散，会挤压周围。
+================================================================================== */
 const VEL_RES = 256;
+const POISSON_ITER = 8;          // 原版 4，这里给到 8 更稳
+const VISCOUS_ITER = 0;          // 原版 isViscous=false，我们也跳过
+const TEXEL = 1.0 / VEL_RES;
+
 function makeRT(){
+  // iOS/mobile fallback to HalfFloat
+  const isIOS = /(iPad|iPhone|iPod)/.test(navigator.userAgent);
   return new THREE.WebGLRenderTarget(VEL_RES, VEL_RES, {
     minFilter: THREE.LinearFilter,
     magFilter: THREE.LinearFilter,
     format: THREE.RGBAFormat,
-    type: THREE.FloatType,
+    type: isIOS ? THREE.HalfFloatType : THREE.FloatType,
     depthBuffer: false,
     stencilBuffer: false
   });
 }
-let velA = makeRT(), velB = makeRT();
 
-// scene for velocity update pass (offscreen)
-const velScene = new THREE.Scene();
-const velCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-const velQuad = new THREE.Mesh(
-  new THREE.PlaneGeometry(2, 2),
-  new THREE.ShaderMaterial({
-    uniforms: {
-      uVelocity: { value: null },
-      uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-      uMouseVel: { value: new THREE.Vector2(0, 0) },
-      uMouseRadius: { value: 0.12 },
-      uMouseStrength: { value: 0.55 },
-      uDecay: { value: 0.965 },
-      uDt: { value: 0.016 }
-    },
-    vertexShader: `
-      varying vec2 vUv;
-      void main(){ vUv = uv; gl_Position = vec4(position, 1.0); }
-    `,
-    fragmentShader: `
-      precision highp float;
-      uniform sampler2D uVelocity;
-      uniform vec2 uMouse;
-      uniform vec2 uMouseVel;
-      uniform float uMouseRadius;
-      uniform float uMouseStrength;
-      uniform float uDecay;
-      uniform float uDt;
-      varying vec2 vUv;
-      void main(){
-        // semi-Lagrangian advection
-        vec2 v = texture2D(uVelocity, vUv).xy;
-        vec2 prevUv = vUv - v * uDt;
-        vec2 advected = texture2D(uVelocity, prevUv).xy;
-        advected *= uDecay;
-        // mouse force injection
-        float d = distance(vUv, uMouse);
-        float falloff = smoothstep(uMouseRadius, 0.0, d);
-        advected += uMouseVel * falloff * uMouseStrength;
-        gl_FragColor = vec4(advected, 0.0, 1.0);
-      }
-    `
-  })
-);
-velScene.add(velQuad);
+let velA = makeRT(), velB = makeRT();
+let pressA = makeRT(), pressB = makeRT();
+let divFBO = makeRT();
+
+// Full-screen quad scene · 共用一个 mesh，切 material
+const passScene = new THREE.Scene();
+const passCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+const passQuad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), null);
+passScene.add(passQuad);
+
+const passVert = `
+  varying vec2 vUv;
+  void main(){ vUv = uv; gl_Position = vec4(position, 1.0); }
+`;
+const PRECISION = 'precision highp float;';
+
+// ① Advection · semi-Lagrangian + dissipation
+const advectionMat = new THREE.ShaderMaterial({
+  uniforms: {
+    uVel: { value: null },
+    uDt: { value: 0.016 },
+    uDissipation: { value: 0.985 }
+  },
+  vertexShader: passVert,
+  fragmentShader: PRECISION + `
+    uniform sampler2D uVel;
+    uniform float uDt;
+    uniform float uDissipation;
+    varying vec2 vUv;
+    void main(){
+      vec2 v = texture2D(uVel, vUv).xy;
+      // back-trace previous position
+      vec2 prev = vUv - v * uDt;
+      vec2 advected = texture2D(uVel, prev).xy * uDissipation;
+      gl_FragColor = vec4(advected, 0.0, 1.0);
+    }
+  `
+});
+
+// ② External force · 注入鼠标速度
+const forceMat = new THREE.ShaderMaterial({
+  uniforms: {
+    uVel: { value: null },
+    uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+    uMouseVel: { value: new THREE.Vector2(0, 0) },
+    uRadius: { value: 0.10 },
+    uStrength: { value: 0.6 }
+  },
+  vertexShader: passVert,
+  fragmentShader: PRECISION + `
+    uniform sampler2D uVel;
+    uniform vec2 uMouse;
+    uniform vec2 uMouseVel;
+    uniform float uRadius;
+    uniform float uStrength;
+    varying vec2 vUv;
+    void main(){
+      vec2 v = texture2D(uVel, vUv).xy;
+      float d = distance(vUv, uMouse);
+      float falloff = smoothstep(uRadius, 0.0, d);
+      v += uMouseVel * falloff * uStrength;
+      gl_FragColor = vec4(v, 0.0, 1.0);
+    }
+  `
+});
+
+// ④ Divergence · ∇·v
+const divMat = new THREE.ShaderMaterial({
+  uniforms: {
+    uVel: { value: null },
+    uTexel: { value: TEXEL }
+  },
+  vertexShader: passVert,
+  fragmentShader: PRECISION + `
+    uniform sampler2D uVel;
+    uniform float uTexel;
+    varying vec2 vUv;
+    void main(){
+      float L = texture2D(uVel, vUv - vec2(uTexel, 0.0)).x;
+      float R = texture2D(uVel, vUv + vec2(uTexel, 0.0)).x;
+      float B = texture2D(uVel, vUv - vec2(0.0, uTexel)).y;
+      float T = texture2D(uVel, vUv + vec2(0.0, uTexel)).y;
+      float div = 0.5 * ((R - L) + (T - B));
+      gl_FragColor = vec4(div, 0.0, 0.0, 1.0);
+    }
+  `
+});
+
+// ⑤ Poisson pressure · Jacobi iteration
+//    laplacian(p) = div  =>  p = (pL + pR + pB + pT - div) / 4
+const poissonMat = new THREE.ShaderMaterial({
+  uniforms: {
+    uPress: { value: null },
+    uDiv: { value: null },
+    uTexel: { value: TEXEL }
+  },
+  vertexShader: passVert,
+  fragmentShader: PRECISION + `
+    uniform sampler2D uPress;
+    uniform sampler2D uDiv;
+    uniform float uTexel;
+    varying vec2 vUv;
+    void main(){
+      float pL = texture2D(uPress, vUv - vec2(uTexel, 0.0)).x;
+      float pR = texture2D(uPress, vUv + vec2(uTexel, 0.0)).x;
+      float pB = texture2D(uPress, vUv - vec2(0.0, uTexel)).x;
+      float pT = texture2D(uPress, vUv + vec2(0.0, uTexel)).x;
+      float d = texture2D(uDiv, vUv).x;
+      float p = (pL + pR + pB + pT - d) * 0.25;
+      gl_FragColor = vec4(p, 0.0, 0.0, 1.0);
+    }
+  `
+});
+
+// ⑥ Pressure projection · v -= ∇p (让速度场无散度)
+const projMat = new THREE.ShaderMaterial({
+  uniforms: {
+    uVel: { value: null },
+    uPress: { value: null },
+    uTexel: { value: TEXEL }
+  },
+  vertexShader: passVert,
+  fragmentShader: PRECISION + `
+    uniform sampler2D uVel;
+    uniform sampler2D uPress;
+    uniform float uTexel;
+    varying vec2 vUv;
+    void main(){
+      vec2 v = texture2D(uVel, vUv).xy;
+      float pL = texture2D(uPress, vUv - vec2(uTexel, 0.0)).x;
+      float pR = texture2D(uPress, vUv + vec2(uTexel, 0.0)).x;
+      float pB = texture2D(uPress, vUv - vec2(0.0, uTexel)).x;
+      float pT = texture2D(uPress, vUv + vec2(0.0, uTexel)).x;
+      v -= 0.5 * vec2(pR - pL, pT - pB);
+      gl_FragColor = vec4(v, 0.0, 1.0);
+    }
+  `
+});
+
+// Helper: render any material to a target, ping-pong velA/velB
+function runPass(mat, target){
+  passQuad.material = mat;
+  renderer.setRenderTarget(target);
+  renderer.render(passScene, passCam);
+}
+
+function stepFluid(dt){
+  // ① Advection: velA → velB
+  advectionMat.uniforms.uVel.value = velA.texture;
+  advectionMat.uniforms.uDt.value = dt * 60;
+  runPass(advectionMat, velB);
+  [velA, velB] = [velB, velA];
+
+  // ② External force: velA → velB
+  forceMat.uniforms.uVel.value = velA.texture;
+  forceMat.uniforms.uMouse.value.copy(mouse.pos);
+  forceMat.uniforms.uMouseVel.value.copy(mouse.vel);
+  runPass(forceMat, velB);
+  [velA, velB] = [velB, velA];
+
+  // ④ Divergence: velA → divFBO
+  divMat.uniforms.uVel.value = velA.texture;
+  runPass(divMat, divFBO);
+
+  // ⑤ Poisson pressure: 8 Jacobi iterations (reuse last frame's pressA as initial guess)
+  for (let i = 0; i < POISSON_ITER; i++){
+    poissonMat.uniforms.uPress.value = pressA.texture;
+    poissonMat.uniforms.uDiv.value = divFBO.texture;
+    runPass(poissonMat, pressB);
+    [pressA, pressB] = [pressB, pressA];
+  }
+
+  // ⑥ Pressure projection: velA - ∇pressA → velB
+  projMat.uniforms.uVel.value = velA.texture;
+  projMat.uniforms.uPress.value = pressA.texture;
+  runPass(projMat, velB);
+  [velA, velB] = [velB, velA];
+
+  return velA.texture;
+}
 
 /* =================== Display plane (helmet) =================== */
 const helmetTex = new THREE.CanvasTexture(createHelmetCanvas());
@@ -576,20 +724,11 @@ function animate(now){
   const velMag = mouse.vel.length();
   stVel.textContent = velMag.toFixed(2);
 
-  // ---- velocity update pass ----
-  const velUni = velQuad.material.uniforms;
-  velUni.uVelocity.value = velA.texture;
-  velUni.uMouse.value.copy(mouse.pos);
-  velUni.uMouseVel.value.copy(mouse.vel);
-  velUni.uDt.value = dt * 60;
-
-  renderer.setRenderTarget(velB);
-  renderer.render(velScene, velCam);
-  // swap
-  const tmp = velA; velA = velB; velB = tmp;
+  // ---- complete fluid pipeline · 6 pass GPU Stable Fluids ----
+  const fluidTex = stepFluid(dt);
 
   // ---- display pass ----
-  planeMat.uniforms.uVelocity.value = velA.texture;
+  planeMat.uniforms.uVelocity.value = fluidTex;
   planeMat.uniforms.uTime.value += dt;
   planeMat.uniforms.uHover.value += ((mouse.overHelmet ? 1 : 0) - planeMat.uniforms.uHover.value) * 0.06;
   planeMat.uniforms.uAspect.value = window.innerWidth / window.innerHeight;
